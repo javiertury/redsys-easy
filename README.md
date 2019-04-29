@@ -244,6 +244,6 @@ Strings
 
 Based on previous work
 
-[redsys-pay](https://github.com/warlock/redsys-pay) by Josep Subils
-[redsys-pos](https://github.com/TvrboPro/redsys-pos) by Jordi Moraleda and Joel Moreno
-[node-redsys-api](https://github.com/santiperez/node-redsys-api) by Santi Perez
+* [redsys-pay](https://github.com/warlock/redsys-pay) by Josep Subils
+* [redsys-pos](https://github.com/TvrboPro/redsys-pos) by Jordi Moraleda and Joel Moreno
+* [node-redsys-api](https://github.com/santiperez/node-redsys-api) by Santi Perez

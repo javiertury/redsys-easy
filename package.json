@@ -1,7 +1,7 @@
 {
   "name": "redsys-easy",
   "description": "Node JS interface for Redsys payment gateway",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -17,6 +17,10 @@
     "card",
     "webservice"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/javiertury/node-easy.git"
+  },
   "main": "src/index.js",
   "scripts": {
     "test": "mocha ./test/**/*.test.js"
