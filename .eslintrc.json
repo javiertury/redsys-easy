@@ -1,0 +1,49 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": "error",
+    "mocha/no-skipped-tests": "warn",
+    "strict": [
+      "error",
+      "global"
+    ],
+    "no-console": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "MemberExpression": 0
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  },
+  "parserOptions": {
+    "sourceType": "script",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "spread": true
+    }
+  },
+  "plugins": [
+    "mocha"
+  ]
+}

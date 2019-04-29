@@ -1,0 +1,11 @@
+{
+  "order": "1444904795",
+  "amount": 1.45,
+  "currency": "EUR",
+  "transactionType": "0",
+  "merchantCode": "999008881",
+  "terminal": "871",
+  "pan": "4548812049400004",
+  "expiryDate": "1220",
+  "CVV2": "123"
+}

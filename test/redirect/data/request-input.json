@@ -1,0 +1,11 @@
+{
+  "amount": 9.99,
+  "order": "1234567890",
+  "merchantCode": "999008881",
+  "currency": "EUR",
+  "transactionType": "0",
+  "terminal": "1",
+  "merchantURL": "http://www.prueba.com/urlNotificacion.php",
+  "successURL": "http://www.prueba.com/urlOK.php",
+  "errorURL": "http://www.prueba.com/urlKO.php"
+}
