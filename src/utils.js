@@ -346,19 +346,19 @@ const SIS_ERROR_CODES = {
 };
 
 exports.getResponseCodeMessage = code => {
-  if (!code || typeof code !== 'string') {
+  if (!code || (typeof code !== 'string' && !Number.isInteger(code))) {
     return null;
   }
 
-  const lookupCode = Number.parseInt(code.trim());
+  const lookupNum = typeof code === 'string' ? Number.parseInt(code.trim()) : code;
 
-  if (!Number.isFinite(lookupCode) || lookupCode < 0) {
+  if (!Number.isFinite(lookupNum) || lookupNum < 0) {
     return null;
   }
 
-  const msg = RESPONSE_CODES[lookupCode.toString()];
+  const msg = RESPONSE_CODES[lookupNum.toString()];
 
-  if (!msg && lookupCode < 100) {
+  if (!msg && lookupNum < 100) {
     return 'Transacción autorizada para pagos y preautorizaciones';
   }
 
