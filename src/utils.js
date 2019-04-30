@@ -2,8 +2,8 @@
 
 const crypto = require('crypto');
 
-const zeroPad = (buf, blocksize) => {
-  buf = Buffer.from(buf.toString('utf8'), 'utf8');
+const zeroPad = (smth, blocksize) => {
+  const buf = Buffer.from(smth.toString(), 'utf8');
   const pad = Buffer.alloc((blocksize - (buf.length % blocksize)) % blocksize, 0);
   return Buffer.concat([buf, pad]);
 };
