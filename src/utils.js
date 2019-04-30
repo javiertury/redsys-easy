@@ -328,9 +328,11 @@ const SIS_ERROR_CODES = {
   'SIS0270': 'El comercio no puede realizar autorizaciones en diferido',
   'SIS0274': 'Tipo de operación desconocida o no permitida por esta entrada al SIS',
   'SIS0295': 'Se ha denegado una operación que fue enviada en el mismo minuto para evitar duplic.',
+  'SIS0298': 'El comercio no permite realizar operaciones de Tarjeta en Archivo',
   'SIS0319': 'El comercio no pertenece al grupo especificado en Ds_Merchant_Group',
   'SIS0321': 'La referencia indicada en Ds_Merchant_Identifier no está asociada al comercio',
   'SIS0322': 'Error de formato en Ds_Merchant_Group',
+  'SIS0325': 'Se ha pedido no mostrar pantallas pero no se ha enviado ninguna referencia de tarjeta',
   'SIS0429': 'Error en la versión enviada por el comercio en el parámetro Ds_SignatureVersion',
   'SIS0430': 'Error al decodificar el parámetro Ds_MerchantParameters',
   'SIS0431': 'Error del objeto JSON que se envía codificado en el parámetro Ds_MerchantParameters',
@@ -338,6 +340,9 @@ const SIS_ERROR_CODES = {
   'SIS0433': 'Error Terminal del comercio erróneo',
   'SIS0434': 'Error ausencia de número de pedido en la operación enviada por el comercio',
   'SIS0435': 'Error en el cálculo de la firma',
+  'SIS0466': 'La referencia que se está utilizando no existe en la tabla de referencias',
+  'SIS0467': 'La referencia que se está utilizando está dada de baja',
+  'SIS0468': 'Se está utilizando una referencia que se generó con un adquirente',
 };
 
 exports.getResponseCodeMessage = code => {
