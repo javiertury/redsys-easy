@@ -44,7 +44,7 @@ exports.formatParams = paramsInput => {
     throw new Error(`Unsupported currency ${paramsInput.currency}`);
   }
 
-  paramsObj.DS_MERCHANT_CURRENCY = currency.code;
+  paramsObj.DS_MERCHANT_CURRENCY = currency.num;
 
   // For decimals
   paramsObj.DS_MERCHANT_AMOUNT = String(Math.floor(paramsInput.amount * currency.multiplier));
@@ -101,23 +101,23 @@ exports.TRANSACTION_TYPES = {
 // ISO 4217
 const CURRENCIES = {
   EUR: {
-    code: '978',
+    num: '978',
     multiplier: 100,
   },
   USD: {
-    code: '840',
+    num: '840',
     multiplier: 100,
   },
   GBP: {
-    code: '826',
+    num: '826',
     multiplier: 100,
   },
   JPY: {
-    code: '392',
+    num: '392',
     multiplier: 1,
   },
   RUB: {
-    code: '643',
+    num: '643',
     multiplier: 100,
   },
 };
