@@ -12,7 +12,11 @@ const {
   getSISErrorCodeMessage,
   signedFieldsXMLResponse,
   sha256Sign,
-  formatParams
+  formatParams,
+  detectSoapVersion,
+  mimicSoapNotificationReceiver,
+  mimicSoap11NotificationResponse,
+  mimicSoap12NotificationResponse
 } = require('./utils.js');
 
 exports.getResponseCodeMessage = getResponseCodeMessage;
@@ -28,6 +32,11 @@ exports.SANDBOX_URLS = {
   redirect: 'https://sis-t.redsys.es:25443/sis/realizarPago',
   ws: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl',
 };
+
+exports.detectSoapVersion = detectSoapVersion;
+exports.mimicSoapNotificationReceiver = mimicSoapNotificationReceiver;
+exports.mimicSoap11NotificationResponse = mimicSoap11NotificationResponse;
+exports.mimicSoap12NotificationResponse = mimicSoap12NotificationResponse;
 
 class Redsys {
   constructor(options) {
@@ -131,7 +140,7 @@ class Redsys {
     const signature = operationData.Ds_Signature;
     const expSignature = sha256Sign(this.secretKey, orderId, signedString);
 
-    if (signature !== expSignature) {
+    if (!signature || signature !== expSignature) {
       throw new Error('Invalid signature');
     }
 
@@ -178,6 +187,38 @@ class Redsys {
         return this.processXMLPetitionResponse(result);
       });
     });
+  }
+
+  processSoapNotification (xml) {
+    const startToken = '<Request';
+    const endToken = '</Request>';
+    const startPos = xml.indexOf(startToken);
+    const endPos = xml.indexOf(endToken);
+
+    if (startPos < 0 || endPos < 0 || startPos > endPos) {
+      throw new Error('Cannot find SOAP notification Request');
+    }
+
+    const signedStr = xml.slice(startPos, endPos + endToken.length);
+    const msg = xmlParser.parse(xml, { parseNodeValue: false }).Message;
+    const signature = msg.Signature;
+    const order = msg.Request.Ds_Order;
+
+    const expSignature = sha256Sign(this.secretKey, order, signedStr);
+
+    if (!signature || signature !== expSignature) {
+      throw new Error('Invalid signature');
+    }
+
+    return msg.Request;
+  }
+
+  soapNotificationAnswer (order, bool) {
+    const answer = bool ? 'OK' : 'KO';
+    const response = `<Response Ds_Version="0.0"><Ds_Response_Merchant>${answer}</Ds_Response_Merchant></Response>`;
+    const signature = sha256Sign(this.secretKey, order, response);
+
+    return `<Message>${response}<Signature>${signature}</Signature></Message>`;
   }
 }
 
