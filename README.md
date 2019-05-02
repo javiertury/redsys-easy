@@ -145,7 +145,7 @@ const {
 } = require('redsys-easy')
 
 const redsys = new Redsys({
-  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
   urls: SANDBOX_URLS, // Also PRODUCTION_URLS
 });
 
@@ -160,7 +160,7 @@ const params = {
   identifier: '18550bc2358294ddfdb50f74d149a31eecebb9d36'
 }
 
-redsys.wsPetition(dataparams).then(result => {
+redsys.wsPetition(params).then(result => {
   console.log(result);
 })
 ```
