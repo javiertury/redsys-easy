@@ -81,7 +81,7 @@ The above will produce the following object
 
 Which can be used to create a payment form
 
-### Process Notifications
+### Process REST Notifications
 
 ```js
 const {
@@ -177,6 +177,110 @@ result.OPERACION.Ds_Response
 
 // Get code message
 getResponseCodeMessage(result.OPERACION.Ds_Response);
+```
+
+### Basic SOAP Notification functions
+
+```
+const {
+  Redsys,
+  SANDBOX_URLS,
+  PRODUCTION_URLS,
+} = require('redsys-easy')
+
+const redsys = new Redsys({
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
+  urls: SANDBOX_URLS, // Also PRODUCTION_URLS
+});
+
+// Get the parameters from a message/request xml
+// Throws an error if signature is not valid
+const params = processSoapNotification(requestXml);
+
+// Build your signed answer/response.
+// Second arg dedices whether the transaction is approved
+const answer = soapNotificationAnswer(params.Ds_Order, true);
+```
+
+### Mimic a SOAP Notification server
+
+Now you can receive synchronous notifications and kill the transaction if you want. No need to run a full-fledged SOAP server.
+
+```
+const {
+  Redsys,
+  SANDBOX_URLS,
+  PRODUCTION_URLS,
+  detectSoapVersion,
+  mimicSoapNotificationReceiver,
+  mimicSoap11NotificationResponse,
+  mimicSoap12NotificationResponse,
+} = require('redsys-easy')
+
+const redsys = new Redsys({
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
+  urls: SANDBOX_URLS, // Also PRODUCTION_URLS
+});
+```
+
+In koa
+
+```
+app.post('/soapNotification', ctx => {
+  // Simulate processing raw xml by a SOAP server
+  const requestXml = mimicSoapNotificationReceiver(ctx.request.body),
+
+  // Throws an error if signature is not valid
+  const params = processSoapNotification(requestXml);
+
+  // Build your answer
+  // Second arg dedices whether the transaction is approved
+  const answer = soapNotificationAnswer(params.Ds_Order, true);
+
+  // Simulate a full SOAP server response
+  const soapVersion = detectSoapVersion({
+    headers: ctx.request.headers,
+    body: ctx.request.body,
+  });
+
+  if (soapVersion === '1.2') {
+    ctx.type = 'application/soap+xml; charset=utf-8';
+    ctx.body = mimicSoap12NotificationResponse(answer);
+  } else {
+    ctx.type = 'text/xml; charset=utf-8';
+    ctx.body = mimicSoap11NotificationResponse(answer);
+  }
+});
+```
+
+In express
+
+```
+app.post('/soapNotification', (req, res) => {
+  // Simulate processing raw xml by a SOAP server
+  const requestXml = mimicSoapNotificationReceiver(req.body),
+
+  // Throws an error if signature is not valid
+  const params = processSoapNotification(requestXml);
+
+  // Build your answer
+  // Second arg dedices whether the transaction is approved
+  const answer = soapNotificationAnswer(params.Ds_Order, true);
+
+  // Simulate a full SOAP server response
+  const soapVersion = detectSoapVersion({
+    headers: req.headers,
+    body: req.body,
+  });
+
+  if (soapVersion === '1.2') {
+    res.set('Content-Type', 'application/soap+xml; charset=utf-8');
+    res.send(mimicSoap12NotificationResponse(answer));
+  } else {
+    res.set('Content-Type', 'text/xml; charset=utf-8');
+    res.send(mimicSoap11NotificationResponse(answer));
+  }
+});
 ```
 
 
