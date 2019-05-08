@@ -5,7 +5,7 @@ Node JS interface for Redsys payment gateway
 
 ## Install
 
-```
+```js
 npm install redsys-easy
 ```
 
@@ -181,7 +181,7 @@ getResponseCodeMessage(result.OPERACION.Ds_Response);
 
 ### Basic SOAP Notification functions
 
-```
+```js
 const {
   Redsys,
   SANDBOX_URLS,
@@ -206,7 +206,7 @@ const answer = soapNotificationAnswer(params.Ds_Order, true);
 
 Now you can receive synchronous notifications and kill the transaction if you want. No need to run a full-fledged SOAP server.
 
-```
+```js
 const {
   Redsys,
   SANDBOX_URLS,
@@ -225,7 +225,7 @@ const redsys = new Redsys({
 
 In koa
 
-```
+```js
 app.post('/soapNotification', ctx => {
   // Simulate processing raw xml by a SOAP server
   const requestXml = mimicSoapNotificationReceiver(ctx.request.body),
@@ -255,7 +255,7 @@ app.post('/soapNotification', ctx => {
 
 In express
 
-```
+```js
 app.post('/soapNotification', (req, res) => {
   // Simulate processing raw xml by a SOAP server
   const requestXml = mimicSoapNotificationReceiver(req.body),
