@@ -91,6 +91,10 @@ class Redsys {
 
   processNotification (body) {
     const params = this.processNotificationParameters(body.Ds_MerchantParameters);
+    if (!params) {
+      throw new Error('Invalid parameters');
+    }
+
     const signature = body.Ds_Signature;
     // Base64url with padding, only substitutes + and /
     const expSignature = sha256Sign(this.secretKey,
