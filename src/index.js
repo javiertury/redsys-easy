@@ -185,7 +185,7 @@ class Redsys {
     const peticion = this.xmlPetitionData(paramsInput);
 
     return this.getWSClient().then(client => {
-      client.trataPeticionAsync({ datoEntrada: peticion }).then(res => {
+      return client.trataPeticionAsync({ datoEntrada: peticion }).then(res => {
         const result = res[0].trataPeticionReturn;
 
         return this.processXMLPetitionResponse(result);
