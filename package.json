@@ -18,8 +18,8 @@
     "webservice"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/javiertury/redsys-easy.git"
+    "type": "git",
+    "url": "https://github.com/javiertury/redsys-easy.git"
   },
   "main": "src/index.js",
   "scripts": {
@@ -45,13 +45,16 @@
     "soap": "^0.27.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.1.4",
     "@commitlint/cli": "^7.3.1",
     "@commitlint/config-conventional": "^7.3.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^5.12.0",
     "eslint-plugin-mocha": "^5.2.1",
     "husky": "^1.3.1",
-    "lint-staged": "^8.1.0"
+    "lint-staged": "^8.1.0",
+    "mocha": "^6.1.4",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
   }
 }
