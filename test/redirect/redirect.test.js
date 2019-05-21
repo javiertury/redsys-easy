@@ -11,7 +11,7 @@ const {
 
 const settings = require('../settings');
 const response = require('./data/response.json');
-const responseParams = require('./data/response-decoded-params.json');
+const responseParams = require('./data/response-decoded-params');
 
 const requestInput = require('./data/request-input');
 const requestEncodedParams = fs.readFileSync(path.resolve(__dirname, 'data/request-encoded-params.txt'), 'utf8').trim();
@@ -51,7 +51,7 @@ describe('Redsys Redirections', () => {
   describe('processNotificationParameters', () => {
     it('should decode notification parameters', function() {
       expect(this.redsys.processNotificationParameters(response.Ds_MerchantParameters))
-      .to.deep.equal(responseParams);
+      .to.deep.equal(responseParams.raw);
     });
   });
 

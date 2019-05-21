@@ -13,10 +13,11 @@ const {
   signedFieldsXMLResponse,
   sha256Sign,
   formatParams,
+  formatResponse,
   detectSoapVersion,
   mimicSoapNotificationReceiver,
   mimicSoap11NotificationResponse,
-  mimicSoap12NotificationResponse
+  mimicSoap12NotificationResponse,
 } = require('./utils.js');
 
 exports.getResponseCodeMessage = getResponseCodeMessage;
@@ -104,8 +105,8 @@ class Redsys {
     if (!signature || !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))) {
       throw new Error('Invalid signature');
     }
-
-    return params;
+    
+    return formatResponse(params);
   }
 
   processXMLResponseData (xmlData) {
@@ -156,7 +157,7 @@ class Redsys {
     const data = this.processXMLResponse(xml);
     this.assertXMLPetitionResponseSignature(data);
 
-    return data;
+    return formatResponse(data.OPERACION);
   }
 
   xmlPetitionParameters (paramsInput) {
@@ -164,7 +165,7 @@ class Redsys {
     return js2xml.parse(datosEntrada);
   }
 
-  xmlPetitionData (paramsInput) {
+  xmlPetitionSignedData (paramsInput) {
     const datosEntradaXML = this.xmlPetitionParameters(paramsInput);
     const signature = sha256Sign(this.secretKey, paramsInput.order, datosEntradaXML);
 
@@ -182,7 +183,7 @@ class Redsys {
   }
 
   wsPetition (paramsInput) {
-    const peticion = this.xmlPetitionData(paramsInput);
+    const peticion = this.xmlPetitionSignedData(paramsInput);
 
     return this.getWSClient().then(client => {
       return client.trataPeticionAsync({ datoEntrada: peticion }).then(res => {
@@ -214,7 +215,7 @@ class Redsys {
       throw new Error('Invalid signature');
     }
 
-    return msg.Request;
+    return formatResponse(msg.Request);
   }
 
   soapNotificationAnswer (order, bool) {

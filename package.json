@@ -42,6 +42,7 @@
   "dependencies": {
     "base64url": "^3.0.1",
     "fast-xml-parser": "^3.12.16",
+    "moment-timezone": "^0.5.25",
     "soap": "^0.27.1"
   },
   "devDependencies": {

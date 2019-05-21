@@ -1,5 +1,6 @@
 'use strict';
 
+// ISO 639-1
 const LANGUAGES = {
   'es': '1',
   'en': '2',

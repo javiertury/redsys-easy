@@ -19,7 +19,7 @@ const notification11 = require('./data/notification-1.1.json');
 const notification12 = require('./data/notification-1.2.json');
 const notificationInner = fs.readFileSync(path.resolve(__dirname, './data/notification-inner.xml'), 'utf8').trim();
 const notificationInnerForged = fs.readFileSync(path.resolve(__dirname, './data/notification-inner-forged.xml'), 'utf8').trim();
-const notificationInnerDecoded = require('./data/notification-inner-decoded.json');
+const notificationInnerDecoded = require('./data/notification-inner-decoded');
 
 const responseInnerOk = fs.readFileSync(path.resolve(__dirname, 'data/response-inner-ok.xml'), 'utf8').trim();
 const responseInnerKo = fs.readFileSync(path.resolve(__dirname, 'data/response-inner-ko.xml'), 'utf8').trim();

@@ -1,9 +1,12 @@
 'use strict';
 
+const momentTz = require('moment-timezone');
 const crypto = require('crypto');
 
-const { LANGUAGES } = require('./assets/lang-codes');
-const { CURRENCIES } = require('./assets/currencies');
+const { LANGUAGES, REV_LANGUAGES } = require('./assets/lang-codes');
+const { CURRENCIES, REV_CURRENCIES } = require('./assets/currencies');
+const { COUNTRIES, REV_COUNTRIES } = require('./assets/countries');
+const { REV_CARDBRANDS } = require('./assets/card-brands');
 const SIS_ERROR_CODES = require('./assets/sis-error-codes');
 const RESPONSE_CODES = require('./assets/response-codes');
 const TRANSACTION_TYPES = require('./assets/transaction-types');
@@ -29,7 +32,7 @@ exports.sha256Sign = (merchantKey, order, params) => {
 };
 
 exports.formatParams = paramsInput => {
-  if (!Number.isFinite(paramsInput.amount) || paramsInput.amount < 0) {
+  if (typeof paramsInput.amount !== 'string' && (!Number.isInteger(paramsInput.amount) || paramsInput.amount < 0)) {
     throw new Error('Invalid amount to charge');
   }
   if (!paramsInput.merchantCode) throw new Error('The merchant code is mandatory');
@@ -44,16 +47,22 @@ exports.formatParams = paramsInput => {
     DS_MERCHANT_TERMINAL: paramsInput.terminal || '1'
   };
 
-  // Default to EUR
-  const currency = CURRENCIES[paramsInput.currency || 'EUR'];
-  if (!currency) {
-    throw new Error(`Unsupported currency ${paramsInput.currency}`);
+  // currency
+  if (Number.isInteger(paramsInput.currencyInt) ||
+    (paramsInput.currencyInt && typeof paramsInput.currencyInt === 'string')) {
+    paramsObj.DS_MERCHANT_CURRENCY = String(paramsInput.currencyInt);
+  } else {
+    // Default to EUR
+    const currencyCode = paramsInput.currency && paramsInput.currency.toUpperCase() || 'EUR';
+    const currency = CURRENCIES[currencyCode];
+    if (!currency || !currency.num) {
+      throw new Error(`Unsupported currency ${paramsInput.currency}`);
+    }
+
+    paramsObj.DS_MERCHANT_CURRENCY = currency.num;
   }
 
-  paramsObj.DS_MERCHANT_CURRENCY = currency.num;
-
-  // For decimals
-  paramsObj.DS_MERCHANT_AMOUNT = String(Math.floor(paramsInput.amount * currency.multiplier));
+  paramsObj.DS_MERCHANT_AMOUNT = String(paramsInput.amount);
 
   if (paramsObj.DS_MERCHANT_AMOUNT.length > 12) throw new Error('Amount to charge is too large');
 
@@ -69,20 +78,40 @@ exports.formatParams = paramsInput => {
   if (paramsInput.identifier) paramsObj.DS_MERCHANT_IDENTIFIER = paramsInput.identifier;
   if (paramsInput.group) paramsObj.DS_MERCHANT_GROUP = paramsInput.group;
   if (paramsInput.pan) paramsObj.DS_MERCHANT_PAN = paramsInput.pan;
-  if (paramsInput.expiryDate) {
+  if (paramsInput.expiryDateInt) {
+    paramsObj.DS_MERCHANT_EXPIRYDATE = paramsInput.expiryDateInt;
+  } else if (paramsInput.expiryDate) {
     const stdFmt = paramsInput.expiryDate;
     if (stdFmt.length !== 4 || ! /^\d+$/.test(stdFmt)) {
       throw new Error('Invalid expiryDate');
     }
     const altFmt = `${stdFmt.slice(2, 4)}${stdFmt.slice(0, 2)}`;
     paramsObj.DS_MERCHANT_EXPIRYDATE = altFmt;
+  } else if (paramsInput.expiryMonth && paramsInput.expiryYear) {
+    if (paramsInput.expiryMonth.length !== 2) {
+      throw new Error('Invalid expiryMonth');
+    }
+    if (paramsInput.expiryYear.length !== 2) {
+      throw new Error('Invalid expiryYear');
+    }
+    paramsObj.DS_MERCHANT_EXPIRYDATE = `${paramsInput.expiryYear}${paramsInput.expiryMonth}`;
   }
   if (paramsInput.CVV2) paramsObj.DS_MERCHANT_CVV2 = paramsInput.CVV2;
-  if (paramsInput.cardCountry) paramsObj.DS_CARD_COUNTRY = paramsInput.cardCountry;
-  if (paramsInput.lang) {
-    const langNum = LANGUAGES[paramsInput.lang];
-    if (langNum) {
-      paramsObj.DS_MERCHANT_CONSUMERLANGUAGE = langNum;
+  if (paramsInput.cardCountryInt) {
+    paramsObj.DS_CARD_COUNTRY = String(paramsInput.cardCountryInt);
+  } else if (paramsInput.cardCountry) {
+    const countryInt = COUNTRIES[paramsInput.cardCountry.toLowerCase()];
+    if (countryInt) {
+      paramsObj.DS_CARD_COUNTRY = countryInt;
+    }
+  }
+  // language
+  if (paramsInput.langInt) {
+    paramsObj.DS_MERCHANT_CONSUMERLANGUAGE = String(paramsInput.langInt);
+  } else if (paramsInput.lang) {
+    const langInt = LANGUAGES[paramsInput.lang];
+    if (langInt) {
+      paramsObj.DS_MERCHANT_CONSUMERLANGUAGE = langInt;
     }
   }
   if (paramsInput.merchantData) paramsObj.DS_MERCHANT_MERCHANTDATA = paramsInput.merchantData;
@@ -90,6 +119,84 @@ exports.formatParams = paramsInput => {
 
   return paramsObj;
 };
+
+function formatResponse(params) {
+  const obj = { raw: params };
+
+  const hour = params.Ds_Hour || params.Hora;
+  if (hour) obj.hour = hour;
+
+  const date = params.Ds_Date || params.Fecha;
+  // Transform to ISO format
+  if (date) obj.date = date.split('/').reverse().join('-');
+  if (obj.date && obj.hour) obj.timestamp = momentTz.tz(`${obj.date} ${obj.hour}`, 'YYYY-MM-DD HH:mm', true, 'Europe/Madrid').toDate();
+
+  if (params.Ds_Currency) {
+    obj.currencyInt = Number.parseInt(params.Ds_Currency);
+    const currency = REV_CURRENCIES[obj.currencyInt];
+    if (currency) {
+      obj.currency = currency.code;
+    }
+  }
+
+  if (params.Ds_Amount) {
+    obj.amount = Number.parseInt(params.Ds_Amount);
+  }
+
+  if (params.Ds_Response) {
+    // Remove leading zeros
+    obj.response = Number.parseInt(params.Ds_Response);
+  }
+
+  if (params.Ds_Order) obj.order = params.Ds_Order;
+  if (params.Ds_MerchantCode) obj.merchantCode = params.Ds_MerchantCode;
+  if (params.Ds_Terminal) obj.terminal = params.Ds_Terminal;
+  if (params.Ds_MerchantData) obj.merchantData = params.Ds_MerchantData;
+  if (params.Ds_SecurePayment) obj.securePayment = params.Ds_SecurePayment;
+  if (params.Ds_TransactionType) obj.transactionType = params.Ds_TransactionType;
+
+  // Pago por referencia
+  if (params.Ds_Merchant_Identifier) obj.identifier = params.Ds_Merchant_Identifier;
+  // Is it received?
+  //if (params.Ds_Merchant_Group) obj.merchantGroup = params.Ds_Merchant_Group;
+  if (params.Ds_ExpiryDate) {
+    obj.expiryDateInt = params.Ds_ExpiryDate;
+    obj.expiryMonth = params.Ds_ExpiryDate.slice(2, 4);
+    obj.expiryYear = params.Ds_ExpiryDate.slice(0, 2);
+    obj.expiryDate = `${obj.expiryMonth}${obj.expiryYear}`;
+  }
+
+  // Optional
+  if (params.Ds_CardNumber) obj.cardNumber = params.Ds_CardNumber;
+  if (params.Ds_Card_Type) obj.cardType = params.Ds_Card_Type;
+  if (params.Ds_AuthorisationCode) obj.authorisationCode = params.Ds_AuthorisationCode;
+  if (params.Ds_ConsumerLanguage || params.Ds_Language) {
+    obj.langInt = Number.parseInt(params.Ds_ConsumerLanguage || params.Ds_Language);
+    const lang = REV_LANGUAGES[obj.langInt];
+    if (lang) {
+      obj.lang = lang;
+    }
+  }
+  if (params.Ds_Card_Country) {
+    obj.cardCountryInt = Number.parseInt(params.Ds_Card_Country);
+    const cardCountry = REV_COUNTRIES[obj.cardCountryInt];
+    if (cardCountry) {
+      obj.cardCountry = cardCountry;
+    }
+  }
+
+  if (params.Ds_Card_Brand) {
+    obj.cardBrandInt = Number.parseInt(params.Ds_Card_Brand);
+    const cardBrand = REV_CARDBRANDS[obj.cardBrandInt];
+    if (cardBrand) {
+      obj.cardBrand = cardBrand;
+    }
+  }
+
+  return obj;
+}
+
+exports.formatResponse = formatResponse;
 
 exports.TRANSACTION_TYPES = TRANSACTION_TYPES;
 

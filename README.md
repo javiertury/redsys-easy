@@ -41,7 +41,7 @@ const {
   Redsys,
   SANDBOX_URLS,
   PRODUCTION_URLS,
-  TRANSACTION_TYPES
+  TRANSACTION_TYPES,
 } = require('redsys-easy')
 
 const redsys = new Redsys({
@@ -50,13 +50,15 @@ const redsys = new Redsys({
 });
 
 const obj = {
-  amount: 49.99,
+  // amount in smallest currency unit(cents)
+  // 49.99€
+  amount: 4999,
   currency: 'EUR',
-  order: '123123',
+  order: '0000jd928j',
   merchantName: 'MI COMERCIO',
-  merchantCode: '123123123',
-  transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+  merchantCode: '999008881',
   terminal: '1',
+  transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
   merchantURL: 'http://micomercio.com/payments/redsys/notification',
   successURL: 'http://micomercio.com/compra/success',
   errorURL: 'http://micomercio.com/compra/error'
@@ -66,7 +68,7 @@ const form = redsys.redirectPetition(obj)
 console.log(form);
 ```
 
-The above will produce the following object
+The above will produce an object similar to
 
 ```js
 {
@@ -104,25 +106,50 @@ If the signature is not correct, it will throw an error. Otherwise it will retur
 
 ```js
 {
-  Ds_Date: '20/10/2017',
-  Ds_Hour: '18:20',
-  Ds_SecurePayment: '1',
-  Ds_Amount: '100',
-  Ds_Currency: '978',
-  Ds_Order: '00007921799',
-  Ds_MerchantCode: '327234688',
-  Ds_Terminal: '001',
-  Ds_Response: '0000',
-  Ds_TransactionType: '0',
-  Ds_MerchantData: '',
-  Ds_AuthorisationCode: '678746',
-  Ds_ConsumerLanguage: '1',
-  Ds_Card_Country: '724',
-  Ds_Card_Brand: '1'
+  date: '2017-10-20',
+  hour: '18:20',
+  // Already timezone aware
+  timestamp: new Date('2017-10-20 17:20 Z'),
+  securePayment: '1',
+  // amount in smallest currency unit(cents)
+  // 49.99€
+  amount: 4999,
+  currencyInt: 978,
+  currency: 'EUR',
+  order: '000079d1Zr9',
+  merchantCode: '327234688',
+  terminal: '001',
+  response: 0,
+  transactionType: '0',
+  authorisationCode: '678746',
+  langInt: 1,
+  lang: 'es',
+  cardCountryInt: 724,
+  cardCountry: 'es',
+  cardBrandInt: 1,
+  cardBrand: 'VISA',
+  // Raw response parameters
+  raw: {
+    Ds_Date: '20/10/2017',
+    Ds_Hour: '18:20',
+    Ds_SecurePayment: '1',
+    Ds_Amount: '100',
+    Ds_Currency: '978',
+    Ds_Order: '00007921799',
+    Ds_MerchantCode: '327234688',
+    Ds_Terminal: '001',
+    Ds_Response: '0000',
+    Ds_TransactionType: '0',
+    Ds_MerchantData: '',
+    Ds_AuthorisationCode: '678746',
+    Ds_ConsumerLanguage: '1',
+    Ds_Card_Country: '724',
+    Ds_Card_Brand: '1'
+  }
 }
 ```
 
-### Checking a response code
+### Response code messages
 
 ```js
 const { getResponseCodeMessage } = require('redsys-easy')
@@ -141,7 +168,7 @@ const {
   Redsys,
   TRANSACTION_TYPES,
   SANDBOX_URLS,
-  PRODUCTION_URLS
+  PRODUCTION_URLS,
 } = require('redsys-easy')
 
 const redsys = new Redsys({
@@ -150,14 +177,17 @@ const redsys = new Redsys({
 });
 
 const params = {
-  amount: 33.50,
-  order: '000123',
-  merchantCode: '132132132',
+  // amount in smallest currency unit(cents)
+  // 33.50€
+  amount: 3350,
+  order: '0000jd928j',
+  merchantCode: '999008881',
   currency: 'EUR',
+  pan: '4548812049400004',
+  CVV2: '123'
   expiryDate: '1220', // MMYY format
   transactionType: TRANSACTION_TYPES.NO_AUTHENTICATION,
   terminal: '1',
-  identifier: '18550bc2358294ddfdb50f74d149a31eecebb9d36'
 }
 
 redsys.wsPetition(params).then(result => {
@@ -173,10 +203,12 @@ const {
 } = require('redsys-easy')
 
 // Get response code
-result.OPERACION.Ds_Response
+result.response
+result.raw.Ds_Response
 
 // Get code message
-getResponseCodeMessage(result.OPERACION.Ds_Response);
+getResponseCodeMessage(response);
+getResponseCodeMessage(result.raw.Ds_Response);
 ```
 
 ### Basic SOAP Notification functions
@@ -235,7 +267,7 @@ app.post('/soapNotification', ctx => {
 
   // Build your answer
   // Second arg dedices whether the transaction is approved
-  const answer = soapNotificationAnswer(params.Ds_Order, true);
+  const answer = soapNotificationAnswer(params.order, true);
 
   // Simulate a full SOAP server response
   const soapVersion = detectSoapVersion({
@@ -265,7 +297,7 @@ app.post('/soapNotification', (req, res) => {
 
   // Build your answer
   // Second arg dedices whether the transaction is approved
-  const answer = soapNotificationAnswer(params.Ds_Order, true);
+  const answer = soapNotificationAnswer(params.order, true);
 
   // Simulate a full SOAP server response
   const soapVersion = detectSoapVersion({
@@ -288,13 +320,14 @@ app.post('/soapNotification', (req, res) => {
 
 Numbers
 
-* amount
+* amount: integer in the smallest currency unit.
 
 Strings
 
 * order
 * merchantCode
-* currency
+* currency: Uppercase ISO 4217 alpha-3 code, e.g 'EUR'
+* currencyInt: Currency in redsys internal format, has priority over currency
 * transactionType
 * terminal
 * merchantName
@@ -308,14 +341,18 @@ Strings
 * identifier
 * group
 * pan
-* expiryDate
+* expiryDate: As printed in your credit card, MMYY, has priority over expiryYear and expiryMonth
+* expiryDateInt: redsys internal format, YYMM, has priority over expiryDate
+* expiryYear: YY
+* expiryMonth: MM
 * CVV2
 * partialPayment
-* cardCountry
+* cardCountry: Lowercase ISO 3166 Alpha 2 country code, e.g. 'es'
+* cardCountryInt: Country in redsys internal format, has priority over country
 * merchantData
 * clientIp
-
-`expiryDate` should be formatted "MMYY"
+* lang: Lowercase ISO 639-1 lang code
+* langInt: Language in redsys internal format, has priority over lang
 
 ### Transaction Types:
 
@@ -343,6 +380,12 @@ Strings
 * GBP
 * JPY
 * RUB
+
+## FAQ
+
+### Why are amounts denominated in the smallest unit of a currency?
+
+To avoid floats and precision losses. In javascript `0.1 + 0.2 !== 0.3`, but `1 + 2 === 3`. Also, this is a convention for payment processors and POS terminals.
 
 ## Acknowledgments
 
