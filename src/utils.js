@@ -324,3 +324,25 @@ exports.mimicSoap12NotificationResponse = answer => {
 
   return `<?xml version="1.0" encoding="utf-8"?><soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="https://sis.sermepa.es/sis/InotificacionSIS.wsdl" xmlns:types="https://sis.sermepa.es/sis/InotificacionSIS.wsdl/encodedTypes" xmlns:rpc="http://www.w3.org/2003/05/soap-rpc" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"><soap12:Body soap12:encodingStyle="http://www.w3.org/2003/05/soap-encoding"><q4:procesaNotificacionSISResponse xmlns:q4="InotificacionSIS"><rpc:result xmlns="">return</rpc:result><return xsi:type="xsd:string">${escapedAnswer}</return></q4:procesaNotificacionSISResponse></soap12:Body></soap12:Envelope>`;
 };
+
+// Range: 0 to (top -1)
+function randomInt(top) {
+  return Math.floor(Math.random() * Math.floor(top));
+}
+
+const alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+exports.randomTransactionId = () => {
+  // Random 4 digit number between 0 and 9999
+  const num = randomInt(10000);
+  const numStr = num.toString().padStart(4, '0');
+  // Random 8 letter alphanumeric sequence
+  const alphanum = new Array(8);
+
+  for (let idx = 0; idx < 8; idx++) {
+    alphanum[idx] = alphanumeric[randomInt(alphanumeric.length)];
+  }
+
+  const alphanumStr = alphanum.join('');
+  return `${numStr}${alphanumStr}`;
+};

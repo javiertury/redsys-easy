@@ -18,6 +18,7 @@ const {
   mimicSoapNotificationReceiver,
   mimicSoap11NotificationResponse,
   mimicSoap12NotificationResponse,
+  randomTransactionId,
 } = require('./utils.js');
 
 exports.getResponseCodeMessage = getResponseCodeMessage;
@@ -38,6 +39,8 @@ exports.detectSoapVersion = detectSoapVersion;
 exports.mimicSoapNotificationReceiver = mimicSoapNotificationReceiver;
 exports.mimicSoap11NotificationResponse = mimicSoap11NotificationResponse;
 exports.mimicSoap12NotificationResponse = mimicSoap12NotificationResponse;
+
+exports.randomTransactionId = randomTransactionId;
 
 class Redsys {
   constructor(options) {

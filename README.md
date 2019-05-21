@@ -42,6 +42,7 @@ const {
   SANDBOX_URLS,
   PRODUCTION_URLS,
   TRANSACTION_TYPES,
+  randomTransactionId
 } = require('redsys-easy')
 
 const redsys = new Redsys({
@@ -54,7 +55,7 @@ const obj = {
   // 49.99€
   amount: 4999,
   currency: 'EUR',
-  order: '0000jd928j',
+  order: randomTransactionId(),
   merchantName: 'MI COMERCIO',
   merchantCode: '999008881',
   terminal: '1',
@@ -169,6 +170,7 @@ const {
   TRANSACTION_TYPES,
   SANDBOX_URLS,
   PRODUCTION_URLS,
+  randomTransactionId
 } = require('redsys-easy')
 
 const redsys = new Redsys({
@@ -180,7 +182,7 @@ const params = {
   // amount in smallest currency unit(cents)
   // 33.50€
   amount: 3350,
-  order: '0000jd928j',
+  order: '000079d1Zr9',
   merchantCode: '999008881',
   currency: 'EUR',
   pan: '4548812049400004',
