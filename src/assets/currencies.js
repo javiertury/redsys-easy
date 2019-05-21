@@ -4,27 +4,27 @@
 const CURRENCIES = {
   EUR: {
     num: '978',
-    multiplier: 100,
+    decimals: 2,
   },
   USD: {
     num: '840',
-    multiplier: 100,
+    decimals: 2,
   },
   GBP: {
     num: '826',
-    multiplier: 100,
+    decimals: 2,
   },
   JPY: {
     num: '392',
-    multiplier: 1,
+    decimals: 0,
   },
   RUB: {
     num: '643',
-    multiplier: 100,
+    decimals: 2,
   },
   CNY: {
     num: 'CNY',
-    multiplier: 100,
+    decimals: 2,
   }
 };
 
@@ -35,7 +35,7 @@ const REV_CURRENCIES = {};
 for (const [key, value] of Object.entries(CURRENCIES)) {
   REV_CURRENCIES[value.num] = {
     code: key,
-    multiplier: value.multiplier,
+    decimals: value.decimals,
   };
 }
 
