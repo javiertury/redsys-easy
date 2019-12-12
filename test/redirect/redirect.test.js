@@ -38,7 +38,7 @@ describe('Redsys Redirections', () => {
     it('should create signed merchant petitions', function() {
       const petition = this.redsys.redirectPetition(requestInput);
       const expectedAlg = 'HMAC_SHA256_V1';
-      const expectedSig = '0bqWhAFUE0KDF9z1NpXV33xDDAHiyMDeEsRJENxs3E0=';
+      const expectedSig = 'dqrJtEY8gxkkqxgvcdagVIHNWAYbLnoR5ShE8jHmkcc=';
 
       expect(petition.url).to.equal('https://sis-t.redsys.es:25443/sis/realizarPago');
       expect(petition.body.Ds_MerchantParameters).to.equal(requestEncodedParams);
