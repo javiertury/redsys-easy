@@ -357,6 +357,9 @@ Strings
 * merchantData
 * clientIp
 * lang: Lowercase ISO 639-1 lang code
+
+Other
+
 * raw: Object with parameters that will not formatted
 
 ### Transaction Types:
@@ -377,14 +380,6 @@ Strings
 * DEFERRED_SUCCESSIVE_FEE: "S"
 * NO_AUTHENTICATION: "A"
 * DELETE_REFERENCE: "44"
-
-### Supported Currencies
-
-* EUR
-* USD
-* GBP
-* JPY
-* RUB
 
 ## FAQ
 

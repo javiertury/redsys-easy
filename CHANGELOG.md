@@ -16,7 +16,7 @@
 
 ### Changed
 
-- Removed internal parameters in the form of *paramInt*. Migrate to *raw* property.
+- Removed internal parameters in the form of *paramInt*. User the new *raw* property instead.
 
 ### Added
 
