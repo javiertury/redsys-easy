@@ -7,7 +7,7 @@ const { LANGUAGES, REV_LANGUAGES } = require('./assets/lang-codes');
 const { CURRENCIES, REV_CURRENCIES } = require('./assets/currencies');
 const { COUNTRIES, REV_COUNTRIES } = require('./assets/countries');
 const { REV_CARDBRANDS } = require('./assets/card-brands');
-const SIS_ERROR_CODES = require('./assets/sis-error-codes');
+const { SIS_ERROR_CODES } = require('./assets/error-codes');
 const RESPONSE_CODES = require('./assets/response-codes');
 const TRANSACTION_TYPES = require('./assets/transaction-types');
 
