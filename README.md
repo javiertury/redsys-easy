@@ -383,6 +383,10 @@ Other
 
 ## FAQ
 
+### What is the smallest unit of a currency?
+
+The smallest unit of a currency, is the smallest integer amount of said currency. For euros, it is cents. So 1.99 EUR would be 199 of the smallest unit.
+
 ### Why are amounts denominated in the smallest unit of a currency?
 
 To avoid floats and precision losses. In javascript `0.1 + 0.2 !== 0.3`, but `1 + 2 === 3`. Also, this is a convention for payment processors and POS terminals.
