@@ -62,7 +62,12 @@ const obj = {
   transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
   merchantURL: 'http://micomercio.com/payments/redsys/notification',
   successURL: 'http://micomercio.com/compra/success',
-  errorURL: 'http://micomercio.com/compra/error'
+  errorURL: 'http://micomercio.com/compra/error',
+  // Raw parameters
+  raw: {
+    // merchantData
+    DS_MERCHANT_MERCHANTDATA: 'foo',
+  },
 }
 
 const form = redsys.redirectPetition(obj)
@@ -115,7 +120,6 @@ If the signature is not correct, it will throw an error. Otherwise it will retur
   // amount in smallest currency unit(cents)
   // 49.99€
   amount: 4999,
-  currencyInt: 978,
   currency: 'EUR',
   order: '000079d1Zr9',
   merchantCode: '327234688',
@@ -123,11 +127,8 @@ If the signature is not correct, it will throw an error. Otherwise it will retur
   response: 0,
   transactionType: '0',
   authorisationCode: '678746',
-  langInt: 1,
   lang: 'es',
-  cardCountryInt: 724,
   cardCountry: 'es',
-  cardBrandInt: 1,
   cardBrand: 'VISA',
   // Raw response parameters
   raw: {
@@ -170,7 +171,7 @@ const {
   TRANSACTION_TYPES,
   SANDBOX_URLS,
   PRODUCTION_URLS,
-  randomTransactionId
+  randomTransactionId,
 } = require('redsys-easy')
 
 const redsys = new Redsys({
@@ -186,10 +187,15 @@ const params = {
   merchantCode: '999008881',
   currency: 'EUR',
   pan: '4548812049400004',
-  CVV2: '123'
+  CVV2: '123',
   expiryDate: '1220', // MMYY format
   transactionType: TRANSACTION_TYPES.NO_AUTHENTICATION,
   terminal: '1',
+  // Raw parameters
+  raw: {
+    // merchantData
+    DS_MERCHANT_MERCHANTDATA: 'foo',
+  },
 }
 
 redsys.wsPetition(params).then(result => {
@@ -329,7 +335,6 @@ Strings
 * order
 * merchantCode
 * currency: Uppercase ISO 4217 alpha-3 code, e.g 'EUR'
-* currencyInt: Currency in redsys internal format, has priority over currency
 * transactionType
 * terminal
 * merchantName
@@ -344,17 +349,15 @@ Strings
 * group
 * pan
 * expiryDate: As printed in your credit card, MMYY, has priority over expiryYear and expiryMonth
-* expiryDateInt: redsys internal format, YYMM, has priority over expiryDate
 * expiryYear: YY
 * expiryMonth: MM
 * CVV2
 * partialPayment
 * cardCountry: Lowercase ISO 3166 Alpha 2 country code, e.g. 'es'
-* cardCountryInt: Country in redsys internal format, has priority over country
 * merchantData
 * clientIp
 * lang: Lowercase ISO 639-1 lang code
-* langInt: Language in redsys internal format, has priority over lang
+* raw: Object with parameters that will not formatted
 
 ### Transaction Types:
 

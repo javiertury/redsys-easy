@@ -2,10 +2,8 @@
 
 const { expect } = require('chai');
 
-const {
-  formatParams,
-  TRANSACTION_TYPES
-} = require('../../src/utils');
+const { formatParams } = require('../../src/params-formatter');
+const { TRANSACTION_TYPES } = require('../../src/utils');
 
 describe('Input Parameters Format', () => {
 
@@ -27,35 +25,19 @@ describe('Input Parameters Format', () => {
       DS_MERCHANT_TRANSACTIONTYPE: '0',
       DS_MERCHANT_CURRENCY: '978',
     });
-
-    const paramsInt = formatParams({ 
-      amount: 4999,
-      currencyInt: '840',
-      order: '0000Abc',
-      merchantCode: '999008881',
-      terminal: '1',
-      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-    });
-
-    expect(paramsInt).to.deep.equal({
-      DS_MERCHANT_AMOUNT: '4999',
-      DS_MERCHANT_MERCHANTCODE: '999008881',
-      DS_MERCHANT_ORDER: '0000Abc',
-      DS_MERCHANT_TERMINAL: '1',
-      DS_MERCHANT_TRANSACTIONTYPE: '0',
-      DS_MERCHANT_CURRENCY: '840',
-    });
   });
 
   it('should format currencies, giving priority to internal format', function() {
     const params = formatParams({ 
       amount: 4999,
       currency: 'EUR',
-      currencyInt: '840', // USD
       order: '0000Abc',
       merchantCode: '999008881',
       terminal: '1',
       transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+      raw: {
+        DS_MERCHANT_CURRENCY: '840', // USD
+      },
     });
 
     expect(params).to.deep.equal({
@@ -88,26 +70,6 @@ describe('Input Parameters Format', () => {
       DS_MERCHANT_CURRENCY: '978',
       DS_CARD_COUNTRY: '724',
     });
-
-    const paramsInt = formatParams({ 
-      amount: 4999,
-      currency: 'EUR',
-      order: '0000Abc',
-      merchantCode: '999008881',
-      terminal: '1',
-      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-      cardCountryInt: '840',
-    });
-
-    expect(paramsInt).to.deep.equal({
-      DS_MERCHANT_AMOUNT: '4999',
-      DS_MERCHANT_MERCHANTCODE: '999008881',
-      DS_MERCHANT_ORDER: '0000Abc',
-      DS_MERCHANT_TERMINAL: '1',
-      DS_MERCHANT_TRANSACTIONTYPE: '0',
-      DS_MERCHANT_CURRENCY: '978',
-      DS_CARD_COUNTRY: '840',
-    });
   });
 
   it('should format card countries, giving priority to internal format', function() {
@@ -119,7 +81,9 @@ describe('Input Parameters Format', () => {
       terminal: '1',
       transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
       cardCountry: 'es',
-      cardCountryInt: '840',
+      raw: {
+        DS_CARD_COUNTRY: '840', // us
+      },
     });
 
     expect(paramsInt).to.deep.equal({
@@ -153,26 +117,6 @@ describe('Input Parameters Format', () => {
       DS_MERCHANT_CURRENCY: '978',
       DS_MERCHANT_CONSUMERLANGUAGE: '1',
     });
-
-    const paramsInt = formatParams({ 
-      amount: 4999,
-      currency: 'EUR',
-      order: '0000Abc',
-      merchantCode: '999008881',
-      terminal: '1',
-      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-      langInt: '1',
-    });
-
-    expect(paramsInt).to.deep.equal({
-      DS_MERCHANT_AMOUNT: '4999',
-      DS_MERCHANT_MERCHANTCODE: '999008881',
-      DS_MERCHANT_ORDER: '0000Abc',
-      DS_MERCHANT_TERMINAL: '1',
-      DS_MERCHANT_TRANSACTIONTYPE: '0',
-      DS_MERCHANT_CURRENCY: '978',
-      DS_MERCHANT_CONSUMERLANGUAGE: '1',
-    });
   });
 
   it('should format languages, giving priority to internal format', function() {
@@ -184,7 +128,9 @@ describe('Input Parameters Format', () => {
       terminal: '1',
       transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
       lang: 'es',
-      langInt: '2',
+      raw: {
+        DS_MERCHANT_CONSUMERLANGUAGE: '2', // en
+      }
     });
 
     expect(params).to.deep.equal({
@@ -210,26 +156,6 @@ describe('Input Parameters Format', () => {
     });
 
     expect(params).to.deep.equal({
-      DS_MERCHANT_AMOUNT: '4999',
-      DS_MERCHANT_MERCHANTCODE: '999008881',
-      DS_MERCHANT_ORDER: '0000Abc',
-      DS_MERCHANT_TERMINAL: '1',
-      DS_MERCHANT_TRANSACTIONTYPE: '0',
-      DS_MERCHANT_CURRENCY: '978',
-      DS_MERCHANT_EXPIRYDATE: '2012',
-    });
-
-    const paramsInt = formatParams({ 
-      amount: 4999,
-      currency: 'EUR',
-      order: '0000Abc',
-      merchantCode: '999008881',
-      terminal: '1',
-      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-      expiryDateInt: '2012',
-    });
-
-    expect(paramsInt).to.deep.equal({
       DS_MERCHANT_AMOUNT: '4999',
       DS_MERCHANT_MERCHANTCODE: '999008881',
       DS_MERCHANT_ORDER: '0000Abc',
@@ -269,10 +195,12 @@ describe('Input Parameters Format', () => {
       merchantCode: '999008881',
       terminal: '1',
       transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-      expiryDateInt: '2005',
       expiryDate: '0621',
       expiryMonth: '07',
       expiryYear: '22',
+      raw: {
+        DS_MERCHANT_EXPIRYDATE: '2005', // May 2020
+      }
     });
 
     expect(paramsAll).to.deep.equal({

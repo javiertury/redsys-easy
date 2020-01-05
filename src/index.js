@@ -12,14 +12,15 @@ const {
   getSISErrorCodeMessage,
   signedFieldsXMLResponse,
   sha256Sign,
-  formatParams,
-  formatResponse,
   detectSoapVersion,
   mimicSoapNotificationReceiver,
   mimicSoap11NotificationResponse,
   mimicSoap12NotificationResponse,
   randomTransactionId,
 } = require('./utils.js');
+
+const { formatParams } = require('./params-formatter');
+const { formatResponse } = require('./response-formatter');
 
 exports.getResponseCodeMessage = getResponseCodeMessage;
 exports.getSISErrorCodeMessage = getSISErrorCodeMessage;

@@ -12,11 +12,8 @@ module.exports = {
   'response': 0,
   'transactionType': '0',
   'authorisationCode': '082150',
-  'currencyInt': 978,
   'currency': 'EUR',
-  'cardCountryInt': 724,
   'cardCountry': 'es',
-  'langInt': 1,
   'lang': 'es',
   'raw': {
     'Ds_Date': '09/11/2015',

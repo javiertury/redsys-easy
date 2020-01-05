@@ -11,3 +11,14 @@
 
 - Notification and web service response parameters are formatted
 - Random transaction ID generator
+
+## [3.0.0]
+
+### Changed
+
+- Removed internal parameters in the form of *paramInt*. Migrate to *raw* property.
+
+### Added
+
+- A new parameter *raw* can be used to pass an object with redsys parameters that should not be formatted
+- Updated currencies and error codes

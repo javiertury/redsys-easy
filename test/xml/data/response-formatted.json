@@ -1,6 +1,5 @@
 {
   "amount": 145,
-  "currencyInt": 978,
   "currency": "EUR",
   "order": "1444912789",
   "merchantCode": "999008881",
@@ -9,10 +8,8 @@
   "authorisationCode": "050372",
   "transactionType": "0",
   "securePayment": "0",
-  "langInt": 1,
   "lang": "es",
   "cardType": "D",
-  "cardCountryInt": 724,
   "cardCountry": "es",
   "raw": {
     "Ds_Amount": "145",
