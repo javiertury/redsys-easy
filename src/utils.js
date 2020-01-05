@@ -59,7 +59,7 @@ exports.formatParams = paramsInput => {
       throw new Error(`Unsupported currency ${paramsInput.currency}`);
     }
 
-    paramsObj.DS_MERCHANT_CURRENCY = currency.num;
+    paramsObj.DS_MERCHANT_CURRENCY = currency.num.toString().padStart(3, '0');
   }
 
   paramsObj.DS_MERCHANT_AMOUNT = String(paramsInput.amount);
