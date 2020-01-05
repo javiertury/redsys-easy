@@ -120,73 +120,79 @@ exports.formatParams = paramsInput => {
   return paramsObj;
 };
 
-function formatResponse(params) {
-  const obj = { raw: params };
+function formatResponse(rawParams) {
+  const obj = { raw: rawParams };
 
-  const hour = params.Ds_Hour || params.Hora;
+  // All params to upper case
+  const params = {};
+  for (const key in rawParams) {
+    params[key.toUpperCase()] = rawParams[key];
+  }
+
+  const hour = params.DS_HOUR || params.HORA;
   if (hour) obj.hour = hour;
 
-  const date = params.Ds_Date || params.Fecha;
+  const date = params.DS_DATE || params.FECHA;
   // Transform to ISO format
   if (date) obj.date = date.split('/').reverse().join('-');
   if (obj.date && obj.hour) obj.timestamp = momentTz.tz(`${obj.date} ${obj.hour}`, 'YYYY-MM-DD HH:mm', true, 'Europe/Madrid').toDate();
 
-  if (params.Ds_Currency) {
-    obj.currencyInt = Number.parseInt(params.Ds_Currency);
+  if (params.DS_CURRENCY) {
+    obj.currencyInt = Number.parseInt(params.DS_CURRENCY);
     const currency = REV_CURRENCIES[obj.currencyInt];
     if (currency) {
       obj.currency = currency.code;
     }
   }
 
-  if (params.Ds_Amount) {
-    obj.amount = Number.parseInt(params.Ds_Amount);
+  if (params.DS_AMOUNT) {
+    obj.amount = Number.parseInt(params.DS_AMOUNT);
   }
 
-  if (params.Ds_Response) {
+  if (params.DS_RESPONSE) {
     // Remove leading zeros
-    obj.response = Number.parseInt(params.Ds_Response);
+    obj.response = Number.parseInt(params.DS_RESPONSE);
   }
 
-  if (params.Ds_Order) obj.order = params.Ds_Order;
-  if (params.Ds_MerchantCode) obj.merchantCode = params.Ds_MerchantCode;
-  if (params.Ds_Terminal) obj.terminal = params.Ds_Terminal;
-  if (params.Ds_MerchantData) obj.merchantData = params.Ds_MerchantData;
-  if (params.Ds_SecurePayment) obj.securePayment = params.Ds_SecurePayment;
-  if (params.Ds_TransactionType) obj.transactionType = params.Ds_TransactionType;
+  if (params.DS_ORDER) obj.order = params.DS_ORDER;
+  if (params.DS_MERCHANTCODE) obj.merchantCode = params.DS_MERCHANTCODE;
+  if (params.DS_TERMINAL) obj.terminal = params.DS_TERMINAL;
+  if (params.DS_MERCHANTDATA) obj.merchantData = params.DS_MERCHANTDATA;
+  if (params.DS_SECUREPAYMENT) obj.securePayment = params.DS_SECUREPAYMENT;
+  if (params.DS_TRANSACTIONTYPE) obj.transactionType = params.DS_TRANSACTIONTYPE;
 
   // Pago por referencia
-  if (params.Ds_Merchant_Identifier) obj.identifier = params.Ds_Merchant_Identifier;
+  if (params.DS_MERCHANT_IDENTIFIER) obj.identifier = params.DS_MERCHANT_IDENTIFIER;
   // Is it received?
-  //if (params.Ds_Merchant_Group) obj.merchantGroup = params.Ds_Merchant_Group;
-  if (params.Ds_ExpiryDate) {
-    obj.expiryDateInt = params.Ds_ExpiryDate;
-    obj.expiryMonth = params.Ds_ExpiryDate.slice(2, 4);
-    obj.expiryYear = params.Ds_ExpiryDate.slice(0, 2);
+  //if (params.DS_MERCHANT_GROUP) obj.merchantGroup = params.DS_MERCHANT_GROUP;
+  if (params.DS_EXPIRYDATE) {
+    obj.expiryDateInt = params.DS_EXPIRYDATE;
+    obj.expiryMonth = params.DS_EXPIRYDATE.slice(2, 4);
+    obj.expiryYear = params.DS_EXPIRYDATE.slice(0, 2);
     obj.expiryDate = `${obj.expiryMonth}${obj.expiryYear}`;
   }
 
   // Optional
-  if (params.Ds_CardNumber) obj.cardNumber = params.Ds_CardNumber;
-  if (params.Ds_Card_Type) obj.cardType = params.Ds_Card_Type;
-  if (params.Ds_AuthorisationCode) obj.authorisationCode = params.Ds_AuthorisationCode;
-  if (params.Ds_ConsumerLanguage || params.Ds_Language) {
-    obj.langInt = Number.parseInt(params.Ds_ConsumerLanguage || params.Ds_Language);
+  if (params.DS_CARDNUMBER) obj.cardNumber = params.DS_CARDNUMBER;
+  if (params.DS_CARD_TYPE) obj.cardType = params.DS_CARD_TYPE;
+  if (params.DS_AUTHORISATIONCODE) obj.authorisationCode = params.DS_AUTHORISATIONCODE;
+  if (params.DS_CONSUMERLANGUAGE || params.DS_LANGUAGE) {
+    obj.langInt = Number.parseInt(params.DS_CONSUMERLANGUAGE || params.DS_LANGUAGE);
     const lang = REV_LANGUAGES[obj.langInt];
     if (lang) {
       obj.lang = lang;
     }
   }
-  if (params.Ds_Card_Country) {
-    obj.cardCountryInt = Number.parseInt(params.Ds_Card_Country);
+  if (params.DS_CARD_COUNTRY) {
+    obj.cardCountryInt = Number.parseInt(params.DS_CARD_COUNTRY);
     const cardCountry = REV_COUNTRIES[obj.cardCountryInt];
     if (cardCountry) {
       obj.cardCountry = cardCountry;
     }
   }
 
-  if (params.Ds_Card_Brand) {
-    obj.cardBrandInt = Number.parseInt(params.Ds_Card_Brand);
+  if (params.DS_CARD_BRAND) {
+    obj.cardBrandInt = Number.parseInt(params.DS_CARD_BRAND);
     const cardBrand = REV_CARDBRANDS[obj.cardBrandInt];
     if (cardBrand) {
       obj.cardBrand = cardBrand;
@@ -234,7 +240,7 @@ exports.signedFieldsXMLResponse = ['Ds_Amount', 'Ds_Order',
   'Ds_TransactionType', 'Ds_SecurePayment'];
 
 const unescapeXML = str => {
-  const xml = str.replace(/&(lt|#60|gt|#62|quot|#34|amp|#38|apos|#39);/g, (match, p1) => {
+  const xml = str.replace(/&(lt|#60|gt|#62|quot|#34|amp|#38|apos|#39);/g, (_match, p1) => {
     switch (p1) {
       case 'lt':
       case '#60':
