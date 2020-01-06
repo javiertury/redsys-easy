@@ -11,6 +11,7 @@ module.exports = {
   PRE_AUTHENTICATION_CONFIRMATION: '8', // Confirmación de pre-autenticación
   PRE_AUTHORIZATION_CANCEL: '9', // Anulación de Preautorización
   DEFERRED_AUTHORIZATION: 'O', // Autorización en diferido
+  PAYLINK: 'F', // Paygold
   DEFERRED_AUTHORIZATION_CONFIRMATION: 'P', // Confirmación de autorización en diferido
   DEFERRED_AUTHORIZATION_CANCEL: 'Q', // Anulación de autorización en diferido
   DEFERRED_INITIAL_FEE: 'R', // Cuota inicial diferido

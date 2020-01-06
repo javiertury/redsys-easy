@@ -4,7 +4,7 @@ module.exports = {
   'hour': '18:03',
   'date': '2015-11-09',
   'timestamp': new Date('2015-11-09 17:03 Z'),
-  'securePayment': '0',
+  'securePayment': false,
   'amount': 145,
   'order': '0069',
   'merchantCode': '999008881',

@@ -52,7 +52,7 @@ const responseParamFormatters = {
     if (value) obj.merchantData = value;
   },
   DS_SECUREPAYMENT: (obj, value) => {
-    obj.securePayment = value;
+    obj.securePayment = value === '1';
   },
   DS_TRANSACTIONTYPE: (obj, value) => {
     obj.transactionType = value;
@@ -94,7 +94,10 @@ const responseParamFormatters = {
     if (cardBrand) {
       obj.cardBrand = cardBrand;
     }
-  }
+  },
+  DS_URLPAGO2FASES: (obj, value) => {
+    obj.payURL = value;
+  },
 };
 
 exports.responseParamFormatters = responseParamFormatters;

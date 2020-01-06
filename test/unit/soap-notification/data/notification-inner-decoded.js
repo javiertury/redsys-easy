@@ -4,7 +4,7 @@ module.exports = {
   'date': '2003-04-01',
   'hour': '16:57',
   'timestamp': new Date('2003-04-01 14:57 Z'),
-  'securePayment': '1',
+  'securePayment': true,
   'amount': 345,
   'currency': 'EUR',
   'order': '165446',

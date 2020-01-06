@@ -45,7 +45,7 @@ describe('Web Service Integration', () => {
       expect(result.currency).to.equal(params.currency);
       expect(result.amount).to.equal(params.amount);
       expect(result.merchantData).to.equal(params.raw.DS_MERCHANT_MERCHANTDATA);
-      expect(result.securePayment).to.equal('0');
+      expect(result.securePayment).to.equal(false);
       expect(result.cardNumber).to.equal(`${params.pan.slice(0, 6)}******${params.pan.slice(12, 16)}`);
       expect(result.cardCountry).to.equal('es');
       expect(result.cardBrand).to.equal('VISA');

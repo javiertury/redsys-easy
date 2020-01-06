@@ -7,7 +7,7 @@
   "response": 0,
   "authorisationCode": "050372",
   "transactionType": "0",
-  "securePayment": "0",
+  "securePayment": false,
   "lang": "es",
   "cardType": "D",
   "cardCountry": "es",

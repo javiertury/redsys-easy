@@ -7,7 +7,7 @@
   "response": 0,
   "authorisationCode": "109761",
   "transactionType": "0",
-  "securePayment": "0",
+  "securePayment": false,
   "lang": "es",
   "cardNumber": "4548812049400004",
   "cardCountry": "es",

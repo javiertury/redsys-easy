@@ -47,7 +47,7 @@ const paramFormatters = {
   errorURL: (obj, value) => {
     obj.DS_MERCHANT_URLKO = value;
   },
-  dateFrecuency: (obj, value) => {
+  dateFrequency: (obj, value) => {
     obj.DS_MERCHANT_DATEFRECUENCY = value;
   },
   chargeExpiryDate: (obj, value) => {
@@ -97,6 +97,36 @@ const paramFormatters = {
   clientIp: (obj, value) => {
     obj.DS_MERCHANT_CLIENTIP = value;
   },
+  operationId: (obj, value) => {
+    obj.DS_MERCHANT_IDOPER = value;
+  },
+  payMethods: (obj, value) => {
+    obj.DS_MERCHANT_PAYMETHODS = value;
+  },
+  productDescription: (obj, value) => {
+    obj.DS_MERCHANT_PRODUCTDESCRIPTION = value;
+  },
+  taxReference: (obj, value) => {
+    obj.DS_MERCHANT_TAX_REFERENCE = value;
+  },
+  transactionDate: (obj, value) => {
+    obj.DS_MERCHANT_TRANSACTIONDATE = value;
+  },
+  merchantDescriptor: (obj, value) => {
+    obj.DS_MERCHANT_MERCHANTDESCRIPTOR = value;
+  },
+  customerMobile: (obj, value) => {
+    obj.DS_MERCHANT_CUSTOMER_MOBILE = value;
+  },
+  customerMail: (obj, value) => {
+    obj.DS_MERCHANT_CUSTOMER_MAIL = value;
+  },
+  cardHolder: (obj, value) => {
+    obj.DS_MERCHANT_TITULAR = value;
+  },
+  smsTemplate: (obj, value) => {
+    obj.DS_MERCHANT_CUSTOMER_SMS_TEXT = value;
+  },
 };
 
 exports.paramFormatters = paramFormatters;
@@ -104,7 +134,7 @@ exports.paramFormatters = paramFormatters;
 exports.formatParams = paramsInput => {
   // Pre processing
   if (typeof paramsInput.amount !== 'string' && (!Number.isInteger(paramsInput.amount) || paramsInput.amount < 0)) {
-    throw new Error('Invalid amount to charge');
+    throw new Error('Invalid amount');
   }
   if (!paramsInput.merchantCode) throw new Error('The merchant code is mandatory');
   if (!paramsInput.transactionType) throw new Error('The transaction type is mandatory');

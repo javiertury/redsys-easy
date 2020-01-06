@@ -7,7 +7,7 @@
   "response": 0,
   "authorisationCode": "640599",
   "transactionType": "A",
-  "securePayment": "0",
+  "securePayment": false,
   "lang": "es",
   "cardNumber": "454881******0004",
   "expiryDate": "1220",

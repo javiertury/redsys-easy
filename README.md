@@ -116,7 +116,7 @@ If the signature is not correct, it will throw an error. Otherwise it will retur
   hour: '18:20',
   // Already timezone aware
   timestamp: new Date('2017-10-20 17:20 Z'),
-  securePayment: '1',
+  securePayment: true,
   // amount in smallest currency unit(cents)
   // 49.99€
   amount: 4999,
@@ -341,13 +341,13 @@ Strings
 * merchantURL
 * errorURL
 * successURL
-* dateFrecuency
+* dateFrequency
 * chargeExpiryDate
 * sumTotal
 * directPayment
 * identifier
 * group
-* pan
+* pan: credit card number
 * expiryDate: As printed in your credit card, MMYY, has priority over expiryYear and expiryMonth
 * expiryYear: YY
 * expiryMonth: MM
@@ -357,10 +357,61 @@ Strings
 * merchantData
 * clientIp
 * lang: Lowercase ISO 639-1 lang code
+* operationId
+* payMethods
+* productDescription
+* taxReference
+* transactionDate
+* merchantDescriptor
+* customerMobile: Mobile phone number
+* customerMail: Email address
+* cardHolder: Name of credit card holder
+* smsTemplate: Paygold sms template like `'@COMERCIO@. Ya puede pagar su recibo de @IMPORTE@ @MONEDA@ en la siguiente url: @URL@'`
 
 Other
 
-* raw: Object with parameters that will not formatted
+* raw: Object with parameters that will not formatted. E.g. `raw: { DS_MERCHANTDATA: 'foo', ... }`
+
+### Response
+
+Numbers
+
+* amount: integer in the smallest currency unit.
+* response: response code
+
+Booleans
+* securePayment
+
+Strings
+
+* hour: HH:MM
+* date: YYYY-MM-DD
+* timestamp: javascript date object, with date and hour information
+* order
+* merchantCode
+* currency: Uppercase ISO 4217 alpha-3 code, e.g 'EUR'
+* transactionType
+* terminal
+* identifier
+* cardNumber: Partial credit card number
+* expiryDate: As printed in your credit card, MMYY
+* expiryYear: YY
+* expiryMonth: MM
+* cardBrand: E.g. 'VISA'
+* cardType: 'C' (Credit) or 'D' (Debit)
+* cardCountry: Lowercase ISO 3166 Alpha 2 country code, e.g. 'es'
+* authorisationCode
+* merchantData
+* clientIp
+* lang: Lowercase ISO 639-1 lang code
+* operationId
+* transactionDate
+* merchantDescriptor
+* payURL: Paygold 2 phase payment URL to send to the client
+
+Other
+
+* raw: Full response as received from the server. E.g. `{ DS_MERCHANTDATA: 'foo', ... }`
 
 ### Transaction Types:
 
@@ -374,6 +425,7 @@ Other
 * PRE_AUTHENTICATION_CONFIRMATION: "8"
 * PRE_AUTHORIZATION_CANCEL: "9"
 * DEFERRED_AUTHORIZATION: "O"
+* PAYLINK: "F". Also known as paygold.
 * DEFERRED_AUTHORIZATION_CONFIRMATION: "P"
 * DEFERRED_AUTHORIZATION_CANCEL: "Q"
 * DEFERRED_INITIAL_FEE: "R"

@@ -17,8 +17,12 @@
 ### Changed
 
 - Removed internal parameters in the form of *paramInt*. User the new *raw* property instead.
+- securePayment returns a boolean
+- Parameter dateFrecuency renamed to dateFrequency
 
 ### Added
 
 - A new parameter *raw* can be used to pass an object with redsys parameters that should not be formatted
 - Updated currencies and error codes
+- Add new formatted parameters, some related to paygold
+- New transaction type PAYLINK
