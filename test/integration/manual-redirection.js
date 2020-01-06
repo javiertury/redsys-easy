@@ -13,6 +13,7 @@ const redsys = new Redsys({
 });
 
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
 const Router = require('@koa/router');
 
 const endpoint = 'http://my-remote-server.com';
@@ -25,6 +26,7 @@ const errorPath = '/error';
 const notificationPath = '/notification';
 
 const app = new Koa();
+app.use(bodyParser());
 const router = new Router();
 
 router
@@ -59,49 +61,56 @@ router
     </form>`;
 })
 .get(successPath, ctx => {
+  console.log('Success path');
   const response = {
     status: 'SUCCESS',
     query: ctx.query,
-    body: ctx.body,
+    params: redsys.processNotification(ctx.query),
   };
 
-  console.log(response);
+  console.log(JSON.stringify(response));
   ctx.body = response;
 })
 .get(errorPath, ctx => {
+  console.log('Error path');
   const response = {
     status: 'ERROR',
     query: ctx.query,
-    body: ctx.body,
+    params: redsys.processNotification(ctx.query),
   };
 
-  console.log(response);
+  console.log(JSON.stringify(response));
   ctx.body = response;
 })
-.get(notificationPath, ctx => {
-  const response = {
-    status: 'NOTIFICATION',
-    query: ctx.query,
-    body: ctx.body,
-  };
+.post(notificationPath, ctx => {
+  console.log('Notification path');
 
-  console.log(response);
-  ctx.body = response;
+  try {
+    console.log(JSON.stringify({
+      status: 'NOTIFICATION',
+      body: ctx.request.body,
+      params: redsys.processNotification(ctx.request.body),
+    }));
+  } catch (err) {
+    console.log(JSON.stringify({
+      status: 'NOTIFICATION',
+      body: ctx.request.body,
+    }));
+    console.error(err);
+  }
 });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(ctx => {
-  const response = {
+  console.log(JSON.stringify({
     status: 'UNKNOWN',
+    method: ctx.method,
     url: ctx.url,
     query: ctx.query,
-    body: ctx.body,
-  };
-
-  console.log(response);
-  ctx.body = response;
+    body: ctx.request.body,
+  }));
 });
-app.listen(localPort);
 
+app.listen(localPort);
 console.log(`Serving on ${localHost}:${localPort} for ${endpoint}`);
