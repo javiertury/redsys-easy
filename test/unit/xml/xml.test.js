@@ -6,8 +6,7 @@ const path = require('path');
 
 const {
   Redsys,
-  SANDBOX_URLS,
-} = require('../../src');
+} = require('../../../src');
 
 const settings = require('../settings');
 
@@ -29,7 +28,7 @@ describe('Redsys XML Requests and Responses', () => {
   before(function() {
     this.redsys = new Redsys({
       secretKey: settings.secretKey,
-      urls: SANDBOX_URLS,
+      urls: settings.urls,
     });
   });
 

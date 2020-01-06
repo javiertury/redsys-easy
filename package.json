@@ -23,6 +23,8 @@
   },
   "main": "src/index.js",
   "scripts": {
+    "test-unit": "mocha ./test/unit/**/*.test.js",
+    "test-integration": "mocha ./test/integration/**/*.test.js",
     "test": "mocha ./test/**/*.test.js"
   },
   "commitlint": {

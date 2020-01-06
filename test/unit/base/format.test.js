@@ -2,8 +2,8 @@
 
 const { expect } = require('chai');
 
-const { formatParams } = require('../../src/params-formatter');
-const { TRANSACTION_TYPES } = require('../../src/utils');
+const { formatParams } = require('../../../src/params-formatter');
+const { TRANSACTION_TYPES } = require('../../../src/utils');
 
 describe('Input Parameters Format', () => {
 

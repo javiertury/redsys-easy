@@ -4,8 +4,7 @@ const { expect } = require('chai');
 
 const {
   Redsys,
-  SANDBOX_URLS,
-} = require('../../src');
+} = require('../../../src');
 
 const settings = require('../settings');
 
@@ -13,12 +12,12 @@ describe('Redsys Base', () => {
   before(function() {
     this.redsys = new Redsys({
       secretKey: settings.secretKey,
-      urls: SANDBOX_URLS,
+      urls: settings.urls,
     });
   });
 
   it('should require a secretKey for construction', function() {
-    expect(() => new Redsys({ urls: SANDBOX_URLS }))
+    expect(() => new Redsys({ urls: settings.urls }))
     .to.throw('A secretKey key must be provided');
   });
 
@@ -31,7 +30,7 @@ describe('Redsys Base', () => {
 
     // Throw on incomplete URLs
     expect(() => new Redsys({ secretKey: settings.secretKey, urls: {
-      redirect: SANDBOX_URLS.redirect,
+      redirect: settings.urls.redirect,
     } })).to.throw('URLs must be provided');
   });
 

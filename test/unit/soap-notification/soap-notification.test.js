@@ -6,12 +6,11 @@ const path = require('path');
 
 const {
   Redsys,
-  SANDBOX_URLS,
   detectSoapVersion,
   mimicSoapNotificationReceiver,
   mimicSoap11NotificationResponse,
   mimicSoap12NotificationResponse,
-} = require('../../src');
+} = require('../../../src');
 
 const settings = require('../settings');
 
@@ -33,7 +32,7 @@ describe('Redsys SOAP Notification', () => {
   before(function() {
     this.redsys = new Redsys({
       secretKey: settings.secretKey,
-      urls: SANDBOX_URLS,
+      urls: settings.urls,
     });
   });
 

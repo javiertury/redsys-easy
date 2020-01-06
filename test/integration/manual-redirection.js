@@ -1,5 +1,20 @@
 'use strict';
 
+const {
+  Redsys,
+  TRANSACTION_TYPES,
+  randomTransactionId
+} = require('../../src/index.js');
+const settings = require('./settings');
+
+const redsys = new Redsys({
+  secretKey: settings.secretKey,
+  urls: settings.urls,
+});
+
+const Koa = require('koa');
+const Router = require('@koa/router');
+
 const endpoint = 'http://my-remote-server.com';
 const localHost = 'localhost';
 const localPort = 3000;
@@ -8,21 +23,6 @@ const initChargePath = '/';
 const successPath = '/success';
 const errorPath = '/error';
 const notificationPath = '/notification';
-
-const {
-  Redsys,
-  SANDBOX_URLS,
-  TRANSACTION_TYPES,
-  randomTransactionId
-} = require('../src/index.js');
-
-const redsys = new Redsys({
-  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
-  urls: SANDBOX_URLS,
-});
-
-const Koa = require('koa');
-const Router = require('@koa/router');
 
 const app = new Koa();
 const router = new Router();

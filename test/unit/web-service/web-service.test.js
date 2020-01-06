@@ -11,8 +11,7 @@ const { expect } = chai;
 
 const {
   Redsys,
-  SANDBOX_URLS,
-} = require('../../src');
+} = require('../../../src');
 
 const settings = require('../settings');
 
@@ -28,7 +27,7 @@ describe('Redsys Web Service Requests and Responses', () => {
   before(function() {
     this.redsys = new Redsys({
       secretKey: settings.secretKey,
-      urls: SANDBOX_URLS,
+      urls: settings.urls,
     });
 
     const client = { trataPeticionAsync() {} };

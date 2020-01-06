@@ -6,8 +6,7 @@ const path = require('path');
 
 const {
   Redsys,
-  SANDBOX_URLS,
-} = require('../../src');
+} = require('../../../src');
 
 const settings = require('../settings');
 const response = require('./data/response.json');
@@ -20,7 +19,7 @@ describe('Redsys Redirections', () => {
   before(function() {
     this.redsys = new Redsys({
       secretKey: settings.secretKey,
-      urls: SANDBOX_URLS,
+      urls: settings.urls,
     });
   });
 
