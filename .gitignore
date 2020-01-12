@@ -3,3 +3,5 @@ npm-debug.log
 yarn.lock
 yarn-error.log
 package-lock.json
+/integration-settings.js
+/integration-settings.json

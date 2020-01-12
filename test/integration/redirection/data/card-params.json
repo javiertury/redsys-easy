@@ -1,0 +1,21 @@
+{
+  "Sis_Numero_Tarjeta": "4548812049400004",
+  "Sis_Caducidad_Tarjeta_Mes": "12",
+  "Sis_Caducidad_Tarjeta_Anno": "20",
+  "Sis_Tarjeta_CVV2": "123",
+  "browserJavaEnabled": "false",
+  "browserJavascriptEnabled": "true",
+  "browserLanguage": "en-US",
+  "browserColorDepth": "32",
+  "browserScreenHeight": "1018",
+  "browserScreenWidth": "1920",
+  "browserTZ": "-60",
+  "browserUserAgent": "Mozilla/5.0+(X11;+Fedora;+Linux+x86_64;+rv:72.0)+Gecko/20100101+Firefox/72.0",
+  "threeDSCompInd": "U",
+  "Sis_Numero_Tarjeta_UPI": "",
+  "Sis_Caducidad_Tarjeta_Mes_UPI": "",
+  "Sis_Caducidad_Tarjeta_Anno_UPI": "",
+  "Sis_Tarjeta_CVV2_UPI": "",
+  "ds_sis_pago_upi": "false", 
+  "bcancel":""
+}

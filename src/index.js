@@ -65,7 +65,7 @@ class Redsys {
   redirectPetitionParameters (paramsInput) {
     const paramsObj = formatParams(paramsInput);
     // Docs escape "/" but we don't, this JSON won't get placed in a script tag
-    return Buffer.from(JSON.stringify(paramsObj).replace(/\//g, '\\/'), 'utf8').toString('base64');
+    return Buffer.from(JSON.stringify(paramsObj), 'utf8').toString('base64');
   }
 
   redirectPetition (paramsInput) {

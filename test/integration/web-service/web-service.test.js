@@ -7,13 +7,14 @@ const {
   TRANSACTION_TYPES,
   randomTransactionId,
 } = require('../../../src');
-const settings = require('../settings');
 
-const redsys = new Redsys({
-  secretKey: settings.secretKey,
-  urls: settings.urls,
-});
+const {
+  instanceSettings,
+  merchantData,
+  cardData,
+} = require('../settings');
 
+const redsys = new Redsys(instanceSettings);
 
 describe('Web Service Integration', () => {
   it('should process a payment', () => {
@@ -21,14 +22,15 @@ describe('Web Service Integration', () => {
       // amount in smallest currency unit(cents)
       // 33.50€
       amount: 3350,
-      order: randomTransactionId(),
-      merchantCode: '999008881',
       currency: 'EUR',
-      pan: '4548812049400004',
-      CVV2: '123',
-      expiryDate: '1220', // MMYY format
+      merchantCode: merchantData.merchantCode,
+      terminal: merchantData.terminal,
+      order: randomTransactionId(),
       transactionType: TRANSACTION_TYPES.NO_AUTHENTICATION,
-      terminal: '1',
+      pan: cardData.pan,
+      expiryMonth: cardData.expiryMonth,
+      expiryYear: cardData.expiryYear,
+      CVV2: cardData.CVV2,
       // Raw parameters
       raw: {
         // merchantData
