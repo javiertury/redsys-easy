@@ -136,6 +136,7 @@ exports.formatParams = paramsInput => {
   // Pre processing
   const {
     amount,
+    currency,
     merchantCode,
     transactionType,
     order,
@@ -144,7 +145,11 @@ exports.formatParams = paramsInput => {
     expiryDate,
   }= paramsInput;
   if (typeof amount !== 'string' && (!Number.isInteger(amount) || amount < 0)) {
+    // An amount of 0 is valid, it may be used for credit card tokenization
     throw new ValidationError('Invalid amount', amount, 'amount');
+  }
+  if (!currency) {
+    throw new ValidationError('No currency provided.', currency, 'currency');
   }
   if (!merchantCode) {
     throw new ValidationError('The merchant code is mandatory', merchantCode, 'merchantCode');
@@ -169,7 +174,6 @@ exports.formatParams = paramsInput => {
 
   // Defaults
   if (!paramsInput.terminal) paramsInput.terminal = '1';
-  if (!paramsInput.currency) paramsInput.currency = 'EUR';
 
   const paramsObj = {};
   for (const key in paramsInput) {
