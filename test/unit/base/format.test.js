@@ -7,6 +7,68 @@ const { TRANSACTION_TYPES } = require('../../../src/utils');
 
 describe('Input Parameters Format', () => {
 
+  it('should format atomic amount by default', function() {
+    const params = formatParams({ 
+      amount: 4999,
+      currency: 'EUR',
+      order: '0000Abc',
+      merchantCode: '999008881',
+      terminal: '1',
+      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+    }, {
+      amountType: 'atomic'
+    });
+
+    expect(params).to.deep.equal({
+      DS_MERCHANT_AMOUNT: '4999',
+      DS_MERCHANT_MERCHANTCODE: '999008881',
+      DS_MERCHANT_ORDER: '0000Abc',
+      DS_MERCHANT_TERMINAL: '1',
+      DS_MERCHANT_TRANSACTIONTYPE: '0',
+      DS_MERCHANT_CURRENCY: '978',
+    });
+
+    const defaultParams = formatParams({ 
+      amount: 4999,
+      currency: 'EUR',
+      order: '0000Abc',
+      merchantCode: '999008881',
+      terminal: '1',
+      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+    });
+
+    expect(defaultParams).to.deep.equal({
+      DS_MERCHANT_AMOUNT: '4999',
+      DS_MERCHANT_MERCHANTCODE: '999008881',
+      DS_MERCHANT_ORDER: '0000Abc',
+      DS_MERCHANT_TERMINAL: '1',
+      DS_MERCHANT_TRANSACTIONTYPE: '0',
+      DS_MERCHANT_CURRENCY: '978',
+    });
+  });
+
+  it('should allow format float amount', function() {
+    const params = formatParams({ 
+      amount: 49.99,
+      currency: 'EUR',
+      order: '0000Abc',
+      merchantCode: '999008881',
+      terminal: '1',
+      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+    }, {
+      amountType: 'float'
+    });
+
+    expect(params).to.deep.equal({
+      DS_MERCHANT_AMOUNT: '4999',
+      DS_MERCHANT_MERCHANTCODE: '999008881',
+      DS_MERCHANT_ORDER: '0000Abc',
+      DS_MERCHANT_TERMINAL: '1',
+      DS_MERCHANT_TRANSACTIONTYPE: '0',
+      DS_MERCHANT_CURRENCY: '978',
+    });
+  });
+
   it('should format currencies', function() {
     const params = formatParams({ 
       amount: 4999,

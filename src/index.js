@@ -69,14 +69,14 @@ class Redsys {
     return sha256Sign(this.secretKey, order, text);
   }
 
-  redirectPetitionParameters (paramsInput) {
-    const paramsObj = formatParams(paramsInput);
+  redirectPetitionParameters (paramsInput, options) {
+    const paramsObj = formatParams(paramsInput, options);
     // Docs escape "/" but we don't, this JSON won't get placed in a script tag
     return Buffer.from(JSON.stringify(paramsObj), 'utf8').toString('base64');
   }
 
-  redirectPetition (paramsInput) {
-    const Ds_MerchantParameters = this.redirectPetitionParameters(paramsInput);
+  redirectPetition (paramsInput, options) {
+    const Ds_MerchantParameters = this.redirectPetitionParameters(paramsInput, options);
     const Ds_Signature = sha256Sign(this.secretKey, paramsInput.order, Ds_MerchantParameters);
     return {
       url: this.urls.redirect,
@@ -171,13 +171,13 @@ class Redsys {
     return formatResponse(data.OPERACION);
   }
 
-  xmlPetitionParameters (paramsInput) {
-    const datosEntrada = { DATOSENTRADA: formatParams(paramsInput) };
+  xmlPetitionParameters (paramsInput, options) {
+    const datosEntrada = { DATOSENTRADA: formatParams(paramsInput, options) };
     return js2xml.parse(datosEntrada);
   }
 
-  xmlPetitionSignedData (paramsInput) {
-    const datosEntradaXML = this.xmlPetitionParameters(paramsInput);
+  xmlPetitionSignedData (paramsInput, options) {
+    const datosEntradaXML = this.xmlPetitionParameters(paramsInput, options);
     const signature = sha256Sign(this.secretKey, paramsInput.order, datosEntradaXML);
 
     return `<REQUEST>${datosEntradaXML}<DS_SIGNATUREVERSION>HMAC_SHA256_V1</DS_SIGNATUREVERSION><DS_SIGNATURE>${signature}</DS_SIGNATURE></REQUEST>`;
@@ -193,8 +193,8 @@ class Redsys {
     return this.wsClient;
   }
 
-  wsPetition (paramsInput) {
-    const peticion = this.xmlPetitionSignedData(paramsInput);
+  wsPetition (paramsInput, options) {
+    const peticion = this.xmlPetitionSignedData(paramsInput, options);
 
     return this.getWSClient().then(client => {
       return client.trataPeticionAsync({ datoEntrada: peticion }).then(res => {

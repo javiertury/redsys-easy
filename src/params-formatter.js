@@ -27,11 +27,45 @@ const paramFormatters = {
 
     obj.DS_MERCHANT_CURRENCY = currency.num.toString().padStart(3, '0');
   },
-  amount: (obj, value) => {
+  amount: (obj, value, options, input) => {
+    /*
+     * amountType can be atomic or float.
+     * - atomic: amount represents the smallest currency unit. 1130 (EUR) -> 11.30 EUR
+     * - float: amount is rounded to last decimal precision. 11.299999999 (EUR) -> 11.30 EUR
+     *
+     * Float amount can lead to losing precision, specially after doing
+     * operations. Atomic is more precise for monetary amount, no lost cents,
+     * better for accounting.
+     */
+
+    // atomic by default
+    let rawValue = value.toString();
+
+    if (options && options.amountType) {
+      if (options.amountType === 'float') {
+        const currencyCode = input.currency.toUpperCase();
+        const currency = CURRENCIES[currencyCode];
+        if (!currency || !currency.decimals) {
+          throw new ValidationError('Unsupported currency', input.currency, 'currency');
+        }
+
+        const number = typeof value === 'number' ? value : Number.parseFloat(value);
+
+        if (!Number.isFinite(number)) {
+          throw new ValidationError('Invalid amount', value, 'amount');
+        }
+
+        rawValue = Math.round(value * Math.pow(10, currency.decimals)).toString();
+      } else if (options.amountType !== 'atomic') {
+        throw new ValidationError('Unknown format', options.amountType, 'amountType');
+      }
+    }
+
     if (value.length > 12) {
       throw new ValidationError('Amount to charge is too large', value, 'amount');
     }
-    obj.DS_MERCHANT_AMOUNT = String(value);
+
+    obj.DS_MERCHANT_AMOUNT = rawValue;
   },
   merchantName: (obj, value) => {
     obj.DS_MERCHANT_MERCHANTNAME = value;
@@ -132,7 +166,7 @@ const paramFormatters = {
 
 exports.paramFormatters = paramFormatters;
 
-exports.formatParams = paramsInput => {
+exports.formatParams = (paramsInput, options) => {
   // Pre processing
   const {
     amount,
@@ -145,7 +179,8 @@ exports.formatParams = paramsInput => {
     expiryMonth,
     expiryDate,
   } = paramsInput;
-  if (typeof amount !== 'string' && (!Number.isInteger(amount) || amount < 0)) {
+  if ((typeof amount !== 'string' || !amount)
+    && (typeof amount !== 'number' || amount < 0)) {
     // An amount of 0 is valid, it may be used for obtaining a credit card reference(tokenization)
     throw new ValidationError('Invalid amount', amount, 'amount');
   }
@@ -188,7 +223,7 @@ exports.formatParams = paramsInput => {
     if (!formatter) {
       throw new ValidationError('Unknown parameter', undefined, key);
     }
-    formatter(paramsObj, paramsInput[key]);
+    formatter(paramsObj, paramsInput[key], options, paramsInput);
   }
 
   // Last, so raw doesn't get overwritten

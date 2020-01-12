@@ -22,7 +22,7 @@ const langFormatter = (obj, value) => {
   if (lang) obj.lang = lang;
 };
 
-const responseParamFormatters = {
+const responseFormatters = {
   DS_HOUR: hourFormatter,
   HORA: hourFormatter,
   DS_DATE: dateFormatter,
@@ -100,13 +100,13 @@ const responseParamFormatters = {
   },
 };
 
-exports.responseParamFormatters = responseParamFormatters;
+exports.responseFormatters = responseFormatters;
 
 exports.formatResponse = rawParams => {
   const obj = { raw: rawParams };
 
   for (const key in rawParams) {
-    const formatter = responseParamFormatters[key.toUpperCase()];
+    const formatter = responseFormatters[key.toUpperCase()];
     if (!formatter) continue;
     formatter(obj, rawParams[key]);
   }
