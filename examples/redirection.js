@@ -3,13 +3,13 @@
 const {
   Redsys,
   TRANSACTION_TYPES,
-  randomTransactionId
-} = require('../../src/index.js');
-const settings = require('./settings');
+  urls: SANDBOX_URLS,
+  randomTransactionId,
+} = require('../src/index.js');
 
 const redsys = new Redsys({
-  secretKey: settings.secretKey,
-  urls: settings.urls,
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
+  urls: SANDBOX_URLS,
 });
 
 const Koa = require('koa');

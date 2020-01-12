@@ -177,7 +177,7 @@ const {
 const redsys = new Redsys({
   secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
   urls: SANDBOX_URLS, // Also PRODUCTION_URLS
-});
+})
 
 const params = {
   // amount in smallest currency unit(cents)
