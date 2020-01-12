@@ -29,6 +29,11 @@ const paramFormatters = {
   },
   amount: (obj, value, options, input) => {
     /*
+     * Experimental feature!!!
+     *
+     * The feature amountType='float' may be removed any time.
+     * If you like this feature or have any commend please open an issue
+     *
      * amountType can be atomic or float.
      * - atomic: amount represents the smallest currency unit. 1130 (EUR) -> 11.30 EUR
      * - float: amount is rounded to last decimal precision. 11.299999999 (EUR) -> 11.30 EUR
@@ -36,6 +41,7 @@ const paramFormatters = {
      * Float amount can lead to losing precision, specially after doing
      * operations. Atomic is more precise for monetary amount, no lost cents,
      * better for accounting.
+     *
      */
 
     // atomic by default

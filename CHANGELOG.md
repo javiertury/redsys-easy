@@ -19,6 +19,7 @@
 - Removed internal parameters in the form of *paramInt*. User the new *raw* property instead.
 - securePayment returns a boolean
 - Parameter dateFrecuency renamed to dateFrequency
+- Parameter CVV2 renamed to cvv
 
 ### Added
 
@@ -26,3 +27,4 @@
 - Updated currencies and error codes
 - Add new formatted parameters, some related to paygold
 - New transaction type PAYLINK
+- Examples
