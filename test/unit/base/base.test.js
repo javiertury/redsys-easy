@@ -9,19 +9,21 @@ const {
 const settings = require('../settings');
 
 describe('Redsys Base', () => {
-  before(function() {
-    this.redsys = new Redsys({
+  const ctx = {};
+
+  beforeAll(() => {
+    ctx.redsys = new Redsys({
       secretKey: settings.secretKey,
       urls: settings.urls,
     });
   });
 
-  it('should require a secretKey for construction', function() {
+  it('should require a secretKey for construction', () => {
     expect(() => new Redsys({ urls: settings.urls }))
     .to.throw('A secretKey key must be provided');
   });
 
-  it('should require urls for construction', function() {
+  it('should require urls for construction', () => {
     expect(() => new Redsys({ secretKey: settings.secretKey }))
     .to.throw('URLs must be provided');
 
@@ -34,7 +36,7 @@ describe('Redsys Base', () => {
     } })).to.throw('URLs must be provided');
   });
 
-  it('should sign with 3DES encrypted order and SHA256', function () {
+  it('should sign with 3DES encrypted order and SHA256', () => {
     const params = 'eyJEU19NRVJDSEFOVF9BTU9VTlQiOiIxNDUiLCJEU19NRVJDSEFOVF9PU' +
     'kRFUiI6IjEiLCJEU19NRVJDSEFOVF9NRVJDSEFOVENPREUiOiI5OTkwMDg4ODEiLCJEU19NR' +
     'VJDSEFOVF9DVVJSRU5DWSI6Ijk3OCIsIkRTX01FUkNIQU5UX1RSQU5TQUNUSU9OVFlQRSI6I' +
@@ -44,7 +46,7 @@ describe('Redsys Base', () => {
     const orderId = obj.DS_MERCHANT_ORDER;
     const signature = '3TEI5WyvHf1D/whByt1ENgFH/HPIP9UFuB6LkCYgj+E=';
 
-    expect(this.redsys.signOrderText(orderId, params)).to.equal(signature);
+    expect(ctx.redsys.signOrderText(orderId, params)).to.equal(signature);
   });
 
 });

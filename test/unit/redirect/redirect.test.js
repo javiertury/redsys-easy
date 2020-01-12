@@ -16,8 +16,10 @@ const requestInput = require('./data/request-input');
 const requestEncodedParams = fs.readFileSync(path.resolve(__dirname, 'data/request-encoded-params.txt'), 'utf8').trim();
 
 describe('Redsys Redirections', () => {
-  before(function() {
-    this.redsys = new Redsys({
+  const ctx = {};
+
+  beforeAll(() => {
+    ctx.redsys = new Redsys({
       secretKey: settings.secretKey,
       urls: settings.urls,
     });
@@ -25,8 +27,8 @@ describe('Redsys Redirections', () => {
 
   describe('redirectPetitionParameters', () => {
 
-    it('should create petition parameters', function() {
-      const params = this.redsys.redirectPetitionParameters(requestInput);
+    it('should create petition parameters', () => {
+      const params = ctx.redsys.redirectPetitionParameters(requestInput);
       expect(params).to.equal(requestEncodedParams);
     });
 
@@ -34,8 +36,8 @@ describe('Redsys Redirections', () => {
 
   describe('redirectPetition', () => {
 
-    it('should create signed merchant petitions', function() {
-      const petition = this.redsys.redirectPetition(requestInput);
+    it('should create signed merchant petitions', () => {
+      const petition = ctx.redsys.redirectPetition(requestInput);
       const expectedAlg = 'HMAC_SHA256_V1';
       const expectedSig = '0bqWhAFUE0KDF9z1NpXV33xDDAHiyMDeEsRJENxs3E0=';
 
@@ -48,28 +50,28 @@ describe('Redsys Redirections', () => {
   });
 
   describe('processNotificationParameters', () => {
-    it('should decode notification parameters', function() {
-      expect(this.redsys.processNotificationParameters(response.Ds_MerchantParameters))
+    it('should decode notification parameters', () => {
+      expect(ctx.redsys.processNotificationParameters(response.Ds_MerchantParameters))
       .to.deep.equal(responseParams.raw);
     });
   });
 
   describe('processNotification', () => {
 
-    it('should process signed merchant notifications', function() {
-      const params = this.redsys.processNotification(response);
+    it('should process signed merchant notifications', () => {
+      const params = ctx.redsys.processNotification(response);
       expect(params).to.deep.equal(responseParams);
     });
 
-    it('should reject unsigned/forged merchant notifications', function() {
+    it('should reject unsigned/forged merchant notifications', () => {
       expect(() =>
-        this.redsys.processNotification(Object.assign({}, response, {
+        ctx.redsys.processNotification(Object.assign({}, response, {
           Ds_Signature: '3TEI5WyvHf1D_whByt1ENgFH_HPIP9UFuB6LkCYgj-E=',
         }))
       ).to.throw('Invalid signature');
 
       expect(() =>
-        this.redsys.processNotification({
+        ctx.redsys.processNotification({
           Ds_MerchantParameters: response.Ds_MerchantParameters,
         })
       ).to.throw('Invalid signature');

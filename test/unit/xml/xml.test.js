@@ -25,8 +25,10 @@ const responseCCFormatted = require('./data/response-cc-formatted.json');
 const responseCCForged = fs.readFileSync(path.resolve(__dirname, 'data/response-cc-forged.xml'), 'utf8');
 
 describe('Redsys XML Requests and Responses', () => {
-  before(function() {
-    this.redsys = new Redsys({
+  const ctx = {};
+
+  beforeAll(() => {
+    ctx.redsys = new Redsys({
       secretKey: settings.secretKey,
       urls: settings.urls,
     });
@@ -34,8 +36,8 @@ describe('Redsys XML Requests and Responses', () => {
 
   describe('xmlPetitionParameters', () => {
 
-    it('should prepare data', function() {
-      expect(this.redsys.xmlPetitionParameters(requestInput))
+    it('should prepare data', () => {
+      expect(ctx.redsys.xmlPetitionParameters(requestInput))
       .to.equal(requestData);
     });
 
@@ -43,19 +45,19 @@ describe('Redsys XML Requests and Responses', () => {
 
   describe('xmlPetitionSignedData', () => {
 
-    it('should create signed petitions', function() {
-      expect(this.redsys.xmlPetitionSignedData(requestInput)).to.equal(request);
+    it('should create signed petitions', () => {
+      expect(ctx.redsys.xmlPetitionSignedData(requestInput)).to.equal(request);
     });
 
   });
 
   describe('processXMLResponseData', () => {
 
-    it('should decode data', function() {
-      expect(this.redsys.processXMLResponseData(responseCC))
+    it('should decode data', () => {
+      expect(ctx.redsys.processXMLResponseData(responseCC))
       .to.deep.equal(responseCCDecoded);
 
-      expect(this.redsys.processXMLResponseData(response))
+      expect(ctx.redsys.processXMLResponseData(response))
       .to.deep.equal(responseDecoded);
     });
 
@@ -63,8 +65,8 @@ describe('Redsys XML Requests and Responses', () => {
 
   describe('processXMLResponse', () => {
 
-    it('should decode throw on response error', function() {
-      expect(() => this.redsys.processXMLResponse(responseError))
+    it('should decode throw on response error', () => {
+      expect(() => ctx.redsys.processXMLResponse(responseError))
       .to.throw('Redsys error SIS0051');
     });
 
@@ -72,21 +74,21 @@ describe('Redsys XML Requests and Responses', () => {
 
   describe('processXMLPetitionResponse', () => {
 
-    it('should decode signed data', function() {
+    it('should decode signed data', () => {
       // With and without credit card(CC) because signature formula changes
-      expect(this.redsys.processXMLPetitionResponse(response))
+      expect(ctx.redsys.processXMLPetitionResponse(response))
       .to.deep.equal(responseFormatted);
 
-      expect(this.redsys.processXMLPetitionResponse(responseCC))
+      expect(ctx.redsys.processXMLPetitionResponse(responseCC))
       .to.deep.equal(responseCCFormatted);
     });
 
-    it('should not decode unsigned/forged data', function() {
+    it('should not decode unsigned/forged data', () => {
       // With and without credit card(CC) because signature formula changes
-      expect(() => this.redsys.processXMLPetitionResponse(responseForged))
+      expect(() => ctx.redsys.processXMLPetitionResponse(responseForged))
       .to.throw('Invalid signature');
 
-      expect(() => this.redsys.processXMLPetitionResponse(responseCCForged))
+      expect(() => ctx.redsys.processXMLPetitionResponse(responseCCForged))
       .to.throw('Invalid signature');
     });
 

@@ -2,14 +2,13 @@
   "env": {
     "node": true,
     "es6": true,
-    "mocha": true
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended"
   ],
   "rules": {
-    "mocha/no-exclusive-tests": "error",
-    "mocha/no-skipped-tests": "warn",
+    "jest/no-disabled-tests": "warn",
     "strict": [
       "error",
       "global"
@@ -44,6 +43,6 @@
     }
   },
   "plugins": [
-    "mocha"
+    "jest"
   ]
 }

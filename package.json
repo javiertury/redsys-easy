@@ -23,9 +23,9 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test-unit": "mocha ./test/unit/**/*.test.js",
-    "test-integration": "mocha --timeout 15000 ./test/integration/**/*.test.js",
-    "test": "mocha --timeout 15000 ./test/**/*.test.js"
+    "test-unit": "jest ./test/unit/**/*.test.js",
+    "test-integration": "jest ./test/integration/**/*.test.js",
+    "test": "jest"
   },
   "commitlint": {
     "extends": [
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "base64url": "^3.0.1",
+    "eslint-plugin-jest": "^23.5.0",
     "fast-xml-parser": "^3.12.16",
     "moment-timezone": "^0.5.25",
     "soap": "^0.27.1"
@@ -55,14 +56,22 @@
     "chai-as-promised": "^7.1.1",
     "cheerio": "^1.0.0-rc.3",
     "eslint": "^5.12.0",
-    "eslint-plugin-mocha": "^5.2.1",
     "husky": "^1.3.1",
+    "jest": "^24.9.0",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "lint-staged": "^8.1.0",
-    "mocha": "^6.1.4",
     "node-fetch": "^2.6.0",
     "sinon": "^8.0.4",
     "sinon-chai": "^3.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/test/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/jest.setup.js"
+    ]
   }
 }

@@ -57,7 +57,7 @@ describe('Redirect Integration', () => {
     serverHandler: sinon.fake(),
   };
 
-  before(() => {
+  beforeAll(() => {
     const app = new Koa();
     app.use(bodyParser());
     app.use((serverCtx, next) => {
@@ -231,7 +231,7 @@ describe('Redirect Integration', () => {
     });
   });
 
-  after(() => {
+  afterAll(() => {
     if (ctx.server) return ctx.server.close();
   });
 });

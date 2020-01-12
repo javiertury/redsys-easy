@@ -29,8 +29,10 @@ const responseKo11 = fs.readFileSync(path.resolve(__dirname, 'data/response-ko-1
 const responseKo12 = fs.readFileSync(path.resolve(__dirname, 'data/response-ko-1.2.xml'), 'utf8').trim();
 
 describe('Redsys SOAP Notification', () => {
-  before(function() {
-    this.redsys = new Redsys({
+  const ctx = {};
+
+  beforeAll(() => {
+    ctx.redsys = new Redsys({
       secretKey: settings.secretKey,
       urls: settings.urls,
     });
@@ -39,7 +41,7 @@ describe('Redsys SOAP Notification', () => {
   describe('SOAP Notification Server Mimicking', () => {
     describe('detectSoapVersion', () => {
 
-      it('should detect soap version from headers', function() {
+      it('should detect soap version from headers', () => {
         // SOAP 1.1 and SOAP 1.2
         expect(detectSoapVersion({ headers: notification11.headers }))
         .to.equal('1.1');
@@ -47,7 +49,7 @@ describe('Redsys SOAP Notification', () => {
         .to.equal('1.2');
       });
 
-      it('should detect soap version from body', function() {
+      it('should detect soap version from body', () => {
         // SOAP 1.1 and SOAP 1.2
         expect(detectSoapVersion({ body: notification11.body }))
         .to.equal('1.1');
@@ -59,7 +61,7 @@ describe('Redsys SOAP Notification', () => {
 
     describe('mimicSoapNotificationReceiver', () => {
 
-      it('should receive data payload', function() {
+      it('should receive data payload', () => {
         // SOAP 1.1 and SOAP 1.2
         expect(mimicSoapNotificationReceiver(notification11.body))
         .to.equal(notificationInner);
@@ -71,7 +73,7 @@ describe('Redsys SOAP Notification', () => {
 
     describe('mimicSoap11NotificationResponse', () => {
 
-      it('should mimic full SOAP 1.1 response', function() {
+      it('should mimic full SOAP 1.1 response', () => {
         expect(mimicSoap11NotificationResponse(responseInnerOk))
         .to.deep.equal(responseOk11);
         expect(mimicSoap11NotificationResponse(responseInnerKo))
@@ -82,7 +84,7 @@ describe('Redsys SOAP Notification', () => {
 
     describe('mimicSoap12NotificationResponse', () => {
 
-      it('should mimic full SOAP 1.2 response', function() {
+      it('should mimic full SOAP 1.2 response', () => {
         expect(mimicSoap12NotificationResponse(responseInnerOk))
         .to.deep.equal(responseOk12);
         expect(mimicSoap12NotificationResponse(responseInnerKo))
@@ -94,13 +96,13 @@ describe('Redsys SOAP Notification', () => {
 
   describe('soapNotificationAnswer', () => {
 
-    it('can produce signed OK answer', function() {
-      expect(this.redsys.soapNotificationAnswer('165441', true))
+    it('can produce signed OK answer', () => {
+      expect(ctx.redsys.soapNotificationAnswer('165441', true))
       .to.equal(responseInnerOk);
     });
 
-    it('can produce signed KO answer', function() {
-      expect(this.redsys.soapNotificationAnswer('165441', false))
+    it('can produce signed KO answer', () => {
+      expect(ctx.redsys.soapNotificationAnswer('165441', false))
       .to.equal(responseInnerKo);
     });
 
@@ -108,13 +110,13 @@ describe('Redsys SOAP Notification', () => {
 
   describe('processSoapNotification', () => {
 
-    it('should decode signed data', function() {
-      expect(this.redsys.processSoapNotification(notificationInner))
+    it('should decode signed data', () => {
+      expect(ctx.redsys.processSoapNotification(notificationInner))
       .to.deep.equal(notificationInnerDecoded);
     });
 
-    it('should not decode unsigned/forged data', function() {
-      expect(() => this.redsys.processSoapNotification(notificationInnerForged))
+    it('should not decode unsigned/forged data', () => {
+      expect(() => ctx.redsys.processSoapNotification(notificationInnerForged))
       .to.throw('Invalid signature');
     });
 
