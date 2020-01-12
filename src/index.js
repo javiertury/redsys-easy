@@ -19,8 +19,15 @@ const {
   randomTransactionId,
 } = require('./utils.js');
 
+const errorClasses = require('./errors');
 const { formatParams } = require('./params-formatter');
 const { formatResponse } = require('./response-formatter');
+
+const {
+  RedsysError,
+  ParseError,
+  GatewayError,
+} = errorClasses;
 
 exports.getResponseCodeMessage = getResponseCodeMessage;
 exports.getSISErrorCodeMessage = getSISErrorCodeMessage;
@@ -46,12 +53,12 @@ exports.randomTransactionId = randomTransactionId;
 class Redsys {
   constructor(options) {
     if (!options.secretKey || typeof options.secretKey !== 'string') {
-      throw new Error('A secretKey key must be provided');
+      throw new RedsysError('A secretKey key must be provided');
     }
 
     if (!options.urls || typeof options.urls !== 'object' || options.urls == null ||
       !options.urls.ws || !options.urls.redirect) {
-      throw new Error('URLs must be provided');
+      throw new RedsysError('URLs must be provided');
     }
 
     this.secretKey = options.secretKey;
@@ -83,11 +90,11 @@ class Redsys {
 
   processNotificationParameters (strPayload) {
     if (!strPayload) {
-      throw new Error('Payload is required');
+      throw new ParseError('Payload is required');
     }
 
     if (typeof strPayload !== 'string') {
-      throw new Error('Payload must be a base-64 encoded string');
+      throw new ParseError('Payload must be a base-64 encoded string');
     }
     const payload = JSON.parse(decodeURIComponent(Buffer.from(strPayload, 'base64').toString('utf8')));
 
@@ -97,7 +104,7 @@ class Redsys {
   processNotification (body) {
     const params = this.processNotificationParameters(body.Ds_MerchantParameters);
     if (!params) {
-      throw new Error('Invalid parameters');
+      throw new ParseError('Invalid parameters');
     }
 
     const signature = body.Ds_Signature;
@@ -107,7 +114,7 @@ class Redsys {
     
     // Comparing different base64 encodings is messy. Foolproof, compare buffers.
     if (!signature || !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))) {
-      throw new Error('Invalid signature');
+      throw new ParseError('Invalid signature');
     }
     
     return formatResponse(params);
@@ -121,7 +128,7 @@ class Redsys {
   processXMLResponse (xmlData) {
     const data = this.processXMLResponseData(xmlData);
     if (data.CODIGO !== '0') {
-      const err = new Error(`Redsys error ${data.CODIGO}`);
+      const err = new ParseError(`Redsys error ${data.CODIGO}`);
       err.code = data.CODIGO;
       err.description = getSISErrorCodeMessage(data.CODIGO);
 
@@ -150,7 +157,7 @@ class Redsys {
     const expSignature = sha256Sign(this.secretKey, orderId, signedString);
 
     if (!signature || signature !== expSignature) {
-      throw new Error('Invalid signature');
+      throw new ParseError('Invalid signature');
     }
 
     return data;
@@ -193,7 +200,12 @@ class Redsys {
       return client.trataPeticionAsync({ datoEntrada: peticion }).then(res => {
         const result = res[0].trataPeticionReturn;
 
-        return this.processXMLPetitionResponse(result);
+        const parsedResponse = this.processXMLPetitionResponse(result);
+        const resCode = parsedResponse.response;
+        if (resCode > 100 && resCode !== 400 && resCode !== 600) {
+          throw new GatewayError('Error in webservice petition', resCode, res);
+        }
+        return parsedResponse;
       });
     });
   }
@@ -205,7 +217,7 @@ class Redsys {
     const endPos = xml.indexOf(endToken);
 
     if (startPos < 0 || endPos < 0 || startPos > endPos) {
-      throw new Error('Cannot find SOAP notification Request');
+      throw new ParseError('Cannot find payload of SOAP notification Request', xml);
     }
 
     const signedStr = xml.slice(startPos, endPos + endToken.length);
@@ -216,7 +228,7 @@ class Redsys {
     const expSignature = sha256Sign(this.secretKey, order, signedStr);
 
     if (!signature || signature !== expSignature) {
-      throw new Error('Invalid signature');
+      throw new ParseError('Invalid signature', signature, xml);
     }
 
     return formatResponse(msg.Request);
@@ -232,3 +244,7 @@ class Redsys {
 }
 
 exports.Redsys = Redsys;
+
+for (const errorName in errorClasses) {
+  exports[errorName] = errorClasses[errorName];
+}

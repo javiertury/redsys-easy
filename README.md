@@ -413,7 +413,7 @@ Other
 
 * raw: Full response as received from the server. E.g. `{ DS_MERCHANTDATA: 'foo', ... }`
 
-### Transaction Types:
+### Transaction Types
 
 * AUTHORIZATION: "0"
 * PRE_AUTHORIZATION: "1"
@@ -432,6 +432,22 @@ Other
 * DEFERRED_SUCCESSIVE_FEE: "S"
 * NO_AUTHENTICATION: "A"
 * DELETE_REFERENCE: "44"
+
+### Errors
+
+* RedsysError: Super class from which all errors inherit. Unclassified errors.
+* ValidationError: Error validating input parameters.
+* ParseError: Error parsing response.
+* GatewayError: Redsys gateway returned an error code. Note that only webservice requests trigger this error, notification processors don't.
+
+```js
+const {
+  RedsysError,
+  ValidationError,
+  ParseError,
+  GatewayError,
+} = require('redsys-easy');
+```
 
 ## FAQ
 

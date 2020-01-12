@@ -2,6 +2,7 @@
 
 const crypto = require('crypto');
 
+const { ParseError } = require('./errors');
 const { SIS_ERROR_CODES } = require('./assets/error-codes');
 const RESPONSE_CODES = require('./assets/response-codes');
 const TRANSACTION_TYPES = require('./assets/transaction-types');
@@ -80,7 +81,7 @@ const unescapeXML = str => {
       case '#39':
         return '\'';
       default:
-        throw new Error(`Unknown xml escape character ${p1}`);
+        throw new ParseError('Unknown xml escape character', p1, str);
     }
   });
 
@@ -103,7 +104,7 @@ const escapeXML = str => {
       case '\'':
         return '&apos;';
       default:
-        throw new Error(`Unknown special xml character ${match}`);
+        throw new ParseError('Unknown special xml character', match, str);
     }
   });
 
@@ -127,7 +128,7 @@ exports.detectSoapVersion = req => {
     }
   }
 
-  throw new Error('Not a valid SOAP request');
+  throw new ParseError('Not a valid SOAP request', req);
 };
 
 exports.mimicSoapNotificationReceiver = xml => {
@@ -135,7 +136,7 @@ exports.mimicSoapNotificationReceiver = xml => {
 
   const match = regex.exec(xml);
   if (!match || !match[1]) {
-    throw new Error('Invalid notification');
+    throw new ParseError('Invalid SOAP notification', xml);
   }
 
   // wsdl defines XML tag as a string. It cannot be a CDATA (which is a XML element).

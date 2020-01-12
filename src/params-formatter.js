@@ -1,5 +1,6 @@
 'use strict';
 
+const { ValidationError } = require('./errors');
 const { LANGUAGES } = require('./assets/lang-codes');
 const { CURRENCIES } = require('./assets/currencies');
 const { COUNTRIES } = require('./assets/countries');
@@ -21,14 +22,14 @@ const paramFormatters = {
     const currencyCode = value.toUpperCase();
     const currency = CURRENCIES[currencyCode];
     if (!currency || !currency.num) {
-      throw new Error(`Unsupported currency ${value}`);
+      throw new ValidationError('Unsupported currency', value, 'currency');
     }
 
     obj.DS_MERCHANT_CURRENCY = currency.num.toString().padStart(3, '0');
   },
   amount: (obj, value) => {
     if (value.length > 12) {
-      throw new Error('Amount to charge is too large');
+      throw new ValidationError('Amount to charge is too large', value, 'amount');
     }
     obj.DS_MERCHANT_AMOUNT = String(value);
   },
@@ -71,7 +72,7 @@ const paramFormatters = {
   expiryDate: (obj, value) => {
     const stdFmt = value;
     if (stdFmt.length !== 4 || ! /^\d+$/.test(stdFmt)) {
-      throw new Error('Invalid expiryDate');
+      throw new ValidationError('Invalid expiryDate', value, 'expiryDate');
     }
     const altFmt = `${stdFmt.slice(2, 4)}${stdFmt.slice(0, 2)}`;
     obj.DS_MERCHANT_EXPIRYDATE = altFmt;
@@ -133,41 +134,54 @@ exports.paramFormatters = paramFormatters;
 
 exports.formatParams = paramsInput => {
   // Pre processing
-  if (typeof paramsInput.amount !== 'string' && (!Number.isInteger(paramsInput.amount) || paramsInput.amount < 0)) {
-    throw new Error('Invalid amount');
+  const {
+    amount,
+    merchantCode,
+    transactionType,
+    order,
+    expiryYear,
+    expiryMonth,
+    expiryDate,
+  }= paramsInput;
+  if (typeof amount !== 'string' && (!Number.isInteger(amount) || amount < 0)) {
+    throw new ValidationError('Invalid amount', amount, 'amount');
   }
-  if (!paramsInput.merchantCode) throw new Error('The merchant code is mandatory');
-  if (!paramsInput.transactionType) throw new Error('The transaction type is mandatory');
-  if (!paramsInput.order) throw new Error('No order reference provided.');
+  if (!merchantCode) {
+    throw new ValidationError('The merchant code is mandatory', merchantCode, 'merchantCode');
+  }
+  if (!transactionType) {
+    throw new ValidationError('The transaction type is mandatory', transactionType, 'transactionType');
+  }
+  if (!order) {
+    throw new ValidationError('No order reference provided.', order, 'order');
+  }
 
-  if (!paramsInput.expiryDate
-    && paramsInput.expiryMonth && paramsInput.expiryYear) {
-    if (paramsInput.expiryMonth.length !== 2) {
-      throw new Error('Invalid expiryMonth');
+  if (!expiryDate
+    && expiryMonth && expiryYear) {
+    if (expiryMonth.length !== 2) {
+      throw new ValidationError('Invalid expiryMonth', expiryMonth, 'expiryMonth');
     }
     if (paramsInput.expiryYear.length !== 2) {
-      throw new Error('Invalid expiryYear');
+      throw new ValidationError('Invalid expiryYear', expiryYear, 'expiryYear');
     }
-    paramsInput.expiryDate = `${paramsInput.expiryMonth}${paramsInput.expiryYear}`;
+    paramsInput.expiryDate = `${expiryMonth}${expiryYear}`;
   }
 
   // Defaults
   if (!paramsInput.terminal) paramsInput.terminal = '1';
-  if (!paramsInput.currency) {
-    paramsInput.currency = 'EUR';
-  }
+  if (!paramsInput.currency) paramsInput.currency = 'EUR';
 
   const paramsObj = {};
   for (const key in paramsInput) {
     if (key === 'expiryMonth' || key === 'expiryYear' || key === 'raw') continue;
     const formatter = paramFormatters[key];
     if (!formatter) {
-      throw new Error(`Unknown parameter ${key}`);
+      throw new ValidationError('Unknown parameter', undefined, key);
     }
     formatter(paramsObj, paramsInput[key]);
   }
 
-  // So it doesn't get overwritten
+  // Last, so raw doesn't get overwritten
   if ('raw' in paramsInput && paramsInput.raw) {
     Object.assign(paramsObj, paramsInput.raw);
   }
