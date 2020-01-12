@@ -112,7 +112,7 @@ describe('Redirect Integration', () => {
       Sis_Numero_Tarjeta: cardData.pan,
       Sis_Caducidad_Tarjeta_Mes: cardData.expiryMonth,
       Sis_Caducidad_Tarjeta_Anno: cardData.expiryYear,
-      Sis_Tarjeta_CVV2: cardData.CVV2,
+      Sis_Tarjeta_CVV2: cardData.cvv,
     });
 
     return fetch(ctx.nextPostUrl, {

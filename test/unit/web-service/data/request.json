@@ -8,5 +8,5 @@
   "identifier": "REQUIRED",
   "pan": "4548812049400004",
   "expiryDate": "1220",
-  "CVV2": "123"
+  "cvv": "123"
 }

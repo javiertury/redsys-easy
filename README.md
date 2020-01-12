@@ -187,7 +187,7 @@ const params = {
   merchantCode: '999008881',
   currency: 'EUR',
   pan: '4548812049400004',
-  CVV2: '123',
+  cvv: '123',
   expiryDate: '1220', // MMYY format
   transactionType: TRANSACTION_TYPES.NO_AUTHENTICATION,
   terminal: '1',
@@ -351,7 +351,7 @@ Strings
 * expiryDate: As printed in your credit card, MMYY, has priority over expiryYear and expiryMonth
 * expiryYear: YY
 * expiryMonth: MM
-* CVV2
+* cvv 
 * partialPayment
 * cardCountry: Lowercase ISO 3166 Alpha 2 country code, e.g. 'es'
 * merchantData

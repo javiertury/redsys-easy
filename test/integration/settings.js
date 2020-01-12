@@ -62,7 +62,7 @@ const settings = {
     pan: '4548812049400004',
     expiryMonth: '12',
     expiryYear: '20',
-    CVV2: '123',
+    cvv: '123',
     cip: '123456',
   },
 };

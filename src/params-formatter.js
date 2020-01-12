@@ -77,7 +77,7 @@ const paramFormatters = {
     const altFmt = `${stdFmt.slice(2, 4)}${stdFmt.slice(0, 2)}`;
     obj.DS_MERCHANT_EXPIRYDATE = altFmt;
   },
-  CVV2: (obj, value) => {
+  cvv: (obj, value) => {
     obj.DS_MERCHANT_CVV2 = value;
   },
   cardCountry: (obj, value) => {
@@ -139,17 +139,18 @@ exports.formatParams = paramsInput => {
     currency,
     merchantCode,
     transactionType,
+    CVV2,
     order,
     expiryYear,
     expiryMonth,
     expiryDate,
-  }= paramsInput;
+  } = paramsInput;
   if (typeof amount !== 'string' && (!Number.isInteger(amount) || amount < 0)) {
-    // An amount of 0 is valid, it may be used for credit card tokenization
+    // An amount of 0 is valid, it may be used for obtaining a credit card reference(tokenization)
     throw new ValidationError('Invalid amount', amount, 'amount');
   }
   if (!currency) {
-    throw new ValidationError('No currency provided.', currency, 'currency');
+    throw new ValidationError('No currency provided', currency, 'currency');
   }
   if (!merchantCode) {
     throw new ValidationError('The merchant code is mandatory', merchantCode, 'merchantCode');
@@ -158,7 +159,7 @@ exports.formatParams = paramsInput => {
     throw new ValidationError('The transaction type is mandatory', transactionType, 'transactionType');
   }
   if (!order) {
-    throw new ValidationError('No order reference provided.', order, 'order');
+    throw new ValidationError('No order reference provided', order, 'order');
   }
 
   if (!expiryDate
@@ -174,6 +175,11 @@ exports.formatParams = paramsInput => {
 
   // Defaults
   if (!paramsInput.terminal) paramsInput.terminal = '1';
+
+  if (!paramsInput.cvv && CVV2) {
+    paramsInput.cvv = CVV2;
+    console.warn('Use of "CVV2" is deprecated, please use "cvv"');
+  }
 
   const paramsObj = {};
   for (const key in paramsInput) {

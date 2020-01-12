@@ -30,7 +30,7 @@ describe('Web Service Integration', () => {
       pan: cardData.pan,
       expiryMonth: cardData.expiryMonth,
       expiryYear: cardData.expiryYear,
-      CVV2: cardData.CVV2,
+      cvv: cardData.cvv,
       // Raw parameters
       raw: {
         // merchantData
