@@ -7,24 +7,51 @@ const { SIS_ERROR_CODES } = require('./assets/error-codes');
 const RESPONSE_CODES = require('./assets/response-codes');
 const TRANSACTION_TYPES = require('./assets/transaction-types');
 
-const zeroPad = (smth, blocksize) => {
-  const buf = Buffer.from(smth.toString(), 'utf8');
+/**
+ * Adds padding to a buffer.
+ *
+ * Rounds up the buffer length to the next block and uses 0 as padding.
+ *
+ * @params {buffer} buf - Input buffer
+ * @params {number} blocksize - Size of block
+ * @return {buffer}
+ */
+const zeroPad = (buf, blocksize) => {
   const pad = Buffer.alloc((blocksize - (buf.length % blocksize)) % blocksize, 0);
   return Buffer.concat([buf, pad]);
 };
 
-const encryptOrder = (merchantKey, orderRef) => {
-  const secretKey = Buffer.from(merchantKey, 'base64');
+exports.zeroPad = zeroPad;
+
+/**
+ * Encrypt a message using 3DES
+ *
+ * @params {string} key - Key to encrypt message
+ * @params {string} message - Message to be encrypted
+ * @return {buffer}
+ */
+const encrypt3DES = (key, message) => {
+  const keyBuf = Buffer.from(key, 'base64');
   const iv = Buffer.alloc(8, 0);
-  const cipher = crypto.createCipheriv('des-ede3-cbc', secretKey, iv);
+
+  const messageBuf = Buffer.from(message.toString(), 'utf8');
+  // Align to blocksize by padding the message buffer
+  const paddedMessageBuf = zeroPad(messageBuf, 8);
+
+  const cipher = crypto.createCipheriv('des-ede3-cbc', keyBuf, iv);
   cipher.setAutoPadding(false);
-  const paddedStr = zeroPad(orderRef, 8);
-  return cipher.update(paddedStr, 'utf8', 'base64') + cipher.final('base64');
+  const encryptedBuf = Buffer.concat([cipher.update(paddedMessageBuf), cipher.final()]);
+
+  // Make sure that encrypted buffer is not longer than the padded message
+  const maxLength = Math.ceil(messageBuf.length / 8) * 8;
+  return encryptedBuf.slice(0, maxLength);
 };
 
+exports.encrypt3DES = encrypt3DES;
+
 exports.sha256Sign = (merchantKey, order, params) => {
-  const orderKey = Buffer.from(encryptOrder(merchantKey, order), 'base64');
-  return crypto.createHmac('sha256', orderKey).update(params).digest('base64');
+  const orderKeyBuf = encrypt3DES(merchantKey, order);
+  return crypto.createHmac('sha256', orderKeyBuf).update(params).digest('base64');
 };
 
 exports.TRANSACTION_TYPES = TRANSACTION_TYPES;
