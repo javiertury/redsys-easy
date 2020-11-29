@@ -1,0 +1,19 @@
+export default {
+  CODIGO: '0',
+  OPERACION: {
+    Ds_Amount: '145',
+    Ds_Currency: '978',
+    Ds_Order: '1444912789',
+    Ds_Signature: 'bAuiQOymGvYzqHi7dEeuWrRYFeUjtFH6NyOoWSl0vHU=',
+    Ds_MerchantCode: '999008881',
+    Ds_Terminal: '871',
+    Ds_Response: '0000',
+    Ds_AuthorisationCode: '050372',
+    Ds_TransactionType: '0',
+    Ds_SecurePayment: '0',
+    Ds_Language: '1',
+    Ds_Card_Type: 'D',
+    Ds_MerchantData: '',
+    Ds_Card_Country: '724'
+  }
+};

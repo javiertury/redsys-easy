@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": ["ESNext"],
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

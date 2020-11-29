@@ -1,3 +1,4 @@
+/* eslint-disable strict, no-console */
 'use strict';
 
 const {
@@ -5,7 +6,7 @@ const {
   TRANSACTION_TYPES,
   SANDBOX_URLS,
   randomTransactionId,
-} = require('../src/index.js');
+} = require('../dist');
 
 const redsys = new Redsys({
   secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',

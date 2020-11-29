@@ -1,11 +1,12 @@
+/* eslint-disable strict, no-console */
 'use strict';
 
 const {
   Redsys,
   TRANSACTION_TYPES,
-  urls: SANDBOX_URLS,
+  SANDBOX_URLS,
   randomTransactionId,
-} = require('../src/index.js');
+} = require('../lib');
 
 const redsys = new Redsys({
   secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',

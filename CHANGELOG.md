@@ -28,3 +28,20 @@
 - Add new formatted parameters, some related to paygold
 - New transaction type PAYLINK
 - Examples
+
+## [3.0.1]
+
+### Fixed
+
+- Length of encrypted 3des message is now limited
+
+## [3.0.2]
+
+### Added
+
+- Codebase migrated to typescript
+- Generate CommonJS and ESM output
+
+### Fixed
+
+- Fill 3D Secure form in redirection test
