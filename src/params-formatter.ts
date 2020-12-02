@@ -53,7 +53,7 @@ const inputParamsFormatter = (
           throw new ValidationError('Unsupported currency', value, 'currency');
         }
 
-        obj.DS_MERCHANT_CURRENCY = currencyData.num.toString().padStart(3, '0');
+        obj.DS_MERCHANT_CURRENCY = currencyData.num.padStart(3, '0');
         break;
       }
 

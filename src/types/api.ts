@@ -1,8 +1,8 @@
-import { TransactionType } from '../assets/transaction-types';
-import { CardBrand } from '../assets/card-brands';
-import { Country } from '../assets/countries';
-import { Currency } from '../assets/currencies';
-import { Language } from '../assets/lang-codes';
+import type { TransactionType } from '../assets/transaction-types';
+import type { CardBrand } from '../assets/card-brands';
+import type { Country } from '../assets/countries';
+import type { Currency } from '../assets/currencies';
+import type { Language } from '../assets/lang-codes';
 
 export type RawResponseParams = Record<string, string>;
 export type RawRequestParams = Record<string, string>;

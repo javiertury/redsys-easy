@@ -31,7 +31,9 @@
     "lint": "eslint --ext js,ts .",
     "test-unit": "jest ./test/unit/**/*.test.ts",
     "test-integration": "jest ./test/integration/**/*.test.ts",
-    "test": "jest"
+    "test-code": "jest",
+    "test-types": "tsd",
+    "test": "npm run test-code && npm run test-types"
   },
   "files": [
     "lib"
@@ -42,7 +44,7 @@
     ]
   },
   "lint-staged": {
-    "*.js": "eslint"
+    "*.{js,ts}": "eslint"
   },
   "husky": {
     "hooks": {
@@ -83,19 +85,21 @@
     "jest": "^26.6.3",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
-    "lint-staged": "^8.1.0",
+    "lint-staged": "^10.5.2",
     "node-fetch": "^2.6.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.33.3",
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-jest": "^26.4.4",
+    "tsd": "^0.13.1",
     "typescript": "^4.1.2"
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts",
     "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/test/**/*.test.ts"
+      "<rootDir>/test/unit/**/*.test.ts",
+      "<rootDir>/test/integration/**/*.test.ts"
     ],
     "setupFilesAfterEnv": [
       "./test/jest.setup.ts"
@@ -105,5 +109,8 @@
         "tsconfig": "./tsconfig.test.json"
       }
     }
+  },
+  "tsd": {
+    "directory": "test/types"
   }
 }

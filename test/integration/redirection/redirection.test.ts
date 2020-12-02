@@ -257,7 +257,7 @@ describe('Redirect Integration', () => {
     expect(redirectionURL).toContain(redirectData.successURL);
   });
 
-  it('should send the server a notification', async () => {
+  it('should receive a success notification', async () => {
     await wait(2000);
 
     expect(serverHandler).toHaveBeenCalledTimes(1);

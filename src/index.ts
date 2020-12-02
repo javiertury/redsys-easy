@@ -22,7 +22,21 @@ import {
 } from './errors';
 import { formatParams, FormatterOptions } from './params-formatter';
 import { formatResponse } from './response-formatter';
-import { FormattedResponse, ParsedSoapNotifiation, RawNotificationBody, RawResponseParams, RequestInput, ResponseXML } from './types/api';
+
+import type {
+  FormattedResponse,
+  ParsedSoapNotifiation,
+  RawNotificationBody,
+  RawRequestParams,
+  RawResponseParams,
+  RequestInput,
+  ResponseXML
+} from './types/api';
+import type { Currency } from './assets/currencies';
+import type { Language } from './assets/lang-codes';
+import type { Country } from './assets/countries';
+import type { CardBrand } from './assets/card-brands';
+import type { TransactionType } from './assets/transaction-types';
 
 const js2xml = new J2xParser({});
 
@@ -37,6 +51,23 @@ export {
   randomTransactionId
 };
 
+export type {
+  FormattedResponse,
+  RequestInput,
+  RawNotificationBody,
+  TransactionType,
+  RawRequestParams,
+  CardBrand,
+  Country,
+  Currency,
+  Language
+};
+
+export interface UrlsConfig {
+  redirect: string
+  ws: string
+}
+
 export const PRODUCTION_URLS = {
   redirect: 'https://sis.redsys.es/sis/realizarPago',
   ws: 'https://sis.redsys.es/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl'
@@ -47,14 +78,12 @@ export const SANDBOX_URLS = {
   ws: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl'
 };
 
-type UrlsConfig = Record<'ws' | 'redirect', string>;
-
 export interface RedsysConfig {
   secretKey: string
   urls: UrlsConfig
 }
 
-interface RedirectPetition {
+export interface RedirectPetition {
   url: string
   body: {
     Ds_SignatureVersion: 'HMAC_SHA256_V1'
@@ -91,11 +120,11 @@ export class Redsys {
     this.urls = options.urls;
   }
 
-  signOrderText (order: string, text: string) {
+  signOrderText (order: string, text: string): string {
     return sha256Sign(this.secretKey, order, text);
   }
 
-  redirectPetitionParameters (paramsInput: RequestInput, options?: FormatterOptions) {
+  redirectPetitionParameters (paramsInput: RequestInput, options?: FormatterOptions): string {
     const paramsObj = formatParams(paramsInput, options);
     // Docs escape "/" but we don't, this JSON won't get placed in a script tag
     return Buffer.from(JSON.stringify(paramsObj), 'utf8').toString('base64');
@@ -132,7 +161,7 @@ export class Redsys {
     return payload;
   }
 
-  processNotification (body: RawNotificationBody) {
+  processNotification (body: RawNotificationBody): FormattedResponse {
     const params = this.processNotificationParameters(body.Ds_MerchantParameters);
 
     const order = params.Ds_Order;
