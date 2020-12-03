@@ -1,16 +1,21 @@
 # Changelog
 
-## [3.0.2]
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### Added
+## [3.1.0] (2020-12-03)
 
-- Codebase migrated to typescript
+
+### Features
+
+* typescript, rollup and tests ([a3f97ec](https://github.com/javiertury/redsys-easy/commit/a3f97ec81cd6140a25dff759d55f5cd74bb867d9))
 - Generate CommonJS and ESM output
-- Type tests
+* tests for types ([a45d76f](https://github.com/javiertury/redsys-easy/commit/a45d76fa2610b0ac3d2418a76951ecb8e643f523))
 
-### Fixed
+
+### Bug Fixes
 
 - Fill 3D Secure form in redirection test
+
 
 ## [3.0.1]
 
