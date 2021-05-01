@@ -8,13 +8,13 @@
   "extends": [
     "eslint:recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 8,
     "ecmaFeatures": {
       "spread": true
     },
-    "parser": "@typescript-eslint/parser",
     "project": "./tsconfig.json"
   },
   "plugins": [
