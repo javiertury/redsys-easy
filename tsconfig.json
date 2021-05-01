@@ -16,10 +16,6 @@
     "resolveJsonModule": true,
     "outDir": "lib"
   },
-  "include": [
-    "src/**/*",
-    "test/**/*"
-  ],
   "exclude": [
     "node_modules"
   ]
