@@ -1,0 +1,4 @@
+pnpm-lock.yaml               merge=binary
+shrinkwrap.yaml              merge=binary
+npm-shrinkwrap.json          merge=binary
+yarn.lock                    merge=binary
