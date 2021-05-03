@@ -5,6 +5,7 @@ dependencies:
   fast-xml-parser: 3.19.0
   node-fetch: 2.6.1
   soap: 0.35.0
+  tslib: 2.2.0
 devDependencies:
   '@commitlint/cli': 7.6.1
   '@commitlint/config-conventional': 7.6.0
@@ -7513,6 +7514,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
+  /tslib/2.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
   /tsscmp/1.0.6:
     dev: true
     engines:
@@ -8091,4 +8096,5 @@ specifiers:
   standard-version: ^9.0.0
   ts-jest: ^26.5.5
   tsd: ^0.13.1
+  tslib: ^2.2.0
   typescript: ^4.2.4
