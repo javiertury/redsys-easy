@@ -14,7 +14,7 @@ import {
 import requestHeaders from './data/headers.json';
 import cardParams from './data/card-params.json';
 import settings from '../settings';
-import { RawNotificationBody } from '../../../src/types/api';
+import { ResponseJSON } from '../../../src/types/api';
 
 const {
   instanceSettings,
@@ -32,7 +32,11 @@ const fixedEncodeURIComponent = (str: string) => {
   return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, '%2A');
 };
 
-const encodePostParams = (params: Record<string, string | undefined>) =>
+type PropsToMaybeString <T extends object> = {
+  [K in keyof T]?: string
+};
+
+const encodePostParams = <T extends object>(params: PropsToMaybeString<T>) =>
   Object.entries(params)
     .filter((entry): entry is [string, string] => {
       return entry[1] != null;
@@ -267,7 +271,7 @@ describe('Redirect Integration', () => {
     expect(serverCtx).not.toBeNull();
     expect(serverCtx.method).toEqual('POST');
 
-    const body = serverCtx.request.body as RawNotificationBody;
+    const body = serverCtx.request.body as ResponseJSON;
     expect(typeof body).toBe('object');
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);

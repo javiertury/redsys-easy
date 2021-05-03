@@ -7,13 +7,6 @@ import type { Language } from '../assets/lang-codes';
 export type RawResponseParams = Record<string, string>;
 export type RawRequestParams = Record<string, string>;
 
-export interface ParsedSoapNotifiation {
-  Message: {
-    Signature: string
-    Request: RawResponseParams
-  }
-}
-
 export interface FormattedResponse {
   raw: RawResponseParams
   date?: string
@@ -40,6 +33,7 @@ export interface FormattedResponse {
   cardCountry?: Country
   cardBrand?: CardBrand
   payURL?: string
+  cardPSD2?: boolean
 }
 
 export interface RequestInput {
@@ -83,14 +77,57 @@ export interface RequestInput {
   raw?: RawRequestParams
 }
 
-export interface ResponseXML {
-  RETORNOXML: {
-    CODIGO: string
-    OPERACION: RawResponseParams
+export interface ParsedSoapNotifiation {
+  Message: {
+    Signature: string
+    Request: RawResponseParams
   }
 }
 
-export interface RawNotificationBody {
+export interface ResponseXMLInnerSuccess {
+  CODIGO: '0'
+  OPERACION: RawResponseParams
+}
+
+export interface ResponseXMLInnerFailure {
+  CODIGO: string
+  RECIBIDO: {
+    trataPeticion: {
+      datoEntrada: string
+    }
+  }
+}
+
+export interface ResponseXML {
+  RETORNOXML: ResponseXMLInnerSuccess | ResponseXMLInnerFailure
+}
+
+export interface ResponseJSON {
+  Ds_SignatureVersion: string
   Ds_Signature: string
   Ds_MerchantParameters: string
+}
+
+export interface ResponseJSONError {
+  errorCode: string
+}
+
+/**
+ * SHA256 signed JSON request parameters
+ */
+export interface SHA256SignedJSONParameters {
+  Ds_SignatureVersion: 'HMAC_SHA256_V1'
+  Ds_MerchantParameters: string
+  Ds_Signature: string
+}
+
+export interface SoapNotificationResponse {
+  order: string
+  allow: boolean
+}
+
+export interface WebServiceTrataPeticionTrait {
+  trataPeticionAsync: (input: { datoEntrada: string }) => Promise<[{
+    trataPeticionReturn: string
+  }]>
 }

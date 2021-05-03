@@ -62,8 +62,8 @@
     "tslib": "^2.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.3.1",
-    "@commitlint/config-conventional": "^7.3.1",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
     "@koa/router": "^8.0.5",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/bluebird": "^3.5.33",

@@ -12,12 +12,13 @@ import { SANDBOX_URLS } from '../../src';
  */
 
 const externalIPv4Networks = Object.values(networkInterfaces()).flat()
-  .filter(net => net.family === 'IPv4' && !net.internal);
+  .filter(net => net?.family === 'IPv4' && !net.internal);
 const externalIPAddress: string | undefined = externalIPv4Networks[0]?.address;
 
 const port = 3344;
 const endpoint: string = externalIPAddress != null && externalIPAddress
-  ? `http://${externalIPAddress}:${port}` : `http://my-server.com:${port}`;
+  ? `http://${externalIPAddress}:${port}`
+  : `http://my-server.com:${port}`;
 
 const settings = {
   notificationServer: {

@@ -438,7 +438,8 @@ Other
 * RedsysError: Super class from which all errors inherit. Unclassified errors.
 * ValidationError: Error validating input parameters.
 * ParseError: Error parsing response.
-* GatewayError: Redsys gateway returned an error code. Note that only webservice requests trigger this error, notification processors don't.
+* ResponseError: Redsys request returned an error code.
+* GatewayError: Redsys gateway could not process request.
 
 ```js
 const {
