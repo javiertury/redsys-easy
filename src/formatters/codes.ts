@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'http';
 import { SIS_ERROR_CODES } from '../assets/error-codes';
 import RESPONSE_CODES from '../assets/response-codes';
 
@@ -27,4 +28,8 @@ export const getSISErrorCodeMessage = (code: string): string | undefined => {
   }
 
   return SIS_ERROR_CODES[code.trim()];
+};
+
+export const getHTTPErrorCodeMessage = (code: number): string | undefined => {
+  return STATUS_CODES[code];
 };

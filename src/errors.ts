@@ -1,6 +1,7 @@
 import {
   getResponseCodeMessage,
-  getSISErrorCodeMessage
+  getSISErrorCodeMessage,
+  getHTTPErrorCodeMessage
 } from './formatters/codes';
 
 export class RedsysError extends Error {
@@ -79,6 +80,27 @@ export class GatewayError extends RedsysError {
     super(augmentedMessage);
 
     this.name = 'RedsysGatewayError';
+    this.code = code;
+    this.response = response;
+  }
+}
+
+/**
+ * HTTP Error
+ */
+export class HTTPError extends RedsysError {
+  code: number | undefined;
+  response: unknown | undefined;
+
+  constructor (message: string, code: number, response?: unknown) {
+    const codeDescription = getHTTPErrorCodeMessage(code);
+    const augmentedMessage = code !== undefined
+      ? `${message}\nHTTP error ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
+      : message;
+
+    super(augmentedMessage);
+
+    this.name = 'RedsysHTTPError';
     this.code = code;
     this.response = response;
   }

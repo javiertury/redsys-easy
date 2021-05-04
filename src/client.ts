@@ -21,6 +21,10 @@ import {
   serializeAndSignSoapNotificationResponse
 } from './soap/notification';
 
+import {
+  jsonRequest
+} from './rest/requests';
+
 import type {
   FormattedResponse,
   ResponseJSON,
@@ -31,16 +35,22 @@ import type {
 export interface UrlsConfig {
   redirect: string
   ws: string
+  restTrataPeticion: string
+  restIniciaPeticion: string
 }
 
-export const PRODUCTION_URLS = {
+export const PRODUCTION_URLS: UrlsConfig = {
   redirect: 'https://sis.redsys.es/sis/realizarPago',
-  ws: 'https://sis.redsys.es/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl'
+  ws: 'https://sis.redsys.es/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl',
+  restTrataPeticion: 'https://sis.redsys.es/sis/rest/trataPeticionREST',
+  restIniciaPeticion: 'https://sis.redsys.es/sis/rest/iniciaPeticionREST'
 };
 
-export const SANDBOX_URLS = {
+export const SANDBOX_URLS: UrlsConfig = {
   redirect: 'https://sis-t.redsys.es:25443/sis/realizarPago',
-  ws: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl'
+  ws: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntrada/wsdl/SerClsWSEntrada.wsdl',
+  restTrataPeticion: 'https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST',
+  restIniciaPeticion: 'https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST'
 };
 
 export interface RedsysConfig {
@@ -68,6 +78,7 @@ export class Redsys {
 
     if (
       typeof options.urls !== 'object' || options.urls == null ||
+      !options.urls.restIniciaPeticion || !options.urls.restTrataPeticion ||
       !options.urls.ws || !options.urls.redirect
     ) {
       throw new RedsysError('URLs must be provided');
@@ -111,6 +122,28 @@ export class Redsys {
       client, this.secretKey, formattedParams
     );
     return formatOutput(unformattedOutput);
+  }
+
+  async restIniciaPeticion (
+    paramsInput: RequestInput,
+    options?: FormatterOptions
+  ): Promise<FormattedResponse> {
+    const formattedInput = formatInput(paramsInput, options);
+    const parsedResponse = await jsonRequest(
+      this.urls.restIniciaPeticion, this.secretKey, formattedInput
+    );
+    return formatOutput(parsedResponse);
+  }
+
+  async restTrataPeticion (
+    paramsInput: RequestInput,
+    options?: FormatterOptions
+  ): Promise<FormattedResponse> {
+    const formattedInput = formatInput(paramsInput, options);
+    const parsedResponse = await jsonRequest(
+      this.urls.restTrataPeticion, this.secretKey, formattedInput
+    );
+    return formatOutput(parsedResponse);
   }
 
   processSoapNotification (xml: string): FormattedResponse {
