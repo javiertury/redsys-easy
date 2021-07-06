@@ -1,6 +1,6 @@
 export {
   soapNotificationMerchantKey as deniedSoapNotificationResponseMerchantKey
-} from './notification';
+} from './redirect-notification';
 
 export const deniedNotificationResponseParams = {
   order: '165441',

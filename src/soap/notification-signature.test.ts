@@ -11,7 +11,7 @@ import {
   soapNotificationMerchantKey,
   serializedAndSignedSoapNotificationParams,
   parsedSoapNotification
-} from '../../test/fixtures/soap/notification';
+} from '../../test/fixtures/soap/redirect-notification';
 
 import {
   deniedSoapNotificationResponseMerchantKey as deniedResponseMerchantKey,

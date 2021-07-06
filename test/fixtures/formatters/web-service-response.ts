@@ -20,7 +20,6 @@ export const formattedWebServiceResponse = {
   securePayment: false,
   lang: 'es',
   cardNumber: '454881******0004',
-  expiryDate: '1220',
   expiryYear: '20',
   expiryMonth: '12',
   identifier: 'e1996507292293e8db292e5542992cd237861dbd',

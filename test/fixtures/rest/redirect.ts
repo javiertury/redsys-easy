@@ -10,7 +10,7 @@ export const redirectRequest = {
   DS_MERCHANT_MERCHANTURL: 'http://www.prueba.com/urlNotificacion.php',
   DS_MERCHANT_URLOK: 'http://www.prueba.com/urlOK.php',
   DS_MERCHANT_URLKO: 'http://www.prueba.com/urlKO.php'
-};
+} as const;
 
 export const redirectRequest3DESOrder = 'skzDZ5ChKP5QLergu1TcXA==';
 

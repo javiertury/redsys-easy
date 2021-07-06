@@ -65,6 +65,6 @@ export const parsedSoapNotification = {
     Ds_ConsumerLanguage: '1'
   },
   Signature: 'RSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok='
-};
+} as const;
 
 export const soapNotification3DESOrder = 'fKbHvdchVfk=';

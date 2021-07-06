@@ -1,53 +1,60 @@
 import {
-  Redsys,
+  createRedsysAPI,
+  SANDBOX_URLS,
   TRANSACTION_TYPES,
   randomTransactionId
-} from '../../../src';
+} from 'redsys-easy';
 
-import settings from '../settings';
+import { noThreeDS } from '../../fixtures/cards';
 
 const {
-  instanceSettings,
+  secretKey,
   merchantData,
-  cardData
-} = settings;
+  card
+} = noThreeDS;
 
-const redsys = new Redsys(instanceSettings);
+const {
+  restTrataPeticion
+} = createRedsysAPI({
+  urls: SANDBOX_URLS,
+  secretKey
+});
 
-describe('Rest trataPeticion Integration', () => {
+describe('Rest trataPeticion', () => {
   it('should process a payment', async () => {
     const params = {
       // amount in smallest currency unit(cents)
       // 33.50€
-      amount: 3350,
-      currency: 'EUR',
-      merchantCode: merchantData.merchantCode,
-      terminal: merchantData.terminal,
-      order: randomTransactionId(),
-      transactionType: TRANSACTION_TYPES.NO_AUTHENTICATION,
-      pan: cardData.pan,
-      expiryMonth: cardData.expiryMonth,
-      expiryYear: cardData.expiryYear,
-      cvv: cardData.cvv,
-      // Raw parameters
-      raw: {
-        // merchantData
-        DS_MERCHANT_MERCHANTDATA: 'foo'
-      }
+      DS_MERCHANT_AMOUNT: '3350',
+      DS_MERCHANT_CURRENCY: '978',
+      DS_MERCHANT_MERCHANTCODE: merchantData.merchantCode,
+      DS_MERCHANT_TERMINAL: merchantData.terminal,
+      DS_MERCHANT_ORDER: randomTransactionId(),
+      DS_MERCHANT_TRANSACTIONTYPE: TRANSACTION_TYPES.NO_AUTHENTICATION,
+      DS_MERCHANT_PAN: card.pan,
+      DS_MERCHANT_EXPIRYDATE: `${card.expiryYear}${card.expiryMonth}`,
+      DS_MERCHANT_CVV2: card.cvv,
+      DS_MERCHANT_MERCHANTDATA: 'foo'
     } as const;
 
-    const result = await redsys.restTrataPeticion(params);
+    const result = await restTrataPeticion(params);
 
-    expect(result.response).toEqual(0);
-    expect(result.order).toEqual(params.order);
-    expect(result.merchantCode).toEqual(params.merchantCode);
-    expect(result.terminal).toEqual(params.terminal);
-    expect(result.transactionType).toEqual(params.transactionType);
-    expect(result.amount).toEqual(params.amount);
-    expect(result.currency).toEqual(params.currency);
-    expect(result.securePayment).toEqual(false);
-    expect(result.lang).toEqual('es');
-    expect(result.cardCountry).toEqual('es');
-    expect(result.cardBrand).toEqual('VISA');
+    expect(result).toEqual({
+      Ds_Response: '0000',
+      Ds_Order: params.DS_MERCHANT_ORDER,
+      Ds_MerchantCode: params.DS_MERCHANT_MERCHANTCODE,
+      Ds_Terminal: params.DS_MERCHANT_TERMINAL,
+      Ds_TransactionType: params.DS_MERCHANT_TRANSACTIONTYPE,
+      Ds_Amount: params.DS_MERCHANT_AMOUNT,
+      Ds_Currency: params.DS_MERCHANT_CURRENCY,
+      Ds_SecurePayment: '0',
+      Ds_AuthorisationCode: expect.stringMatching(/^[0-9]+$/) as string,
+      Ds_CardNumber: '454881******0004',
+      Ds_Card_Brand: '1',
+      Ds_Card_Country: '724',
+      Ds_Language: '1',
+      Ds_MerchantData: 'foo',
+      Ds_ProcessedPayMethod: '3'
+    });
   });
 });

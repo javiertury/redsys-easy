@@ -11,7 +11,7 @@ export const jsonRequest = {
   DS_MERCHANT_PAN: '4548812049400004',
   DS_MERCHANT_EXPIRYDATE: '1512',
   DS_MERCHANT_CVV2: '123'
-};
+} as const;
 
 export const jsonRequest3DESOrder = 'Uv3ZTYJhPi5Hpi9R6NzR6w==';
 

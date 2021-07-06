@@ -16,7 +16,7 @@ import {
   restNotificationMerchantKey,
   serializedRestNotification,
   parsedRestNotification
-} from '../../test/fixtures/rest/notification';
+} from '../../test/fixtures/rest/redirect-notification';
 
 import {
   redirectMerchantKey,
@@ -36,6 +36,14 @@ import {
   parsedJSONResponse
 } from '../../test/fixtures/rest/json-response';
 
+import {
+  threeDSv21MerchantKey,
+  challengeResponseRequest,
+  serializedAndSignedChallengeResponseRequest,
+  serializedChallengeResponseResponse,
+  parsedChallengeResponseResponse
+} from '../../test/fixtures/rest/3ds-v2.1-challenge';
+
 describe('REST JSON', () => {
   describe('SHA256', () => {
     it('should serialize and sign request', () => {
@@ -46,6 +54,10 @@ describe('REST JSON', () => {
       expect(
         serializeAndSignJSONRequest(jsonRequestMerchantKey, jsonRequest)
       ).toEqual(serializedAndSignedJSONRequest);
+
+      expect(
+        serializeAndSignJSONRequest(threeDSv21MerchantKey, challengeResponseRequest)
+      ).toEqual(serializedAndSignedChallengeResponseRequest);
     });
 
     it('should parse and verify response with legit signature', () => {
@@ -56,6 +68,10 @@ describe('REST JSON', () => {
       expect(
         parseAndVerifyJSONResponse(jsonResponseMerchantKey, serializedJSONResponse)
       ).toEqual(parsedJSONResponse);
+
+      expect(
+        parseAndVerifyJSONResponse(threeDSv21MerchantKey, serializedChallengeResponseResponse)
+      ).toEqual(parsedChallengeResponseResponse);
     });
 
     it('should fail to verify response if merchant key is incorrect', () => {

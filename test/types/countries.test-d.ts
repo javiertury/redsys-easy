@@ -1,6 +1,7 @@
 import { expectType } from 'tsd';
 
-import { Country, COUNTRIES, REV_COUNTRIES } from '../../src/assets/countries';
+import { COUNTRIES, REV_COUNTRIES } from '../../src/assets/countries';
+import type { Country } from '../../src/assets/countries';
 
 expectType<Record<Country, string>>(COUNTRIES);
 

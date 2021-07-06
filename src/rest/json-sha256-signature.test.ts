@@ -16,7 +16,7 @@ import {
   restNotificationMerchantKey,
   serializedRestNotification,
   parsedRestNotification
-} from '../../test/fixtures/rest/notification';
+} from '../../test/fixtures/rest/redirect-notification';
 
 import {
   redirectMerchantKey,

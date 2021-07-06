@@ -18,7 +18,7 @@ import {
   serializedRestNotification,
   parsedRestNotification,
   restNotification3DESOrder
-} from '../test/fixtures/rest/notification';
+} from '../test/fixtures/rest/redirect-notification';
 
 import {
   jsonRequestMerchantKey,
@@ -55,7 +55,7 @@ import {
   serializedSoapNotificationParams,
   parsedSoapNotification,
   soapNotification3DESOrder
-} from '../test/fixtures/soap/notification';
+} from '../test/fixtures/soap/redirect-notification';
 
 import {
   webServiceRequestMerchantKey,

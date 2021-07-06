@@ -1,18 +1,23 @@
 import type { Client } from 'soap';
 import type {
-  RawRequestParams,
-  RawResponseParams,
   ResponseXML,
   ResponseXMLInnerSuccess,
   WebServiceTrataPeticionTrait
 } from '../types/api';
 
-import {
-  extractAndAssertResponseCodeFromRawResponseParams
-} from '../utils';
+import type {
+  WebserviceOutputParams
+} from '../types/output-params';
+
+import type {
+  WebserviceInputParams
+} from '../types/input-params';
 
 import {
-  ResponseError,
+  assertSuccessfulResponseCode
+} from '../utils/misc';
+
+import {
   GatewayError,
   RedsysError
 } from '../errors';
@@ -38,10 +43,10 @@ export const parseAndVerifyWebServiceResponse = (
 
 export const serializeAndSignWebServiceRequest = (
   merchantKey: string,
-  rawRequestParams: RawRequestParams
+  requestParams: WebserviceInputParams
 ): string => {
-  const serializedParams: string = serializeWebServiceRequest(rawRequestParams);
-  return signWebServiceRequest(merchantKey, serializedParams, rawRequestParams);
+  const serializedParams: string = serializeWebServiceRequest(requestParams);
+  return signWebServiceRequest(merchantKey, serializedParams, requestParams);
 };
 
 export const isWebServiceResponseSuccess = (
@@ -63,9 +68,9 @@ export const assertSoapClientHasTrataPeticion: (
 export const webServiceTrataPeticionRequest = async (
   client: Client & WebServiceTrataPeticionTrait,
   merchantKey: string,
-  rawRequestParams: RawRequestParams
-): Promise<RawResponseParams> => {
-  const peticion = serializeAndSignWebServiceRequest(merchantKey, rawRequestParams);
+  requestParams: WebserviceInputParams
+): Promise<WebserviceOutputParams> => {
+  const peticion = serializeAndSignWebServiceRequest(merchantKey, requestParams);
   const response = await client.trataPeticionAsync({ datoEntrada: peticion });
 
   const result: string = response[0].trataPeticionReturn;
@@ -74,14 +79,10 @@ export const webServiceTrataPeticionRequest = async (
   if (!isWebServiceResponseSuccess(data)) {
     // Can't access data.OPERACION, only data.RECIBIDO
     // However data.RECIBIDO may contain sensitive information
-    throw new GatewayError('Request failed', data.CODIGO);
+    throw new GatewayError('Request failed', data.CODIGO, data);
   }
 
-  const resCode = extractAndAssertResponseCodeFromRawResponseParams(data.OPERACION);
-
-  if (resCode != null && resCode > 100 && resCode !== 400 && resCode !== 600) {
-    throw new ResponseError('Error in web service request', resCode, response);
-  }
+  assertSuccessfulResponseCode(data.OPERACION);
 
   return data.OPERACION;
 };

@@ -13,6 +13,7 @@ export const unformattedWebServiceRequest = {
   amount: 3350,
   identifier: 'REQUIRED',
   pan: '4548812049400004',
-  expiryDate: '1220',
+  expiryMonth: '12',
+  expiryYear: '20',
   cvv: '123'
 } as const;

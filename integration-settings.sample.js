@@ -37,6 +37,7 @@ const { URL } = require('url');
 const port = 3344;
 const endpoint = `http://external-ip-address-or-domain:${port}`;
 
+/** @type {import('test/integration/settings').SettingsIntegration} */
 const settings = {
   notificationServer: {
     port
@@ -45,6 +46,11 @@ const settings = {
     merchantURL: new URL('/notification', endpoint).toString(),
     successURL: new URL('/success', endpoint).toString(),
     errorURL: new URL('/error', endpoint).toString()
+  },
+  threeDS: {
+    methodURL: new URL('/notification-3ds-method', endpoint).toString(),
+    challengeV1URL: new URL('/post-challenge-v1', endpoint).toString(),
+    challengeV2URL: new URL('/post-challenge-v2', endpoint).toString()
   }
 };
 

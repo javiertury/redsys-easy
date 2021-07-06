@@ -1,16 +1,16 @@
 import {
   parsedSoapNotification
-} from '../soap/notification';
+} from '../soap/redirect-notification';
 
 export {
   soapNotificationMerchantKey,
   parsedSoapNotification,
   serializedAndSignedSoapNotificationParams
-} from '../soap/notification';
+} from '../soap/redirect-notification';
 
 export const formattedSoapNotification = {
   date: '2003-04-01',
-  hour: '16:57',
+  time: '16:57',
   timestamp: new Date('2003-04-01 14:57 Z'),
   securePayment: true,
   amount: 345,

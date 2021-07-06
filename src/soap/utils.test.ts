@@ -9,7 +9,7 @@ import {
   serializedSoapNotification11,
   serializedSoapNotification12,
   serializedAndSignedSoapNotificationParams
-} from '../../test/fixtures/soap/notification';
+} from '../../test/fixtures/soap/redirect-notification';
 
 import {
   serializedAndSignedAllowedNotificationResponseParams,

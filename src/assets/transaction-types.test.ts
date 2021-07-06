@@ -1,4 +1,5 @@
-import { TransactionType, TRANSACTION_TYPES } from './transaction-types';
+import { TRANSACTION_TYPES } from './transaction-types';
+import type { TransactionType } from './transaction-types';
 
 describe('Transaction types', () => {
   it('Typescript type definitions must match actual values', () => {
@@ -23,14 +24,18 @@ describe('Transaction types', () => {
       7: null,
       8: null,
       9: null,
+      15: null,
+      17: null,
+      34: null,
+      37: null,
+      44: null,
       O: null,
       F: null,
       P: null,
       Q: null,
       R: null,
       S: null,
-      A: null,
-      44: null
+      A: null
     };
 
     const allTransactionTypes = Object.keys(allTransactionTypeToNull);

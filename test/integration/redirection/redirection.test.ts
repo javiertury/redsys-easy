@@ -1,4 +1,5 @@
-import Koa, { Context as KoaContext } from 'koa';
+import Koa from 'koa';
+import type { Context as KoaContext } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
@@ -6,50 +7,42 @@ import url from 'url';
 import type { Server } from 'http';
 
 import {
-  Redsys,
+  createRedsysAPI,
   TRANSACTION_TYPES,
-  randomTransactionId
-} from '../../../src';
+  randomTransactionId,
+  SANDBOX_URLS
+} from 'redsys-easy';
 
-import requestHeaders from './data/headers.json';
+import { noThreeDS } from '../../fixtures/cards';
+import { clientPostHeaders } from '../../fixtures/client';
 import cardParams from './data/card-params.json';
 import settings from '../settings';
-import { ResponseJSON } from '../../../src/types/api';
+import type { ResponseJSON } from 'redsys-easy';
+import {
+  encodePostParams,
+  wait
+} from '../utils';
 
 const {
-  instanceSettings,
-  merchantData,
-  cardData,
   redirectData,
   notificationServer: serverSettings
 } = settings;
 
+const {
+  secretKey,
+  merchantData,
+  card
+} = noThreeDS;
+
 const { URL } = url;
 
-const redsys = new Redsys(instanceSettings);
-
-const fixedEncodeURIComponent = (str: string) => {
-  return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, '%2A');
-};
-
-type PropsToMaybeString <T extends object> = {
-  [K in keyof T]?: string
-};
-
-const encodePostParams = <T extends object>(params: PropsToMaybeString<T>) =>
-  Object.entries(params)
-    .filter((entry): entry is [string, string] => {
-      return entry[1] != null;
-    })
-    .map(([key, value]) => {
-      return `${fixedEncodeURIComponent(key)}=${fixedEncodeURIComponent(value)}`;
-    }).join('&');
-
-const wait = async (time = 1000) => {
-  await new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-};
+const {
+  createRedirectForm,
+  processNotification
+} = createRedsysAPI({
+  urls: SANDBOX_URLS,
+  secretKey
+});
 
 interface TestContext {
   server?: Server
@@ -79,28 +72,27 @@ describe('Redirect Integration', () => {
 
   it('should redirect to payment portal', async () => {
     const obj = {
+      DS_MERCHANT_TRANSACTIONTYPE: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+      DS_MERCHANT_ORDER: randomTransactionId(),
+      DS_MERCHANT_MERCHANTCODE: merchantData.merchantCode,
+      DS_MERCHANT_TERMINAL: merchantData.terminal,
       // amount in smallest currency unit(cents)
       // 49.99€
-      amount: 4999,
-      currency: 'EUR',
-      order: randomTransactionId(),
-      // order: 'abc',
-      merchantName: 'MI COMERCIO',
-      merchantCode: merchantData.merchantCode,
-      terminal: merchantData.terminal,
-      transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
-      merchantURL: redirectData.merchantURL,
-      successURL: redirectData.successURL,
-      errorURL: redirectData.errorURL
+      DS_MERCHANT_AMOUNT: '4999',
+      DS_MERCHANT_CURRENCY: '978',
+      DS_MERCHANT_MERCHANTNAME: 'MI COMERCIO',
+      DS_MERCHANT_MERCHANTURL: redirectData.merchantURL,
+      DS_MERCHANT_URLOK: redirectData.successURL,
+      DS_MERCHANT_URLKO: redirectData.errorURL
     } as const;
 
-    const form = redsys.redirectPetition(obj);
+    const form = createRedirectForm(obj);
 
     // Fetch payment page
     const res = await fetch(form.url, {
       method: 'POST',
       body: encodePostParams(form.body),
-      headers: requestHeaders
+      headers: clientPostHeaders
     });
 
     expect(res.ok).toEqual(true);
@@ -120,19 +112,23 @@ describe('Redirect Integration', () => {
   });
 
   it('should post card data successfully', async () => {
-    const formParams = Object.assign({}, cardParams, {
-      Sis_Numero_Tarjeta: cardData.pan,
-      Sis_Caducidad_Tarjeta_Mes: cardData.expiryMonth,
-      Sis_Caducidad_Tarjeta_Anno: cardData.expiryYear,
-      Sis_Tarjeta_CVV2: cardData.cvv
-    });
+    // Here a user inputs credit card data
+    // This step is only necessary to continue the payment process
+
+    const formParams = {
+      ...cardParams,
+      Sis_Numero_Tarjeta: card.pan,
+      Sis_Caducidad_Tarjeta_Mes: card.expiryMonth,
+      Sis_Caducidad_Tarjeta_Anno: card.expiryYear,
+      Sis_Tarjeta_CVV2: card.cvv
+    };
 
     // Post payment data
     const res = await fetch(ctx.nextPostUrl as string, {
       method: 'POST',
       body: encodePostParams(formParams),
       headers: {
-        ...requestHeaders,
+        ...clientPostHeaders,
         Cookie: ctx.cookie as string,
         Origin: (new URL(ctx.referer as string).origin).toString(),
         Referer: ctx.referer as string
@@ -167,7 +163,7 @@ describe('Redirect Integration', () => {
       method: 'POST',
       body: encodePostParams(params),
       headers: {
-        ...requestHeaders,
+        ...clientPostHeaders,
         Cookie: ctx.cookie as string,
         Origin: (new URL(ctx.referer).origin).toString(),
         Referer: ctx.referer
@@ -210,7 +206,7 @@ describe('Redirect Integration', () => {
       method: 'POST',
       body: encodePostParams(formParams),
       headers: {
-        ...requestHeaders,
+        ...clientPostHeaders,
         Cookie: ctx.cookie as string,
         Origin: (new URL(ctx.referer as string).origin).toString(),
         Referer: ctx.referer as string
@@ -242,7 +238,7 @@ describe('Redirect Integration', () => {
       method: 'POST',
       body: encodePostParams(params),
       headers: {
-        ...requestHeaders,
+        ...clientPostHeaders,
         Cookie: ctx.cookie as string,
         Origin: (new URL(ctx.referer).origin).toString(),
         Referer: ctx.referer
@@ -276,8 +272,8 @@ describe('Redirect Integration', () => {
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);
 
-    const params = redsys.processNotification(body);
-    expect(params.response).toEqual(0);
+    const params = processNotification(body);
+    expect(params.Ds_Response).toEqual('0000');
   });
 
   afterAll(() => {

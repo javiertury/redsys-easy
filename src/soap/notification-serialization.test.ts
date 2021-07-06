@@ -6,7 +6,7 @@ import {
 import {
   serializedAndSignedSoapNotificationParams,
   parsedSoapNotification
-} from '../../test/fixtures/soap/notification';
+} from '../../test/fixtures/soap/redirect-notification';
 
 import {
   serializedAllowedNotificationResponseParams,

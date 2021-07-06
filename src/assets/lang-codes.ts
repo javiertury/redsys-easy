@@ -34,7 +34,7 @@ export type Language =
 export const LANGUAGES: Record<Language, string> = {
   es: '1',
   en: '2',
-  ca: '3', // Codigo ISO(ca) compartido por catalan(3) y valenciano(10)
+  ca: '3', // Codigo ISO "ca" compartido por catalan(3) y valenciano(10)
   fr: '4',
   de: '5',
   nl: '6',
@@ -44,7 +44,7 @@ export const LANGUAGES: Record<Language, string> = {
   pl: '11',
   gl: '12',
   eu: '13',
-  // Redsys ha utilizado ISO 3166-1(pais) como codigo de idioma
+  // Redsys ha utilizado ISO 3166-1(pais) como codigo de idioma para el resto
   bg: '100',
   zh: '156',
   hr: '191',

@@ -1,92 +1,42 @@
-import type { TransactionType } from '../assets/transaction-types';
-import type { CardBrand } from '../assets/card-brands';
-import type { Country } from '../assets/countries';
-import type { Currency } from '../assets/currencies';
-import type { Language } from '../assets/lang-codes';
+import type {
+  BaseInputParams
+} from './input-params';
+import type {
+  BaseOutputParams,
+  WebserviceOutputParams,
+  SoapNotificationOutputParams
+} from './output-params';
 
-export type RawResponseParams = Record<string, string>;
-export type RawRequestParams = Record<string, string>;
-
-export interface FormattedResponse {
-  raw: RawResponseParams
-  date?: string
-  hour?: string
-  timestamp?: Date
-  currency?: Currency
-  amount?: number
-  response?: number
-  order?: string
-  merchantCode?: string
-  terminal?: string
-  merchantData?: string
-  securePayment?: boolean
-  transactionType?: string
-  identifier?: string
-  merchantGroup?: string
-  expiryYear?: string
-  expiryMonth?: string
-  expiryDate?: string
-  cardNumber?: string
-  cardType?: string
-  authorisationCode?: string
-  lang?: Language
-  cardCountry?: Country
-  cardBrand?: CardBrand
-  payURL?: string
-  cardPSD2?: boolean
-}
-
-export interface RequestInput {
-  amount: string | number
-  currency: Currency
-  merchantCode: string
-  transactionType: TransactionType
-  order: string
-  expiryYear?: string
-  expiryMonth?: string
-  expiryDate?: string
-  terminal?: string
-  cvv?: string
-  merchantName?: string
-  merchantURL?: string
-  merchantSignature?: string
-  successURL?: string
-  errorURL?: string
-  dateFrequency?: string
-  chargeExpiryDate?: string
-  sumTotal?: string
-  directPayment?: string
-  identifier?: string
-  group?: string
-  pan?: string
-  cardCountry?: Country
-  lang?: Language
-  merchantData?: string
-  clientIp?: string
-  operationId?: string
-  payMethods?: string
-  productDescription?: string
-  taxReference?: string
-  transactionDate?: string
-  merchantDescriptor?: string
-  customerMobile?: string
-  customerMail?: string
-  cardHolder?: string
-  smsTemplate?: string
-
-  raw?: RawRequestParams
-}
+export type CommonRawResponseParams = Pick<BaseOutputParams, 'Ds_Order'>;
+export type CommonRawRequestParams = Pick<BaseInputParams, 'DS_MERCHANT_ORDER'>;
 
 export interface ParsedSoapNotifiation {
   Message: {
     Signature: string
-    Request: RawResponseParams
+    Request: SoapNotificationOutputParams
   }
+}
+
+export interface ThreeDSv1ChallengeNotificationBody {
+  /** Payment authentication Request, XML that is gzip compressed and base64 encoded */
+  PaRes: string
+  /** Merchant data, random generated identifier hex encoded? */
+  MD: string
+}
+
+export interface ThreeDSv2MethodNotificationBody {
+  threeDSMethodData: string
+}
+
+export interface ThreeDSv2ChallengeNotificationBody {
+  /** Challenge response, JSON that is base64 encoded */
+  cres: string
+  threeDSSessionData: string
 }
 
 export interface ResponseXMLInnerSuccess {
   CODIGO: '0'
-  OPERACION: RawResponseParams
+  OPERACION: WebserviceOutputParams
 }
 
 export interface ResponseXMLInnerFailure {
@@ -124,6 +74,12 @@ export interface SHA256SignedJSONParameters {
 export interface SoapNotificationResponse {
   order: string
   allow: boolean
+}
+
+export interface WebServiceIniciaPeticionTrait {
+  iniciaPeticionAsync: (input: { datoEntrada: string }) => Promise<[{
+    iniciaPeticionReturn: string
+  }]>
 }
 
 export interface WebServiceTrataPeticionTrait {

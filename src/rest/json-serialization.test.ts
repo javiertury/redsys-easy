@@ -6,7 +6,7 @@ import {
 import {
   serializedRestNotification,
   parsedRestNotification
-} from '../../test/fixtures/rest/notification';
+} from '../../test/fixtures/rest/redirect-notification';
 
 import {
   redirectRequest,
@@ -17,6 +17,13 @@ import {
   jsonRequest,
   serializedJSONRequest
 } from '../../test/fixtures/rest/json-request';
+
+import {
+  iniciaPeticionRequest as iniciaPeticionV1Request,
+  serializedAndSignedIniciaPeticionRequest as serializedAndSignedIniciaPeticionV1Request,
+  searializedInicaPeticionResponse as searializedInicaPeticionV1Response,
+  parsedIniciaPeticionResponse as parsedIniciaPeticionV1Response
+} from '../../test/fixtures/rest/3ds-v1';
 
 import {
   serializedJSONResponse,
@@ -32,6 +39,10 @@ describe('REST JSON serialization', () => {
     expect(
       serializeJSONMerchantParams(jsonRequest)
     ).toEqual(serializedJSONRequest);
+
+    expect(
+      serializeJSONMerchantParams(iniciaPeticionV1Request)
+    ).toEqual(serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters);
   });
 
   it('should parse merchant parameters', () => {
@@ -42,5 +53,9 @@ describe('REST JSON serialization', () => {
     expect(
       parseJSONMerchantParams(serializedJSONResponse.Ds_MerchantParameters)
     ).toEqual(parsedJSONResponse);
+
+    expect(
+      parseJSONMerchantParams(searializedInicaPeticionV1Response.Ds_MerchantParameters)
+    ).toEqual(parsedIniciaPeticionV1Response);
   });
 });

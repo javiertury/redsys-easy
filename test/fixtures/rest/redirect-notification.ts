@@ -21,6 +21,6 @@ export const parsedRestNotification = {
   Ds_TransactionType: '0',
   Ds_ConsumerLanguage: '1',
   Ds_AuthorisationCode: '082150'
-};
+} as const;
 
 export const restNotification3DESOrder = '0mL++6eIic8=';

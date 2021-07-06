@@ -56,21 +56,23 @@
     "@types/node-fetch": "^2.5.7",
     "base64url": "^3.0.1",
     "dayjs": "^1.9.6",
+    "decimal.js": "^10.3.1",
     "fast-xml-parser": "^3.12.16",
     "node-fetch": "^2.6.1",
     "soap": "^0.35.0",
     "tslib": "^2.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.1",
-    "@commitlint/config-conventional": "^12.1.1",
-    "@koa/router": "^8.0.5",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@koa/router": "^8.0.8",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/bluebird": "^3.5.33",
     "@types/cheerio": "^0.22.22",
     "@types/jest": "^26.0.23",
     "@types/koa": "^2.11.6",
     "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa__router": "^8.0.7",
     "@types/request": "^2.48.5",
     "@types/sax": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
@@ -94,7 +96,7 @@
     "standard-version": "^9.0.0",
     "ts-jest": "^26.5.5",
     "tsd": "^0.13.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.5"
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts",
@@ -111,9 +113,19 @@
       "ts-jest": {
         "tsconfig": "./tsconfig.test.json"
       }
+    },
+    "moduleNameMapper": {
+      "redsys-easy": "<rootDir>/src"
     }
   },
   "tsd": {
-    "directory": "test/types"
+    "directory": "test/types",
+    "compilerOptions": {
+      "lib": [
+        "ESNext",
+        "DOM"
+      ],
+      "allowSyntheticDefaultImports": true
+    }
   }
 }

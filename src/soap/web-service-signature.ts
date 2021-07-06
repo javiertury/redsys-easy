@@ -1,9 +1,9 @@
 import { sha256Sign } from '../crypto';
 
 import {
-  extractAndAssertOrderFromRawRequestParams,
-  extractAndAssertOrderFromRawResponseParams
-} from '../utils';
+  extractAndAssertOrderFromRequestParams,
+  extractAndAssertOrderFromResponseParams
+} from '../utils/misc';
 
 import {
   ParseError,
@@ -11,14 +11,14 @@ import {
 } from '../errors';
 
 import type {
-  RawRequestParams,
-  ResponseXML
+  ResponseXML,
+  CommonRawRequestParams
 } from '../types/api';
 
 // Order is important
 const signedFieldsXMLResponse = ['Ds_Amount', 'Ds_Order',
   'Ds_MerchantCode', 'Ds_Currency', 'Ds_Response', 'Ds_CardNumber',
-  'Ds_TransactionType', 'Ds_SecurePayment'];
+  'Ds_TransactionType', 'Ds_SecurePayment'] as const;
 
 export const verifyWebServiceResponse = (
   merchantKey: string,
@@ -36,17 +36,17 @@ export const verifyWebServiceResponse = (
     throw new ParseError('Request is missing operation parameters');
   }
 
-  const rawResponseParams = data.OPERACION;
+  const responseParams = data.OPERACION;
   const signedString: string = signedFieldsXMLResponse.map(field => {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
-    const value = rawResponseParams[field] || rawResponseParams[field.toUpperCase()];
+    const value: string | undefined = responseParams[field] || (responseParams as unknown as Record<string, string>)[field.toUpperCase()];
 
     return value ?? '';
   }).join('');
 
-  const orderId: string = extractAndAssertOrderFromRawResponseParams(rawResponseParams);
+  const orderId: string = extractAndAssertOrderFromResponseParams(responseParams);
 
-  const signature: string | undefined = rawResponseParams.Ds_Signature;
+  const signature: string | undefined = responseParams.Ds_Signature;
   const expSignature: string = sha256Sign(merchantKey, orderId, signedString);
 
   if (signature == null || !signature || signature !== expSignature) {
@@ -57,9 +57,9 @@ export const verifyWebServiceResponse = (
 export const signWebServiceRequest = (
   merchantKey: string,
   serializedParams: string,
-  rawRequestParams: RawRequestParams
+  requestParams: CommonRawRequestParams
 ): string => {
-  const order: string = extractAndAssertOrderFromRawRequestParams(rawRequestParams);
+  const order: string = extractAndAssertOrderFromRequestParams(requestParams);
 
   const signature: string = sha256Sign(merchantKey, order, serializedParams);
 

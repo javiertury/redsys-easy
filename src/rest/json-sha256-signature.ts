@@ -2,9 +2,9 @@ import base64url from 'base64url';
 import { sha256Sign } from '../crypto';
 
 import {
-  extractAndAssertOrderFromRawRequestParams,
-  extractAndAssertOrderFromRawResponseParams
-} from '../utils';
+  extractAndAssertOrderFromRequestParams,
+  extractAndAssertOrderFromResponseParams
+} from '../utils/misc';
 
 import {
   RedsysError,
@@ -13,27 +13,21 @@ import {
 
 import type {
   ResponseJSON,
-  RawResponseParams,
-  RawRequestParams,
+  CommonRawRequestParams,
+  CommonRawResponseParams,
   SHA256SignedJSONParameters
 } from '../types/api';
 
-type VerifyJSONResponseFn = (
+export const sha256VerifyJSONResponse = (
   merchantKey: string,
   response: ResponseJSON,
-  rawResponseParams: RawResponseParams
-) => void;
-
-export const sha256VerifyJSONResponse: VerifyJSONResponseFn = (
-  merchantKey,
-  response,
-  rawResponseParams
-) => {
+  responseParams: CommonRawResponseParams
+): void => {
   if (response.Ds_SignatureVersion !== 'HMAC_SHA256_V1') {
     throw new RedsysError(`Unknown signature version: ${response.Ds_SignatureVersion}`);
   }
 
-  const order: string = extractAndAssertOrderFromRawResponseParams(rawResponseParams);
+  const order: string = extractAndAssertOrderFromResponseParams(responseParams);
 
   const signature: string | undefined = response.Ds_Signature;
   // Base64url with padding, only substitutes + and /
@@ -49,9 +43,9 @@ export const sha256VerifyJSONResponse: VerifyJSONResponseFn = (
 export const sha256SignJSONRequest = (
   merchantKey: string,
   serializedParams: string,
-  rawRequestParams: RawRequestParams
+  requestParams: CommonRawRequestParams
 ): SHA256SignedJSONParameters => {
-  const order: string = extractAndAssertOrderFromRawRequestParams(rawRequestParams);
+  const order: string = extractAndAssertOrderFromRequestParams(requestParams);
 
   const signature: string = sha256Sign(merchantKey, order, serializedParams);
   return {

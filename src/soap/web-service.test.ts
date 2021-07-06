@@ -158,7 +158,14 @@ describe('SOAP Web Service', () => {
       );
 
       return await expect(resultPromise)
-        .rejects.toEqual(new GatewayError('Request failed', 'SIS0051'));
+        .rejects.toEqual(new GatewayError('Request failed', 'SIS0051', {
+          CODIGO: 'SIS0051',
+          RECIBIDO: {
+            trataPeticion: {
+              datoEntrada: ''
+            }
+          }
+        }));
     });
   });
 });

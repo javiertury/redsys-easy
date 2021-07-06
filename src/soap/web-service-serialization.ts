@@ -3,14 +3,13 @@ import {
   ParseError
 } from '../errors';
 import type {
-  RawRequestParams,
   ResponseXML
 } from '../types/api';
 
 const js2xml = new J2xParser({});
 
-export const serializeWebServiceRequest = (rawRequestParams: RawRequestParams): string => {
-  const datosEntrada = { DATOSENTRADA: rawRequestParams };
+export const serializeWebServiceRequest = (requestParams: unknown): string => {
+  const datosEntrada = { DATOSENTRADA: requestParams };
   return js2xml.parse(datosEntrada) as string;
 };
 

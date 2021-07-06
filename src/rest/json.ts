@@ -1,7 +1,7 @@
 import type {
   ResponseJSON,
-  RawResponseParams,
-  RawRequestParams,
+  CommonRawRequestParams,
+  CommonRawResponseParams,
   SHA256SignedJSONParameters
 } from '../types/api';
 
@@ -15,19 +15,19 @@ import {
   sha256SignJSONRequest
 } from './json-sha256-signature';
 
-export const parseAndVerifyJSONResponse = (
+export const parseAndVerifyJSONResponse = <ResponseParams extends CommonRawResponseParams>(
   merchantKey: string,
   response: ResponseJSON
-): RawResponseParams => {
-  const params = parseJSONMerchantParams(response.Ds_MerchantParameters);
+): ResponseParams => {
+  const params = parseJSONMerchantParams<ResponseParams>(response.Ds_MerchantParameters);
   sha256VerifyJSONResponse(merchantKey, response, params);
   return params;
 };
 
-export const serializeAndSignJSONRequest = (
+export const serializeAndSignJSONRequest = <RequestParams extends CommonRawRequestParams>(
   merchantKey: string,
-  rawRequestParams: RawRequestParams
+  requestParams: RequestParams
 ): SHA256SignedJSONParameters => {
-  const serializedParams: string = serializeJSONMerchantParams(rawRequestParams);
-  return sha256SignJSONRequest(merchantKey, serializedParams, rawRequestParams);
+  const serializedParams: string = serializeJSONMerchantParams(requestParams);
+  return sha256SignJSONRequest(merchantKey, serializedParams, requestParams);
 };

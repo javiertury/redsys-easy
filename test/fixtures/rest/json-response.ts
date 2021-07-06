@@ -21,6 +21,6 @@ export const parsedJSONResponse = {
   Ds_MerchantData: '',
   Ds_Card_Country: '724',
   Ds_Card_Brand: '1'
-};
+} as const;
 
 export const jsonResponse3DESOrder = 'Uv3ZTYJhPi5Hpi9R6NzR6w==';

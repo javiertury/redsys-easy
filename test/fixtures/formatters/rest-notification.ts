@@ -1,15 +1,15 @@
 import {
   parsedRestNotification
-} from '../rest/notification';
+} from '../rest/redirect-notification';
 
 export {
   restNotificationMerchantKey,
   serializedRestNotification,
   parsedRestNotification
-} from '../rest/notification';
+} from '../rest/redirect-notification';
 
 export const formattedRestNotification = {
-  hour: '18:03',
+  time: '18:03',
   date: '2015-11-09',
   timestamp: new Date('2015-11-09 17:03 Z'),
   securePayment: false,

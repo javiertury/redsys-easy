@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 
 import {
-  GatewayError,
-  HTTPError
+  HTTPError,
+  GatewayError
 } from '../errors';
 
 import type {
-  RawRequestParams,
-  RawResponseParams,
+  CommonRawRequestParams,
+  CommonRawResponseParams,
   ResponseJSON,
   ResponseJSONError
 } from '../types/api';
@@ -17,11 +17,14 @@ import {
   parseAndVerifyJSONResponse
 } from './json';
 
-export const jsonRequest = async (
+export const jsonRequest = async <
+  RequestParams extends CommonRawRequestParams,
+  ResponseParams extends CommonRawResponseParams
+>(
   url: string,
   merchantKey: string,
-  rawRequestParams: RawRequestParams
-): Promise<RawResponseParams> => {
+  rawRequestParams: RequestParams
+): Promise<ResponseParams> => {
   const payload = serializeAndSignJSONRequest(merchantKey, rawRequestParams);
 
   const response = await fetch(url, {
@@ -34,12 +37,12 @@ export const jsonRequest = async (
 
   const responseData = await (response.json() as Promise<ResponseJSON | ResponseJSONError>);
   if (!response.ok) {
-    throw new HTTPError('Request failed', response.status);
+    throw new HTTPError('Request failed', response.status, responseData);
   }
 
   if ('errorCode' in responseData) {
-    throw new GatewayError('Request failed', responseData.errorCode, response);
+    throw new GatewayError('Request failed', responseData.errorCode, responseData);
   }
 
-  return parseAndVerifyJSONResponse(merchantKey, responseData);
+  return parseAndVerifyJSONResponse<ResponseParams>(merchantKey, responseData);
 };

@@ -4,9 +4,12 @@ import {
 } from './notification-serialization';
 
 import type {
-  RawResponseParams,
   SoapNotificationResponse
 } from '../types/api';
+
+import type {
+  SoapNotificationOutputParams
+} from '../types/output-params';
 
 import {
   verifySoapNotification,
@@ -24,7 +27,7 @@ export const serializeAndSignSoapNotificationResponse = (
 export const parseAndVerifySoapNotification = (
   merchantKey: string,
   xml: string
-): RawResponseParams => {
+): SoapNotificationOutputParams => {
   const msg = parseSoapNotification(xml);
   verifySoapNotification(merchantKey, xml, msg);
 

@@ -1,6 +1,7 @@
 import { expectType } from 'tsd';
 
-import { Currency, CURRENCIES, REV_CURRENCIES } from '../../src/assets/currencies';
+import { CURRENCIES, REV_CURRENCIES } from '../../src/assets/currencies';
+import type { Currency } from '../../src/assets/currencies';
 
 expectType<Record<Currency, {
   num: string

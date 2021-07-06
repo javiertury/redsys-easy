@@ -1,5 +1,7 @@
 import {
-  formatOutput
+  requestOutputFormatter,
+  restNotificationOutputFormatter,
+  soapNotificationOutputFormatter
 } from './output-params';
 
 import {
@@ -25,22 +27,22 @@ import {
 describe('Output parameters formatter', () => {
   describe('Scenarios', () => {
     it('should format soap notification', () => {
-      const formattedParams = formatOutput(parsedSoapNotification.Request);
+      const formattedParams = soapNotificationOutputFormatter(parsedSoapNotification.Request);
       expect(formattedParams).toEqual(formattedSoapNotification);
     });
 
     it('should format redirect response', () => {
-      const formattedParams = formatOutput(parsedRestNotification);
+      const formattedParams = restNotificationOutputFormatter(parsedRestNotification);
       expect(formattedParams).toEqual(formattedRestNotification);
     });
 
     it('should format web service response', () => {
-      const formattedParams = formatOutput(parsedWebServiceResponseParams);
+      const formattedParams = requestOutputFormatter(parsedWebServiceResponseParams);
       expect(formattedParams).toEqual(formattedWebServiceResponse);
     });
 
     it('should format web service response with credit card', () => {
-      const formattedParams = formatOutput(parsedWebServiceResponseWithCCParams);
+      const formattedParams = requestOutputFormatter(parsedWebServiceResponseWithCCParams);
       expect(formattedParams).toEqual(formattedWebServiceResponseWithCC);
     });
   });
