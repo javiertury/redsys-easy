@@ -7,7 +7,7 @@ export {
 } from '../soap/web-service-response-with-cc';
 
 export const formattedWebServiceResponseWithCC = {
-  amount: 145,
+  amount: '1.45',
   currency: 'EUR',
   order: '1449821545',
   merchantCode: '999008881',

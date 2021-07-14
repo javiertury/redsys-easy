@@ -9,7 +9,7 @@ export {
 } from '../soap/web-service-response';
 
 export const formattedWebServiceResponse = {
-  amount: 3350,
+  amount: '33.5',
   currency: 'EUR',
   order: '0000ijd2d3',
   merchantCode: '999008881',

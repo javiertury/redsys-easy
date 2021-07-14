@@ -37,11 +37,17 @@ export const jsonRequest = async <
 
   const responseData = await (response.json() as Promise<ResponseJSON | ResponseJSONError>);
   if (!response.ok) {
-    throw new HTTPError('Request failed', response.status, responseData);
+    throw new HTTPError({
+      code: response.status,
+      response: responseData
+    });
   }
 
   if ('errorCode' in responseData) {
-    throw new GatewayError('Request failed', responseData.errorCode, responseData);
+    throw new GatewayError({
+      code: responseData.errorCode,
+      response: responseData
+    });
   }
 
   return parseAndVerifyJSONResponse<ResponseParams>(merchantKey, responseData);

@@ -1,7 +1,7 @@
 import {
-  requestOutputFormatter,
   restNotificationOutputFormatter,
-  soapNotificationOutputFormatter
+  soapNotificationOutputFormatter,
+  websocketOutputFormatter
 } from './output-params';
 
 import {
@@ -37,12 +37,12 @@ describe('Output parameters formatter', () => {
     });
 
     it('should format web service response', () => {
-      const formattedParams = requestOutputFormatter(parsedWebServiceResponseParams);
+      const formattedParams = websocketOutputFormatter(parsedWebServiceResponseParams);
       expect(formattedParams).toEqual(formattedWebServiceResponse);
     });
 
     it('should format web service response with credit card', () => {
-      const formattedParams = requestOutputFormatter(parsedWebServiceResponseWithCCParams);
+      const formattedParams = websocketOutputFormatter(parsedWebServiceResponseWithCCParams);
       expect(formattedParams).toEqual(formattedWebServiceResponseWithCC);
     });
   });

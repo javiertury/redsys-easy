@@ -79,7 +79,7 @@ export const webServiceTrataPeticionRequest = async (
   if (!isWebServiceResponseSuccess(data)) {
     // Can't access data.OPERACION, only data.RECIBIDO
     // However data.RECIBIDO may contain sensitive information
-    throw new GatewayError('Request failed', data.CODIGO, data);
+    throw new GatewayError({ code: data.CODIGO, response: data });
   }
 
   assertSuccessfulResponseCode(data.OPERACION);

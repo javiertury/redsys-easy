@@ -13,7 +13,7 @@ export const formattedSoapNotification = {
   time: '16:57',
   timestamp: new Date('2003-04-01 14:57 Z'),
   securePayment: true,
-  amount: 345,
+  amount: '3.45',
   currency: 'EUR',
   order: '165446',
   cardType: 'C',

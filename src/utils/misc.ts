@@ -83,7 +83,7 @@ export const assertSuccessfulResponseCode = (
   }
 
   if (!isResponseCodeOk(resCode)) {
-    throw new ResponseError('Response unsuccessful', Number.parseInt(resCode), responseParams);
+    throw new ResponseError({ code: Number.parseInt(resCode), response: responseParams });
   }
 };
 

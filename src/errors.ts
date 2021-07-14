@@ -30,15 +30,21 @@ export class ValidationError extends RedsysError {
  */
 export class ParseError extends RedsysError {
   value: unknown;
-  text: string | undefined;
+  location: unknown | undefined;
   description: string | undefined;
 
-  constructor (message: string, value?: unknown, text?: string) {
+  constructor (message: string, value?: unknown, location?: unknown) {
     super(message);
     this.name = 'RedsysParseError';
     this.value = value;
-    this.text = text;
+    this.location = location;
   }
+}
+
+interface HTTPErrorOptions {
+  message?: string
+  code: number
+  response?: unknown
 }
 
 /**
@@ -48,12 +54,13 @@ export class HTTPError extends RedsysError {
   code: number | undefined;
   response: unknown | undefined;
 
-  constructor (message: string, code: number, response?: unknown) {
+  constructor ({ message, code, response }: HTTPErrorOptions) {
     const codeDescription = getHTTPErrorCodeMessage(code);
     const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? ` ${codeDescription}` : ''}`
+      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
       : '';
-    const augmentedMessage = `HTTP error${codeInfo}: ${message}`;
+    const augmentationLine = message != null && message ? `\n${message}` : '';
+    const augmentedMessage = `HTTP error${codeInfo}${augmentationLine}`;
 
     super(augmentedMessage);
 
@@ -63,6 +70,12 @@ export class HTTPError extends RedsysError {
   }
 }
 
+interface GatewayErrorOptions {
+  message?: string
+  code: string
+  response?: unknown
+}
+
 /**
  * Request could not be processed by Redsys
  */
@@ -70,12 +83,13 @@ export class GatewayError extends RedsysError {
   code: string | undefined;
   response: unknown | undefined;
 
-  constructor (message: string, code: string, response?: unknown) {
+  constructor ({ message, code, response }: GatewayErrorOptions) {
     const codeDescription = getSISErrorCodeMessage(code);
     const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? ` ${codeDescription}` : ''}`
+      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
       : '';
-    const augmentedMessage = `Gateway error${codeInfo}: ${message}`;
+    const augmentationLine = message != null && message ? `\n${message}` : '';
+    const augmentedMessage = `Gateway error${codeInfo}${augmentationLine}`;
 
     super(augmentedMessage);
 
@@ -85,6 +99,12 @@ export class GatewayError extends RedsysError {
   }
 }
 
+interface ResponseErrorOptions {
+  message?: string
+  code: number
+  response?: unknown
+}
+
 /**
  * Response contained an error code
  */
@@ -92,12 +112,13 @@ export class ResponseError extends RedsysError {
   code: number | undefined;
   response: unknown | undefined;
 
-  constructor (message: string, code: number, response?: unknown) {
+  constructor ({ message, code, response }: ResponseErrorOptions) {
     const codeDescription = getResponseCodeMessage(code);
     const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? ` ${codeDescription}` : ''}`
+      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
       : '';
-    const augmentedMessage = `Response error${codeInfo}: ${message}`;
+    const augmentationLine = message != null && message ? `\n${message}` : '';
+    const augmentedMessage = `Response error${codeInfo}${augmentationLine}`;
 
     super(augmentedMessage);
 
