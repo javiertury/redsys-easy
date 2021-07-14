@@ -1,0 +1,104 @@
+{
+  "root": true,
+  "env": {
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "spread": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "import",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "strict": [
+      "error",
+      "global"
+    ],
+    "no-console": ["error", {
+      "allow": [
+        "error",
+        "warn"
+      ]
+    }],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "MemberExpression": 0
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-extra-semi": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "standard-with-typescript"
+      ],
+      "rules": {
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/strict-boolean-expressions": ["error", {
+          "allowString": true,
+          "allowNumber": true,
+          "allowNullableObject": true
+        }],
+        "@typescript-eslint/ban-types": ["error", {
+          "types": {
+            "object": false
+          }
+        }],
+        "@typescript-eslint/consistent-type-imports": ["error"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/indent": ["error", 2, {
+          "SwitchCase": 1,
+          "VariableDeclarator": 1,
+          "outerIIFEBody": 1,
+          "MemberExpression": 1,
+          "FunctionDeclaration": { "parameters": 1, "body": 1 },
+          "FunctionExpression": { "parameters": 1, "body": 1 },
+          "CallExpression": { "arguments": 1 },
+          "ArrayExpression": 1,
+          "ObjectExpression": 1,
+          "ImportDeclaration": 1,
+          "flatTernaryExpressions": false,
+          "ignoreComments": false,
+          "ignoredNodes": [
+            "TemplateLiteral *",
+            "TSTypeParameterInstantiation",
+            "TSTypeAliasDeclaration > TSIntersectionType",
+            "TSTypeAliasDeclaration > TSUnionType"
+          ]
+        }],
+        "@typescript-eslint/naming-convention": ["error", {
+          "selector": "variableLike",
+          "leadingUnderscore": "allow",
+          "trailingUnderscore": "allow",
+          "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+        }, {
+          "selector": "parameter",
+          "leadingUnderscore": "allow",
+          "trailingUnderscore": "allow",
+          "format": ["camelCase", "PascalCase", "UPPER_CASE", "snake_case"]
+        }]
+      }
+    }
+  ]
+}

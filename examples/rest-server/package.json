@@ -1,0 +1,29 @@
+{
+  "name": "example-server-redsys-easy",
+  "description": "Example of a server implementing redsys-easy",
+  "version": "0.0.0",
+  "author": "Javier Garcia <javiertury@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:clean": "rimraf lib",
+    "build": "pnpm run build:clean && pnpx tsc --project tsconfig.build.json",
+    "start": "pnpx tsc-watch --project tsconfig.build.json --onCompilationComplete 'node --enable-source-maps ./lib/index.js'"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "redsys-easy": "../../",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@koa/router": "^10.0.0",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.2",
+    "@types/koa__cors": "^3.0.3",
+    "@types/koa__router": "^8.0.7",
+    "rimraf": "^3.0.2",
+    "tsc-watch": "^4.4.0"
+  }
+}

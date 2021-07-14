@@ -70,7 +70,7 @@ const obj = {
   },
 }
 
-const form = redsys.redirectPetition(obj)
+const form = redsys.createRedirectForm(obj)
 console.log(form);
 ```
 
@@ -113,7 +113,7 @@ If the signature is not correct, it will throw an error. Otherwise it will retur
 ```js
 {
   date: '2017-10-20',
-  hour: '18:20',
+  time: '18:20',
   // Already timezone aware
   timestamp: new Date('2017-10-20 17:20 Z'),
   securePayment: true,
@@ -239,7 +239,7 @@ const params = processSoapNotification(requestXml);
 
 // Build your signed answer/response.
 // Second arg dedices whether the transaction is approved
-const answer = soapNotificationAnswer(params.Ds_Order, true);
+const answer = createSoapNotificationAnswer(params.Ds_Order, true);
 ```
 
 ### Mimic a SOAP Notification server
@@ -275,7 +275,7 @@ app.post('/soapNotification', ctx => {
 
   // Build your answer
   // Second arg dedices whether the transaction is approved
-  const answer = soapNotificationAnswer(params.order, true);
+  const answer = createSoapNotificationAnswer(params.order, true);
 
   // Simulate a full SOAP server response
   const soapVersion = detectSoapVersion({
@@ -324,7 +324,7 @@ app.post('/soapNotification', (req, res) => {
 ```
 
 
-### Accepted parameters for redirectPetition and wsPetition
+### Accepted parameters for createRedirectForm and wsPetition
 
 Numbers
 
@@ -384,7 +384,7 @@ Booleans
 
 Strings
 
-* hour: HH:MM
+* time: HH:MM
 * date: YYYY-MM-DD
 * timestamp: javascript date object, with date and hour information
 * order
