@@ -1,5 +1,4 @@
 import { createStore } from 'solid-js/store';
-// import { createStore, createEvent } from 'effector';
 
 export type PageName = 'checkout' | 'payment-selection' | 'card-payment' | 'order-summary';
 

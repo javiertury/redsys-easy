@@ -2,6 +2,7 @@ dependencies:
   '@types/node-fetch': 2.5.10
   base64url: 3.0.1
   dayjs: 1.10.4
+  decimal.js: 10.3.1
   fast-xml-parser: 3.19.0
   node-fetch: 2.6.1
   soap: 0.35.0
@@ -18,11 +19,9 @@ devDependencies:
   '@types/koa-bodyparser': 4.3.0
   '@types/koa__router': 8.0.7
   '@types/request': 2.48.5
-  '@types/sax': 1.2.1
   '@typescript-eslint/eslint-plugin': 4.22.0_7ef97ee536f89da2106f80dea587ccaa
   '@typescript-eslint/parser': 4.22.0_eslint@7.25.0+typescript@4.3.5
   cheerio: 1.0.0-rc.6
-  decimal.js: 10.3.1
   eslint: 7.25.0
   eslint-config-standard-with-typescript: 20.0.0_5c50a6a8fc88ca528e611b7bf476c1e6
   eslint-plugin-html: 6.1.2
@@ -1116,12 +1115,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==
-  /@types/sax/1.2.1:
-    dependencies:
-      '@types/node': 15.0.1
-    dev: true
-    resolution:
-      integrity: sha512-dqYdvN7Sbw8QT/0Ci5rhjE4/iCMJEM0Y9rHpCu+gGXD9Lwbz28t6HI2yegsB6BoV1sShRMU6lAmAcgRjmFy7LA==
   /@types/serve-static/1.13.10:
     dependencies:
       '@types/mime': 1.3.2
@@ -2483,7 +2476,7 @@ packages:
     resolution:
       integrity: sha512-KaL7+6Fw6i5A2XSnsbhm/6B+NuEA7TZ4vqxnd5tXz9sbKtrN9Srj8ab4vKVdK8YAqZO9P1kg45Y6YLoduPf+kw==
   /decimal.js/10.3.1:
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==
   /decode-uri-component/0.2.0:
@@ -7909,7 +7902,6 @@ specifiers:
   '@types/koa__router': ^8.0.7
   '@types/node-fetch': ^2.5.7
   '@types/request': ^2.48.5
-  '@types/sax': ^1.2.1
   '@typescript-eslint/eslint-plugin': ^4.8.2
   '@typescript-eslint/parser': ^4.22.0
   base64url: ^3.0.1

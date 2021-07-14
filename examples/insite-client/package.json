@@ -21,7 +21,6 @@
     "vite-plugin-solid": "^2.0.0"
   },
   "dependencies": {
-    "effector": "^21.8.12",
     "redsys-easy": "../../",
     "solid-js": "^1.0.0",
     "solid-styled-components": "^0.27.1"
