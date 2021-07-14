@@ -54,7 +54,7 @@ export interface BaseOutputParams {
   Ds_Merchant_Cof_Txnid?: string
 }
 
-interface ResolveTransactionTrait {
+export interface ResolvedTransactionTrait {
   /** Amount designated as an integer in the smallest currency division */
   Ds_Amount: string
 
@@ -115,9 +115,9 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
   }
 }
 
-export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolveTransactionTrait, 'Ds_Response'> {
+export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> {
   /** Response code */
-  Ds_Response?: ResolveTransactionTrait['Ds_Response']
+  Ds_Response?: ResolvedTransactionTrait['Ds_Response']
 
   /** EMV3DS data in json format */
   Ds_EMV3DS?:
@@ -125,7 +125,7 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
   | EMV3DSv2ChallengeOutputParams
 }
 
-export interface WebserviceOutputParams extends RequestOutputParams, ResolveTransactionTrait {
+export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTransactionTrait {
   /** EMV3DS data in json format */
   Ds_EMV3DS?: string
 
@@ -136,7 +136,7 @@ export interface WebserviceOutputParams extends RequestOutputParams, ResolveTran
   Ds_Signature: string
 }
 
-export interface NotificationOutputParams extends BaseOutputParams, ResolveTransactionTrait {
+export interface NotificationOutputParams extends BaseOutputParams, ResolvedTransactionTrait {
   /** Language */
   Ds_ConsumerLanguage?: string
 

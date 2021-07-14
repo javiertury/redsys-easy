@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import Decimal from 'decimal.js';
 
+import { ParseError } from '../errors';
 import { REV_LANGUAGES } from '../assets/lang-codes';
 import type { Language } from '../assets/lang-codes';
 import { REV_CURRENCIES } from '../assets/currencies';
@@ -16,14 +18,18 @@ import type {
   SoapNotificationOutputParams,
   RequestOutputParams,
   RestIniciaPeticionOutputParams,
-  RestTrataPeticionOutputParams
+  RestTrataPeticionOutputParams,
+  ResolvedTransactionTrait,
+  WebserviceOutputParams
 } from '../types/output-params';
 import type {
   BaseFormattedOutput,
   NotificationFormattedOutput,
   RequestFormattedOutput,
   RestIniciaPeticionFormattedOutput,
-  RestTrataPeticionFormattedOutput
+  RestTrataPeticionFormattedOutput,
+  ResolvedTransactionTraitFormattedOutput,
+  WebserviceFormattedOutput
 } from './types';
 
 import { isStringNotEmpty } from '../utils/misc';
@@ -41,6 +47,8 @@ const formatCardBrand = (rawCardBrand: string): CardBrand | undefined => {
   return REV_CARDBRANDS[cardBrandInt];
 };
 
+const formatResponse = (rawResponse: string): number => Number.parseInt(rawResponse);
+
 export const baseOutputFormatter = <
   RawOutputParams extends BaseOutputParams
 >(
@@ -50,8 +58,6 @@ export const baseOutputFormatter = <
     Ds_MerchantCode: merchantCode,
     Ds_Terminal: terminal,
     Ds_Order: order,
-    Ds_Amount: rawAmount,
-    Ds_Currency: rawCurrency,
     Ds_SecurePayment: rawSecurePayment,
     Ds_TransactionType: transactionType,
     Ds_Card_Country: rawCardCountry,
@@ -62,20 +68,12 @@ export const baseOutputFormatter = <
     Ds_AuthorisationCode: authorisationCode
   } = raw;
 
-  const currencyInt = Number.parseInt(rawCurrency);
-  const currencyInfo = REV_CURRENCIES[currencyInt];
-  const currency = currencyInfo?.code;
-
-  const amount = Number.parseInt(rawAmount);
-
   return {
     raw,
 
     merchantCode,
     terminal,
     order,
-    currency,
-    amount,
     securePayment: rawSecurePayment === '1',
     transactionType,
     ...(isStringNotEmpty(rawCardCountry) ? { cardCountry: formatCountry(rawCardCountry) } : undefined),
@@ -84,6 +82,30 @@ export const baseOutputFormatter = <
     ...(isStringNotEmpty(merchantData) ? { merchantData } : undefined),
     ...(isStringNotEmpty(cardType) ? { cardType } : undefined),
     ...(isStringNotEmpty(authorisationCode) ? { authorisationCode } : undefined)
+  };
+};
+
+export const formatPrice = (
+  params: Omit<ResolvedTransactionTrait, 'Ds_Response'>
+): Omit<ResolvedTransactionTraitFormattedOutput, 'response'> => {
+  const {
+    Ds_Amount: rawAmount,
+    Ds_Currency: rawCurrency
+  } = params;
+
+  const currencyInt = Number.parseInt(rawCurrency);
+  const currencyInfo = REV_CURRENCIES[currencyInt];
+
+  if (!currencyInfo) {
+    throw new ParseError('Unknown currency', rawCurrency);
+  }
+
+  const currency = currencyInfo.code;
+  const amount = new Decimal(rawAmount).dividedBy(Math.pow(10, currencyInfo.decimals)).toFixed();
+
+  return {
+    amount,
+    currency
   };
 };
 
@@ -98,15 +120,14 @@ const notificationOutputFormatter = <
   raw: RawOutputParams
 ): Omit<NotificationFormattedOutput<RawOutputParams>, 'date' | 'time' | 'timestamp'> => {
   const {
-    Ds_Response: rawResponse,
-    Ds_ConsumerLanguage: rawConsumerLanguage
+    Ds_ConsumerLanguage: rawConsumerLanguage,
+    Ds_Response: rawResponse
   } = raw;
 
-  const response = Number.parseInt(rawResponse);
-
   return {
-    response,
     ...baseOutputFormatter(raw),
+    ...formatPrice(raw),
+    response: formatResponse(rawResponse),
     ...(isStringNotEmpty(rawConsumerLanguage) ? { lang: formatLang(rawConsumerLanguage) } : undefined)
   };
 };
@@ -198,6 +219,24 @@ export const restTrataPeticionOutputFormatter = <
 
   return {
     ...requestOutputFormatter(raw),
+    ...formatPrice(raw),
+    ...(rawResponse != null ? { response: Number.parseInt(rawResponse) } : undefined)
+  };
+};
+
+export const websocketOutputFormatter = <
+  RawOutputParams extends WebserviceOutputParams
+>(
+  raw: RawOutputParams
+): WebserviceFormattedOutput<RawOutputParams> => {
+  const {
+    Ds_Response: rawResponse
+  } = raw;
+
+  return {
+    ...requestOutputFormatter(raw),
+    ...formatPrice(raw),
+    response: formatResponse(rawResponse),
     ...(rawResponse != null ? { response: Number.parseInt(rawResponse) } : undefined)
   };
 };

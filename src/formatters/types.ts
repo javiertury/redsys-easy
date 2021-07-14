@@ -10,8 +10,13 @@ import type {
   NotificationOutputParams,
   RequestOutputParams,
   RestIniciaPeticionOutputParams,
-  RestTrataPeticionOutputParams
+  RestTrataPeticionOutputParams,
+  WebserviceOutputParams
 } from '../types/output-params';
+
+/*
+ * Input
+ */
 
 export interface BaseFormattedInput <RawInputParams extends object> {
   merchantCode: string
@@ -56,14 +61,16 @@ export interface RequestFormattedInput <
   smsTemplate?: string
 }
 
+/*
+ * Output
+ */
+
 export interface BaseFormattedOutput <
   RawOutputParams extends BaseOutputParams
 > {
   merchantCode: string
   terminal: string
   order: string
-  amount: number
-  currency?: Currency
   securePayment: boolean
   transactionType: TransactionType
   cardCountry?: Country
@@ -76,10 +83,16 @@ export interface BaseFormattedOutput <
   raw: RawOutputParams
 }
 
+export interface ResolvedTransactionTraitFormattedOutput {
+  amount: string
+  currency: Currency
+  response: number
+}
+
 export interface NotificationFormattedOutput <
   RawOutputParams extends NotificationOutputParams
-> extends BaseFormattedOutput<RawOutputParams> {
-  response: number
+> extends BaseFormattedOutput<RawOutputParams>,
+  ResolvedTransactionTraitFormattedOutput {
   date: string
   time: string
   timestamp: Date
@@ -104,6 +117,13 @@ export interface RestIniciaPeticionFormattedOutput <
 
 export interface RestTrataPeticionFormattedOutput <
   RawOutputParams extends RestTrataPeticionOutputParams
-> extends RequestFormattedOutput<RawOutputParams> {
+> extends RequestFormattedOutput<RawOutputParams>,
+  Omit<ResolvedTransactionTraitFormattedOutput, 'response'> {
   response?: number
+}
+
+export interface WebserviceFormattedOutput <
+  RawOutputParams extends WebserviceOutputParams
+> extends RequestFormattedOutput<RawOutputParams>,
+  ResolvedTransactionTraitFormattedOutput {
 }
