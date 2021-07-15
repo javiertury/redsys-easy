@@ -1,3 +1,9 @@
+/**
+ * Node JS client and utilities for implementing a redsys payment gateway
+ *
+ * @packageDocumentation
+ */
+
 export {
   randomTransactionId,
   assertSuccessfulResponseCode,

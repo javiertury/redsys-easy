@@ -1,13 +1,23 @@
 Redsys Easy 
 ---
 
-Node JS interface for Redsys payment gateway
+Node JS client and utilities for implementing a redsys payment gateway
 
 ## Install
 
 ```js
 npm install redsys-easy
 ```
+
+## API documentation
+
+Checkout the [api documentation](./docs/redsys-easy.md) to explore the contents of this package.
+
+## Examples
+
+Despite the name, a redsys payment gateway with 3DS support is quite complex. Don't despair, these examples show how it can be implemented.
+  - [INSITE client](./examples/insite-client) implemented using a [solid](https://github.com/solidjs/solid) web app.
+  - [REST server](./examples/rest-server) implemented using a [koa](https://koajs.com/) http server.
 
 ## Usage
 

@@ -79,6 +79,8 @@ export interface RedirectPetition {
  * Creates Redsys API functions
  *
  * These API functions are anonymous and can be wrapped by formatters and processors
+ *
+ * @public
  */
 export const createRedsysAPI = (config: RedsysConfig) => {
   if (!config.secretKey || typeof config.secretKey !== 'string') {
