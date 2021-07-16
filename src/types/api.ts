@@ -3,7 +3,6 @@ import type {
 } from './input-params';
 import type {
   BaseOutputParams,
-  WebserviceOutputParams,
   SoapNotificationOutputParams
 } from './output-params';
 
@@ -49,24 +48,6 @@ export interface ThreeDSv2ChallengeNotificationBody {
   threeDSSessionData: string
 }
 
-export interface ResponseXMLInnerSuccess {
-  CODIGO: '0'
-  OPERACION: WebserviceOutputParams
-}
-
-export interface ResponseXMLInnerFailure {
-  CODIGO: string
-  RECIBIDO: {
-    trataPeticion: {
-      datoEntrada: string
-    }
-  }
-}
-
-export interface ResponseXML {
-  RETORNOXML: ResponseXMLInnerSuccess | ResponseXMLInnerFailure
-}
-
 /**
  * Body of a successful redsys JSON HTTP response or notification
  *
@@ -102,18 +83,6 @@ export interface SHA256SignedJSONParameters {
 export interface SoapNotificationResponse {
   order: string
   allow: boolean
-}
-
-export interface WebServiceIniciaPeticionTrait {
-  iniciaPeticionAsync: (input: { datoEntrada: string }) => Promise<[{
-    iniciaPeticionReturn: string
-  }]>
-}
-
-export interface WebServiceTrataPeticionTrait {
-  trataPeticionAsync: (input: { datoEntrada: string }) => Promise<[{
-    trataPeticionReturn: string
-  }]>
 }
 
 /**

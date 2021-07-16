@@ -1,6 +1,3 @@
-import { createClientAsync } from 'soap';
-import type { Client } from 'soap';
-
 import {
   RedsysError
 } from './errors';
@@ -9,11 +6,6 @@ import {
   deserializeAndVerifyJSONResponse,
   serializeAndSignJSONRequest
 } from './rest/json';
-
-import {
-  webServiceTrataPeticionRequest,
-  assertSoapClientHasTrataPeticion
-} from './soap/web-service';
 
 import {
   deserializeAndVerifySoapNotification,
@@ -32,15 +24,13 @@ import type {
 import type {
   RestIniciaPeticionInputParams,
   RestTrataPeticionInputParams,
-  RedirectInputParams,
-  WebserviceInputParams
+  RedirectInputParams
 } from './types/input-params';
 
 import type {
   RestIniciaPeticionOutputParams,
   RestTrataPeticionOutputParams,
   RestNotificationOutputParams,
-  WebserviceOutputParams,
   SoapNotificationOutputParams
 } from './types/output-params';
 
@@ -51,7 +41,6 @@ import type {
  */
 export interface UrlsConfig {
   redirect: string
-  webserviceV2: string
   restTrataPeticion: string
   restIniciaPeticion: string
 }
@@ -63,7 +52,6 @@ export interface UrlsConfig {
  */
 export const PRODUCTION_URLS: UrlsConfig = {
   redirect: 'https://sis.redsys.es/sis/realizarPago',
-  webserviceV2: 'https://sis.redsys.es/sis/services/SerClsWSEntradaV2/wsdl/SerClsWSEntradaV2.wsdl',
   restTrataPeticion: 'https://sis.redsys.es/sis/rest/trataPeticionREST',
   restIniciaPeticion: 'https://sis.redsys.es/sis/rest/iniciaPeticionREST'
 };
@@ -75,7 +63,6 @@ export const PRODUCTION_URLS: UrlsConfig = {
  */
 export const SANDBOX_URLS: UrlsConfig = {
   redirect: 'https://sis-t.redsys.es:25443/sis/realizarPago',
-  webserviceV2: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntradaV2/wsdl/SerClsWSEntradaV2.wsdl',
   restTrataPeticion: 'https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST',
   restIniciaPeticion: 'https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST'
 };
@@ -106,7 +93,7 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   if (
     typeof config.urls !== 'object' || config.urls == null ||
     !config.urls.restIniciaPeticion || !config.urls.restTrataPeticion ||
-    !config.urls.webserviceV2 || !config.urls.redirect
+    !config.urls.redirect
   ) {
     throw new RedsysError('URLs must be provided');
   }
@@ -160,31 +147,6 @@ export const createRedsysAPI = (config: RedsysConfig) => {
     return deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(config.secretKey, body);
   };
 
-  let wsClientPromise: Promise<Client> | undefined;
-
-  const getWSClient = async (): Promise<Client> => {
-    if (!wsClientPromise) {
-      wsClientPromise = createClientAsync(config.urls.webserviceV2, {});
-    }
-
-    // Promise
-    return await wsClientPromise;
-  };
-
-  /**
-   * Executes a query agains Redsys Web Service V2
-   */
-  const wsPetition = async (
-    paramsInput: WebserviceInputParams
-  ): Promise<WebserviceOutputParams> => {
-    const client = await getWSClient();
-    assertSoapClientHasTrataPeticion(client);
-
-    return await webServiceTrataPeticionRequest(
-      client, config.secretKey, paramsInput
-    );
-  };
-
   /**
    * Parses and verifies the body of a SOAP notification
    */
@@ -215,7 +177,6 @@ export const createRedsysAPI = (config: RedsysConfig) => {
     restTrataPeticion,
     createRedirectForm,
     processRestNotification,
-    wsPetition,
     processSoapNotification,
     createSoapNotificationAnswer
   };

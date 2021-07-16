@@ -57,28 +57,6 @@ import {
   soapNotification3DESOrder
 } from '../test/fixtures/soap/redirect-notification';
 
-import {
-  webServiceRequestMerchantKey,
-  webServiceRequestParams,
-  webServiceRequest3DESOrder,
-  serializedWebServiceRequestParams,
-  webServiceRequestSignature
-} from '../test/fixtures/soap/web-service-request';
-
-import {
-  webServiceResponseMerchantKey,
-  webServiceResponseSignedString,
-  deserializedWebServiceResponse,
-  webServiceResponse3DESOrder
-} from '../test/fixtures/soap/web-service-response';
-
-import {
-  webServiceResponseWithCCMerchantKey,
-  webServiceResponseWithCCSignedString,
-  deserializedWebServiceResponseWithCC,
-  webServiceResponseWithCC3DESOrder
-} from '../test/fixtures/soap/web-service-response-with-cc';
-
 describe('Crypto', () => {
   describe('zeroPad', () => {
     it('should pad buffer if not already aligned', () => {
@@ -151,18 +129,6 @@ describe('Crypto', () => {
       expect(
         encrypt3DES(soapNotificationMerchantKey, deserializedSoapNotification.Request.Ds_Order)
       ).toEqual(Buffer.from(soapNotification3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceRequestMerchantKey, webServiceRequestParams.DS_MERCHANT_ORDER)
-      ).toEqual(Buffer.from(webServiceRequest3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceResponseMerchantKey, deserializedWebServiceResponse.OPERACION.Ds_Order)
-      ).toEqual(Buffer.from(webServiceResponse3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceResponseWithCCMerchantKey, deserializedWebServiceResponseWithCC.OPERACION.Ds_Order)
-      ).toEqual(Buffer.from(webServiceResponseWithCC3DESOrder, 'base64'));
     });
 
     it('should throw if key length is not 8 bytes', () => {
@@ -239,30 +205,6 @@ describe('Crypto', () => {
           serializedSoapNotificationParams
         )
       ).toEqual(deserializedSoapNotification.Signature);
-
-      expect(
-        sha256Sign(
-          webServiceRequestMerchantKey,
-          webServiceRequestParams.DS_MERCHANT_ORDER,
-          serializedWebServiceRequestParams
-        )
-      ).toEqual(webServiceRequestSignature);
-
-      expect(
-        sha256Sign(
-          webServiceResponseMerchantKey,
-          deserializedWebServiceResponse.OPERACION.Ds_Order,
-          webServiceResponseSignedString
-        )
-      ).toEqual(deserializedWebServiceResponse.OPERACION.Ds_Signature);
-
-      expect(
-        sha256Sign(
-          webServiceResponseWithCCMerchantKey,
-          deserializedWebServiceResponseWithCC.OPERACION.Ds_Order,
-          webServiceResponseWithCCSignedString
-        )
-      ).toEqual(deserializedWebServiceResponseWithCC.OPERACION.Ds_Signature);
     });
   });
 });

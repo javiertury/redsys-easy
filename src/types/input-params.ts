@@ -165,22 +165,6 @@ export interface RequestInputParams extends BaseInputParams {
   DS_MERCHANT_P2F_XMLDATA?: string
 }
 
-/**
- * Input parameters for a redsys webservice request
- *
- * @public
- */
-export interface WebserviceInputParams extends RequestInputParams {
-  /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: string
-
-  /** MPI External parameters, json */
-  DS_MERCHANT_MPIEXTERNAL?: string
-
-  /** Dynamic Currency Conversion data, json */
-  DS_MERCHANT_DCC?: 'Y' | 'N' | string
-}
-
 export interface CommonRestInputParams extends RequestInputParams {
   /** MPI External parameters, json */
   DS_MERCHANT_MPIEXTERNAL?: {

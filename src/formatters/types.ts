@@ -10,8 +10,7 @@ import type {
   NotificationOutputParams,
   RequestOutputParams,
   RestIniciaPeticionOutputParams,
-  RestTrataPeticionOutputParams,
-  WebserviceOutputParams
+  RestTrataPeticionOutputParams
 } from '../types/output-params';
 
 /*
@@ -120,10 +119,4 @@ export interface RestTrataPeticionFormattedOutput <
 > extends RequestFormattedOutput<RawOutputParams>,
   Omit<ResolvedTransactionTraitFormattedOutput, 'response'> {
   response?: number
-}
-
-export interface WebserviceFormattedOutput <
-  RawOutputParams extends WebserviceOutputParams
-> extends RequestFormattedOutput<RawOutputParams>,
-  ResolvedTransactionTraitFormattedOutput {
 }

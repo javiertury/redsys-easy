@@ -34,14 +34,12 @@ export {
 export type {
   RedirectInputParams,
   RestIniciaPeticionInputParams,
-  RestTrataPeticionInputParams,
-  WebserviceInputParams
+  RestTrataPeticionInputParams
 } from './types/input-params';
 
 export type {
   RestIniciaPeticionOutputParams,
   RestTrataPeticionOutputParams,
-  WebserviceOutputParams,
   RestNotificationOutputParams,
   SoapNotificationOutputParams
 } from './types/output-params';

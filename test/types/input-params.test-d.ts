@@ -3,8 +3,7 @@ import { expectAssignable } from 'tsd';
 import type {
   RestIniciaPeticionInputParams,
   RestTrataPeticionInputParams,
-  RedirectInputParams,
-  WebserviceInputParams
+  RedirectInputParams
 } from '../../src/types/input-params';
 
 import {
@@ -27,10 +26,6 @@ import {
   challengeResponseRequest as challengeResponseV2Request
 } from '../fixtures/rest/3ds-v2.1-challenge';
 
-import {
-  webServiceRequestParams
-} from '../fixtures/soap/web-service-request';
-
 /*
  * Inicia peticion
  */
@@ -50,8 +45,3 @@ expectAssignable<RestTrataPeticionInputParams>(challengeResponseV2Request);
  * Redirect
  */
 expectAssignable<RedirectInputParams>(redirectRequest);
-
-/*
- * Webservice
- */
-expectAssignable<WebserviceInputParams>(webServiceRequestParams);

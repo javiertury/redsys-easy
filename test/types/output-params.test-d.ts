@@ -4,7 +4,6 @@ import type {
   RestIniciaPeticionOutputParams,
   RestTrataPeticionOutputParams,
   RestNotificationOutputParams,
-  WebserviceOutputParams,
   SoapNotificationOutputParams
 } from '../../src/types/output-params';
 
@@ -29,14 +28,6 @@ import {
 } from '../fixtures/rest/3ds-v2.1-challenge';
 
 import {
-  deserializedWebServiceResponseParams
-} from '../fixtures/soap/web-service-response';
-
-import {
-  deserializedWebServiceResponseWithCCParams
-} from '../fixtures/soap/web-service-response-with-cc';
-
-import {
   deserializedSoapNotification
 } from '../fixtures/soap/redirect-notification';
 
@@ -59,12 +50,6 @@ expectAssignable<RestTrataPeticionOutputParams>(deserializedChallengeResponseV2R
  * Rest Notification
  */
 expectAssignable<RestNotificationOutputParams>(deserializedRestNotification);
-
-/*
- * Webservice
- */
-expectAssignable<WebserviceOutputParams>(deserializedWebServiceResponseParams);
-expectAssignable<WebserviceOutputParams>(deserializedWebServiceResponseWithCCParams);
 
 /*
  * Soap Notification

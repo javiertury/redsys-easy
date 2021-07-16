@@ -1,6 +1,5 @@
 import {
-  createRedirectInputFormatter,
-  createRequestInputFormatter
+  createRedirectInputFormatter
 } from './input-params';
 
 import type {
@@ -21,11 +20,6 @@ import {
   unformattedRedirectRequest,
   formattedRedirectRequest
 } from '../../test/fixtures/formatters/rest-redirect';
-
-import {
-  unformattedWebServiceRequest,
-  formattedWebServiceRequest
-} from '../../test/fixtures/formatters/web-service-request';
 
 const baseSpec = (
   createFormatter: (opts?: FormatterOptions) => (
@@ -221,15 +215,5 @@ describe('createRedirectInputFormatter', () => {
     const formatInput = createRedirectInputFormatter();
     const formattedParams = formatInput(unformattedRedirectRequest);
     expect(formattedParams).toEqual(formattedRedirectRequest);
-  });
-});
-
-describe('createRequestInputFormatter', () => {
-  baseSpec(createRequestInputFormatter);
-
-  it('should format web service request', () => {
-    const formatInput = createRequestInputFormatter();
-    const formattedParams = formatInput(unformattedWebServiceRequest);
-    expect(formattedParams).toEqual(formattedWebServiceRequest);
   });
 });

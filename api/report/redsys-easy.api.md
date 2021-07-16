@@ -41,7 +41,6 @@ export const createRedsysAPI: (config: RedsysConfig) => {
     restTrataPeticion: (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
     createRedirectForm: (paramsInput: RedirectInputParams) => RedirectForm;
     processRestNotification: (body: ResponseJSONSuccess) => RestNotificationOutputParams;
-    wsPetition: (paramsInput: WebserviceInputParams) => Promise<WebserviceOutputParams>;
     processSoapNotification: (xml: string) => SoapNotificationOutputParams;
     createSoapNotificationAnswer: (order: string, allow: boolean) => string;
 };
@@ -406,7 +405,7 @@ export interface ThreeDSv2MethodNotificationBody {
     threeDSMethodData: string;
 }
 
-// @public (undocumented)
+// @public
 export const TRANSACTION_TYPES: {
     readonly AUTHORIZATION: "0";
     readonly PRE_AUTHORIZATION: "1";
@@ -431,7 +430,7 @@ export const TRANSACTION_TYPES: {
     readonly DEFERRED_SUCCESSIVE_FEE: "S";
 };
 
-// @public (undocumented)
+// @public
 export type TransactionType = '0' | '1' | '2' | '3' | '5' | '6' | '7' | '8' | '9' | '15' | '17' | '34' | '37' | '44' | 'O' | 'F' | 'P' | 'Q' | 'R' | 'S' | 'A';
 
 // @public
@@ -462,20 +461,6 @@ export class ValidationError extends RedsysError {
     parameters: object;
     // (undocumented)
     value: unknown;
-}
-
-// @public
-export interface WebserviceInputParams extends RequestInputParams {
-    DS_MERCHANT_DCC?: 'Y' | 'N' | string;
-    DS_MERCHANT_EMV3DS?: string;
-    DS_MERCHANT_MPIEXTERNAL?: string;
-}
-
-// @public
-export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTransactionTrait {
-    Ds_DCC?: string;
-    Ds_EMV3DS?: string;
-    Ds_Signature: string;
 }
 
 ```

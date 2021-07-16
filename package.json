@@ -62,7 +62,6 @@
     "decimal.js": "^10.3.1",
     "fast-xml-parser": "^3.12.16",
     "node-fetch": "^2.6.1",
-    "soap": "^0.35.0",
     "tslib": "^2.2.0"
   },
   "devDependencies": {
@@ -78,7 +77,6 @@
     "@types/koa": "^2.11.6",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa__router": "^8.0.7",
-    "@types/request": "^2.48.5",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.22.0",
     "cheerio": "^1.0.0-rc.3",

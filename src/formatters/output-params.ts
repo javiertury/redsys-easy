@@ -19,8 +19,7 @@ import type {
   RequestOutputParams,
   RestIniciaPeticionOutputParams,
   RestTrataPeticionOutputParams,
-  ResolvedTransactionTrait,
-  WebserviceOutputParams
+  ResolvedTransactionTrait
 } from '../types/output-params';
 import type {
   BaseFormattedOutput,
@@ -28,8 +27,7 @@ import type {
   RequestFormattedOutput,
   RestIniciaPeticionFormattedOutput,
   RestTrataPeticionFormattedOutput,
-  ResolvedTransactionTraitFormattedOutput,
-  WebserviceFormattedOutput
+  ResolvedTransactionTraitFormattedOutput
 } from './types';
 
 import { isStringNotEmpty } from '../utils/misc';
@@ -220,23 +218,6 @@ export const restTrataPeticionOutputFormatter = <
   return {
     ...requestOutputFormatter(raw),
     ...formatPrice(raw),
-    ...(rawResponse != null ? { response: Number.parseInt(rawResponse) } : undefined)
-  };
-};
-
-export const websocketOutputFormatter = <
-  RawOutputParams extends WebserviceOutputParams
->(
-  raw: RawOutputParams
-): WebserviceFormattedOutput<RawOutputParams> => {
-  const {
-    Ds_Response: rawResponse
-  } = raw;
-
-  return {
-    ...requestOutputFormatter(raw),
-    ...formatPrice(raw),
-    response: formatResponse(rawResponse),
     ...(rawResponse != null ? { response: Number.parseInt(rawResponse) } : undefined)
   };
 };

@@ -145,22 +145,6 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
 }
 
 /**
- * Output parameters of a redsys webservice response
- *
- * @public
- */
-export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTransactionTrait {
-  /** EMV3DS data in json format */
-  Ds_EMV3DS?: string
-
-  /** Dynamic Currency Conversion data, json */
-  Ds_DCC?: string
-
-  /** Response signature */
-  Ds_Signature: string
-}
-
-/**
  * Common parameters for notifications
  */
 export interface NotificationOutputParams extends BaseOutputParams, ResolvedTransactionTrait {
