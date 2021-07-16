@@ -19,6 +19,9 @@ Despite the name, a redsys payment gateway with 3DS support is quite complex. Do
   - [INSITE client](./examples/insite-client) implemented using a [solid](https://github.com/solidjs/solid) web app.
   - [REST server](./examples/rest-server) implemented using a [koa](https://koajs.com/) http server.
 
+Redirection is much easier but allows less customization
+  - [Redirection integration](./examples/redirection)
+
 ## Usage
 
 When creating a `Redsys` instance, you are required to pass some options. `secretKey` is your Redsys key. The `urls` property should be an Object with the urls of Redsys endpoints.
