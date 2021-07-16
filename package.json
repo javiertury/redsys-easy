@@ -32,13 +32,16 @@
     "build:api": "api-extractor run --local",
     "build": "pnpm run build:clean && pnpm run lint && pnpm run build:code && pnpm run build:api",
     "prepublishOnly": "pnpm run build",
-    "docs": "api-documenter markdown --input-folder ./api/temp --output-folder ./docs",
-    "release": "standard-version --dry-run && pnpm run docs && standard-version --commit-all",
-    "test-unit": "jest ./src/**/*.test.ts",
-    "test-integration": "jest ./test/integration/**/*.test.ts",
-    "test-code": "jest",
-    "test-types": "tsd",
-    "test": "pnpm run test-code && pnpm run test-types"
+    "test:unit": "jest ./src/**/*.test.ts",
+    "test:integration": "jest ./test/integration/**/*.test.ts",
+    "test:code": "jest",
+    "test:types": "tsd",
+    "test:readme": "tsc -p ./tsconfig.readme.json",
+    "test": "pnpm run test:code && pnpm run test:types && pnpm run test:readme",
+    "docs:api": "api-documenter markdown --input-folder ./api/temp --output-folder ./docs",
+    "docs:readme": "md-magic --path ./README.md",
+    "docs": "pnpm run docs:api && pnpm run docs:readme",
+    "release": "pnpm run test && standard-version --dry-run && pnpm run docs && standard-version --commit-all"
   },
   "files": [
     "lib"
@@ -91,6 +94,7 @@
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "lint-staged": "^10.5.2",
+    "markdown-magic": "^2.3.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.33.3",
     "rollup-plugin-typescript2": "^0.29.0",

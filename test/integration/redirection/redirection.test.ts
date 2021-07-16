@@ -257,6 +257,11 @@ describe('Redirect Integration', () => {
     expect(redirectionURL).toContain(redirectData.successURL);
   });
 
+  /*
+   * This test may fail if your ip is not public and the port is not open
+   *
+   * See <projectFolder>/integration-settings.sample.js
+   */
   it('should receive a success notification', async () => {
     await wait(2000);
 

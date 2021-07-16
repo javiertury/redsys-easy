@@ -11,6 +11,8 @@
   ],
   "exclude": [
     "**/*.test.ts",
-    "**/*.test-d.ts"
+    "**/*.test-d.ts",
+    "node_modules",
+    "examples"
   ]
 }
