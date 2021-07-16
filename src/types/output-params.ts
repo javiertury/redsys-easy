@@ -1,12 +1,15 @@
 import type { TransactionType } from '../assets/transaction-types';
 
 import type {
-  EMV3DSNo3DSv2PreAuthOutputParams,
-  EMV3DSv2PreAuthOutputParams,
-  EMV3DSv1ChallengeOutputParams,
-  EMV3DSv2ChallengeOutputParams
-} from './emv3ds-params';
+  ThreeDSv1PreAuthOutputParams,
+  ThreeDSv2PreAuthOutputParams,
+  ThreeDSv1ChallengeOutputParams,
+  ThreeDSv2ChallengeOutputParams
+} from './3ds-params';
 
+/**
+ * Common output parameters
+ */
 export interface BaseOutputParams {
   /** Order identifier */
   Ds_Order: string
@@ -54,6 +57,9 @@ export interface BaseOutputParams {
   Ds_Merchant_Cof_Txnid?: string
 }
 
+/**
+ * Common output parameters of resolved requests or notifications
+ */
 export interface ResolvedTransactionTrait {
   /** Amount designated as an integer in the smallest currency division */
   Ds_Amount: string
@@ -65,6 +71,9 @@ export interface ResolvedTransactionTrait {
   Ds_Response: string
 }
 
+/**
+ * Common output parameters of a all requests
+ */
 export interface RequestOutputParams extends BaseOutputParams {
   /** Card number */
   Ds_CardNumber?: string
@@ -82,9 +91,14 @@ export interface RequestOutputParams extends BaseOutputParams {
   Ds_Language?: string
 }
 
+/**
+ * Output parameters of a IniciaPeticion HTTP request
+ *
+ * @public
+ */
 export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
   /** EMV3DS data in json format */
-  Ds_EMV3DS?: EMV3DSNo3DSv2PreAuthOutputParams | EMV3DSv2PreAuthOutputParams
+  Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams
 
   /** Dynamic Currency Conversion data, json */
   Ds_DCC?: {
@@ -115,16 +129,26 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
   }
 }
 
+/**
+ * Output parameters of a TrataPeticion HTTP request
+ *
+ * @public
+ */
 export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> {
   /** Response code */
   Ds_Response?: ResolvedTransactionTrait['Ds_Response']
 
   /** EMV3DS data in json format */
   Ds_EMV3DS?:
-  | EMV3DSv1ChallengeOutputParams
-  | EMV3DSv2ChallengeOutputParams
+  | ThreeDSv1ChallengeOutputParams
+  | ThreeDSv2ChallengeOutputParams
 }
 
+/**
+ * Output parameters of a redsys webservice response
+ *
+ * @public
+ */
 export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTransactionTrait {
   /** EMV3DS data in json format */
   Ds_EMV3DS?: string
@@ -136,6 +160,9 @@ export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTra
   Ds_Signature: string
 }
 
+/**
+ * Common parameters for notifications
+ */
 export interface NotificationOutputParams extends BaseOutputParams, ResolvedTransactionTrait {
   /** Language */
   Ds_ConsumerLanguage?: string
@@ -144,6 +171,11 @@ export interface NotificationOutputParams extends BaseOutputParams, ResolvedTran
   Ds_ErrorCode?: string
 }
 
+/**
+ * Parameters of a redsys REST notification
+ *
+ * @public
+ */
 export interface RestNotificationOutputParams extends NotificationOutputParams {
   /** Transaction date, DD/MM/YYYY */
   Ds_Date: string
@@ -152,6 +184,11 @@ export interface RestNotificationOutputParams extends NotificationOutputParams {
   Ds_Hour: string
 }
 
+/**
+ * Parameters of a redsys SOAP notification
+ *
+ * @public
+ */
 export interface SoapNotificationOutputParams extends NotificationOutputParams {
   /** Transaction date, DD/MM/YYYY */
   Fecha: string

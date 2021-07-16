@@ -12,7 +12,7 @@ import {
 } from '../errors';
 
 import type {
-  ResponseJSON,
+  ResponseJSONSuccess,
   CommonRawRequestParams,
   CommonRawResponseParams,
   SHA256SignedJSONParameters
@@ -20,7 +20,7 @@ import type {
 
 export const sha256VerifyJSONResponse = (
   merchantKey: string,
-  response: ResponseJSON,
+  response: ResponseJSONSuccess,
   responseParams: CommonRawResponseParams
 ): void => {
   if (response.Ds_SignatureVersion !== 'HMAC_SHA256_V1') {

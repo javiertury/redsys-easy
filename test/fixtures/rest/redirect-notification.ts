@@ -6,7 +6,7 @@ export const serializedRestNotification = {
   Ds_Signature: '6DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
 };
 
-export const parsedRestNotification = {
+export const deserializedRestNotification = {
   Ds_Date: '09/11/2015',
   Ds_Hour: '18:03',
   Ds_SecurePayment: '0',

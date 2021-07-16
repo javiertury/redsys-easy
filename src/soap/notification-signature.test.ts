@@ -10,7 +10,7 @@ import {
 import {
   soapNotificationMerchantKey,
   serializedAndSignedSoapNotificationParams,
-  parsedSoapNotification
+  deserializedSoapNotification
 } from '../../test/fixtures/soap/redirect-notification';
 
 import {
@@ -55,7 +55,7 @@ describe('SOAP Notification signature', () => {
       () => verifySoapNotification(
         soapNotificationMerchantKey,
         serializedAndSignedSoapNotificationParams,
-        parsedSoapNotification
+        deserializedSoapNotification
       )
     ).not.toThrowError();
   });
@@ -65,7 +65,7 @@ describe('SOAP Notification signature', () => {
       () => verifySoapNotification(
         incorrectMerchantKey,
         serializedAndSignedSoapNotificationParams,
-        parsedSoapNotification
+        deserializedSoapNotification
       )
     ).toThrowError(new ParseError('Invalid signature'));
   });
@@ -78,7 +78,7 @@ describe('SOAP Notification signature', () => {
         '<Signature>SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>'
       ),
       {
-        ...parsedSoapNotification,
+        ...deserializedSoapNotification,
         Signature: 'SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok='
       }
     );

@@ -27,7 +27,7 @@ export const serializedIniciaPeticionResponse = {
   Ds_Signature: '9ef9hH-R_DOwz8OsXObbPbReSO3XgEZm25n82z6mv_0='
 };
 
-export const parsedIniciaPeticionResponse = {
+export const deserializedIniciaPeticionResponse = {
   Ds_Order: '6564vNUgKHSe',
   Ds_MerchantCode: '999008881',
   Ds_Terminal: '1',
@@ -97,7 +97,7 @@ export const serialized3DSMethodResponse = {
   Ds_Signature: 'zuJDMhHP8L8_KKmUXn_UegHkUtoKVSDi6rvdi0rYXfE='
 };
 
-export const parsed3DSMethodResponse = {
+export const deserialized3DSMethodResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6564vNUgKHSe',
@@ -162,7 +162,7 @@ export const serializedChallengeResponseResponse = {
   Ds_Signature: '7TUJ8uzT1ex857PUrPQdfdRML_9MUP9Bjaf1YErbmQ4='
 };
 
-export const parsedChallengeResponseResponse = {
+export const deserializedChallengeResponseResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6564vNUgKHSe',

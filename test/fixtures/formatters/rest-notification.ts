@@ -1,11 +1,11 @@
 import {
-  parsedRestNotification
+  deserializedRestNotification
 } from '../rest/redirect-notification';
 
 export {
   restNotificationMerchantKey,
   serializedRestNotification,
-  parsedRestNotification
+  deserializedRestNotification
 } from '../rest/redirect-notification';
 
 export const formattedRestNotification = {
@@ -23,5 +23,5 @@ export const formattedRestNotification = {
   currency: 'EUR',
   cardCountry: 'es',
   lang: 'es',
-  raw: parsedRestNotification
+  raw: deserializedRestNotification
 };

@@ -2,9 +2,9 @@ import {
   ParseError
 } from '../errors';
 
-export const parseJSONMerchantParams = <ParsedResponseParams = unknown>(
+export const deserializeJSONMerchantParams = <DeserializedResponseParams = unknown>(
   strPayload: string
-): ParsedResponseParams => {
+): DeserializedResponseParams => {
   if (!strPayload) {
     throw new ParseError('Payload is empty');
   }
@@ -12,7 +12,7 @@ export const parseJSONMerchantParams = <ParsedResponseParams = unknown>(
   if (typeof strPayload !== 'string') {
     throw new ParseError('Payload must be a base-64 encoded string');
   }
-  const payload = JSON.parse(decodeURIComponent(Buffer.from(strPayload, 'base64').toString('utf8'))) as ParsedResponseParams | null | undefined;
+  const payload = JSON.parse(decodeURIComponent(Buffer.from(strPayload, 'base64').toString('utf8'))) as DeserializedResponseParams | null | undefined;
 
   if (typeof payload !== 'object' || payload == null) {
     throw new ParseError('Cannot parse notification payload');

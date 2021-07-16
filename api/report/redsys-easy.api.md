@@ -4,7 +4,7 @@
 
 ```ts
 
-// @public (undocumented)
+// @public
 export const assertSuccessfulResponseCode: (responseParams: {
     Ds_Response?: string;
 }) => void;
@@ -15,20 +15,20 @@ export type CardBrand = 'VISA' | 'MASTERCARD' | 'DINERS' | 'PRIVATE' | 'AMEX' | 
 // @public (undocumented)
 export type Country = 'af' | 'al' | 'aq' | 'dz' | 'as' | 'ad' | 'ao' | 'ag' | 'az' | 'ar' | 'au' | 'at' | 'bs' | 'bh' | 'bd' | 'am' | 'bb' | 'be' | 'bm' | 'bt' | 'bo' | 'ba' | 'bw' | 'bv' | 'br' | 'bz' | 'io' | 'sb' | 'vg' | 'bn' | 'bg' | 'mm' | 'bi' | 'by' | 'kh' | 'cm' | 'ca' | 'cv' | 'ky' | 'cf' | 'lk' | 'td' | 'cl' | 'cn' | 'tw' | 'cx' | 'cc' | 'co' | 'km' | 'yt' | 'cg' | 'cd' | 'ck' | 'cr' | 'hr' | 'cu' | 'cy' | 'cz' | 'bj' | 'dk' | 'dm' | 'do' | 'ec' | 'sv' | 'gq' | 'et' | 'er' | 'ee' | 'fo' | 'fk' | 'gs' | 'fj' | 'fi' | 'ax' | 'fr' | 'gf' | 'pf' | 'tf' | 'dj' | 'ga' | 'ge' | 'gm' | 'ps' | 'de' | 'gh' | 'gi' | 'ki' | 'gr' | 'gl' | 'gd' | 'gp' | 'gu' | 'gt' | 'gn' | 'gy' | 'ht' | 'hm' | 'va' | 'hn' | 'hk' | 'hu' | 'is' | 'in' | 'id' | 'ir' | 'iq' | 'ie' | 'il' | 'it' | 'ci' | 'jm' | 'jp' | 'kz' | 'jo' | 'ke' | 'kp' | 'kr' | 'kw' | 'kg' | 'la' | 'lb' | 'ls' | 'lv' | 'lr' | 'ly' | 'li' | 'lt' | 'lu' | 'mo' | 'mg' | 'mw' | 'my' | 'mv' | 'ml' | 'mt' | 'mq' | 'mr' | 'mu' | 'mx' | 'mc' | 'mn' | 'md' | 'me' | 'ms' | 'ma' | 'mz' | 'om' | 'na' | 'nr' | 'np' | 'nl' | 'cw' | 'aw' | 'sx' | 'bq' | 'nc' | 'vu' | 'nz' | 'ni' | 'ne' | 'ng' | 'nu' | 'nf' | 'no' | 'mp' | 'um' | 'fm' | 'mh' | 'pw' | 'pk' | 'pa' | 'pg' | 'py' | 'pe' | 'ph' | 'pn' | 'pl' | 'pt' | 'gw' | 'tl' | 'pr' | 'qa' | 're' | 'ro' | 'ru' | 'rw' | 'bl' | 'sh' | 'kn' | 'ai' | 'lc' | 'mf' | 'pm' | 'vc' | 'sm' | 'st' | 'sa' | 'sn' | 'rs' | 'sc' | 'sl' | 'sg' | 'sk' | 'vn' | 'si' | 'so' | 'za' | 'zw' | 'es' | 'ss' | 'sd' | 'eh' | 'sr' | 'sj' | 'sz' | 'se' | 'ch' | 'sy' | 'tj' | 'th' | 'tg' | 'tk' | 'to' | 'tt' | 'ae' | 'tn' | 'tr' | 'tm' | 'tc' | 'tv' | 'ug' | 'ua' | 'mk' | 'eg' | 'gb' | 'gg' | 'je' | 'im' | 'tz' | 'us' | 'vi' | 'bf' | 'uy' | 'uz' | 've' | 'wf' | 'ws' | 'ye' | 'zm';
 
-// Warning: (ae-forgotten-export) The symbol "EMV3DSv2PreAuthWithMethodOutputParams" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthWithMethodOutputParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const create3DSMethodForm: (emv3dsParams: Pick<EMV3DSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm;
+// @public
+export const create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm;
 
-// Warning: (ae-forgotten-export) The symbol "EMV3DSv1ChallengeOutputParams" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ThreeDSv1ChallengeOutputParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const create3DSv1ChallengeForm: (emv3dsV1Challenge: EMV3DSv1ChallengeOutputParams, challengeNotificationUrl: string) => ThreeDSv1ChallengeForm;
+// @public
+export const create3DSv1ChallengeForm: (emv3dsV1Challenge: ThreeDSv1ChallengeOutputParams, challengeNotificationUrl: string) => ThreeDSv1ChallengeForm;
 
-// Warning: (ae-forgotten-export) The symbol "EMV3DSv2ChallengeOutputParams" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ThreeDSv2ChallengeOutputParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const create3DSv2ChallengeForm: (emv3dsV2Challenge: EMV3DSv2ChallengeOutputParams) => ThreeDSv2ChallengeForm;
+// @public
+export const create3DSv2ChallengeForm: (emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams) => ThreeDSv2ChallengeForm;
 
 // Warning: (ae-forgotten-export) The symbol "FormatterOptions" needs to be exported by the entry point index.d.ts
 //
@@ -39,8 +39,8 @@ export const createRedirectInputFormatter: (options?: FormatterOptions | undefin
 export const createRedsysAPI: (config: RedsysConfig) => {
     restIniciaPeticion: (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
     restTrataPeticion: (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
-    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectPetition;
-    processNotification: (body: ResponseJSON) => RestNotificationOutputParams;
+    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectForm;
+    processRestNotification: (body: ResponseJSONSuccess) => RestNotificationOutputParams;
     wsPetition: (paramsInput: WebserviceInputParams) => Promise<WebserviceOutputParams>;
     processSoapNotification: (xml: string) => SoapNotificationOutputParams;
     createSoapNotificationAnswer: (order: string, allow: boolean) => string;
@@ -59,25 +59,16 @@ export const CURRENCIES: Record<Currency, CurrencyData>;
 // @public (undocumented)
 export type Currency = 'ALL' | 'DZD' | 'ARS' | 'AUD' | 'BSD' | 'BHD' | 'BDT' | 'AMD' | 'BBD' | 'BMD' | 'BTN' | 'BOB' | 'BWP' | 'BZD' | 'SBD' | 'BND' | 'MMK' | 'BIF' | 'KHR' | 'CAD' | 'CVE' | 'KYD' | 'LKR' | 'CLP' | 'CNY' | 'COP' | 'KMF' | 'CRC' | 'HRK' | 'CUP' | 'CZK' | 'DKK' | 'DOP' | 'SVC' | 'ETB' | 'ERN' | 'FKP' | 'FJD' | 'DJF' | 'GMD' | 'GIP' | 'GTQ' | 'GNF' | 'GYD' | 'HTG' | 'HNL' | 'HKD' | 'HUF' | 'ISK' | 'INR' | 'IDR' | 'IRR' | 'IQD' | 'ILS' | 'JMD' | 'JPY' | 'KZT' | 'JOD' | 'KES' | 'KPW' | 'KRW' | 'KWD' | 'KGS' | 'LAK' | 'LBP' | 'LSL' | 'LRD' | 'LYD' | 'MOP' | 'MWK' | 'MYR' | 'MVR' | 'MUR' | 'MXN' | 'MNT' | 'MDL' | 'MAD' | 'OMR' | 'NAD' | 'NPR' | 'ANG' | 'AWG' | 'VUV' | 'NZD' | 'NIO' | 'NGN' | 'NOK' | 'PKR' | 'PAB' | 'PGK' | 'PYG' | 'PEN' | 'PHP' | 'QAR' | 'RUB' | 'RWF' | 'SHP' | 'SAR' | 'SCR' | 'SLL' | 'SGD' | 'VND' | 'SOS' | 'ZAR' | 'SSP' | 'SZL' | 'SEK' | 'CHF' | 'SYP' | 'THB' | 'TOP' | 'TTD' | 'AED' | 'TND' | 'UGX' | 'MKD' | 'EGP' | 'GBP' | 'TZS' | 'USD' | 'UYU' | 'UZS' | 'WST' | 'YER' | 'TWD' | 'TMT' | 'GHS' | 'RSD' | 'MZN' | 'AZN' | 'RON' | 'TRY' | 'XAF' | 'XCD' | 'XOF' | 'XPF' | 'ZMW' | 'SRD' | 'AFN' | 'TJS' | 'AOA' | 'BGN' | 'CDF' | 'BAM' | 'EUR' | 'UAH' | 'GEL' | 'PLN' | 'BRL';
 
-// Warning: (ae-forgotten-export) The symbol "DeserializedCres" needs to be exported by the entry point index.d.ts
-//
 // @public
-export const deserializeCres: (cres: string) => DeserializedCres;
+export const deserializeCres: (cres: string) => ThreeDSCres;
 
-// Warning: (ae-forgotten-export) The symbol "ThreeDSMethodData" needs to be exported by the entry point index.d.ts
-//
 // @public
 export const deserializeThreeDSMethodData: (threeDSMethodData: string) => ThreeDSMethodData;
 
 // Warning: (ae-forgotten-export) The symbol "SoapRequest" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1";
-
-// Warning: (ae-forgotten-export) The symbol "BaseEMV3DSAuthenticationDataParams" needs to be exported by the entry point index.d.ts
-//
 // @public
-export type EMV3DSBrowserClientInfo = Pick<BaseEMV3DSAuthenticationDataParams, 'browserLanguage' | 'browserColorDepth' | 'browserScreenHeight' | 'browserScreenWidth' | 'browserTZ' | 'browserJavaEnabled'>;
+export const detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1";
 
 // @public
 export class GatewayError extends RedsysError {
@@ -89,10 +80,10 @@ export class GatewayError extends RedsysError {
     response: unknown | undefined;
 }
 
-// @public (undocumented)
+// @public
 export const getResponseCodeMessage: (code: string | number) => string | undefined;
 
-// @public (undocumented)
+// @public
 export const getSISErrorCodeMessage: (code: string) => string | undefined;
 
 // @public
@@ -111,15 +102,16 @@ export const isResponseCodeOk: (responseCode: string) => boolean;
 // @public (undocumented)
 export type Language = 'es' | 'en' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'sv' | 'pt' | 'pl' | 'gl' | 'eu' | 'bg' | 'zh' | 'hr' | 'cs' | 'da' | 'et' | 'fi' | 'el' | 'hu' | 'ja' | 'lv' | 'lt' | 'mt' | 'ro' | 'ru' | 'sk' | 'sl' | 'tr';
 
-// @public (undocumented)
+// @public
 export const mimicSoap11NotificationResponse: (answer: string) => string;
 
-// @public (undocumented)
+// @public
 export const mimicSoap12NotificationResponse: (answer: string) => string;
 
-// @public (undocumented)
+// @public
 export const mimicSoapNotificationReceiver: (xml: string) => string;
 
+// Warning: (ae-forgotten-export) The symbol "NotificationOutputParams" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "BaseFormattedOutput" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTraitFormattedOutput" needs to be exported by the entry point index.d.ts
 //
@@ -135,15 +127,6 @@ export interface NotificationFormattedOutput<RawOutputParams extends Notificatio
     timestamp: Date;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseOutputParams" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTrait" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface NotificationOutputParams extends BaseOutputParams, ResolvedTransactionTrait {
-    Ds_ConsumerLanguage?: string;
-    Ds_ErrorCode?: string;
-}
-
 // @public
 export class ParseError extends RedsysError {
     constructor(message: string, value?: unknown, location?: unknown);
@@ -155,11 +138,21 @@ export class ParseError extends RedsysError {
     value: unknown;
 }
 
-// @public (undocumented)
+// @public
 export const PRODUCTION_URLS: UrlsConfig;
 
-// @public (undocumented)
+// @public
 export const randomTransactionId: () => string;
+
+// @public
+export interface RedirectForm {
+    // Warning: (ae-forgotten-export) The symbol "SHA256SignedJSONParameters" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    body: SHA256SignedJSONParameters;
+    // (undocumented)
+    url: string;
+}
 
 // Warning: (ae-forgotten-export) The symbol "BaseFormattedInput" needs to be exported by the entry point index.d.ts
 //
@@ -179,11 +172,11 @@ export interface RedirectFormattedInput<RawInputParams extends object> extends B
 
 // Warning: (ae-forgotten-export) The symbol "BaseInputParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export interface RedirectInputParams extends BaseInputParams {
     DS_MERCHANT_CONSUMERLANGUAGE?: string;
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSRedirectInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: EMV3DSRedirectInputParams;
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSRedirectInputParams" needs to be exported by the entry point index.d.ts
+    DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams;
     DS_MERCHANT_MERCHANTURL?: string;
     DS_MERCHANT_PAYMETHODS?: string;
     DS_MERCHANT_PERSOCODE?: string;
@@ -192,17 +185,7 @@ export interface RedirectInputParams extends BaseInputParams {
     DS_MERCHANT_URLOK?: string;
 }
 
-// @public (undocumented)
-export interface RedirectPetition {
-    // Warning: (ae-forgotten-export) The symbol "SHA256SignedJSONParameters" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    body: SHA256SignedJSONParameters;
-    // (undocumented)
-    url: string;
-}
-
-// @public (undocumented)
+// @public
 export interface RedsysConfig {
     // (undocumented)
     secretKey: string;
@@ -210,7 +193,7 @@ export interface RedsysConfig {
     urls: UrlsConfig;
 }
 
-// @public (undocumented)
+// @public
 export class RedsysError extends Error {
     constructor(message: string);
 }
@@ -256,8 +239,8 @@ export class ResponseError extends RedsysError {
     response: unknown | undefined;
 }
 
-// @public (undocumented)
-export interface ResponseJSON {
+// @public
+export interface ResponseJSONSuccess {
     // (undocumented)
     Ds_MerchantParameters: string;
     // (undocumented)
@@ -268,14 +251,14 @@ export interface ResponseJSON {
 
 // Warning: (ae-forgotten-export) The symbol "CommonRestInputParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export interface RestIniciaPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_DCC?: 'Y' | 'N';
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSPreAuthInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: EMV3DSPreAuthInputParams;
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSPreAuthInputParams" needs to be exported by the entry point index.d.ts
+    DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams;
 }
 
-// @public (undocumented)
+// @public
 export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
     Ds_DCC?: {
         InfoMonedaTarjeta: {
@@ -293,36 +276,38 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
             importeCome: string;
         };
     };
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSNo3DSv2PreAuthOutputParams" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSv2PreAuthOutputParams" needs to be exported by the entry point index.d.ts
-    Ds_EMV3DS?: EMV3DSNo3DSv2PreAuthOutputParams | EMV3DSv2PreAuthOutputParams;
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv1PreAuthOutputParams" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthOutputParams" needs to be exported by the entry point index.d.ts
+    Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;
 }
 
 // @public (undocumented)
 export const restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormattedOutput<RawOutputParams>;
 
-// @public (undocumented)
+// @public
 export interface RestNotificationOutputParams extends NotificationOutputParams {
     Ds_Date: string;
     Ds_Hour: string;
 }
 
-// @public (undocumented)
+// @public
 export interface RestTrataPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_DCC?: {
         monedaDCC: string;
         importeDCC: string;
     };
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSv1AuthDataInputParams" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSv2AuthDataInputParams" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSv1ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-forgotten-export) The symbol "EMV3DSv2ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: EMV3DSv1AuthDataInputParams | EMV3DSv2AuthDataInputParams | EMV3DSv1ChallengeResponseInputParams | EMV3DSv2ChallengeResponseInputParams;
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv1AuthDataInputParams" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv2AuthDataInputParams" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv1ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "ThreeDSv2ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
+    DS_MERCHANT_EMV3DS?: ThreeDSv1AuthDataInputParams | ThreeDSv2AuthDataInputParams | ThreeDSv1ChallengeResponseInputParams | ThreeDSv2ChallengeResponseInputParams;
 }
 
-// @public (undocumented)
+// Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTrait" needs to be exported by the entry point index.d.ts
+//
+// @public
 export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> {
-    Ds_EMV3DS?: EMV3DSv1ChallengeOutputParams | EMV3DSv2ChallengeOutputParams;
+    Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams;
     Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
 }
 
@@ -331,19 +316,46 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
 // @public (undocumented)
 export const REV_CURRENCIES: Record<string, RevCurrencyData>;
 
-// @public (undocumented)
+// @public
 export const SANDBOX_URLS: UrlsConfig;
 
 // @public (undocumented)
 export const soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormattedOutput<RawOutputParams>;
 
-// @public (undocumented)
+// @public
 export interface SoapNotificationOutputParams extends NotificationOutputParams {
     Fecha: string;
     Hora: string;
 }
 
-// @public (undocumented)
+// Warning: (ae-forgotten-export) The symbol "BaseThreeDSAuthenticationDataParams" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ThreeDSBrowserClientInfo = Pick<BaseThreeDSAuthenticationDataParams, 'browserLanguage' | 'browserColorDepth' | 'browserScreenHeight' | 'browserScreenWidth' | 'browserTZ' | 'browserJavaEnabled'>;
+
+// @public
+export interface ThreeDSCres {
+    // (undocumented)
+    acsTransID: string;
+    // (undocumented)
+    messageType: 'CRes';
+    // (undocumented)
+    messageVersion: '2.1.0' | '2.2.0';
+    // (undocumented)
+    threeDSServerTransID: string;
+    // (undocumented)
+    transStatus: 'Y' | 'N';
+}
+
+// @public
+export interface ThreeDSMethodData {
+    // (undocumented)
+    threeDSMethodNotificationURL: string;
+    // (undocumented)
+    threeDSServerTransID: string;
+}
+
+// @public
 export interface ThreeDSMethodForm {
     // (undocumented)
     body: {
@@ -353,7 +365,7 @@ export interface ThreeDSMethodForm {
     url: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ThreeDSv1ChallengeForm {
     // (undocumented)
     body: {
@@ -365,13 +377,13 @@ export interface ThreeDSv1ChallengeForm {
     url: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ThreeDSv1ChallengeNotificationBody {
     MD: string;
     PaRes: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ThreeDSv2ChallengeForm {
     // (undocumented)
     body: {
@@ -381,14 +393,14 @@ export interface ThreeDSv2ChallengeForm {
     url: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ThreeDSv2ChallengeNotificationBody {
     cres: string;
     // (undocumented)
     threeDSSessionData: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ThreeDSv2MethodNotificationBody {
     // (undocumented)
     threeDSMethodData: string;
@@ -422,7 +434,7 @@ export const TRANSACTION_TYPES: {
 // @public (undocumented)
 export type TransactionType = '0' | '1' | '2' | '3' | '5' | '6' | '7' | '8' | '9' | '15' | '17' | '34' | '37' | '44' | 'O' | 'F' | 'P' | 'Q' | 'R' | 'S' | 'A';
 
-// @public (undocumented)
+// @public
 export interface UrlsConfig {
     // (undocumented)
     redirect: string;
@@ -452,14 +464,14 @@ export class ValidationError extends RedsysError {
     value: unknown;
 }
 
-// @public (undocumented)
+// @public
 export interface WebserviceInputParams extends RequestInputParams {
     DS_MERCHANT_DCC?: 'Y' | 'N' | string;
     DS_MERCHANT_EMV3DS?: string;
     DS_MERCHANT_MPIEXTERNAL?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WebserviceOutputParams extends RequestOutputParams, ResolvedTransactionTrait {
     Ds_DCC?: string;
     Ds_EMV3DS?: string;

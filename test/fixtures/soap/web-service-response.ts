@@ -39,7 +39,7 @@ export const serializedWebServiceResponse = [
 
 export const webServiceResponseSignedString = '33500000ijd2d39990088819780000454881******0004A0';
 
-export const parsedWebServiceResponseParams = {
+export const deserializedWebServiceResponseParams = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '0000ijd2d3',
@@ -59,9 +59,9 @@ export const parsedWebServiceResponseParams = {
   Ds_Card_Brand: '1'
 } as const;
 
-export const parsedWebServiceResponse = {
+export const deserializedWebServiceResponse = {
   CODIGO: '0',
-  OPERACION: parsedWebServiceResponseParams
+  OPERACION: deserializedWebServiceResponseParams
 } as const;
 
 export const webServiceResponse3DESOrder = '/BHKdcRWVc3zWWsG+OYdfA==';

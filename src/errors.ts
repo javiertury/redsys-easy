@@ -4,6 +4,11 @@ import {
   getHTTPErrorCodeMessage
 } from './utils/codes';
 
+/**
+ * Error superclass for all redsys-easy specific errors
+ *
+ * @public
+ */
 export class RedsysError extends Error {
   constructor (message: string) {
     super(message);
@@ -13,6 +18,8 @@ export class RedsysError extends Error {
 
 /**
  * Invalid input provided
+ *
+ * @public
  */
 export class ValidationError extends RedsysError {
   value: unknown;
@@ -27,6 +34,8 @@ export class ValidationError extends RedsysError {
 
 /**
  * Response cannot be parsed
+ *
+ * @public
  */
 export class ParseError extends RedsysError {
   value: unknown;
@@ -49,6 +58,8 @@ interface HTTPErrorOptions {
 
 /**
  * HTTP Error
+ *
+ * @public
  */
 export class HTTPError extends RedsysError {
   code: number | undefined;
@@ -78,6 +89,8 @@ interface GatewayErrorOptions {
 
 /**
  * Request could not be processed by Redsys
+ *
+ * @public
  */
 export class GatewayError extends RedsysError {
   code: string | undefined;
@@ -107,6 +120,8 @@ interface ResponseErrorOptions {
 
 /**
  * Response contained an error code
+ *
+ * @public
  */
 export class ResponseError extends RedsysError {
   code: number | undefined;

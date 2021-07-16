@@ -5,44 +5,44 @@ import {
 } from './output-params';
 
 import {
-  parsedSoapNotification,
+  deserializedSoapNotification,
   formattedSoapNotification
 } from '../../test/fixtures/formatters/soap-notification';
 
 import {
-  parsedRestNotification,
+  deserializedRestNotification,
   formattedRestNotification
 } from '../../test/fixtures/formatters/rest-notification';
 
 import {
-  parsedWebServiceResponseParams,
+  deserializedWebServiceResponseParams,
   formattedWebServiceResponse
 } from '../../test/fixtures/formatters/web-service-response';
 
 import {
-  parsedWebServiceResponseWithCCParams,
+  deserializedWebServiceResponseWithCCParams,
   formattedWebServiceResponseWithCC
 } from '../../test/fixtures/formatters/web-service-response-with-cc';
 
 describe('Output parameters formatter', () => {
   describe('Scenarios', () => {
     it('should format soap notification', () => {
-      const formattedParams = soapNotificationOutputFormatter(parsedSoapNotification.Request);
+      const formattedParams = soapNotificationOutputFormatter(deserializedSoapNotification.Request);
       expect(formattedParams).toEqual(formattedSoapNotification);
     });
 
     it('should format redirect response', () => {
-      const formattedParams = restNotificationOutputFormatter(parsedRestNotification);
+      const formattedParams = restNotificationOutputFormatter(deserializedRestNotification);
       expect(formattedParams).toEqual(formattedRestNotification);
     });
 
     it('should format web service response', () => {
-      const formattedParams = websocketOutputFormatter(parsedWebServiceResponseParams);
+      const formattedParams = websocketOutputFormatter(deserializedWebServiceResponseParams);
       expect(formattedParams).toEqual(formattedWebServiceResponse);
     });
 
     it('should format web service response with credit card', () => {
-      const formattedParams = websocketOutputFormatter(parsedWebServiceResponseWithCCParams);
+      const formattedParams = websocketOutputFormatter(deserializedWebServiceResponseWithCCParams);
       expect(formattedParams).toEqual(formattedWebServiceResponseWithCC);
     });
   });

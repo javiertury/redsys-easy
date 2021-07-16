@@ -16,8 +16,8 @@ import type {
 } from 'redsys-easy';
 
 import type {
-  EMV3DSv2ChallengeSolutionNotificationOutputParams
-} from '../../../src/types/emv3ds-params';
+  ThreeDSv2ChallengeSolutionNotificationOutputParams
+} from '../../../src/types/3ds-params';
 
 import {
   encodePostParams
@@ -27,8 +27,8 @@ import {
   createChallengeFinalForm,
   extractChallengeVariables,
   createThreeDSv2ChallengeNotificationFromBody,
-  assertEMV3DSv2CardConfig,
-  assertEMV3DSv2WithMethodCardConfig,
+  assert3DSv2CardConfig,
+  assert3DSv2WithMethodCardConfig,
   assert3DSv2ChallengeRequest
 } from '../3ds';
 
@@ -99,7 +99,7 @@ describe('Rest 3DS v2.1 challenge', () => {
   });
 
   it('should execute 3DSMethod', async () => {
-    assertEMV3DSv2WithMethodCardConfig(infoResult);
+    assert3DSv2WithMethodCardConfig(infoResult);
     const form = create3DSMethodForm(infoResult.Ds_EMV3DS, threeDS.methodURL);
 
     // Fetch 3DSMethod page
@@ -123,7 +123,7 @@ describe('Rest 3DS v2.1 challenge', () => {
   let challengeRequestResult: RestTrataPeticionOutputParams | undefined;
 
   it('should obtain challenge url', async () => {
-    assertEMV3DSv2CardConfig(infoResult);
+    assert3DSv2CardConfig(infoResult);
 
     const params = {
       ...baseParams,
@@ -155,7 +155,7 @@ describe('Rest 3DS v2.1 challenge', () => {
     });
   });
 
-  let challengeSolution: EMV3DSv2ChallengeSolutionNotificationOutputParams;
+  let challengeSolution: ThreeDSv2ChallengeSolutionNotificationOutputParams;
 
   it('should solve challenge', async () => {
     assert3DSv2ChallengeRequest(challengeRequestResult);

@@ -1,6 +1,6 @@
 import {
   serializeWebServiceRequest,
-  parseWebServiceResponse
+  deserializeWebServiceResponse
 } from './web-service-serialization';
 
 import {
@@ -10,12 +10,12 @@ import {
 
 import {
   serializedWebServiceResponseParams,
-  parsedWebServiceResponse
+  deserializedWebServiceResponse
 } from '../../test/fixtures/soap/web-service-response';
 
 import {
   serializedWebServiceErrorResponseParams,
-  parsedWebServiceErrorResponse
+  deserializedWebServiceErrorResponse
 } from '../../test/fixtures/soap/web-service-error-response';
 
 describe('SOAP Web Service serialization', () => {
@@ -24,13 +24,13 @@ describe('SOAP Web Service serialization', () => {
     expect(serializedParams).toEqual(serializedWebServiceRequestParams);
   });
 
-  it('should parse merchant parameters', () => {
-    const parsedParams = parseWebServiceResponse(serializedWebServiceResponseParams);
-    expect(parsedParams).toEqual(parsedWebServiceResponse);
+  it('should deserialize merchant parameters', () => {
+    const deserializedParams = deserializeWebServiceResponse(serializedWebServiceResponseParams);
+    expect(deserializedParams).toEqual(deserializedWebServiceResponse);
   });
 
-  it('should parse merchant parameters from an error response', () => {
-    const parsedParams = parseWebServiceResponse(serializedWebServiceErrorResponseParams);
-    expect(parsedParams).toEqual(parsedWebServiceErrorResponse);
+  it('should deserialize merchant parameters from an error response', () => {
+    const deserializedParams = deserializeWebServiceResponse(serializedWebServiceErrorResponseParams);
+    expect(deserializedParams).toEqual(deserializedWebServiceErrorResponse);
   });
 });

@@ -13,10 +13,10 @@ export const serializeWebServiceRequest = (requestParams: unknown): string => {
   return js2xml.parse(datosEntrada) as string;
 };
 
-export const parseWebServiceResponse = (xmlResponse: string): ResponseXML['RETORNOXML'] => {
-  const parsedResponse = xmlParser.parse(xmlResponse, { parseNodeValue: false }) as ResponseXML | null | undefined;
-  if (typeof parsedResponse !== 'object' || parsedResponse == null) {
+export const deserializeWebServiceResponse = (xmlResponse: string): ResponseXML['RETORNOXML'] => {
+  const deserializedResponse = xmlParser.parse(xmlResponse, { parseNodeValue: false }) as ResponseXML | null | undefined;
+  if (typeof deserializedResponse !== 'object' || deserializedResponse == null) {
     throw new ParseError('Cannot parse notification payload');
   }
-  return parsedResponse.RETORNOXML;
+  return deserializedResponse.RETORNOXML;
 };

@@ -6,7 +6,7 @@ import {
 } from './errors';
 
 import {
-  parseAndVerifyJSONResponse,
+  deserializeAndVerifyJSONResponse,
   serializeAndSignJSONRequest
 } from './rest/json';
 
@@ -16,7 +16,7 @@ import {
 } from './soap/web-service';
 
 import {
-  parseAndVerifySoapNotification,
+  deserializeAndVerifySoapNotification,
   serializeAndSignSoapNotificationResponse
 } from './soap/notification';
 
@@ -25,8 +25,8 @@ import {
 } from './rest/requests';
 
 import type {
-  ResponseJSON,
-  SHA256SignedJSONParameters
+  ResponseJSONSuccess,
+  RedirectForm
 } from './types/api';
 
 import type {
@@ -44,6 +44,11 @@ import type {
   SoapNotificationOutputParams
 } from './types/output-params';
 
+/**
+ * URLs to configure the API
+ *
+ * @public
+ */
 export interface UrlsConfig {
   redirect: string
   webserviceV2: string
@@ -51,6 +56,11 @@ export interface UrlsConfig {
   restIniciaPeticion: string
 }
 
+/**
+ * Redsys production urls
+ *
+ * @public
+ */
 export const PRODUCTION_URLS: UrlsConfig = {
   redirect: 'https://sis.redsys.es/sis/realizarPago',
   webserviceV2: 'https://sis.redsys.es/sis/services/SerClsWSEntradaV2/wsdl/SerClsWSEntradaV2.wsdl',
@@ -58,6 +68,11 @@ export const PRODUCTION_URLS: UrlsConfig = {
   restIniciaPeticion: 'https://sis.redsys.es/sis/rest/iniciaPeticionREST'
 };
 
+/**
+ * Redsys sandbox urls
+ *
+ * @public
+ */
 export const SANDBOX_URLS: UrlsConfig = {
   redirect: 'https://sis-t.redsys.es:25443/sis/realizarPago',
   webserviceV2: 'https://sis-t.redsys.es:25443/sis/services/SerClsWSEntradaV2/wsdl/SerClsWSEntradaV2.wsdl',
@@ -65,19 +80,20 @@ export const SANDBOX_URLS: UrlsConfig = {
   restIniciaPeticion: 'https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST'
 };
 
+/**
+ * Redsys API settings
+ *
+ * @public
+ */
 export interface RedsysConfig {
   secretKey: string
   urls: UrlsConfig
 }
 
-export interface RedirectPetition {
-  url: string
-  body: SHA256SignedJSONParameters
-}
-
 /**
  * Creates Redsys API functions
  *
+ * @remarks
  * These API functions are anonymous and can be wrapped by formatters and processors
  *
  * @public
@@ -120,11 +136,11 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   };
 
   /**
-   * Creates the parameters needed for a redirection
+   * Creates the parameters needed for a redirect form
    */
   const createRedirectForm = (
     paramsInput: RedirectInputParams
-  ): RedirectPetition => {
+  ): RedirectForm => {
     const body = serializeAndSignJSONRequest(config.secretKey, paramsInput);
 
     return {
@@ -134,13 +150,14 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   };
 
   /**
-   * Processes a JSON notification
+   * Processes a JSON REST notification
    */
-  const processNotification = (
+  const processRestNotification = (
     /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
-    body: ResponseJSON
+    body: ResponseJSONSuccess
   ): RestNotificationOutputParams => {
-    return parseAndVerifyJSONResponse<RestNotificationOutputParams>(config.secretKey, body);
+    // A notification can't contain a gateway error, it didn't initiate the request
+    return deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(config.secretKey, body);
   };
 
   let wsClientPromise: Promise<Client> | undefined;
@@ -169,13 +186,13 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   };
 
   /**
-   * Parses and verifies a SOAP notification
+   * Parses and verifies the body of a SOAP notification
    */
   const processSoapNotification = (
     /** SOAP notification as a XML string */
     xml: string
   ): SoapNotificationOutputParams => {
-    return parseAndVerifySoapNotification(config.secretKey, xml);
+    return deserializeAndVerifySoapNotification(config.secretKey, xml);
   };
 
   /**
@@ -197,7 +214,7 @@ export const createRedsysAPI = (config: RedsysConfig) => {
     restIniciaPeticion,
     restTrataPeticion,
     createRedirectForm,
-    processNotification,
+    processRestNotification,
     wsPetition,
     processSoapNotification,
     createSoapNotificationAnswer

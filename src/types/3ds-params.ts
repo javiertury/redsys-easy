@@ -1,4 +1,4 @@
-export interface EMV3DSPhone {
+export interface ThreeDSPhone {
   /** Country prefix number */
   cc: string
 
@@ -6,7 +6,7 @@ export interface EMV3DSPhone {
   subscriber: string
 }
 
-export interface RequestorAuthenticationInfo {
+export interface ThreeDSRequestorAuthenticationInfo {
   /** Authentication Data */
   threeDSReqAuthData: string
 
@@ -17,7 +17,7 @@ export interface RequestorAuthenticationInfo {
   threeDSReqAuthTimestamp: string
 }
 
-export interface RequestorPriorAuthenticationInfo {
+export interface ThreeDSRequestorPriorAuthenticationInfo {
   /** Reference */
   threeDSReqPriorRef?: string
 
@@ -28,7 +28,7 @@ export interface RequestorPriorAuthenticationInfo {
   threeDSReqPriorAuthTimestamp?: string
 }
 
-export interface BaseEMV3DSAuthenticationDataParams {
+export interface BaseThreeDSAuthenticationDataParams {
   /** 3DSecure protocol version */
   protocolVersion: '1.0.2' | '2.1.0' | '2.2.0'
 
@@ -190,13 +190,13 @@ export interface BaseEMV3DSAuthenticationDataParams {
   email?: string
 
   /** Account landline phone number */
-  homePhone?: EMV3DSPhone
+  homePhone?: ThreeDSPhone
 
   /** Account mobile phone number */
-  mobilePhone?: EMV3DSPhone
+  mobilePhone?: ThreeDSPhone
 
   /** Account work phone number */
-  workPhone?: EMV3DSPhone
+  workPhone?: ThreeDSPhone
 
   /** Merchant risk indicator, json */
   merchantRiskIndicator?: {
@@ -259,10 +259,10 @@ export interface BaseEMV3DSAuthenticationDataParams {
   shipAddrCountry?: string
 
   /** Authentication information, json */
-  threeDSRequestorAuthenticationInfo?: RequestorAuthenticationInfo
+  threeDSRequestorAuthenticationInfo?: ThreeDSRequestorAuthenticationInfo
 
   /** Previous authentication information, json */
-  threeDSRequestorPriorAuthenticationInfo?: RequestorPriorAuthenticationInfo
+  threeDSRequestorPriorAuthenticationInfo?: ThreeDSRequestorPriorAuthenticationInfo
 }
 
 /**
@@ -273,7 +273,7 @@ export interface BaseEMV3DSAuthenticationDataParams {
  *
  * @example
  * ```
- * const obtain3DSBrowserInfo = (): EMV3DSBrowserClientInfo => {
+ * const obtain3DSBrowserInfo = (): ThreeDSBrowserClientInfo => {
  *   return {
  *     browserLanguage: navigator.language,
  *     browserColorDepth: screen.colorDepth.toString(),
@@ -285,9 +285,10 @@ export interface BaseEMV3DSAuthenticationDataParams {
  * };
  * ```
  *
+ * @public
  */
-export type EMV3DSBrowserClientInfo = Pick<
-  BaseEMV3DSAuthenticationDataParams,
+export type ThreeDSBrowserClientInfo = Pick<
+  BaseThreeDSAuthenticationDataParams,
   | 'browserLanguage'
   | 'browserColorDepth'
   | 'browserScreenHeight'
@@ -300,12 +301,12 @@ export type EMV3DSBrowserClientInfo = Pick<
  * Input
  */
 
-export interface EMV3DSPreAuthInputParams {
+export interface ThreeDSPreAuthInputParams {
   threeDSInfo: 'CardData'
 }
 
-export interface EMV3DSv1AuthDataInputParams extends Pick<
-  BaseEMV3DSAuthenticationDataParams,
+export interface ThreeDSv1AuthDataInputParams extends Pick<
+  BaseThreeDSAuthenticationDataParams,
   | 'protocolVersion'
   | 'threeDSInfo'
   | 'browserAcceptHeader'
@@ -315,33 +316,33 @@ export interface EMV3DSv1AuthDataInputParams extends Pick<
   threeDSInfo: 'AuthenticationData'
 }
 
-export interface EMV3DSv2AuthDataInputParams extends BaseEMV3DSAuthenticationDataParams {
+export interface ThreeDSv2AuthDataInputParams extends BaseThreeDSAuthenticationDataParams {
   protocolVersion: '2.1.0' | '2.2.0'
   threeDSInfo: 'AuthenticationData'
 }
 
-export interface EMV3DSv1ChallengeResponseInputParams {
+export interface ThreeDSv1ChallengeResponseInputParams {
   protocolVersion: '1.0.2'
   threeDSInfo: 'ChallengeResponse'
   PARes: string
   MD: string
 }
 
-export interface EMV3DSv2ChallengeResponseInputParams {
+export interface ThreeDSv2ChallengeResponseInputParams {
   protocolVersion: '2.1.0' | '2.2.0'
   threeDSInfo: 'ChallengeResponse'
   cres: string
 }
 
-/** EMV 3DSecure input parameters */
-export type EMV3DSInputParams =
-  | EMV3DSPreAuthInputParams
-  | EMV3DSv1AuthDataInputParams
-  | EMV3DSv2AuthDataInputParams
-  | EMV3DSv1ChallengeResponseInputParams
-  | EMV3DSv2ChallengeResponseInputParams;
+/** 3D Secure input parameters */
+export type ThreeDSInputParams =
+  | ThreeDSPreAuthInputParams
+  | ThreeDSv1AuthDataInputParams
+  | ThreeDSv2AuthDataInputParams
+  | ThreeDSv1ChallengeResponseInputParams
+  | ThreeDSv2ChallengeResponseInputParams;
 
-export type EMV3DSRedirectInputParams = Omit<BaseEMV3DSAuthenticationDataParams,
+export type ThreeDSRedirectInputParams = Omit<BaseThreeDSAuthenticationDataParams,
   | 'protocolVersion'
   | 'threeDSInfo'
   | 'notificationURL'
@@ -363,26 +364,26 @@ export type EMV3DSRedirectInputParams = Omit<BaseEMV3DSAuthenticationDataParams,
  * Output
  */
 
-export interface EMV3DSNo3DSv2PreAuthOutputParams {
+export interface ThreeDSv1PreAuthOutputParams {
   protocolVersion: 'NO_3DS_v2'
   threeDSInfo: 'CardConfiguration'
 }
 
-export interface EMV3DSv2PreAuthWithoutMethodOutputParams {
+export interface ThreeDSv2PreAuthWithoutMethodOutputParams {
   protocolVersion: '2.1.0' | '2.2.0'
   threeDSInfo: 'CardConfiguration'
   threeDSServerTransID: string
 }
 
-export interface EMV3DSv2PreAuthWithMethodOutputParams extends EMV3DSv2PreAuthWithoutMethodOutputParams {
+export interface ThreeDSv2PreAuthWithMethodOutputParams extends ThreeDSv2PreAuthWithoutMethodOutputParams {
   threeDSMethodURL: string
 }
 
-export type EMV3DSv2PreAuthOutputParams =
-  | EMV3DSv2PreAuthWithoutMethodOutputParams
-  | EMV3DSv2PreAuthWithMethodOutputParams;
+export type ThreeDSv2PreAuthOutputParams =
+  | ThreeDSv2PreAuthWithoutMethodOutputParams
+  | ThreeDSv2PreAuthWithMethodOutputParams;
 
-export interface EMV3DSv1ChallengeOutputParams {
+export interface ThreeDSv1ChallengeOutputParams {
   protocolVersion: '1.0.2'
   threeDSInfo: 'ChallengeRequest'
   acsURL: string
@@ -390,36 +391,52 @@ export interface EMV3DSv1ChallengeOutputParams {
   PAReq: string
 }
 
-export interface EMV3DSv2ChallengeOutputParams {
+export interface ThreeDSv2ChallengeOutputParams {
   protocolVersion: '2.1.0' | '2.2.0'
   threeDSInfo: 'ChallengeRequest'
   acsURL: string
   creq: string
 }
 
-/** EMV 3DSecure output parameters */
-export type EMV3DSOutputParams =
-  | EMV3DSNo3DSv2PreAuthOutputParams
-  | EMV3DSv2PreAuthOutputParams
-  | EMV3DSv1ChallengeOutputParams
-  | EMV3DSv2ChallengeOutputParams;
+/**
+ * 3D Secure output parameters
+ */
+export type ThreeDSOutputParams =
+  | ThreeDSv1PreAuthOutputParams
+  | ThreeDSv2PreAuthOutputParams
+  | ThreeDSv1ChallengeOutputParams
+  | ThreeDSv2ChallengeOutputParams;
 
-/** EMV 3DSecure v2 challenge solution parameters */
-export interface EMV3DSv2ChallengeSolutionNotificationOutputParams {
+/**
+ * 3D Secure v2 challenge solution parameters
+ */
+export interface ThreeDSv2ChallengeSolutionNotificationOutputParams {
   cres: string
 }
 
-/** EMV 3DSecure v1 challenge solution parameters */
-export interface EMV3DSv1ChallengeSolutionNotificationOutputParams {
+/**
+ * 3D Secure v1 challenge solution parameters
+ */
+export interface ThreeDSv1ChallengeSolutionNotificationOutputParams {
   MD: string
   PaRes: string
 }
 
+/**
+ * 3DS v2 method data
+ *
+ * @public
+ */
 export interface ThreeDSMethodData {
   threeDSServerTransID: string
   threeDSMethodNotificationURL: string
 }
 
+/**
+ * 3DS v2 method form
+ *
+ * @public
+ */
 export interface ThreeDSMethodForm {
   url: string
   body: {
@@ -431,6 +448,11 @@ export interface ThreeDSMethodForm {
  * 3DS Challenge form
  */
 
+/**
+ * 3DS v1 challenge form
+ *
+ * @public
+ */
 export interface ThreeDSv1ChallengeForm {
   url: string
   body: {
@@ -443,10 +465,29 @@ export interface ThreeDSv1ChallengeForm {
   }
 }
 
+/**
+ * 3DS v2 challenge form
+ *
+ * @public
+ */
 export interface ThreeDSv2ChallengeForm {
   url: string
   body: {
     /** Challenge request, JSON that is base64 encoded */
     creq: string
   }
+}
+
+/**
+ * Contents of the `cres` field of a 3DS v2 challenge
+ *
+ * @public
+ */
+export interface ThreeDSCres {
+  // Even for 3DS v2.2, the version seems to be fixed at 2.1
+  messageVersion: '2.1.0' | '2.2.0'
+  threeDSServerTransID: string
+  acsTransID: string
+  messageType: 'CRes'
+  transStatus: 'Y' | 'N'
 }

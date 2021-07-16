@@ -17,7 +17,7 @@ import {
   encodePostParams
 } from '../utils';
 import {
-  assertEMV3DSv2WithMethodCardConfig
+  assert3DSv2WithMethodCardConfig
 } from '../3ds';
 
 import {
@@ -87,7 +87,7 @@ describe('Rest 3DS v2.2 frictionless without 3ds url', () => {
   });
 
   it('should execute 3DSMethod', async () => {
-    assertEMV3DSv2WithMethodCardConfig(infoResult);
+    assert3DSv2WithMethodCardConfig(infoResult);
     const form = create3DSMethodForm(infoResult.Ds_EMV3DS, threeDS.methodURL);
 
     // Fetch 3DSMethod page
@@ -109,7 +109,7 @@ describe('Rest 3DS v2.2 frictionless without 3ds url', () => {
   });
 
   it('should send 3DS auth data and transact', async () => {
-    assertEMV3DSv2WithMethodCardConfig(infoResult);
+    assert3DSv2WithMethodCardConfig(infoResult);
 
     const params = {
       ...baseParams,

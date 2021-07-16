@@ -6,7 +6,7 @@ export const serializedJSONResponse = {
   Ds_Signature: 'IoGNijSDZGbk+qChH2iqRCg6jZVl3Ee6Ha/WBM4wgto='
 };
 
-export const parsedJSONResponse = {
+export const deserializedJSONResponse = {
   Ds_Amount: '145',
   Ds_Currency: '978',
   Ds_Order: '1446068581',

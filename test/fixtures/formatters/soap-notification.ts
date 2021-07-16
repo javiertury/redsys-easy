@@ -1,10 +1,10 @@
 import {
-  parsedSoapNotification
+  deserializedSoapNotification
 } from '../soap/redirect-notification';
 
 export {
   soapNotificationMerchantKey,
-  parsedSoapNotification,
+  deserializedSoapNotification,
   serializedAndSignedSoapNotificationParams
 } from '../soap/redirect-notification';
 
@@ -24,5 +24,5 @@ export const formattedSoapNotification = {
   merchantData: 'Alfombrilla para raton',
   transactionType: '1',
   lang: 'es',
-  raw: parsedSoapNotification.Request
+  raw: deserializedSoapNotification.Request
 };

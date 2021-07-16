@@ -20,16 +20,16 @@ import {
 
 import {
   webServiceResponseMerchantKey,
-  parsedWebServiceResponse
+  deserializedWebServiceResponse
 } from '../../test/fixtures/soap/web-service-response';
 
 import {
   webServiceResponseWithCCMerchantKey,
-  parsedWebServiceResponseWithCC
+  deserializedWebServiceResponseWithCC
 } from '../../test/fixtures/soap/web-service-response-with-cc';
 
 import {
-  parsedWebServiceErrorResponse
+  deserializedWebServiceErrorResponse
 } from '../../test/fixtures/soap/web-service-error-response';
 
 import {
@@ -38,30 +38,30 @@ import {
 
 const verifyWebServiceSuccessResponseSpec = ({
   merchantKey,
-  parsedResponse
+  deserializedResponse
 }: {
   merchantKey: string
-  parsedResponse: ResponseXMLInnerSuccess
+  deserializedResponse: ResponseXMLInnerSuccess
 }): void => {
   it('should verify legit response signature', () => {
     expect(
-      () => verifyWebServiceResponse(merchantKey, parsedResponse)
+      () => verifyWebServiceResponse(merchantKey, deserializedResponse)
     ).not.toThrowError();
   });
 
   it('should verify response if it contains an error code', () => {
     expect(
-      () => verifyWebServiceResponse(merchantKey, parsedWebServiceErrorResponse)
+      () => verifyWebServiceResponse(merchantKey, deserializedWebServiceErrorResponse)
     ).not.toThrowError();
 
     expect(
-      () => verifyWebServiceResponse(incorrectMerchantKey, parsedWebServiceErrorResponse)
+      () => verifyWebServiceResponse(incorrectMerchantKey, deserializedWebServiceErrorResponse)
     ).not.toThrowError();
   });
 
   it('should fail to verify response if merchant key is incorrect', () => {
     expect(
-      () => verifyWebServiceResponse(incorrectMerchantKey, parsedResponse)
+      () => verifyWebServiceResponse(incorrectMerchantKey, deserializedResponse)
     ).toThrowError(new ParseError('Invalid signature'));
   });
 
@@ -69,9 +69,9 @@ const verifyWebServiceSuccessResponseSpec = ({
     const verify = () => verifyWebServiceResponse(
       merchantKey,
       {
-        ...parsedResponse,
+        ...deserializedResponse,
         OPERACION: {
-          ...parsedResponse.OPERACION,
+          ...deserializedResponse.OPERACION,
           Ds_Signature: 'RTcH98KdGhGJ3hTKsXJCvJFO9KjcIYgj1oxwSSC+yw0='
         }
       }
@@ -88,11 +88,11 @@ describe('SOAP WebService signature', () => {
 
   it('should verify response if it contains an error code', () => {
     expect(
-      () => verifyWebServiceResponse(webServiceResponseMerchantKey, parsedWebServiceErrorResponse)
+      () => verifyWebServiceResponse(webServiceResponseMerchantKey, deserializedWebServiceErrorResponse)
     ).not.toThrowError();
 
     expect(
-      () => verifyWebServiceResponse(incorrectMerchantKey, parsedWebServiceErrorResponse)
+      () => verifyWebServiceResponse(incorrectMerchantKey, deserializedWebServiceErrorResponse)
     ).not.toThrowError();
   });
 
@@ -100,14 +100,14 @@ describe('SOAP WebService signature', () => {
   describe('Response without credit card data', () => {
     verifyWebServiceSuccessResponseSpec({
       merchantKey: webServiceResponseMerchantKey,
-      parsedResponse: parsedWebServiceResponse
+      deserializedResponse: deserializedWebServiceResponse
     });
   });
 
   describe('Response with credit card data', () => {
     verifyWebServiceSuccessResponseSpec({
       merchantKey: webServiceResponseWithCCMerchantKey,
-      parsedResponse: parsedWebServiceResponseWithCC
+      deserializedResponse: deserializedWebServiceResponseWithCC
     });
   });
 });

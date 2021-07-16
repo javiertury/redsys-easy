@@ -22,8 +22,8 @@ import {
 } from '../3ds';
 
 import type {
-  EMV3DSv1ChallengeSolutionNotificationOutputParams
-} from '../../../src/types/emv3ds-params';
+  ThreeDSv1ChallengeSolutionNotificationOutputParams
+} from '../../../src/types/3ds-params';
 
 import {
   clientPostHeaders
@@ -119,7 +119,7 @@ describe('Rest 3DS v1', () => {
     });
   });
 
-  let challengeSolution: EMV3DSv1ChallengeSolutionNotificationOutputParams | undefined;
+  let challengeSolution: ThreeDSv1ChallengeSolutionNotificationOutputParams | undefined;
 
   it('should solve challenge', async () => {
     assert3DSv1ChallengeRequest(challengeRequestResult);

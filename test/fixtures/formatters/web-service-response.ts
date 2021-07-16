@@ -1,11 +1,11 @@
 import {
-  parsedWebServiceResponseParams
+  deserializedWebServiceResponseParams
 } from '../soap/web-service-response';
 
 export {
   webServiceResponseMerchantKey,
   serializedWebServiceResponse,
-  parsedWebServiceResponseParams
+  deserializedWebServiceResponseParams
 } from '../soap/web-service-response';
 
 export const formattedWebServiceResponse = {
@@ -25,5 +25,5 @@ export const formattedWebServiceResponse = {
   identifier: 'e1996507292293e8db292e5542992cd237861dbd',
   cardCountry: 'es',
   cardBrand: 'VISA',
-  raw: parsedWebServiceResponseParams
+  raw: deserializedWebServiceResponseParams
 };

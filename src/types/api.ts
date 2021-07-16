@@ -17,6 +17,11 @@ export interface ParsedSoapNotifiation {
   }
 }
 
+/**
+ * Body of a 3DS v1 challenge completion notification
+ *
+ * @public
+ */
 export interface ThreeDSv1ChallengeNotificationBody {
   /** Payment authentication Request, XML that is gzip compressed and base64 encoded */
   PaRes: string
@@ -24,10 +29,20 @@ export interface ThreeDSv1ChallengeNotificationBody {
   MD: string
 }
 
+/**
+ * Body of a 3DS v2 method completion notification
+ *
+ * @public
+ */
 export interface ThreeDSv2MethodNotificationBody {
   threeDSMethodData: string
 }
 
+/**
+ * Body of a 3DS v2 challenge completion notification
+ *
+ * @public
+ */
 export interface ThreeDSv2ChallengeNotificationBody {
   /** Challenge response, JSON that is base64 encoded */
   cres: string
@@ -52,15 +67,28 @@ export interface ResponseXML {
   RETORNOXML: ResponseXMLInnerSuccess | ResponseXMLInnerFailure
 }
 
-export interface ResponseJSON {
+/**
+ * Body of a successful redsys JSON HTTP response or notification
+ *
+ * @public
+ */
+export interface ResponseJSONSuccess {
   Ds_SignatureVersion: string
   Ds_Signature: string
   Ds_MerchantParameters: string
 }
 
+/**
+ * Body of a failed redsys JSON HTTP response
+ */
 export interface ResponseJSONError {
   errorCode: string
 }
+
+/**
+ * Body of a redsys JSON HTTP response
+ */
+export type ResponseJSON = ResponseJSONSuccess | ResponseJSONError;
 
 /**
  * SHA256 signed JSON request parameters
@@ -86,4 +114,14 @@ export interface WebServiceTrataPeticionTrait {
   trataPeticionAsync: (input: { datoEntrada: string }) => Promise<[{
     trataPeticionReturn: string
   }]>
+}
+
+/**
+ * Redirect form
+ *
+ * @public
+ */
+export interface RedirectForm {
+  url: string
+  body: SHA256SignedJSONParameters
 }

@@ -24,7 +24,7 @@ export const serializedWebServiceResponseWithCCParams =
 
 export const webServiceResponseWithCCSignedString = '14514498215459990088819780000454881204940000400';
 
-export const parsedWebServiceResponseWithCCParams = {
+export const deserializedWebServiceResponseWithCCParams = {
   Ds_Amount: '145',
   Ds_Currency: '978',
   Ds_Order: '1449821545',
@@ -41,9 +41,9 @@ export const parsedWebServiceResponseWithCCParams = {
   Ds_Card_Country: '724'
 } as const;
 
-export const parsedWebServiceResponseWithCC = {
+export const deserializedWebServiceResponseWithCC = {
   CODIGO: '0',
-  OPERACION: parsedWebServiceResponseWithCCParams
+  OPERACION: deserializedWebServiceResponseWithCCParams
 } as const;
 
 export const webServiceResponseWithCC3DESOrder = 'rRfWcxtJ9fU/TyqCTXo8GQ==';

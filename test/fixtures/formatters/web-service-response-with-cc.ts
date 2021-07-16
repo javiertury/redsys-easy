@@ -1,9 +1,9 @@
 import {
-  parsedWebServiceResponseWithCCParams
+  deserializedWebServiceResponseWithCCParams
 } from '../soap/web-service-response-with-cc';
 
 export {
-  parsedWebServiceResponseWithCCParams
+  deserializedWebServiceResponseWithCCParams
 } from '../soap/web-service-response-with-cc';
 
 export const formattedWebServiceResponseWithCC = {
@@ -19,5 +19,5 @@ export const formattedWebServiceResponseWithCC = {
   lang: 'es',
   cardNumber: '4548812049400004',
   cardCountry: 'es',
-  raw: parsedWebServiceResponseWithCCParams
+  raw: deserializedWebServiceResponseWithCCParams
 };

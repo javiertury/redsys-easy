@@ -1,12 +1,12 @@
 import type {
-  ResponseJSON,
+  ResponseJSONSuccess,
   CommonRawRequestParams,
   CommonRawResponseParams,
   SHA256SignedJSONParameters
 } from '../types/api';
 
 import {
-  parseJSONMerchantParams,
+  deserializeJSONMerchantParams,
   serializeJSONMerchantParams
 } from './json-serialization';
 
@@ -15,11 +15,11 @@ import {
   sha256SignJSONRequest
 } from './json-sha256-signature';
 
-export const parseAndVerifyJSONResponse = <ResponseParams extends CommonRawResponseParams>(
+export const deserializeAndVerifyJSONResponse = <ResponseParams extends CommonRawResponseParams>(
   merchantKey: string,
-  response: ResponseJSON
+  response: ResponseJSONSuccess
 ): ResponseParams => {
-  const params = parseJSONMerchantParams<ResponseParams>(response.Ds_MerchantParameters);
+  const params = deserializeJSONMerchantParams<ResponseParams>(response.Ds_MerchantParameters);
   sha256VerifyJSONResponse(merchantKey, response, params);
   return params;
 };

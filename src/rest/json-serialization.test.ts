@@ -1,11 +1,11 @@
 import {
   serializeJSONMerchantParams,
-  parseJSONMerchantParams
+  deserializeJSONMerchantParams
 } from './json-serialization';
 
 import {
   serializedRestNotification,
-  parsedRestNotification
+  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect-notification';
 
 import {
@@ -22,12 +22,12 @@ import {
   iniciaPeticionRequest as iniciaPeticionV1Request,
   serializedAndSignedIniciaPeticionRequest as serializedAndSignedIniciaPeticionV1Request,
   searializedInicaPeticionResponse as searializedInicaPeticionV1Response,
-  parsedIniciaPeticionResponse as parsedIniciaPeticionV1Response
+  deserializedIniciaPeticionResponse as deserializedIniciaPeticionV1Response
 } from '../../test/fixtures/rest/3ds-v1';
 
 import {
   serializedJSONResponse,
-  parsedJSONResponse
+  deserializedJSONResponse
 } from '../../test/fixtures/rest/json-response';
 
 describe('REST JSON serialization', () => {
@@ -45,17 +45,17 @@ describe('REST JSON serialization', () => {
     ).toEqual(serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters);
   });
 
-  it('should parse merchant parameters', () => {
+  it('should deserialize merchant parameters', () => {
     expect(
-      parseJSONMerchantParams(serializedRestNotification.Ds_MerchantParameters)
-    ).toEqual(parsedRestNotification);
+      deserializeJSONMerchantParams(serializedRestNotification.Ds_MerchantParameters)
+    ).toEqual(deserializedRestNotification);
 
     expect(
-      parseJSONMerchantParams(serializedJSONResponse.Ds_MerchantParameters)
-    ).toEqual(parsedJSONResponse);
+      deserializeJSONMerchantParams(serializedJSONResponse.Ds_MerchantParameters)
+    ).toEqual(deserializedJSONResponse);
 
     expect(
-      parseJSONMerchantParams(searializedInicaPeticionV1Response.Ds_MerchantParameters)
-    ).toEqual(parsedIniciaPeticionV1Response);
+      deserializeJSONMerchantParams(searializedInicaPeticionV1Response.Ds_MerchantParameters)
+    ).toEqual(deserializedIniciaPeticionV1Response);
   });
 });

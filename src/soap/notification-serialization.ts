@@ -10,6 +10,6 @@ export const serializeSoapNotificationResponse = ({ allow: allowOperation }: Soa
   return `<Response Ds_Version="0.0"><Ds_Response_Merchant>${answer}</Ds_Response_Merchant></Response>`;
 };
 
-export const parseSoapNotification = (xml: string): ParsedSoapNotifiation['Message'] => {
+export const deserializeSoapNotification = (xml: string): ParsedSoapNotifiation['Message'] => {
   return (xmlParser.parse(xml, { parseNodeValue: false }) as ParsedSoapNotifiation).Message;
 };

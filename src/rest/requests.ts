@@ -8,13 +8,13 @@ import {
 import type {
   CommonRawRequestParams,
   CommonRawResponseParams,
-  ResponseJSON,
+  ResponseJSONSuccess,
   ResponseJSONError
 } from '../types/api';
 
 import {
   serializeAndSignJSONRequest,
-  parseAndVerifyJSONResponse
+  deserializeAndVerifyJSONResponse
 } from './json';
 
 export const jsonRequest = async <
@@ -35,7 +35,8 @@ export const jsonRequest = async <
     body: JSON.stringify(payload)
   });
 
-  const responseData = await (response.json() as Promise<ResponseJSON | ResponseJSONError>);
+  const responseData = await (response.json() as Promise<ResponseJSONSuccess | ResponseJSONError>);
+
   if (!response.ok) {
     throw new HTTPError({
       code: response.status,
@@ -50,5 +51,5 @@ export const jsonRequest = async <
     });
   }
 
-  return parseAndVerifyJSONResponse<ResponseParams>(merchantKey, responseData);
+  return deserializeAndVerifyJSONResponse<ResponseParams>(merchantKey, responseData);
 };

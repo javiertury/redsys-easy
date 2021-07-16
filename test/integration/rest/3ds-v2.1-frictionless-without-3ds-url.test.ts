@@ -11,7 +11,7 @@ import type {
 } from 'redsys-easy';
 
 import {
-  assertEMV3DSv2CardConfig
+  assert3DSv2CardConfig
 } from '../3ds';
 
 import {
@@ -79,7 +79,7 @@ describe('Rest 3DS v2.1 frictionless', () => {
   });
 
   it('should send 3DS auth data and transact', async () => {
-    assertEMV3DSv2CardConfig(infoResult);
+    assert3DSv2CardConfig(infoResult);
 
     const params = {
       ...baseParams,

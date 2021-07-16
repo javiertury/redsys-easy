@@ -1,21 +1,27 @@
 import base64url from 'base64url';
 
 import type {
-  EMV3DSv1ChallengeOutputParams,
-  EMV3DSv2ChallengeOutputParams,
-  EMV3DSv2PreAuthWithMethodOutputParams,
+  ThreeDSv1ChallengeOutputParams,
+  ThreeDSv2ChallengeOutputParams,
+  ThreeDSv2PreAuthWithMethodOutputParams,
   ThreeDSMethodData,
   ThreeDSMethodForm,
   ThreeDSv1ChallengeForm,
-  ThreeDSv2ChallengeForm
-} from '../types/emv3ds-params';
+  ThreeDSv2ChallengeForm,
+  ThreeDSCres
+} from '../types/3ds-params';
 
 /*
- * 3DS Method form
+ * 3DS method form
  */
 
+/**
+ * Creates parameters for a 3DS method form
+ *
+ * @public
+ */
 export const create3DSMethodForm = (
-  emv3dsParams: Pick<EMV3DSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>,
+  emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>,
   notificationURL: string
 ): ThreeDSMethodForm => {
   const methodData: ThreeDSMethodData = {
@@ -31,8 +37,13 @@ export const create3DSMethodForm = (
   };
 };
 
+/**
+ * Creates parameters for a 3DS v1 challenge form
+ *
+ * @public
+ */
 export const create3DSv1ChallengeForm = (
-  emv3dsV1Challenge: EMV3DSv1ChallengeOutputParams,
+  emv3dsV1Challenge: ThreeDSv1ChallengeOutputParams,
   challengeNotificationUrl: string
 ): ThreeDSv1ChallengeForm => {
   return {
@@ -45,8 +56,13 @@ export const create3DSv1ChallengeForm = (
   };
 };
 
+/**
+ * Creates parameters for a 3DS v2 challenge form
+ *
+ * @public
+ */
 export const create3DSv2ChallengeForm = (
-  emv3dsV2Challenge: EMV3DSv2ChallengeOutputParams
+  emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams
 ): ThreeDSv2ChallengeForm => {
   return {
     url: emv3dsV2Challenge.acsURL,
@@ -58,6 +74,8 @@ export const create3DSv2ChallengeForm = (
 
 /**
  * Deserialize threeDSMethodData
+ *
+ * @public
  */
 export const deserializeThreeDSMethodData = (
   threeDSMethodData: string
@@ -65,18 +83,11 @@ export const deserializeThreeDSMethodData = (
   return JSON.parse(base64url.decode(threeDSMethodData)) as ThreeDSMethodData;
 };
 
-export interface DeserializedCres {
-  // Even for EMV3DS v2.2, the version seems to be fixed at 2.1.0
-  messageVersion: '2.1.0' | '2.2.0'
-  threeDSServerTransID: string
-  acsTransID: string
-  messageType: 'CRes'
-  transStatus: 'Y' | 'N'
-}
-
 /**
- * Deserialize "cres" field
+ * Deserialize `cres` field of a 3DS v2 challenge
+ *
+ * @public
  */
-export const deserializeCres = (cres: string): DeserializedCres => {
-  return JSON.parse(Buffer.from(cres, 'base64').toString('utf8')) as DeserializedCres;
+export const deserializeCres = (cres: string): ThreeDSCres => {
+  return JSON.parse(Buffer.from(cres, 'base64').toString('utf8')) as ThreeDSCres;
 };

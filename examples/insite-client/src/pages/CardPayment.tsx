@@ -13,9 +13,9 @@ import { setRouter } from '../router';
 import { waitForIframeToPostMessage } from '../utils';
 import type { RedsysMessageEvent } from '../types/redsys';
 import { styled } from 'solid-styled-components';
-import type { EMV3DSBrowserClientInfo } from 'redsys-easy';
+import type { ThreeDSBrowserClientInfo } from 'redsys-easy';
 
-const obtain3DSBrowserInfo = (): EMV3DSBrowserClientInfo => {
+const obtain3DSBrowserInfo = (): ThreeDSBrowserClientInfo => {
   return {
     browserLanguage: navigator.language,
     browserColorDepth: screen.colorDepth.toString(),

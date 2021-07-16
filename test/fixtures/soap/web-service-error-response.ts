@@ -35,7 +35,7 @@ export const serializedWebServiceErrorResponse = [
   '<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xmlns:impl=\"http://webservice.sis.sermepa.es\" xmlns:intf=\"http://webservice.sis.sermepa.es\"><soap:Body><impl:trataPeticion xmlns:impl=\"http://webservice.sis.sermepa.es\" xmlns=\"http://webservice.sis.sermepa.es\"><impl:datoEntrada>&lt;REQUEST&gt;&lt;DATOSENTRADA&gt;&lt;DS_MERCHANT_ORDER&gt;0000ijd2d3&lt;/DS_MERCHANT_ORDER&gt;&lt;DS_MERCHANT_MERCHANTCODE&gt;999008881&lt;/DS_MERCHANT_MERCHANTCODE&gt;&lt;DS_MERCHANT_TRANSACTIONTYPE&gt;A&lt;/DS_MERCHANT_TRANSACTIONTYPE&gt;&lt;DS_MERCHANT_TERMINAL&gt;1&lt;/DS_MERCHANT_TERMINAL&gt;&lt;DS_MERCHANT_CURRENCY&gt;978&lt;/DS_MERCHANT_CURRENCY&gt;&lt;DS_MERCHANT_AMOUNT&gt;3350&lt;/DS_MERCHANT_AMOUNT&gt;&lt;DS_MERCHANT_IDENTIFIER&gt;REQUIRED&lt;/DS_MERCHANT_IDENTIFIER&gt;&lt;DS_MERCHANT_PAN&gt;4548812049400004&lt;/DS_MERCHANT_PAN&gt;&lt;DS_MERCHANT_EXPIRYDATE&gt;2012&lt;/DS_MERCHANT_EXPIRYDATE&gt;&lt;DS_MERCHANT_CVV2&gt;123&lt;/DS_MERCHANT_CVV2&gt;&lt;/DATOSENTRADA&gt;&lt;DS_SIGNATUREVERSION&gt;HMAC_SHA256_V1&lt;/DS_SIGNATUREVERSION&gt;&lt;DS_SIGNATURE&gt;luR+88HQ0HF0qpCZX1JbOriyfRiv2KXjMa0jvRxV6i0=&lt;/DS_SIGNATURE&gt;&lt;/REQUEST&gt;</impl:datoEntrada></impl:trataPeticion></soap:Body></soap:Envelope>'
 ] as const;
 
-export const parsedWebServiceErrorResponse = {
+export const deserializedWebServiceErrorResponse = {
   CODIGO: 'SIS0051',
   RECIBIDO: {
     trataPeticion: {

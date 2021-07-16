@@ -1,14 +1,17 @@
 import type { TransactionType } from '../assets/transaction-types';
 
 import type {
-  EMV3DSPreAuthInputParams,
-  EMV3DSv1AuthDataInputParams,
-  EMV3DSv2AuthDataInputParams,
-  EMV3DSv1ChallengeResponseInputParams,
-  EMV3DSv2ChallengeResponseInputParams,
-  EMV3DSRedirectInputParams
-} from './emv3ds-params';
+  ThreeDSPreAuthInputParams,
+  ThreeDSv1AuthDataInputParams,
+  ThreeDSv2AuthDataInputParams,
+  ThreeDSv1ChallengeResponseInputParams,
+  ThreeDSv2ChallengeResponseInputParams,
+  ThreeDSRedirectInputParams
+} from './3ds-params';
 
+/**
+ * Common input parameters
+ */
 export interface BaseInputParams {
   /** Transaction type */
   DS_MERCHANT_TRANSACTIONTYPE: TransactionType
@@ -86,9 +89,14 @@ export interface BaseInputParams {
   DS_MERCHANT_COF_TYPE?: 'I' | 'R' | 'H' | 'E' | 'D' | 'M' | 'N' | 'C'
 }
 
+/**
+ * Input parameters for a redsys redirect request
+ *
+ * @public
+ */
 export interface RedirectInputParams extends BaseInputParams {
   /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: EMV3DSRedirectInputParams
+  DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams
 
   /** Notification url */
   DS_MERCHANT_MERCHANTURL?: string
@@ -112,6 +120,11 @@ export interface RedirectInputParams extends BaseInputParams {
   DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N'
 }
 
+/**
+ * Common input parameters for redsys request
+ *
+ * @public
+ */
 export interface RequestInputParams extends BaseInputParams {
   /** xPay data, hex */
   DS_XPAYDATA?: string
@@ -152,6 +165,11 @@ export interface RequestInputParams extends BaseInputParams {
   DS_MERCHANT_P2F_XMLDATA?: string
 }
 
+/**
+ * Input parameters for a redsys webservice request
+ *
+ * @public
+ */
 export interface WebserviceInputParams extends RequestInputParams {
   /** EMV3DS data in json format */
   DS_MERCHANT_EMV3DS?: string
@@ -201,21 +219,31 @@ export interface CommonRestInputParams extends RequestInputParams {
   }
 }
 
+/**
+ * Input parameters for a IniciaPeticion HTTP request
+ *
+ * @public
+ */
 export interface RestIniciaPeticionInputParams extends CommonRestInputParams {
   /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: EMV3DSPreAuthInputParams
+  DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams
 
   /** Dynamic Currency Conversion data, json */
   DS_MERCHANT_DCC?: 'Y' | 'N'
 }
 
+/**
+ * Input parameters for a TrataPeticion Peticion HTTP request
+ *
+ * @public
+ */
 export interface RestTrataPeticionInputParams extends CommonRestInputParams {
   /** EMV3DS data in json format */
   DS_MERCHANT_EMV3DS?:
-  | EMV3DSv1AuthDataInputParams
-  | EMV3DSv2AuthDataInputParams
-  | EMV3DSv1ChallengeResponseInputParams
-  | EMV3DSv2ChallengeResponseInputParams
+  | ThreeDSv1AuthDataInputParams
+  | ThreeDSv2AuthDataInputParams
+  | ThreeDSv1ChallengeResponseInputParams
+  | ThreeDSv2ChallengeResponseInputParams
 
   /** Dynamic Currency Conversion data, json */
   DS_MERCHANT_DCC?: {

@@ -24,7 +24,7 @@ import {
 
 import {
   serializeWebServiceRequest,
-  parseWebServiceResponse
+  deserializeWebServiceResponse
 } from './web-service-serialization';
 
 import {
@@ -32,11 +32,11 @@ import {
   signWebServiceRequest
 } from './web-service-signature';
 
-export const parseAndVerifyWebServiceResponse = (
+export const deserializeAndVerifyWebServiceResponse = (
   merchantKey: string,
   xmlResponse: string
 ): ResponseXML['RETORNOXML'] => {
-  const data = parseWebServiceResponse(xmlResponse);
+  const data = deserializeWebServiceResponse(xmlResponse);
   verifyWebServiceResponse(merchantKey, data);
   return data;
 };
@@ -50,9 +50,9 @@ export const serializeAndSignWebServiceRequest = (
 };
 
 export const isWebServiceResponseSuccess = (
-  parsedResponse: ResponseXML['RETORNOXML']
-): parsedResponse is ResponseXMLInnerSuccess => {
-  return parsedResponse.CODIGO === '0';
+  deserializedResponse: ResponseXML['RETORNOXML']
+): deserializedResponse is ResponseXMLInnerSuccess => {
+  return deserializedResponse.CODIGO === '0';
 };
 
 export const assertSoapClientHasTrataPeticion: (
@@ -74,7 +74,7 @@ export const webServiceTrataPeticionRequest = async (
   const response = await client.trataPeticionAsync({ datoEntrada: peticion });
 
   const result: string = response[0].trataPeticionReturn;
-  const data = parseAndVerifyWebServiceResponse(merchantKey, result);
+  const data = deserializeAndVerifyWebServiceResponse(merchantKey, result);
 
   if (!isWebServiceResponseSuccess(data)) {
     // Can't access data.OPERACION, only data.RECIBIDO

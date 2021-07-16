@@ -4,7 +4,7 @@ import type {
 } from '../types/api';
 
 import {
-  parseAndVerifyWebServiceResponse,
+  deserializeAndVerifyWebServiceResponse,
   serializeAndSignWebServiceRequest,
   webServiceTrataPeticionRequest
 } from './web-service';
@@ -29,12 +29,12 @@ import {
   webServiceResponseMerchantKey,
   serializedWebServiceResponseParams,
   serializedWebServiceResponse,
-  parsedWebServiceResponse
+  deserializedWebServiceResponse
 } from '../../test/fixtures/soap/web-service-response';
 
 import {
   serializedWebServiceErrorResponseParams,
-  parsedWebServiceErrorResponse,
+  deserializedWebServiceErrorResponse,
   serializedWebServiceErrorResponse
 } from '../../test/fixtures/soap/web-service-error-response';
 
@@ -44,29 +44,29 @@ describe('SOAP Web Service', () => {
     expect(serializedAndSignedRequest).toEqual(serializedAndSignedWebServiceRequestParams);
   });
 
-  it('should parse and verify legit response', () => {
-    const verify = () => parseAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceResponseParams);
+  it('should deserialize and verify legit response', () => {
+    const verify = () => deserializeAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceResponseParams);
     expect(verify).not.toThrowError();
 
-    const parsedRequest = parseAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceResponseParams);
-    expect(parsedRequest).toEqual(parsedWebServiceResponse);
+    const deserializedRequest = deserializeAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceResponseParams);
+    expect(deserializedRequest).toEqual(deserializedWebServiceResponse);
   });
 
-  it('should parse if response contains an error code', () => {
-    const verify = () => parseAndVerifyWebServiceResponse(incorrectMerchantKey, serializedWebServiceErrorResponseParams);
+  it('should deserialize if response contains an error code', () => {
+    const verify = () => deserializeAndVerifyWebServiceResponse(incorrectMerchantKey, serializedWebServiceErrorResponseParams);
     expect(verify).not.toThrowError();
 
-    const parsedRequest = parseAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceErrorResponseParams);
-    expect(parsedRequest).toEqual(parsedWebServiceErrorResponse);
+    const deserializedRequest = deserializeAndVerifyWebServiceResponse(webServiceResponseMerchantKey, serializedWebServiceErrorResponseParams);
+    expect(deserializedRequest).toEqual(deserializedWebServiceErrorResponse);
   });
 
   it('should throw if merchant key is incorrect', () => {
-    const verify = () => parseAndVerifyWebServiceResponse(incorrectMerchantKey, serializedWebServiceResponseParams);
+    const verify = () => deserializeAndVerifyWebServiceResponse(incorrectMerchantKey, serializedWebServiceResponseParams);
     expect(verify).toThrowError(new ParseError('Invalid signature'));
   });
 
   it('should throw if signature is forged', () => {
-    const verify = () => parseAndVerifyWebServiceResponse(
+    const verify = () => deserializeAndVerifyWebServiceResponse(
       webServiceResponseMerchantKey,
       serializedWebServiceResponseParams.replace(
         /<Ds_Signature>[^<>]+<\/Ds_Signature>/,
@@ -101,14 +101,14 @@ describe('SOAP Web Service', () => {
       }
     });
 
-    it('should parse response', async () => {
+    it('should deserialize response', async () => {
       return await expect(
         webServiceTrataPeticionRequest(
           client,
           webServiceRequestMerchantKey,
           webServiceRequestParams
         )
-      ).resolves.toEqual(parsedWebServiceResponse.OPERACION);
+      ).resolves.toEqual(deserializedWebServiceResponse.OPERACION);
     });
 
     it('should throw if response signature is invalid', async () => {

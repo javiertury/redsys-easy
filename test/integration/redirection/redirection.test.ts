@@ -17,7 +17,7 @@ import { noThreeDS } from '../../fixtures/cards';
 import { clientPostHeaders } from '../../fixtures/client';
 import cardParams from './data/card-params.json';
 import settings from '../settings';
-import type { ResponseJSON } from 'redsys-easy';
+import type { ResponseJSONSuccess } from 'redsys-easy';
 import {
   encodePostParams,
   wait
@@ -38,7 +38,7 @@ const { URL } = url;
 
 const {
   createRedirectForm,
-  processNotification
+  processRestNotification
 } = createRedsysAPI({
   urls: SANDBOX_URLS,
   secretKey
@@ -267,12 +267,12 @@ describe('Redirect Integration', () => {
     expect(serverCtx).not.toBeNull();
     expect(serverCtx.method).toEqual('POST');
 
-    const body = serverCtx.request.body as ResponseJSON;
+    const body = serverCtx.request.body as ResponseJSONSuccess;
     expect(typeof body).toBe('object');
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);
 
-    const params = processNotification(body);
+    const params = processRestNotification(body);
     expect(params.Ds_Response).toEqual('0000');
   });
 

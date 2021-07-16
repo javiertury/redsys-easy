@@ -16,6 +16,11 @@ const drawPositiveDiscreteUniform = (max: number) => {
 
 const alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
+/**
+ * Generates a random order ID following redsys requirements
+ *
+ * @public
+ */
 export const randomTransactionId = () => {
   // Random 4 digit number between 0 and 9999
   const num = drawPositiveDiscreteUniform(9999);
@@ -59,6 +64,8 @@ export const extractAndAssertOrderFromResponseParams = (
 
 /**
  * Indicates if a response code signals success
+ *
+ * @public
  */
 export const isResponseCodeOk = (responseCode: string): boolean => {
   const numResCode = Number.parseInt(responseCode);
@@ -69,6 +76,11 @@ export const isResponseCodeOk = (responseCode: string): boolean => {
   );
 };
 
+/**
+ * Asserts that response has a code that indicates success
+ *
+ * @public
+ */
 export const assertSuccessfulResponseCode = (
   responseParams: { Ds_Response?: string }
 ) => {

@@ -4,13 +4,13 @@ import {
   create3DSv1ChallengeForm,
   create3DSv2ChallengeForm,
   deserializeCres
-} from './emv3ds';
+} from './3ds';
 
 import {
-  parsedIniciaPeticionResponse,
+  deserializedIniciaPeticionResponse,
   threeDSMethodForm,
   threeDSMethodNotificationBody,
-  parsed3DSMethodResponse,
+  deserialized3DSMethodResponse,
   threeDSChallengeForm as threeDSv2ChallengeForm,
   threeDSChallengeNotificationBody,
   deserializedCres,
@@ -18,14 +18,14 @@ import {
 } from '../../test/fixtures/rest/3ds-v2.1-challenge';
 
 import {
-  parsedThreeDSChallengeResponse as parsedThreeDSv1ChallengeResponse,
+  deserializedThreeDSChallengeResponse as deserializedThreeDSv1ChallengeResponse,
   threeDSChallengeForm as threeDSv1ChallengeForm
 } from '../../test/fixtures/rest/3ds-v1';
 
 describe('create3DSMethodForm', () => {
   it('should create 3DS method form parameters', () => {
     expect(create3DSMethodForm(
-      parsedIniciaPeticionResponse.Ds_EMV3DS,
+      deserializedIniciaPeticionResponse.Ds_EMV3DS,
       'http://my-server:3000/notification-3ds-method'
     )).toEqual(threeDSMethodForm);
   });
@@ -42,7 +42,7 @@ describe('deserializeThreeDSMethodData', () => {
 describe('create3DSv1ChallengeForm', () => {
   it('should create 3DS v1 challenge form parameters', () => {
     expect(create3DSv1ChallengeForm(
-      parsedThreeDSv1ChallengeResponse.Ds_EMV3DS,
+      deserializedThreeDSv1ChallengeResponse.Ds_EMV3DS,
       'http://my-server:3000/post-challenge-v1'
     )).toEqual(threeDSv1ChallengeForm);
   });
@@ -51,7 +51,7 @@ describe('create3DSv1ChallengeForm', () => {
 describe('create3DSv2ChallengeForm', () => {
   it('should create 3DS v2 challenge form parameters', () => {
     expect(create3DSv2ChallengeForm(
-      parsed3DSMethodResponse.Ds_EMV3DS
+      deserialized3DSMethodResponse.Ds_EMV3DS
     )).toEqual(threeDSv2ChallengeForm);
   });
 });

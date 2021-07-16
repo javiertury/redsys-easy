@@ -1,5 +1,5 @@
 import type {
-  EMV3DSBrowserClientInfo,
+  ThreeDSBrowserClientInfo,
   ThreeDSMethodForm,
   ThreeDSv1ChallengeForm,
   ThreeDSv2ChallengeForm,
@@ -111,7 +111,7 @@ export interface AuthBody {
    *
    * Better if client send more information than strictly required
    */
-  clientInfo?: EMV3DSBrowserClientInfo
+  clientInfo?: ThreeDSBrowserClientInfo
 }
 
 interface AuthChallengeV1Output {

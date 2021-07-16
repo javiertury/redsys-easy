@@ -39,7 +39,6 @@ export type {
 } from './types/input-params';
 
 export type {
-  NotificationOutputParams,
   RestIniciaPeticionOutputParams,
   RestTrataPeticionOutputParams,
   WebserviceOutputParams,
@@ -48,7 +47,8 @@ export type {
 } from './types/output-params';
 
 export type {
-  ResponseJSON,
+  ResponseJSONSuccess,
+  RedirectForm,
   ThreeDSv2MethodNotificationBody,
   ThreeDSv1ChallengeNotificationBody,
   ThreeDSv2ChallengeNotificationBody
@@ -91,8 +91,7 @@ export {
 
 export type {
   UrlsConfig,
-  RedsysConfig,
-  RedirectPetition
+  RedsysConfig
 } from './client';
 
 export {
@@ -101,11 +100,13 @@ export {
   create3DSv2ChallengeForm,
   deserializeThreeDSMethodData,
   deserializeCres
-} from './rest/emv3ds';
+} from './rest/3ds';
 
 export type {
-  EMV3DSBrowserClientInfo,
+  ThreeDSBrowserClientInfo,
   ThreeDSMethodForm,
   ThreeDSv1ChallengeForm,
-  ThreeDSv2ChallengeForm
-} from './types/emv3ds-params';
+  ThreeDSv2ChallengeForm,
+  ThreeDSMethodData,
+  ThreeDSCres
+} from './types/3ds-params';
