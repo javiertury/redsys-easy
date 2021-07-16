@@ -29,7 +29,7 @@ describe('Web Service Integration', () => {
       // amount in smallest currency unit(cents)
       // 33.50€
       DS_MERCHANT_AMOUNT: '3350',
-      DS_MERCHANT_CURRENCY: 'EUR',
+      DS_MERCHANT_CURRENCY: '978',
       DS_MERCHANT_PAN: card.pan,
       DS_MERCHANT_EXPIRYDATE: `${card.expiryYear}${card.expiryMonth}`,
       DS_MERCHANT_CVV2: card.cvv,
@@ -42,7 +42,7 @@ describe('Web Service Integration', () => {
 
     const result = await wsPetition(params);
 
-    expect(result.Ds_Response).toEqual(0);
+    expect(result.Ds_Response).toEqual('0000');
     expect(result.Ds_Order).toEqual(params.DS_MERCHANT_ORDER);
     expect(result.Ds_MerchantCode).toEqual(params.DS_MERCHANT_MERCHANTCODE);
     expect(result.Ds_Terminal).toEqual(params.DS_MERCHANT_TERMINAL);
