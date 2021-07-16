@@ -252,9 +252,8 @@ describe('Redirect Integration', () => {
     const $2 = cheerio.load(text2);
 
     // Check that it redirects to our page
-    const redirectionCode = $2('body').attr('onload') as string;
-    const redirectionURL = redirectionCode.split('unescape(\'')[1]?.slice(0, -3);
-    expect(redirectionURL).toContain(redirectData.successURL);
+    const formAction1 = $2('form[name="formCuenta"]').attr('action') as string;
+    expect(formAction1).toContain(redirectData.successURL);
   });
 
   /*
