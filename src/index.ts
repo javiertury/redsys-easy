@@ -7,8 +7,7 @@
 export {
   randomTransactionId,
   assertSuccessfulResponseCode,
-  isResponseCodeOk,
-  obtain3DSClientEnv
+  isResponseCodeOk
 } from './utils/misc';
 
 export {

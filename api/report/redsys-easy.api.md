@@ -76,7 +76,7 @@ export const detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1";
 
 // Warning: (ae-forgotten-export) The symbol "BaseEMV3DSAuthenticationDataParams" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export type EMV3DSBrowserClientInfo = Pick<BaseEMV3DSAuthenticationDataParams, 'browserLanguage' | 'browserColorDepth' | 'browserScreenHeight' | 'browserScreenWidth' | 'browserTZ' | 'browserJavaEnabled'>;
 
 // @public
@@ -143,9 +143,6 @@ export interface NotificationOutputParams extends BaseOutputParams, ResolvedTran
     Ds_ConsumerLanguage?: string;
     Ds_ErrorCode?: string;
 }
-
-// @public
-export const obtain3DSClientEnv: () => EMV3DSBrowserClientInfo;
 
 // @public
 export class ParseError extends RedsysError {

@@ -52,30 +52,40 @@ export interface BaseEMV3DSAuthenticationDataParams {
 
   /**
    * Browser Java Enabled
+   *
+   * @remarks
    * navigator.javaEnabled() or false if javascript is disabled
    */
   browserJavaEnabled: boolean
 
   /**
    * Browser Language
+   *
+   * @remarks
    * navigator.language
    */
   browserLanguage: string
 
   /**
    * Browser Screen Height
+   *
+   * @remarks
    * screen.height.toString() or '0' if javascript is disabled
    */
   browserScreenHeight: string
 
   /**
    * Browser Screen Width
+   *
+   * @remarks
    * screen.width.toString() or '0' if javascript is disabled
    */
   browserScreenWidth: string
 
   /**
    * Browser Time Zone
+   *
+   * @remarks
    * (new Date()).getTimezoneOffset().toString() or '0' if javascript is disabled
    */
   browserTZ: string
@@ -255,6 +265,27 @@ export interface BaseEMV3DSAuthenticationDataParams {
   threeDSRequestorPriorAuthenticationInfo?: RequestorPriorAuthenticationInfo
 }
 
+/**
+ * Browser information required by 3DS
+ *
+ * @remarks
+ * The information must be obtained in the browser, for example, wusing the following function.
+ *
+ * @example
+ * ```
+ * const obtain3DSBrowserInfo = (): EMV3DSBrowserClientInfo => {
+ *   return {
+ *     browserLanguage: navigator.language,
+ *     browserColorDepth: screen.colorDepth.toString(),
+ *     browserScreenHeight: screen.height.toString(),
+ *     browserScreenWidth: screen.width.toString(),
+ *     browserTZ: (new Date()).getTimezoneOffset().toString(),
+ *     browserJavaEnabled: navigator.javaEnabled()
+ *   };
+ * };
+ * ```
+ *
+ */
 export type EMV3DSBrowserClientInfo = Pick<
   BaseEMV3DSAuthenticationDataParams,
   | 'browserLanguage'

@@ -7,10 +7,6 @@ import type {
   CommonRawResponseParams
 } from '../types/api';
 
-import type {
-  EMV3DSBrowserClientInfo
-} from '../types/emv3ds-params';
-
 /**
  * Discrete uniform distribution with domain (0 to *max*)
  */
@@ -85,22 +81,6 @@ export const assertSuccessfulResponseCode = (
   if (!isResponseCodeOk(resCode)) {
     throw new ResponseError({ code: Number.parseInt(resCode), response: responseParams });
   }
-};
-
-/**
- * Obtains basic client information required by 3DS v2
- *
- * Must be executed in the browser
- */
-export const obtain3DSClientEnv = (): EMV3DSBrowserClientInfo => {
-  return {
-    browserLanguage: navigator.language,
-    browserColorDepth: screen.colorDepth.toString(),
-    browserScreenHeight: screen.height.toString(),
-    browserScreenWidth: screen.width.toString(),
-    browserTZ: (new Date()).getTimezoneOffset().toString(),
-    browserJavaEnabled: navigator.javaEnabled()
-  };
 };
 
 export const isStringNotEmpty = <T extends string>(str: T | undefined): str is T => str != null && str.length > 0;
