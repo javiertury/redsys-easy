@@ -16,23 +16,18 @@ import {
 import {
   restNotificationMerchantKey,
   serializedRestNotification,
-  parsedRestNotification,
+  deserializedRestNotification,
   restNotification3DESOrder
 } from '../test/fixtures/rest/redirect-notification';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  jsonRequest3DESOrder,
-  serializedAndSignedJSONRequest
-} from '../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  parsedJSONResponse,
-  serializedJSONResponse,
-  jsonResponse3DESOrder
-} from '../test/fixtures/rest/json-response';
+  restJsonMerchantKey,
+  restJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse,
+  restJson3DESOrder
+} from '../test/fixtures/rest/rest-json';
 
 import {
   allowedSoapNotificationResponseMerchantKey,
@@ -53,31 +48,9 @@ import {
 import {
   soapNotificationMerchantKey,
   serializedSoapNotificationParams,
-  parsedSoapNotification,
+  deserializedSoapNotification,
   soapNotification3DESOrder
 } from '../test/fixtures/soap/redirect-notification';
-
-import {
-  webServiceRequestMerchantKey,
-  webServiceRequestParams,
-  webServiceRequest3DESOrder,
-  serializedWebServiceRequestParams,
-  webServiceRequestSignature
-} from '../test/fixtures/soap/web-service-request';
-
-import {
-  webServiceResponseMerchantKey,
-  webServiceResponseSignedString,
-  parsedWebServiceResponse,
-  webServiceResponse3DESOrder
-} from '../test/fixtures/soap/web-service-response';
-
-import {
-  webServiceResponseWithCCMerchantKey,
-  webServiceResponseWithCCSignedString,
-  parsedWebServiceResponseWithCC,
-  webServiceResponseWithCC3DESOrder
-} from '../test/fixtures/soap/web-service-response-with-cc';
 
 describe('Crypto', () => {
   describe('zeroPad', () => {
@@ -129,16 +102,16 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(restNotificationMerchantKey, parsedRestNotification.Ds_Order)
+        encrypt3DES(restNotificationMerchantKey, deserializedRestNotification.Ds_Order)
       ).toEqual(Buffer.from(restNotification3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(jsonRequestMerchantKey, jsonRequest.DS_MERCHANT_ORDER)
-      ).toEqual(Buffer.from(jsonRequest3DESOrder, 'base64'));
+        encrypt3DES(restJsonMerchantKey, restJsonRequest.DS_MERCHANT_ORDER)
+      ).toEqual(Buffer.from(restJson3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(jsonResponseMerchantKey, parsedJSONResponse.Ds_Order)
-      ).toEqual(Buffer.from(jsonResponse3DESOrder, 'base64'));
+        encrypt3DES(restJsonMerchantKey, deserializedRestJsonResponse.Ds_Order)
+      ).toEqual(Buffer.from(restJson3DESOrder, 'base64'));
 
       expect(
         encrypt3DES(allowedSoapNotificationResponseMerchantKey, allowedNotificationResponseParams.order)
@@ -149,20 +122,8 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(deniedNotificationResponse3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(soapNotificationMerchantKey, parsedSoapNotification.Request.Ds_Order)
+        encrypt3DES(soapNotificationMerchantKey, deserializedSoapNotification.Request.Ds_Order)
       ).toEqual(Buffer.from(soapNotification3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceRequestMerchantKey, webServiceRequestParams.DS_MERCHANT_ORDER)
-      ).toEqual(Buffer.from(webServiceRequest3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceResponseMerchantKey, parsedWebServiceResponse.OPERACION.Ds_Order)
-      ).toEqual(Buffer.from(webServiceResponse3DESOrder, 'base64'));
-
-      expect(
-        encrypt3DES(webServiceResponseWithCCMerchantKey, parsedWebServiceResponseWithCC.OPERACION.Ds_Order)
-      ).toEqual(Buffer.from(webServiceResponseWithCC3DESOrder, 'base64'));
     });
 
     it('should throw if key length is not 8 bytes', () => {
@@ -193,7 +154,7 @@ describe('Crypto', () => {
       expect(
         sha256Sign(
           restNotificationMerchantKey,
-          parsedRestNotification.Ds_Order,
+          deserializedRestNotification.Ds_Order,
           serializedRestNotification.Ds_MerchantParameters
         )
       // Redsys returns base64url encoded instead of regular base64
@@ -201,20 +162,20 @@ describe('Crypto', () => {
 
       expect(
         sha256Sign(
-          jsonRequestMerchantKey,
-          jsonRequest.DS_MERCHANT_ORDER,
-          serializedAndSignedJSONRequest.Ds_MerchantParameters
+          restJsonMerchantKey,
+          restJsonRequest.DS_MERCHANT_ORDER,
+          serializedAndSignedRestJsonRequest.Ds_MerchantParameters
         )
-      ).toEqual(serializedAndSignedJSONRequest.Ds_Signature);
+      ).toEqual(serializedAndSignedRestJsonRequest.Ds_Signature);
 
       expect(
         sha256Sign(
-          jsonResponseMerchantKey,
-          parsedJSONResponse.Ds_Order,
-          serializedJSONResponse.Ds_MerchantParameters
+          restJsonMerchantKey,
+          deserializedRestJsonResponse.Ds_Order,
+          serializedRestJsonResponse.Ds_MerchantParameters
         )
       // Redsys returns base64url encoded instead of regular base64
-      ).toEqual(base64url.toBuffer(serializedJSONResponse.Ds_Signature).toString('base64'));
+      ).toEqual(base64url.toBuffer(serializedRestJsonResponse.Ds_Signature).toString('base64'));
 
       expect(
         sha256Sign(
@@ -235,34 +196,10 @@ describe('Crypto', () => {
       expect(
         sha256Sign(
           soapNotificationMerchantKey,
-          parsedSoapNotification.Request.Ds_Order,
+          deserializedSoapNotification.Request.Ds_Order,
           serializedSoapNotificationParams
         )
-      ).toEqual(parsedSoapNotification.Signature);
-
-      expect(
-        sha256Sign(
-          webServiceRequestMerchantKey,
-          webServiceRequestParams.DS_MERCHANT_ORDER,
-          serializedWebServiceRequestParams
-        )
-      ).toEqual(webServiceRequestSignature);
-
-      expect(
-        sha256Sign(
-          webServiceResponseMerchantKey,
-          parsedWebServiceResponse.OPERACION.Ds_Order,
-          webServiceResponseSignedString
-        )
-      ).toEqual(parsedWebServiceResponse.OPERACION.Ds_Signature);
-
-      expect(
-        sha256Sign(
-          webServiceResponseWithCCMerchantKey,
-          parsedWebServiceResponseWithCC.OPERACION.Ds_Order,
-          webServiceResponseWithCCSignedString
-        )
-      ).toEqual(parsedWebServiceResponseWithCC.OPERACION.Ds_Signature);
+      ).toEqual(deserializedSoapNotification.Signature);
     });
   });
 });

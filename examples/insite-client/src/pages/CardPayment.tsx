@@ -13,9 +13,9 @@ import { setRouter } from '../router';
 import { waitForIframeToPostMessage } from '../utils';
 import type { RedsysMessageEvent } from '../types/redsys';
 import { styled } from 'solid-styled-components';
-import type { EMV3DSBrowserClientInfo } from 'redsys-easy';
+import type { ThreeDSBrowserClientInfo } from 'redsys-easy';
 
-const obtain3DSClientEnv = (): EMV3DSBrowserClientInfo => {
+const obtain3DSBrowserInfo = (): ThreeDSBrowserClientInfo => {
   return {
     browserLanguage: navigator.language,
     browserColorDepth: screen.colorDepth.toString(),
@@ -151,7 +151,7 @@ export const CardPaymentPage: Component<Props> = (props) => {
         });
       }
 
-      const clientInfo = obtain3DSClientEnv();
+      const clientInfo = obtain3DSBrowserInfo();
 
       const authBody: AuthBody = {
         transactionData: (

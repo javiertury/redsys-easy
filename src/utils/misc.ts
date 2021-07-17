@@ -7,10 +7,6 @@ import type {
   CommonRawResponseParams
 } from '../types/api';
 
-import type {
-  EMV3DSBrowserClientInfo
-} from '../types/emv3ds-params';
-
 /**
  * Discrete uniform distribution with domain (0 to *max*)
  */
@@ -20,6 +16,11 @@ const drawPositiveDiscreteUniform = (max: number) => {
 
 const alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
+/**
+ * Generates a random order ID following redsys requirements
+ *
+ * @public
+ */
 export const randomTransactionId = () => {
   // Random 4 digit number between 0 and 9999
   const num = drawPositiveDiscreteUniform(9999);
@@ -63,6 +64,8 @@ export const extractAndAssertOrderFromResponseParams = (
 
 /**
  * Indicates if a response code signals success
+ *
+ * @public
  */
 export const isResponseCodeOk = (responseCode: string): boolean => {
   const numResCode = Number.parseInt(responseCode);
@@ -73,6 +76,11 @@ export const isResponseCodeOk = (responseCode: string): boolean => {
   );
 };
 
+/**
+ * Asserts that response has a code that indicates success
+ *
+ * @public
+ */
 export const assertSuccessfulResponseCode = (
   responseParams: { Ds_Response?: string }
 ) => {
@@ -83,24 +91,8 @@ export const assertSuccessfulResponseCode = (
   }
 
   if (!isResponseCodeOk(resCode)) {
-    throw new ResponseError('Response unsuccessful', Number.parseInt(resCode), responseParams);
+    throw new ResponseError({ code: Number.parseInt(resCode), response: responseParams });
   }
-};
-
-/**
- * Obtains basic client information required by 3DS v2
- *
- * Must be executed in the browser
- */
-export const obtain3DSClientEnv = (): EMV3DSBrowserClientInfo => {
-  return {
-    browserLanguage: navigator.language,
-    browserColorDepth: screen.colorDepth.toString(),
-    browserScreenHeight: screen.height.toString(),
-    browserScreenWidth: screen.width.toString(),
-    browserTZ: (new Date()).getTimezoneOffset().toString(),
-    browserJavaEnabled: navigator.javaEnabled()
-  };
 };
 
 export const isStringNotEmpty = <T extends string>(str: T | undefined): str is T => str != null && str.length > 0;

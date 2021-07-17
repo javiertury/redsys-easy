@@ -1,10 +1,10 @@
 import {
-  parsedSoapNotification
+  deserializedSoapNotification
 } from '../soap/redirect-notification';
 
 export {
   soapNotificationMerchantKey,
-  parsedSoapNotification,
+  deserializedSoapNotification,
   serializedAndSignedSoapNotificationParams
 } from '../soap/redirect-notification';
 
@@ -13,7 +13,7 @@ export const formattedSoapNotification = {
   time: '16:57',
   timestamp: new Date('2003-04-01 14:57 Z'),
   securePayment: true,
-  amount: 345,
+  amount: '3.45',
   currency: 'EUR',
   order: '165446',
   cardType: 'C',
@@ -24,5 +24,5 @@ export const formattedSoapNotification = {
   merchantData: 'Alfombrilla para raton',
   transactionType: '1',
   lang: 'es',
-  raw: parsedSoapNotification.Request
+  raw: deserializedSoapNotification.Request
 };

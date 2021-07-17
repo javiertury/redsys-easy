@@ -1,49 +1,92 @@
 import {
-  requestOutputFormatter,
   restNotificationOutputFormatter,
-  soapNotificationOutputFormatter
+  soapNotificationOutputFormatter,
+  restIniciaPeticionOutputFormatter,
+  restTrataPeticionOutputFormatter
 } from './output-params';
 
 import {
-  parsedSoapNotification,
+  deserializedSoapNotification,
   formattedSoapNotification
 } from '../../test/fixtures/formatters/soap-notification';
 
 import {
-  parsedRestNotification,
+  deserializedRestNotification,
   formattedRestNotification
 } from '../../test/fixtures/formatters/rest-notification';
 
 import {
-  parsedWebServiceResponseParams,
-  formattedWebServiceResponse
-} from '../../test/fixtures/formatters/web-service-response';
+  deserializedRestJsonResponse,
+  formattedRestJsonResponse
+} from '../../test/fixtures/formatters/rest-json';
 
 import {
-  parsedWebServiceResponseWithCCParams,
-  formattedWebServiceResponseWithCC
-} from '../../test/fixtures/formatters/web-service-response-with-cc';
+  deserializedIniciaPeticionResponse as deserializedIniciaPeticionV1Response,
+  formattedIniciaPeticionResponse as formattedIniciaPeticionV1Response,
+  deserializedAuthDataResponse as deserializedAuthDataV1Response,
+  formattedAuthDataResponse as formattedAuthDataV1Response,
+  deserializedChallengeResponseResponse as deserializedChallengeResponseV1Response,
+  formattedChallengeResponseResponse as formattedChallengeResponseV1Response
+} from '../../test/fixtures/formatters/rest-3ds-v1';
 
-describe('Output parameters formatter', () => {
-  describe('Scenarios', () => {
-    it('should format soap notification', () => {
-      const formattedParams = soapNotificationOutputFormatter(parsedSoapNotification.Request);
-      expect(formattedParams).toEqual(formattedSoapNotification);
-    });
+import {
+  deserializedIniciaPeticionResponse,
+  formattedIniciaPeticionResponse,
+  deserializedAuthDataResponse,
+  formattedAuthDataResponse,
+  deserializedChallengeResponseResponse,
+  formattedChallengeResponseResponse
+} from '../../test/fixtures/formatters/rest-3ds-v2.1-challenge';
 
-    it('should format redirect response', () => {
-      const formattedParams = restNotificationOutputFormatter(parsedRestNotification);
-      expect(formattedParams).toEqual(formattedRestNotification);
-    });
+describe('soapNotificationOutputFormatter', () => {
+  it('should format a soap notification', () => {
+    const formattedParams = soapNotificationOutputFormatter(deserializedSoapNotification.Request);
+    expect(formattedParams).toEqual(formattedSoapNotification);
+  });
+});
 
-    it('should format web service response', () => {
-      const formattedParams = requestOutputFormatter(parsedWebServiceResponseParams);
-      expect(formattedParams).toEqual(formattedWebServiceResponse);
-    });
+describe('restNotificationOutputFormatter', () => {
+  it('should format a redirect notification', () => {
+    const formattedParams = restNotificationOutputFormatter(deserializedRestNotification);
+    expect(formattedParams).toEqual(formattedRestNotification);
+  });
+});
 
-    it('should format web service response with credit card', () => {
-      const formattedParams = requestOutputFormatter(parsedWebServiceResponseWithCCParams);
-      expect(formattedParams).toEqual(formattedWebServiceResponseWithCC);
-    });
+describe('restIniciaPeticionOutputFormatter', () => {
+  it('should format a 3DS v1 iniciaPeticion response', () => {
+    const formattedParams = restIniciaPeticionOutputFormatter(deserializedIniciaPeticionV1Response);
+    expect(formattedParams).toEqual(formattedIniciaPeticionV1Response);
+  });
+
+  it('should format a 3DS v2.1 iniciaPeticion response', () => {
+    const formattedParams = restIniciaPeticionOutputFormatter(deserializedIniciaPeticionResponse);
+    expect(formattedParams).toEqual(formattedIniciaPeticionResponse);
+  });
+});
+
+describe('restTrataPeticionOutputFormatter', () => {
+  it('should format a json response', () => {
+    const formattedParams = restTrataPeticionOutputFormatter(deserializedRestJsonResponse);
+    expect(formattedParams).toEqual(formattedRestJsonResponse);
+  });
+
+  it('should format a 3DS v1 authenticationData response', () => {
+    const formattedParams = restTrataPeticionOutputFormatter(deserializedAuthDataV1Response);
+    expect(formattedParams).toEqual(formattedAuthDataV1Response);
+  });
+
+  it('should format a 3DS v1 challengeResponse response', () => {
+    const formattedParams = restTrataPeticionOutputFormatter(deserializedChallengeResponseV1Response);
+    expect(formattedParams).toEqual(formattedChallengeResponseV1Response);
+  });
+
+  it('should format a 3DS v2.1 authenticationData response', () => {
+    const formattedParams = restTrataPeticionOutputFormatter(deserializedAuthDataResponse);
+    expect(formattedParams).toEqual(formattedAuthDataResponse);
+  });
+
+  it('should format a 3DS v2.1 challengeResponse response', () => {
+    const formattedParams = restTrataPeticionOutputFormatter(deserializedChallengeResponseResponse);
+    expect(formattedParams).toEqual(formattedChallengeResponseResponse);
   });
 });

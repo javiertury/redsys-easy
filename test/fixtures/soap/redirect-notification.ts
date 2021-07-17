@@ -47,7 +47,7 @@ export const serializedAndSignedSoapNotificationParams =
   '<Signature>RSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>' +
   '</Message>';
 
-export const parsedSoapNotification = {
+export const deserializedSoapNotification = {
   Request: {
     Fecha: '01/04/2003',
     Hora: '16:57',

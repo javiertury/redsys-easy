@@ -1,14 +1,19 @@
 import type { TransactionType } from '../assets/transaction-types';
+import type { CurrencyNum } from '../assets/currencies';
+import type { LanguageNum } from '../assets/lang-codes';
 
 import type {
-  EMV3DSPreAuthInputParams,
-  EMV3DSv1AuthDataInputParams,
-  EMV3DSv2AuthDataInputParams,
-  EMV3DSv1ChallengeResponseInputParams,
-  EMV3DSv2ChallengeResponseInputParams,
-  EMV3DSRedirectInputParams
-} from './emv3ds-params';
+  ThreeDSPreAuthInputParams,
+  ThreeDSv1AuthDataInputParams,
+  ThreeDSv2AuthDataInputParams,
+  ThreeDSv1ChallengeResponseInputParams,
+  ThreeDSv2ChallengeResponseInputParams,
+  ThreeDSRedirectInputParams
+} from './3ds-params';
 
+/**
+ * Common input parameters
+ */
 export interface BaseInputParams {
   /** Transaction type */
   DS_MERCHANT_TRANSACTIONTYPE: TransactionType
@@ -28,11 +33,16 @@ export interface BaseInputParams {
   /** Merchant group number */
   DS_MERCHANT_GROUP?: string
 
-  /** Amount designated as an integer in the smallest currency division */
+  /**
+   * Amount designated as an integer in the smallest currency division
+   *
+   * @example
+   * `'199'` (1.99 EUR)
+   */
   DS_MERCHANT_AMOUNT?: string
 
   /** Currency number, ISO-4217 */
-  DS_MERCHANT_CURRENCY?: string
+  DS_MERCHANT_CURRENCY?: CurrencyNum
 
   /** Card PAN, number */
   DS_MERCHANT_PAN?: string
@@ -86,9 +96,14 @@ export interface BaseInputParams {
   DS_MERCHANT_COF_TYPE?: 'I' | 'R' | 'H' | 'E' | 'D' | 'M' | 'N' | 'C'
 }
 
+/**
+ * Input parameters for a redsys redirect request
+ *
+ * @public
+ */
 export interface RedirectInputParams extends BaseInputParams {
   /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: EMV3DSRedirectInputParams
+  DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams
 
   /** Notification url */
   DS_MERCHANT_MERCHANTURL?: string
@@ -100,7 +115,7 @@ export interface RedirectInputParams extends BaseInputParams {
   DS_MERCHANT_URLKO?: string
 
   /** Language */
-  DS_MERCHANT_CONSUMERLANGUAGE?: string
+  DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum
 
   /** Payment methods */
   DS_MERCHANT_PAYMETHODS?: string
@@ -112,6 +127,11 @@ export interface RedirectInputParams extends BaseInputParams {
   DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N'
 }
 
+/**
+ * Common input parameters for redsys request
+ *
+ * @public
+ */
 export interface RequestInputParams extends BaseInputParams {
   /** xPay data, hex */
   DS_XPAYDATA?: string
@@ -152,17 +172,6 @@ export interface RequestInputParams extends BaseInputParams {
   DS_MERCHANT_P2F_XMLDATA?: string
 }
 
-export interface WebserviceInputParams extends RequestInputParams {
-  /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: string
-
-  /** MPI External parameters, json */
-  DS_MERCHANT_MPIEXTERNAL?: string
-
-  /** Dynamic Currency Conversion data, json */
-  DS_MERCHANT_DCC?: 'Y' | 'N' | string
-}
-
 export interface CommonRestInputParams extends RequestInputParams {
   /** MPI External parameters, json */
   DS_MERCHANT_MPIEXTERNAL?: {
@@ -201,21 +210,31 @@ export interface CommonRestInputParams extends RequestInputParams {
   }
 }
 
+/**
+ * Input parameters for a IniciaPeticion HTTP request
+ *
+ * @public
+ */
 export interface RestIniciaPeticionInputParams extends CommonRestInputParams {
   /** EMV3DS data in json format */
-  DS_MERCHANT_EMV3DS?: EMV3DSPreAuthInputParams
+  DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams
 
   /** Dynamic Currency Conversion data, json */
   DS_MERCHANT_DCC?: 'Y' | 'N'
 }
 
+/**
+ * Input parameters for a TrataPeticion Peticion HTTP request
+ *
+ * @public
+ */
 export interface RestTrataPeticionInputParams extends CommonRestInputParams {
   /** EMV3DS data in json format */
   DS_MERCHANT_EMV3DS?:
-  | EMV3DSv1AuthDataInputParams
-  | EMV3DSv2AuthDataInputParams
-  | EMV3DSv1ChallengeResponseInputParams
-  | EMV3DSv2ChallengeResponseInputParams
+  | ThreeDSv1AuthDataInputParams
+  | ThreeDSv2AuthDataInputParams
+  | ThreeDSv1ChallengeResponseInputParams
+  | ThreeDSv2ChallengeResponseInputParams
 
   /** Dynamic Currency Conversion data, json */
   DS_MERCHANT_DCC?: {

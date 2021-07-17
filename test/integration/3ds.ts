@@ -4,21 +4,20 @@ import type {
   ThreeDSv2ChallengeNotificationBody
 } from 'redsys-easy';
 
-import type { DeserializedCres } from '../../src/rest/emv3ds';
-
 import type {
-  EMV3DSv2PreAuthOutputParams,
-  EMV3DSv2PreAuthWithMethodOutputParams,
-  EMV3DSv1ChallengeOutputParams,
-  EMV3DSv2ChallengeOutputParams
-} from '../../src/types/emv3ds-params';
+  ThreeDSv2PreAuthOutputParams,
+  ThreeDSv2PreAuthWithMethodOutputParams,
+  ThreeDSv1ChallengeOutputParams,
+  ThreeDSv2ChallengeOutputParams,
+  ThreeDSCres
+} from '../../src/types/3ds-params';
 
 export const createChallengeFinalForm = ({
   threeDSServerTransID,
   acsTransID,
   messageVersion,
   transStatus
-}: DeserializedCres) => {
+}: ThreeDSCres) => {
   const authValueVisa = 'AAIBARcUIiEFBAkEWRQiAAAAAAA=';
   const authValueMasterMaestro = '';
 
@@ -85,7 +84,7 @@ export const extractChallengeVariables = (responseText: string) => {
 };
 
 export const createThreeDSv2ChallengeNotificationFromBody = (
-  cResSend: DeserializedCres
+  cResSend: ThreeDSCres
 ): ThreeDSv2ChallengeNotificationBody & { cRes: string } => {
   const serializedCres = Buffer.from(JSON.stringify(cResSend), 'utf8').toString('base64');
 
@@ -96,12 +95,12 @@ export const createThreeDSv2ChallengeNotificationFromBody = (
   };
 };
 
-export const assertEMV3DSv2CardConfig: <
+export const assert3DSv2CardConfig: <
   T extends RestIniciaPeticionOutputParams | RestTrataPeticionOutputParams
 > (
   infoResult: T | undefined
 ) => asserts infoResult is (T & {
-  Ds_EMV3DS: EMV3DSv2PreAuthOutputParams
+  Ds_EMV3DS: ThreeDSv2PreAuthOutputParams
 }) = infoResult => {
   if (
     infoResult?.Ds_EMV3DS === undefined ||
@@ -115,14 +114,14 @@ export const assertEMV3DSv2CardConfig: <
   }
 };
 
-export const assertEMV3DSv2WithMethodCardConfig: <
+export const assert3DSv2WithMethodCardConfig: <
   T extends RestIniciaPeticionOutputParams | RestTrataPeticionOutputParams
 > (
   infoResult: T | undefined
 ) => asserts infoResult is (T & {
-  Ds_EMV3DS: EMV3DSv2PreAuthWithMethodOutputParams
+  Ds_EMV3DS: ThreeDSv2PreAuthWithMethodOutputParams
 }) = infoResult => {
-  assertEMV3DSv2CardConfig(infoResult);
+  assert3DSv2CardConfig(infoResult);
   if (
     !('threeDSMethodURL' in infoResult.Ds_EMV3DS) ||
     infoResult.Ds_EMV3DS.threeDSMethodURL == null
@@ -136,7 +135,7 @@ const assert3DSChallengeRequest: <
 > (
   infoResult: T | undefined
 ) => asserts infoResult is (T & {
-  Ds_EMV3DS: EMV3DSv1ChallengeOutputParams | EMV3DSv2ChallengeOutputParams
+  Ds_EMV3DS: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams
 }) = infoResult => {
   if (
     infoResult?.Ds_EMV3DS === undefined ||
@@ -151,7 +150,7 @@ export const assert3DSv1ChallengeRequest: <
 > (
   infoResult: T | undefined
 ) => asserts infoResult is (T & {
-  Ds_EMV3DS: EMV3DSv1ChallengeOutputParams
+  Ds_EMV3DS: ThreeDSv1ChallengeOutputParams
 }) = infoResult => {
   assert3DSChallengeRequest(infoResult);
   if (
@@ -166,7 +165,7 @@ export const assert3DSv2ChallengeRequest: <
 > (
   infoResult: T | undefined
 ) => asserts infoResult is (T & {
-  Ds_EMV3DS: EMV3DSv2ChallengeOutputParams
+  Ds_EMV3DS: ThreeDSv2ChallengeOutputParams
 }) = infoResult => {
   if (
     infoResult?.Ds_EMV3DS === undefined ||

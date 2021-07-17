@@ -1,3 +1,8 @@
+/**
+ * Transaction type code
+ *
+ * @public
+ */
 export type TransactionType =
   | '0'
   | '1'
@@ -21,6 +26,11 @@ export type TransactionType =
   | 'S'
   | 'A';
 
+/**
+ * Transaction type enum
+ *
+ * @public
+ */
 export const TRANSACTION_TYPES = {
   /** Autorización */
   AUTHORIZATION: '0',

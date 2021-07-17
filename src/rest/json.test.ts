@@ -1,5 +1,5 @@
 import {
-  parseAndVerifyJSONResponse,
+  deserializeAndVerifyJSONResponse,
   serializeAndSignJSONRequest
 } from './json';
 
@@ -15,7 +15,7 @@ import {
 import {
   restNotificationMerchantKey,
   serializedRestNotification,
-  parsedRestNotification
+  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect-notification';
 
 import {
@@ -25,23 +25,19 @@ import {
 } from '../../test/fixtures/rest/redirect';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  serializedAndSignedJSONRequest
-} from '../../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  serializedJSONResponse,
-  parsedJSONResponse
-} from '../../test/fixtures/rest/json-response';
+  restJsonMerchantKey,
+  restJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse
+} from '../../test/fixtures/rest/rest-json';
 
 import {
   threeDSv21MerchantKey,
   challengeResponseRequest,
   serializedAndSignedChallengeResponseRequest,
   serializedChallengeResponseResponse,
-  parsedChallengeResponseResponse
+  deserializedChallengeResponseResponse
 } from '../../test/fixtures/rest/3ds-v2.1-challenge';
 
 describe('REST JSON', () => {
@@ -52,41 +48,41 @@ describe('REST JSON', () => {
       ).toEqual(serializedAndSignedRedirectRequest);
 
       expect(
-        serializeAndSignJSONRequest(jsonRequestMerchantKey, jsonRequest)
-      ).toEqual(serializedAndSignedJSONRequest);
+        serializeAndSignJSONRequest(restJsonMerchantKey, restJsonRequest)
+      ).toEqual(serializedAndSignedRestJsonRequest);
 
       expect(
         serializeAndSignJSONRequest(threeDSv21MerchantKey, challengeResponseRequest)
       ).toEqual(serializedAndSignedChallengeResponseRequest);
     });
 
-    it('should parse and verify response with legit signature', () => {
+    it('should deserialize and verify response with legit signature', () => {
       expect(
-        parseAndVerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification)
-      ).toEqual(parsedRestNotification);
+        deserializeAndVerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification)
+      ).toEqual(deserializedRestNotification);
 
       expect(
-        parseAndVerifyJSONResponse(jsonResponseMerchantKey, serializedJSONResponse)
-      ).toEqual(parsedJSONResponse);
+        deserializeAndVerifyJSONResponse(restJsonMerchantKey, serializedRestJsonResponse)
+      ).toEqual(deserializedRestJsonResponse);
 
       expect(
-        parseAndVerifyJSONResponse(threeDSv21MerchantKey, serializedChallengeResponseResponse)
-      ).toEqual(parsedChallengeResponseResponse);
+        deserializeAndVerifyJSONResponse(threeDSv21MerchantKey, serializedChallengeResponseResponse)
+      ).toEqual(deserializedChallengeResponseResponse);
     });
 
     it('should fail to verify response if merchant key is incorrect', () => {
       expect(
-        () => parseAndVerifyJSONResponse(incorrectMerchantKey, serializedRestNotification)
+        () => deserializeAndVerifyJSONResponse(incorrectMerchantKey, serializedRestNotification)
       ).toThrowError(new ParseError('Invalid signature'));
 
       expect(
-        () => parseAndVerifyJSONResponse(incorrectMerchantKey, serializedJSONResponse)
+        () => deserializeAndVerifyJSONResponse(incorrectMerchantKey, serializedRestJsonResponse)
       ).toThrowError(new ParseError('Invalid signature'));
     });
 
     it('should fail to verify response if signature is forged', () => {
       expect(
-        () => parseAndVerifyJSONResponse(
+        () => deserializeAndVerifyJSONResponse(
           restNotificationMerchantKey,
           {
             ...serializedRestNotification,
@@ -96,10 +92,10 @@ describe('REST JSON', () => {
       ).toThrowError(new ParseError('Invalid signature'));
 
       expect(
-        () => parseAndVerifyJSONResponse(
-          jsonResponseMerchantKey,
+        () => deserializeAndVerifyJSONResponse(
+          restJsonMerchantKey,
           {
-            ...serializedJSONResponse,
+            ...serializedRestJsonResponse,
             Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
           }
         )
@@ -108,7 +104,7 @@ describe('REST JSON', () => {
 
     it('should fail to verify response if signature version is unknown', () => {
       expect(
-        () => parseAndVerifyJSONResponse(
+        () => deserializeAndVerifyJSONResponse(
           restNotificationMerchantKey,
           {
             ...serializedRestNotification,
@@ -118,10 +114,10 @@ describe('REST JSON', () => {
       ).toThrowError(new RedsysError('Unknown signature version: None'));
 
       expect(
-        () => parseAndVerifyJSONResponse(
-          jsonResponseMerchantKey,
+        () => deserializeAndVerifyJSONResponse(
+          restJsonMerchantKey,
           {
-            ...serializedJSONResponse,
+            ...serializedRestJsonResponse,
             Ds_SignatureVersion: 'None'
           }
         )

@@ -55,6 +55,11 @@ type SoapRequest = {
   body: string
 };
 
+/**
+ * Detects the soap version of a HTTP request
+ *
+ * @public
+ */
 export const detectSoapVersion = (req: SoapRequest) => {
   const contentType = req.headers?.['Content-Type'];
   if (contentType != null && contentType) {
@@ -74,7 +79,15 @@ export const detectSoapVersion = (req: SoapRequest) => {
   throw new ParseError('Not a valid SOAP request', req);
 };
 
-export const mimicSoapNotificationReceiver = (xml: string) => {
+/**
+ * Extracts the body of a SOAP notification from the body of the HTTP request
+ *
+ * @remarks
+ * It does not understand SOAP or use WSDL, the implementation is a little bit hacky
+ *
+ * @public
+ */
+export const mimicSoapNotificationReceiver = (xml: string): string => {
   const regex = /<(?:\w+:)?XML(?: [^<>]+)?>([^<>]+)<\/(?:\w+:)?XML>/;
 
   const matchArray = regex.exec(xml);
@@ -87,11 +100,27 @@ export const mimicSoapNotificationReceiver = (xml: string) => {
   return unescapeXML(xmlContent);
 };
 
+/**
+ * Creates the body of a HTTP response as SOAP 1.1 from the body of a SOAP notification response
+ *
+ * @remarks
+ * It does not understand SOAP or use WSDL, the implementation is a little bit hacky
+ *
+ * @public
+ */
 export const mimicSoap11NotificationResponse = (answer: string) => {
   const escapedAnswer = escapeXML(answer);
   return `<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://sis.sermepa.es/sis/InotificacionSIS.wsdl" xmlns:types="https://sis.sermepa.es/sis/InotificacionSIS.wsdl/encodedTypes" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><q2:procesaNotificacionSISResponse xmlns:q2="InotificacionSIS"><return xsi:type="xsd:string">${escapedAnswer}</return></q2:procesaNotificacionSISResponse></soap:Body></soap:Envelope>`;
 };
 
+/**
+ * Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
+ *
+ * @remarks
+ * It does not understand SOAP or use WSDL, the implementation is a little bit hacky
+ *
+ * @public
+ */
 export const mimicSoap12NotificationResponse = (answer: string) => {
   const escapedAnswer = escapeXML(answer);
 

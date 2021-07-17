@@ -1,11 +1,11 @@
 import {
-  parsedRestNotification
+  deserializedRestNotification
 } from '../rest/redirect-notification';
 
 export {
   restNotificationMerchantKey,
   serializedRestNotification,
-  parsedRestNotification
+  deserializedRestNotification
 } from '../rest/redirect-notification';
 
 export const formattedRestNotification = {
@@ -13,7 +13,7 @@ export const formattedRestNotification = {
   date: '2015-11-09',
   timestamp: new Date('2015-11-09 17:03 Z'),
   securePayment: false,
-  amount: 145,
+  amount: '1.45',
   order: '0069',
   merchantCode: '999008881',
   terminal: '871',
@@ -23,5 +23,5 @@ export const formattedRestNotification = {
   currency: 'EUR',
   cardCountry: 'es',
   lang: 'es',
-  raw: parsedRestNotification
+  raw: deserializedRestNotification
 };

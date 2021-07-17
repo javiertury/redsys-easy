@@ -28,7 +28,7 @@ export const searializedInicaPeticionResponse = {
   Ds_Signature: 'WrrpqNduck5RJMC2cYb87Jj5WbV9p11KfWF64A0534E='
 };
 
-export const parsedIniciaPeticionResponse = {
+export const deserializedIniciaPeticionResponse = {
   Ds_Card_PSD2: 'Y',
   Ds_MerchantCode: '999008881',
   Ds_Order: '6705iUKijC4u',
@@ -40,7 +40,7 @@ export const parsedIniciaPeticionResponse = {
   }
 } as const;
 
-export const threeDSChallengeRequest = {
+export const authDataRequest = {
   DS_MERCHANT_AMOUNT: '3350',
   DS_MERCHANT_CURRENCY: '978',
   DS_MERCHANT_MERCHANTCODE: '999008881',
@@ -59,19 +59,19 @@ export const threeDSChallengeRequest = {
   }
 } as const;
 
-export const serializedAndSigned3DSChallengeRequest = {
+export const serializedAndSignedAuthDataRequest = {
   Ds_SignatureVersion: 'HMAC_SHA256_V1',
   Ds_MerchantParameters: 'eyJEU19NRVJDSEFOVF9BTU9VTlQiOiIzMzUwIiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiI5NzgiLCJEU19NRVJDSEFOVF9NRVJDSEFOVENPREUiOiI5OTkwMDg4ODEiLCJEU19NRVJDSEFOVF9URVJNSU5BTCI6IjEiLCJEU19NRVJDSEFOVF9PUkRFUiI6IjY3MDVpVUtpakM0dSIsIkRTX01FUkNIQU5UX1RSQU5TQUNUSU9OVFlQRSI6IjAiLCJEU19NRVJDSEFOVF9QQU4iOiI0NTQ4ODEyMDQ5NDAwMDA0IiwiRFNfTUVSQ0hBTlRfRVhQSVJZREFURSI6IjM0MTIiLCJEU19NRVJDSEFOVF9DVlYyIjoiMTIzIiwiRFNfTUVSQ0hBTlRfTUVSQ0hBTlREQVRBIjoiZm9vIiwiRFNfTUVSQ0hBTlRfRU1WM0RTIjp7InByb3RvY29sVmVyc2lvbiI6IjEuMC4yIiwidGhyZWVEU0luZm8iOiJBdXRoZW50aWNhdGlvbkRhdGEiLCJicm93c2VyQWNjZXB0SGVhZGVyIjoidGV4dC9odG1sLGFwcGxpY2F0aW9uL3hodG1sK3htbCxhcHBsaWNhdGlvbi94bWw7cT0wLjksKi8qO3E9MC44LGFwcGxpY2F0aW9uL2pzb24iLCJicm93c2VyVXNlckFnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzcxLjAuMzU3OC45OCBTYWZhcmkvNTM3LjM2In19',
   Ds_Signature: '0hXAqEusm1TeW6XGjRPvxos9ZLUP8OJj1HTzINAJ0LI='
 };
 
-export const serialized3DSChallengeResponse = {
+export const serializedAuthDataResponse = {
   Ds_SignatureVersion: 'HMAC_SHA256_V1',
   Ds_MerchantParameters: 'eyJEc19BbW91bnQiOiIzMzUwIiwiRHNfQ3VycmVuY3kiOiI5NzgiLCJEc19PcmRlciI6IjY3MDVpVUtpakM0dSIsIkRzX01lcmNoYW50Q29kZSI6Ijk5OTAwODg4MSIsIkRzX1Rlcm1pbmFsIjoiMSIsIkRzX1RyYW5zYWN0aW9uVHlwZSI6IjAiLCJEc19FTVYzRFMiOnsidGhyZWVEU0luZm8iOiJDaGFsbGVuZ2VSZXF1ZXN0IiwicHJvdG9jb2xWZXJzaW9uIjoiMS4wLjIiLCJhY3NVUkwiOiJodHRwczovL3Npcy1kLnJlZHN5cy5lcy9zaXMtc2ltdWxhZG9yLXdlYi8zRFMxL3BhcmVzLmpzcCIsIlBBUmVxIjoiZUp4VlV0dHVnekFNL1JYRXBMMk5KQVJFMjdtWnNwWnBmV0NxV3ZZQkVWZ3JVNkVzb2FQZDF5OXBZWmVIeUQ2MjQ4dXg0ZUZVNzcxUDFLWTZOSE9mQmRUM3NDa09aZFc4emYzWC9PbHU0ajhJeUhjYWNibkY0cWhSUUliR3FEZjBxbkx1bTdwVjFTbWNxQTVORjlJb1NsaElRMFl2Z2lZOHBwUXlIdmtDMW5LREh3S0dXc0tXQ2tJZ0k3UkpkYkZUVFNkQUZSK1BxeGNSeFRGTHBrQUdDRFhxMVZKczAwMldybVdXYmhiUDhpVUhjalZEbzJvVW0zUzc4Tkx0V3Q3ZWhIUjZMNEZjekZBY2prMm56eUlKSXlBamdLUGVpMTNYdFROQytyNFBOSmJtYkFJMHBGQ04ycU1KM2swTHhFVUIrZTF1ZlhTYXNWbFBWU215ZDNuT2NzbXpmTlZibldkZnIzMjJsTzdOZ2JnSUtDMDFZdVRFbzNSR2t4bVBnVnpzb0dyWGp1QThpS21kOVlxZ2RVWGs2SEtldnhhd2E5QjJTMmN4VFNaMm9CRUJudHBEZ3piQ0V2dWpRNG1tc0NNTTRyZi94YlBqdXVnc2ZTRmxVMFk1cFJHM0srUnM0bWkvZUZ6T3lyTEZJM1pONmdBUTk1Y01HeVhEUFZqdDM1MThBeGN0d2d3PSIsIk1EIjoiZWZjYTcyOTg5NDljZTEyMDQyYzRlNWRhOTVhMDdlMzI0ZjJkNWNiZCJ9fQ==',
   Ds_Signature: 'r48h-dm_iw1LGbyZJwrGsbjsDjMAtJhP4sFfuAd-vBc='
 };
 
-export const parsedThreeDSChallengeResponse = {
+export const deserializedAuthDataResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6705iUKijC4u',
@@ -203,7 +203,7 @@ export const serializedChallengeResponseResponse = {
   Ds_Signature: 'Vh8F7plUD5flHHPY_TcasGAEhvqMXNX_Vs4EGa0Hd9o='
 };
 
-export const parsedChallengeResponseResponse = {
+export const deserializedChallengeResponseResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6705iUKijC4u',

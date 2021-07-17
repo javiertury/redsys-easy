@@ -1,5 +1,5 @@
 import {
-  parseAndVerifySoapNotification,
+  deserializeAndVerifySoapNotification,
   serializeAndSignSoapNotificationResponse
 } from './notification';
 
@@ -14,7 +14,7 @@ import {
 import {
   soapNotificationMerchantKey,
   serializedAndSignedSoapNotificationParams,
-  parsedSoapNotification
+  deserializedSoapNotification
 } from '../../test/fixtures/soap/redirect-notification';
 
 import {
@@ -46,21 +46,21 @@ describe('SOAP Notification', () => {
     expect(serializedAndSignedResponse).toEqual(serializedAndSignedDeniedNotificationResponseParams);
   });
 
-  it('should parse and verify legit notification', () => {
-    const verify = () => parseAndVerifySoapNotification(soapNotificationMerchantKey, serializedAndSignedSoapNotificationParams);
+  it('should deserialize and verify legit notification', () => {
+    const verify = () => deserializeAndVerifySoapNotification(soapNotificationMerchantKey, serializedAndSignedSoapNotificationParams);
     expect(verify).not.toThrowError();
 
-    const parsedRequest = parseAndVerifySoapNotification(soapNotificationMerchantKey, serializedAndSignedSoapNotificationParams);
-    expect(parsedRequest).toEqual(parsedSoapNotification.Request);
+    const deserializedRequest = deserializeAndVerifySoapNotification(soapNotificationMerchantKey, serializedAndSignedSoapNotificationParams);
+    expect(deserializedRequest).toEqual(deserializedSoapNotification.Request);
   });
 
   it('should fail to verify notification if merchant key is incorrect', () => {
-    const verify = () => parseAndVerifySoapNotification(incorrectMerchantKey, serializedAndSignedSoapNotificationParams);
+    const verify = () => deserializeAndVerifySoapNotification(incorrectMerchantKey, serializedAndSignedSoapNotificationParams);
     expect(verify).toThrowError(new ParseError('Invalid signature'));
   });
 
   it('should fail to verify notification if signature is forged', () => {
-    const verify = () => parseAndVerifySoapNotification(
+    const verify = () => deserializeAndVerifySoapNotification(
       soapNotificationMerchantKey,
       serializedAndSignedSoapNotificationParams.replace(
         /<Signature>.*<\/Signature>/,

@@ -1,5 +1,5 @@
 import {
-  parseSoapNotification,
+  deserializeSoapNotification,
   serializeSoapNotificationResponse
 } from './notification-serialization';
 
@@ -24,11 +24,11 @@ export const serializeAndSignSoapNotificationResponse = (
   return signSoapNotificationResponse(merchantKey, serializedResponse, response);
 };
 
-export const parseAndVerifySoapNotification = (
+export const deserializeAndVerifySoapNotification = (
   merchantKey: string,
   xml: string
 ): SoapNotificationOutputParams => {
-  const msg = parseSoapNotification(xml);
+  const msg = deserializeSoapNotification(xml);
   verifySoapNotification(merchantKey, xml, msg);
 
   // Return only parameters. Signature is useless after verification

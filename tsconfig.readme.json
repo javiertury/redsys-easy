@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "redsys-easy": ["./src"]
+    }
+  },
+  "include": [
+    "**/*.test.ts",
+    "**/*.test-d.ts",
+    "examples/__readme__/**/*.ts",
+    "examples/__readme__/**/*.js"
+  ]
+}

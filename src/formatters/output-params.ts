@@ -1,14 +1,17 @@
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import Decimal from 'decimal.js';
 
+import { ParseError } from '../errors';
 import { REV_LANGUAGES } from '../assets/lang-codes';
-import type { Language } from '../assets/lang-codes';
+import type { Language, LanguageNum } from '../assets/lang-codes';
+import type { CurrencyNum } from '../assets/currencies';
 import { REV_CURRENCIES } from '../assets/currencies';
 import { REV_COUNTRIES } from '../assets/countries';
-import type { Country } from '../assets/countries';
+import type { Country, CountryNum } from '../assets/countries';
 import { REV_CARDBRANDS } from '../assets/card-brands';
-import type { CardBrand } from '../assets/card-brands';
+import type { CardBrand, CardBrandNum } from '../assets/card-brands';
 import type {
   BaseOutputParams,
   NotificationOutputParams,
@@ -16,14 +19,16 @@ import type {
   SoapNotificationOutputParams,
   RequestOutputParams,
   RestIniciaPeticionOutputParams,
-  RestTrataPeticionOutputParams
+  RestTrataPeticionOutputParams,
+  ResolvedTransactionTrait
 } from '../types/output-params';
 import type {
-  BaseFormattedOutput,
-  NotificationFormattedOutput,
-  RequestFormattedOutput,
-  RestIniciaPeticionFormattedOutput,
-  RestTrataPeticionFormattedOutput
+  BaseFormatterOutput,
+  NotificationFormatterOutput,
+  RequestFormatterOutput,
+  RestIniciaPeticionFormatterOutput,
+  RestTrataPeticionFormatterOutput,
+  ResolvedTransactionTraitFormatterOutput
 } from './types';
 
 import { isStringNotEmpty } from '../utils/misc';
@@ -31,27 +36,27 @@ import { isStringNotEmpty } from '../utils/misc';
 dayjs.extend(timezone);
 dayjs.extend(utc);
 
-const formatCountry = (rawCountry: string): Country | undefined => {
-  const countryInt = Number.parseInt(rawCountry);
+const formatCountry = (rawCountry: CountryNum): Country | undefined => {
+  const countryInt = Number.parseInt(rawCountry).toString() as CountryNum;
   return REV_COUNTRIES[countryInt];
 };
 
-const formatCardBrand = (rawCardBrand: string): CardBrand | undefined => {
-  const cardBrandInt = Number.parseInt(rawCardBrand);
+const formatCardBrand = (rawCardBrand: CardBrandNum): CardBrand | undefined => {
+  const cardBrandInt = Number.parseInt(rawCardBrand).toString() as CardBrandNum;
   return REV_CARDBRANDS[cardBrandInt];
 };
+
+const formatResponse = (rawResponse: string): number => Number.parseInt(rawResponse);
 
 export const baseOutputFormatter = <
   RawOutputParams extends BaseOutputParams
 >(
   raw: RawOutputParams
-): BaseFormattedOutput<RawOutputParams> => {
+): BaseFormatterOutput<RawOutputParams> => {
   const {
     Ds_MerchantCode: merchantCode,
     Ds_Terminal: terminal,
     Ds_Order: order,
-    Ds_Amount: rawAmount,
-    Ds_Currency: rawCurrency,
     Ds_SecurePayment: rawSecurePayment,
     Ds_TransactionType: transactionType,
     Ds_Card_Country: rawCardCountry,
@@ -62,22 +67,17 @@ export const baseOutputFormatter = <
     Ds_AuthorisationCode: authorisationCode
   } = raw;
 
-  const currencyInt = Number.parseInt(rawCurrency);
-  const currencyInfo = REV_CURRENCIES[currencyInt];
-  const currency = currencyInfo?.code;
-
-  const amount = Number.parseInt(rawAmount);
-
   return {
     raw,
 
     merchantCode,
     terminal,
     order,
-    currency,
-    amount,
-    securePayment: rawSecurePayment === '1',
     transactionType,
+    ...(rawSecurePayment != null && rawSecurePayment.length > 0
+      ? { securePayment: rawSecurePayment === '1' || rawSecurePayment === '2' }
+      : undefined
+    ),
     ...(isStringNotEmpty(rawCardCountry) ? { cardCountry: formatCountry(rawCardCountry) } : undefined),
     ...(isStringNotEmpty(rawCardBrand) ? { cardBrand: formatCardBrand(rawCardBrand) } : undefined),
     ...(isStringNotEmpty(rawCardPSD2) ? { cardPSD2: rawCardPSD2 === 'Y' } : undefined),
@@ -87,8 +87,33 @@ export const baseOutputFormatter = <
   };
 };
 
-const formatLang = (rawLang: string): Language | undefined => {
-  const langInt = Number.parseInt(rawLang);
+export const formatPrice = (
+  params: Omit<ResolvedTransactionTrait, 'Ds_Response'>
+): Omit<ResolvedTransactionTraitFormatterOutput, 'response'> => {
+  const {
+    Ds_Amount: rawAmount,
+    Ds_Currency: rawCurrency
+  } = params;
+
+  const currencyInt = Number.parseInt(rawCurrency).toString() as CurrencyNum;
+  const currencyInfo = REV_CURRENCIES[currencyInt];
+
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  if (!currencyInfo) {
+    throw new ParseError('Unknown currency', rawCurrency);
+  }
+
+  const currency = currencyInfo.code;
+  const amount = new Decimal(rawAmount).dividedBy(Math.pow(10, currencyInfo.decimals)).toFixed();
+
+  return {
+    amount,
+    currency
+  };
+};
+
+const formatLang = (rawLang: LanguageNum): Language | undefined => {
+  const langInt = Number.parseInt(rawLang).toString() as LanguageNum;
   return REV_LANGUAGES[langInt];
 };
 
@@ -96,26 +121,30 @@ const notificationOutputFormatter = <
   RawOutputParams extends NotificationOutputParams
 >(
   raw: RawOutputParams
-): Omit<NotificationFormattedOutput<RawOutputParams>, 'date' | 'time' | 'timestamp'> => {
+): Omit<NotificationFormatterOutput<RawOutputParams>, 'date' | 'time' | 'timestamp'> => {
   const {
-    Ds_Response: rawResponse,
-    Ds_ConsumerLanguage: rawConsumerLanguage
+    Ds_ConsumerLanguage: rawConsumerLanguage,
+    Ds_Response: rawResponse
   } = raw;
 
-  const response = Number.parseInt(rawResponse);
-
   return {
-    response,
     ...baseOutputFormatter(raw),
+    ...formatPrice(raw),
+    response: formatResponse(rawResponse),
     ...(isStringNotEmpty(rawConsumerLanguage) ? { lang: formatLang(rawConsumerLanguage) } : undefined)
   };
 };
 
+/**
+ * REST notification formatter
+ *
+ * @public
+ */
 export const restNotificationOutputFormatter = <
-  RawOutputParams extends RestNotificationOutputParams
+  RawOutputParams extends RestNotificationOutputParams = RestNotificationOutputParams
 >(
   raw: RawOutputParams
-): NotificationFormattedOutput<RawOutputParams> => {
+): NotificationFormatterOutput<RawOutputParams> => {
   const {
     Ds_Hour: hour,
     Ds_Date: rawDate
@@ -131,11 +160,16 @@ export const restNotificationOutputFormatter = <
   };
 };
 
+/**
+ * SOAP notification formatter
+ *
+ * @public
+ */
 export const soapNotificationOutputFormatter = <
-  RawOutputParams extends SoapNotificationOutputParams
+  RawOutputParams extends SoapNotificationOutputParams = SoapNotificationOutputParams
 >(
   raw: RawOutputParams
-): NotificationFormattedOutput<RawOutputParams> => {
+): NotificationFormatterOutput<RawOutputParams> => {
   const {
     Hora: hour,
     Fecha: rawDate
@@ -155,7 +189,7 @@ export const requestOutputFormatter = <
   RawOutputParams extends RequestOutputParams
 >(
   raw: RawOutputParams
-): RequestFormattedOutput<RawOutputParams> => {
+): RequestFormatterOutput<RawOutputParams> => {
   const {
     Ds_CardNumber: cardNumber,
     Ds_Merchant_Identifier: identifier,
@@ -177,27 +211,45 @@ export const requestOutputFormatter = <
   };
 };
 
+/**
+ * REST iniciaPeticion output formatter
+ *
+ * @public
+ */
 export const restIniciaPeticionOutputFormatter = <
-  RawOutputParams extends RestIniciaPeticionOutputParams
+  RawOutputParams extends RestIniciaPeticionOutputParams = RestIniciaPeticionOutputParams
 >(
   raw: RawOutputParams
-): RestIniciaPeticionFormattedOutput<RawOutputParams> => {
-  return {
-    ...requestOutputFormatter(raw)
-  };
-};
-
-export const restTrataPeticionOutputFormatter = <
-  RawOutputParams extends RestTrataPeticionOutputParams
->(
-  raw: RawOutputParams
-): RestTrataPeticionFormattedOutput<RawOutputParams> => {
+): RestIniciaPeticionFormatterOutput<RawOutputParams> => {
   const {
-    Ds_Response: rawResponse
+    Ds_EMV3DS: emv3ds
   } = raw;
 
   return {
     ...requestOutputFormatter(raw),
+    ...(emv3ds != null ? { emv3ds } : undefined)
+  };
+};
+
+/**
+ * REST trataPeticion output formatter
+ *
+ * @public
+ */
+export const restTrataPeticionOutputFormatter = <
+  RawOutputParams extends RestTrataPeticionOutputParams = RestTrataPeticionOutputParams
+>(
+  raw: RawOutputParams
+): RestTrataPeticionFormatterOutput<RawOutputParams> => {
+  const {
+    Ds_Response: rawResponse,
+    Ds_EMV3DS: emv3ds
+  } = raw;
+
+  return {
+    ...requestOutputFormatter(raw),
+    ...formatPrice(raw),
+    ...(emv3ds != null ? { emv3ds } : undefined),
     ...(rawResponse != null ? { response: Number.parseInt(rawResponse) } : undefined)
   };
 };

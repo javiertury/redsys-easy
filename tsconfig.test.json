@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "noEmit": true,
     "paths": {
       "redsys-easy": ["./src"]
     }
@@ -8,5 +9,9 @@
   "include": [
     "src/**/*",
     "test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "examples"
   ]
 }

@@ -1,11 +1,11 @@
 import {
   serializeSoapNotificationResponse,
-  parseSoapNotification
+  deserializeSoapNotification
 } from './notification-serialization';
 
 import {
   serializedAndSignedSoapNotificationParams,
-  parsedSoapNotification
+  deserializedSoapNotification
 } from '../../test/fixtures/soap/redirect-notification';
 
 import {
@@ -29,8 +29,8 @@ describe('SOAP Notification serialization', () => {
     expect(serializedParams).toEqual(serializedDeniedNotificationResponseParams);
   });
 
-  it('should parse notification', () => {
-    const parsedParams = parseSoapNotification(serializedAndSignedSoapNotificationParams);
-    expect(parsedParams).toEqual(parsedSoapNotification);
+  it('should deserialize notification', () => {
+    const deserializedParams = deserializeSoapNotification(serializedAndSignedSoapNotificationParams);
+    expect(deserializedParams).toEqual(deserializedSoapNotification);
   });
 });

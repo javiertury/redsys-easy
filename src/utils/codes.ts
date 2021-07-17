@@ -2,6 +2,11 @@ import { STATUS_CODES } from 'http';
 import { SIS_ERROR_CODES } from '../assets/error-codes';
 import RESPONSE_CODES from '../assets/response-codes';
 
+/**
+ * Returns the message corresponding to a response code, in spanish
+ *
+ * @public
+ */
 export const getResponseCodeMessage = (code: string | number): string | undefined => {
   if (typeof code !== 'number' && typeof code !== 'string') {
     return;
@@ -22,6 +27,11 @@ export const getResponseCodeMessage = (code: string | number): string | undefine
   return msg;
 };
 
+/**
+ * Returns the message corresponding to a gateway error code
+ *
+ * @public
+ */
 export const getSISErrorCodeMessage = (code: string): string | undefined => {
   if (!code || typeof code !== 'string') {
     return undefined;

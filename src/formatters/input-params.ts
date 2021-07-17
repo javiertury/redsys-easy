@@ -1,34 +1,34 @@
 import Decimal from 'decimal.js';
 import { ValidationError } from '../errors';
 import { LANGUAGES } from '../assets/lang-codes';
-import type { Language } from '../assets/lang-codes';
+import type { Language, LanguageNum } from '../assets/lang-codes';
 import { CURRENCIES } from '../assets/currencies';
-import type { Currency } from '../assets/currencies';
+import type { Currency, CurrencyNum } from '../assets/currencies';
 import type {
   BaseInputParams,
   RedirectInputParams,
-  RequestInputParams
+  RequestInputParams,
+  RestIniciaPeticionInputParams,
+  RestTrataPeticionInputParams
 } from '../types/input-params';
 import type {
-  BaseFormattedInput,
-  RedirectFormattedInput,
-  RequestFormattedInput
+  BaseFormatterInput,
+  RedirectFormatterInput,
+  RequestFormatterInput,
+  RestIniciaPeticionFormatterInput,
+  RestTrataPeticionFormatterInput
 } from './types';
 
 import { isStringNotEmpty } from '../utils/misc';
 
-export interface FormatterOptions {
-  amountType: 'float' | 'atomic'
-}
-
-const formatInputCurrency = (input: Currency): string => {
+const formatInputCurrency = (input: Currency): CurrencyNum => {
   const currencyData = CURRENCIES[input];
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!currencyData || !currencyData.num) {
     throw new ValidationError('Unsupported currency', { currency: input });
   }
 
-  return currencyData.num.padStart(3, '0');
+  return currencyData.num;
 };
 
 const formatExpiryDate = ({ expiryYear, expiryMonth }: { expiryYear?: string, expiryMonth?: string }): string => {
@@ -42,49 +42,28 @@ const formatExpiryDate = ({ expiryYear, expiryMonth }: { expiryYear?: string, ex
   return `${expiryYear}${expiryMonth}`;
 };
 
-/*
- * Experimental feature!!!
- *
- * The feature amountType='float' may be removed any time.
- * If you like this feature or have any comment please open an issue
- *
- * amountType can be atomic or float.
- * - atomic: amount represents the smallest currency unit. 1130 (EUR) -> 11.30 EUR
- * - float: amount is rounded to last decimal precision. 11.299999999 (EUR) -> 11.30 EUR
- *
- * Float amount can lead to losing precision, specially after doing
- * operations. Atomic is more precise for monetary amount, no lost cents,
- * better for accounting.
+/**
+ * Converts a monetary amount from a decimal string currency unit to the atomic currency unit
  */
 const formatAmount = (
   value: string | number,
-  context: { currency?: Currency },
-  options?: Pick<FormatterOptions, 'amountType'>
+  context: { currency?: Currency }
 ): string => {
-  // atomic by default
-  let rawValue: string = value.toString();
+  const { currency } = context;
 
-  if (options?.amountType == null || options.amountType === 'atomic') {
-    rawValue = value.toString();
-  } else if (options.amountType === 'float') {
-    const { currency } = context;
-
-    if (!currency) {
-      throw new ValidationError('Missing currency', { currency: currency });
-    }
-
-    const currencyData = CURRENCIES[currency];
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!currencyData || !currencyData.decimals) {
-      throw new ValidationError('Unsupported currency', { currency: currency });
-    }
-
-    rawValue = typeof value === 'number'
-      ? Math.round(value * Math.pow(10, currencyData.decimals)).toString()
-      : new Decimal(value).mul(Math.pow(10, currencyData.decimals)).round().toFixed(0);
-  } else {
-    throw new ValidationError('Unknown format', { amountType: options.amountType });
+  if (!currency) {
+    throw new ValidationError('Missing currency', { currency: currency });
   }
+
+  const currencyData = CURRENCIES[currency];
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  if (!currencyData || !currencyData.decimals) {
+    throw new ValidationError('Unsupported currency', { currency: currency });
+  }
+
+  const rawValue = typeof value === 'number'
+    ? Math.round(value * Math.pow(10, currencyData.decimals)).toString()
+    : new Decimal(value).mul(Math.pow(10, currencyData.decimals)).round().toFixed(0);
 
   if (rawValue.length > 12) {
     throw new ValidationError('Amount to charge is too large', { amount: value });
@@ -93,7 +72,7 @@ const formatAmount = (
   return rawValue;
 };
 
-const formatLang = (value: Language): string => {
+const formatLang = (value: Language): LanguageNum => {
   const langInt = LANGUAGES[value];
   if (langInt == null) {
     throw new ValidationError('Invalid lang code', { lang: value });
@@ -101,11 +80,10 @@ const formatLang = (value: Language): string => {
   return langInt;
 };
 
-const baseInputParamsFormatter = <
-  RawInputParams extends object
+const baseInputFormatter = <
+  RawInputParams extends Partial<BaseInputParams>
 >(
-  input: BaseFormattedInput<RawInputParams>,
-  options?: FormatterOptions
+  input: BaseFormatterInput<RawInputParams>
 ): BaseInputParams => {
   const {
     order,
@@ -132,8 +110,15 @@ const baseInputParamsFormatter = <
     ...unknownInput
   } = input;
 
-  if (Object.keys(unknownInput).length > 0) {
-    throw new ValidationError('Unknown parameters', unknownInput);
+  const unknownKeys = Object.keys(unknownInput);
+  if (unknownKeys.length > 0) {
+    throw new ValidationError(
+      [
+        `Unknown parameters: ${unknownKeys.join(', ')}`,
+        'To pass raw parameters, use "raw"'
+      ].join('\n'),
+      unknownInput
+    );
   }
 
   return {
@@ -141,7 +126,7 @@ const baseInputParamsFormatter = <
     DS_MERCHANT_MERCHANTCODE: merchantCode,
     DS_MERCHANT_TRANSACTIONTYPE: transactionType,
     DS_MERCHANT_TERMINAL: terminal,
-    ...(amount != null ? { DS_MERCHANT_AMOUNT: formatAmount(amount, { currency }, options) } : undefined),
+    ...(amount != null ? { DS_MERCHANT_AMOUNT: formatAmount(amount, { currency }) } : undefined),
     ...(isStringNotEmpty(currency) ? { DS_MERCHANT_CURRENCY: formatInputCurrency(currency) } : undefined),
     ...(isStringNotEmpty(merchantName) ? { DS_MERCHANT_MERCHANTNAME: merchantName } : undefined),
     ...(isStringNotEmpty(identifier) ? { DS_MERCHANT_IDENTIFIER: identifier } : undefined),
@@ -160,11 +145,15 @@ const baseInputParamsFormatter = <
   };
 };
 
-export const formatRedirectInputParams = <
-  RawInputParams extends object
+/**
+ * Redirection input formatter
+ *
+ * @public
+ */
+export const redirectInputFormatter = <
+  RawInputParams extends Partial<RedirectInputParams> = Partial<RedirectInputParams>
 >(
-  input: RedirectFormattedInput<RawInputParams>,
-  options?: FormatterOptions
+  input: RedirectFormatterInput<RawInputParams>
 ): RedirectInputParams => {
   const {
     merchantURL,
@@ -176,7 +165,7 @@ export const formatRedirectInputParams = <
   } = input;
 
   return {
-    ...baseInputParamsFormatter(baseInput, options),
+    ...baseInputFormatter(baseInput),
     ...(isStringNotEmpty(merchantURL) ? { DS_MERCHANT_MERCHANTURL: merchantURL } : undefined),
     ...(isStringNotEmpty(successURL) ? { DS_MERCHANT_URLOK: successURL } : undefined),
     ...(isStringNotEmpty(errorURL) ? { DS_MERCHANT_URLKO: errorURL } : undefined),
@@ -187,11 +176,10 @@ export const formatRedirectInputParams = <
   };
 };
 
-export const formatRequestInputParams = <
-  RawInputParams extends object
+export const requestInputFormatter = <
+  RawInputParams extends Partial<RequestInputParams>
 >(
-  input: RequestFormattedInput<RawInputParams>,
-  options?: FormatterOptions
+  input: RequestFormatterInput<RawInputParams>
 ): RequestInputParams => {
   const {
     customerMail,
@@ -201,7 +189,7 @@ export const formatRequestInputParams = <
   } = input;
 
   return {
-    ...baseInputParamsFormatter(baseInput, options),
+    ...baseInputFormatter(baseInput),
     ...(isStringNotEmpty(customerMobile) ? { DS_MERCHANT_CUSTOMER_MOBILE: customerMobile } : undefined),
     ...(isStringNotEmpty(customerMail) ? { DS_MERCHANT_CUSTOMER_MAIL: customerMail } : undefined),
     ...(isStringNotEmpty(smsTemplate) ? { DS_MERCHANT_CUSTOMER_SMS_TEXT: smsTemplate } : undefined),
@@ -210,14 +198,48 @@ export const formatRequestInputParams = <
   };
 };
 
-export const createRedirectInputFormatter = (
-  options?: FormatterOptions
-): (<RawParams extends object>(input: RedirectFormattedInput<RawParams>) => RedirectInputParams) => {
-  return input => formatRedirectInputParams(input, options);
+/**
+ * REST iniciaPeticion input formatter
+ *
+ * @public
+ */
+export const restIniciaPeticionInputFormatter = <
+  RawInputParams extends Partial<RestIniciaPeticionInputParams> = Partial<RestIniciaPeticionInputParams>
+>(
+  raw: RestIniciaPeticionFormatterInput<RawInputParams>
+): RestIniciaPeticionInputParams => {
+  const {
+    emv3ds,
+    ...requestInput
+  } = raw;
+
+  return {
+    ...requestInputFormatter(requestInput),
+    ...(emv3ds != null ? { DS_MERCHANT_EMV3DS: emv3ds } : undefined),
+    // Overwrite formatted parameters
+    ...requestInput.raw
+  };
 };
 
-export const createRequestInputFormatter = (
-  options?: FormatterOptions
-): (<RawParams extends object>(input: RequestFormattedInput<RawParams>) => RequestInputParams) => {
-  return input => formatRequestInputParams(input, options);
+/**
+ * REST trataPeticion input formatter
+ *
+ * @public
+ */
+export const restTrataPeticionInputFormatter = <
+  RawInputParams extends Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>
+>(
+  raw: RestTrataPeticionFormatterInput<RawInputParams>
+): RestTrataPeticionInputParams => {
+  const {
+    emv3ds,
+    ...requestInput
+  } = raw;
+
+  return {
+    ...requestInputFormatter(requestInput),
+    ...(emv3ds != null ? { DS_MERCHANT_EMV3DS: emv3ds } : undefined),
+    // Overwrite formatted parameters
+    ...requestInput.raw
+  };
 };

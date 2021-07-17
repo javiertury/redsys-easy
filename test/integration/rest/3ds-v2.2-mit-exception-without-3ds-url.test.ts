@@ -21,15 +21,15 @@ import type {
 } from 'redsys-easy';
 
 import type {
-  EMV3DSv1ChallengeSolutionNotificationOutputParams
-} from '../../../src/types/emv3ds-params';
+  ThreeDSv1ChallengeSolutionNotificationOutputParams
+} from '../../../src/types/3ds-params';
 
 import {
   encodePostParams
 } from '../utils';
 
 import {
-  assertEMV3DSv2CardConfig,
+  assert3DSv2CardConfig,
   assert3DSv1ChallengeRequest
 } from '../3ds';
 
@@ -110,7 +110,7 @@ describe('Rest 3DS v2.2 MIT exception', () => {
   let challengeRequestResult: RestTrataPeticionOutputParams | undefined;
 
   it('should obtain challenge url', async () => {
-    assertEMV3DSv2CardConfig(infoResult);
+    assert3DSv2CardConfig(infoResult);
 
     const params = {
       ...initialParams,
@@ -143,7 +143,7 @@ describe('Rest 3DS v2.2 MIT exception', () => {
     });
   });
 
-  let challengeSolution: EMV3DSv1ChallengeSolutionNotificationOutputParams | undefined;
+  let challengeSolution: ThreeDSv1ChallengeSolutionNotificationOutputParams | undefined;
 
   it('should solve challenge', async () => {
     assert3DSv1ChallengeRequest(challengeRequestResult);

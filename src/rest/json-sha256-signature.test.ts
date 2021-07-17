@@ -15,7 +15,7 @@ import {
 import {
   restNotificationMerchantKey,
   serializedRestNotification,
-  parsedRestNotification
+  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect-notification';
 
 import {
@@ -26,17 +26,13 @@ import {
 } from '../../test/fixtures/rest/redirect';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  serializedJSONRequest,
-  serializedAndSignedJSONRequest
-} from '../../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  serializedJSONResponse,
-  parsedJSONResponse
-} from '../../test/fixtures/rest/json-response';
+  restJsonRequest,
+  serializedRestJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  restJsonMerchantKey,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse
+} from '../../test/fixtures/rest/rest-json';
 
 describe('REST JSON SHA256 signature', () => {
   it('should sign request', () => {
@@ -45,27 +41,27 @@ describe('REST JSON SHA256 signature', () => {
     ).toEqual(serializedAndSignedRedirectRequest);
 
     expect(
-      sha256SignJSONRequest(jsonRequestMerchantKey, serializedJSONRequest, jsonRequest)
-    ).toEqual(serializedAndSignedJSONRequest);
+      sha256SignJSONRequest(restJsonMerchantKey, serializedRestJsonRequest, restJsonRequest)
+    ).toEqual(serializedAndSignedRestJsonRequest);
   });
 
   it('should verify response with legit signature', () => {
     expect(
-      () => sha256VerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification, parsedRestNotification)
+      () => sha256VerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification, deserializedRestNotification)
     ).not.toThrowError();
 
     expect(
-      () => sha256VerifyJSONResponse(jsonResponseMerchantKey, serializedJSONResponse, parsedJSONResponse)
+      () => sha256VerifyJSONResponse(restJsonMerchantKey, serializedRestJsonResponse, deserializedRestJsonResponse)
     ).not.toThrowError();
   });
 
   it('should fail to verify response if merchant key is incorrect', () => {
     expect(
-      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedRestNotification, parsedRestNotification)
+      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedRestNotification, deserializedRestNotification)
     ).toThrowError(new ParseError('Invalid signature'));
 
     expect(
-      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedJSONResponse, parsedJSONResponse)
+      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedRestJsonResponse, deserializedRestJsonResponse)
     ).toThrowError(new ParseError('Invalid signature'));
   });
 
@@ -77,18 +73,18 @@ describe('REST JSON SHA256 signature', () => {
           ...serializedRestNotification,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         },
-        parsedRestNotification
+        deserializedRestNotification
       )
     ).toThrowError(new ParseError('Invalid signature'));
 
     expect(
       () => sha256VerifyJSONResponse(
-        jsonResponseMerchantKey,
+        restJsonMerchantKey,
         {
-          ...serializedJSONResponse,
+          ...serializedRestJsonResponse,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         },
-        parsedJSONResponse
+        deserializedRestJsonResponse
       )
     ).toThrowError(new ParseError('Invalid signature'));
   });
@@ -101,18 +97,18 @@ describe('REST JSON SHA256 signature', () => {
           ...serializedRestNotification,
           Ds_SignatureVersion: 'None'
         },
-        parsedRestNotification
+        deserializedRestNotification
       )
     ).toThrowError(new RedsysError('Unknown signature version: None'));
 
     expect(
       () => sha256VerifyJSONResponse(
-        jsonResponseMerchantKey,
+        restJsonMerchantKey,
         {
-          ...serializedJSONResponse,
+          ...serializedRestJsonResponse,
           Ds_SignatureVersion: 'None'
         },
-        parsedJSONResponse
+        deserializedRestJsonResponse
       )
     ).toThrowError(new RedsysError('Unknown signature version: None'));
   });

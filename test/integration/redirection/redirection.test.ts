@@ -17,7 +17,7 @@ import { noThreeDS } from '../../fixtures/cards';
 import { clientPostHeaders } from '../../fixtures/client';
 import cardParams from './data/card-params.json';
 import settings from '../settings';
-import type { ResponseJSON } from 'redsys-easy';
+import type { ResponseJSONSuccess } from 'redsys-easy';
 import {
   encodePostParams,
   wait
@@ -38,7 +38,7 @@ const { URL } = url;
 
 const {
   createRedirectForm,
-  processNotification
+  processRestNotification
 } = createRedsysAPI({
   urls: SANDBOX_URLS,
   secretKey
@@ -252,11 +252,15 @@ describe('Redirect Integration', () => {
     const $2 = cheerio.load(text2);
 
     // Check that it redirects to our page
-    const redirectionCode = $2('body').attr('onload') as string;
-    const redirectionURL = redirectionCode.split('unescape(\'')[1]?.slice(0, -3);
-    expect(redirectionURL).toContain(redirectData.successURL);
+    const formAction1 = $2('form[name="formCuenta"]').attr('action') as string;
+    expect(formAction1).toContain(redirectData.successURL);
   });
 
+  /*
+   * This test may fail if your ip is not public and the port is not open
+   *
+   * See <projectFolder>/integration-settings.sample.js
+   */
   it('should receive a success notification', async () => {
     await wait(2000);
 
@@ -267,12 +271,12 @@ describe('Redirect Integration', () => {
     expect(serverCtx).not.toBeNull();
     expect(serverCtx.method).toEqual('POST');
 
-    const body = serverCtx.request.body as ResponseJSON;
+    const body = serverCtx.request.body as unknown as ResponseJSONSuccess;
     expect(typeof body).toBe('object');
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);
 
-    const params = processNotification(body);
+    const params = processRestNotification(body);
     expect(params.Ds_Response).toEqual('0000');
   });
 

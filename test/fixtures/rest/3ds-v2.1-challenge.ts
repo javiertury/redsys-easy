@@ -27,7 +27,7 @@ export const serializedIniciaPeticionResponse = {
   Ds_Signature: '9ef9hH-R_DOwz8OsXObbPbReSO3XgEZm25n82z6mv_0='
 };
 
-export const parsedIniciaPeticionResponse = {
+export const deserializedIniciaPeticionResponse = {
   Ds_Order: '6564vNUgKHSe',
   Ds_MerchantCode: '999008881',
   Ds_Terminal: '1',
@@ -57,7 +57,7 @@ export const deserializedThreeDSMethodData = {
   threeDSServerTransID: 'ad5165fd-bc46-4d64-84de-d135070191a1'
 };
 
-export const threeDSMethodRequest = {
+export const authDataRequest = {
   DS_MERCHANT_AMOUNT: '3350',
   DS_MERCHANT_CURRENCY: '978',
   DS_MERCHANT_MERCHANTCODE: '999008881',
@@ -85,19 +85,19 @@ export const threeDSMethodRequest = {
   }
 } as const;
 
-export const serializedAndSigned3DSMethodRequest = {
+export const serializedAndSignedAuthDataRequest = {
   Ds_SignatureVersion: 'HMAC_SHA256_V1',
   Ds_MerchantParameters: 'eyJEU19NRVJDSEFOVF9BTU9VTlQiOi IzMzUwIiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiI5NzgiLCJEU19NRVJDSEFOVF9NRVJDSEFOVENPREUiOiI5OTkwMDg4ODEiLCJEU19 NRVJDSEFOVF9URVJNSU5BTCI6IjEiLCJEU19NRVJDSEFOVF9PUkRFUiI6IjY1NjR2TlVnS0hTZSIsIkRTX01FUkNIQU5UX1RSQU5TQUNU SU9OVFlQRSI6IjAiLCJEU19NRVJDSEFOVF9QQU4iOiI0OTE4MDE5MTk5ODgzODM5IiwiRFNfTUVSQ0hBTlRfRVhQSVJZREFURSI6IjM0M TIiLCJEU19NRVJDSEFOVF9DVlYyIjoiMTIzIiwiRFNfTUVSQ0hBTlRfRU1WM0RTIjp7InRocmVlRFNJbmZvIjoiQXV0aGVudGljYXRpb2 5EYXRhIiwicHJvdG9jb2xWZXJzaW9uIjoiMi4xLjAiLCJicm93c2VyQWNjZXB0SGVhZGVyIjoidGV4dC9odG1sLGFwcGxpY2F0aW9uL3h odG1sK3htbCxhcHBsaWNhdGlvbi94bWw7cT0wLjksaW1hZ2Uvd2VicCwqLyo7cT0wLjgiLCJicm93c2VyVXNlckFnZW50IjoiTW96aWxs YS81LjAgKFgxMTsgRmVkb3JhOyBMaW51eCB4ODZfNjQ7IHJ2OjcyLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvNzIuMCIsImJyb3dzZ XJKYXZhc2NyaXB0RW5hYmxlZCI6ZmFsc2UsImJyb3dzZXJKYXZhRW5hYmxlZCI6ZmFsc2UsImJyb3dzZXJMYW5ndWFnZSI6IkVTLWVzIi wiYnJvd3NlckNvbG9yRGVwdGgiOiIzMiIsImJyb3dzZXJTY3JlZW5IZWlnaHQiOiIxMDgwIiwiYnJvd3NlclNjcmVlbldpZHRoIjoiMTk yMCIsImJyb3dzZXJUWiI6Ii0xMjAiLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImFkNTE2NWZkLWJjNDYtNGQ2NC04NGRlLWQxMzUwNzAx OTFhMSIsIm5vdGlmaWNhdGlvblVSTCI6Imh0dHA6Ly9teS1zZXJ2ZXI6MzAwMC9wb3N0LWNoYWxsZW5nZS12MiIsInRocmVlRFNDb21wS W5kIjoiWSJ9fQ==',
   Ds_Signature: 'lXD5lUIR00MncpwK4VAtE6OcqhVrHIzd/zDpwvkoWhw='
 };
 
-export const serialized3DSMethodResponse = {
+export const serializedAuthDataResponse = {
   Ds_SignatureVersion: 'HMAC_SHA256_V1',
   Ds_MerchantParameters: 'eyJEc19BbW91bnQiOiIzMzUwIiwiRHNfQ3VycmVuY3kiOiI5NzgiLCJEc19PcmRlciI6IjY1NjR2TlVnS0hTZSIsIkRzX01lcmNoYW50Q29kZSI6Ijk5OTAwODg4MSIsIkRzX1Rlcm1pbmFsIjoiMSIsIkRzX1RyYW5zYWN0aW9uVHlwZSI6IjAiLCJEc19FTVYzRFMiOnsidGhyZWVEU0luZm8iOiJDaGFsbGVuZ2VSZXF1ZXN0IiwicHJvdG9jb2xWZXJzaW9uIjoiMi4xLjAiLCJhY3NVUkwiOiJodHRwczovL3Npcy1kLnJlZHN5cy5lcy9zaXMtc2ltdWxhZG9yLXdlYi9hdXRoZW50aWNhdGlvblJlcXVlc3QuanNwIiwiY3JlcSI6ImV5SjBhSEpsWlVSVFUyVnlkbVZ5VkhKaGJuTkpSQ0k2SW1Ga05URTJOV1prTFdKak5EWXROR1EyTkMwNE5HUmxMV1F4TXpVd056QXhPVEZoTVNJc0ltRmpjMVJ5WVc1elNVUWlPaUl4TVdReE56azFaQzFrTURJd0xUUTJNbU10WVRsbFpDMDNNREl3TTJWbFpUVmlNbUVpTENKdFpYTnpZV2RsVkhsd1pTSTZJa05TWlhFaUxDSnRaWE56WVdkbFZtVnljMmx2YmlJNklqSXVNUzR3SWl3aVkyaGhiR3hsYm1kbFYybHVaRzkzVTJsNlpTSTZJakExSW4wIn19',
   Ds_Signature: 'zuJDMhHP8L8_KKmUXn_UegHkUtoKVSDi6rvdi0rYXfE='
 };
 
-export const parsed3DSMethodResponse = {
+export const deserializedAuthDataResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6564vNUgKHSe',
@@ -162,7 +162,7 @@ export const serializedChallengeResponseResponse = {
   Ds_Signature: '7TUJ8uzT1ex857PUrPQdfdRML_9MUP9Bjaf1YErbmQ4='
 };
 
-export const parsedChallengeResponseResponse = {
+export const deserializedChallengeResponseResponse = {
   Ds_Amount: '3350',
   Ds_Currency: '978',
   Ds_Order: '6564vNUgKHSe',

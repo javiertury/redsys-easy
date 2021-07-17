@@ -1,3 +1,8 @@
+/**
+ * Card brand name
+ *
+ * @public
+ */
 export type CardBrand =
   | 'VISA'
   | 'MASTERCARD'
@@ -7,7 +12,27 @@ export type CardBrand =
   | 'JCB'
   | 'UPI';
 
-export const CARDBRANDS: Record<CardBrand, string> = {
+/**
+ * Card brand number
+ *
+ * @public
+ */
+export type CardBrandNum =
+  | '1'
+  | '2'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '22';
+
+/**
+ * Card brand name to number
+ *
+ * @public
+ */
+// The Record key makes sure that all members of the key union type are defined.
+export const CARDBRANDS: Record<CardBrand, CardBrandNum> = {
   VISA: '1',
   MASTERCARD: '2',
   DINERS: '6',
@@ -17,9 +42,18 @@ export const CARDBRANDS: Record<CardBrand, string> = {
   UPI: '22'
 };
 
-const REV_CARDBRANDS: Record<string, CardBrand> = {};
+/**
+ * Card brand number to name
+ *
+ * @remarks
+ * @see {@link CARDBRANDS}
+ *
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+const REV_CARDBRANDS = {} as Record<CardBrandNum, CardBrand>;
 
-for (const [key, value] of Object.entries(CARDBRANDS) as ReadonlyArray<[CardBrand, string]>) {
+for (const [key, value] of Object.entries(CARDBRANDS) as ReadonlyArray<[CardBrand, CardBrandNum]>) {
   REV_CARDBRANDS[value] = key;
 }
 
