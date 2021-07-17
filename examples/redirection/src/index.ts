@@ -223,4 +223,14 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 // eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
+const server = app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
+
+process.on('SIGTERM', () => {
+  // eslint-disable-next-line no-console
+  console.log('Bye bye!');
+  server.close(() => {
+    // eslint-disable-next-line no-console
+    console.log('Server Closed');
+    process.exit(0);
+  });
+});
