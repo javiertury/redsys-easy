@@ -65,7 +65,7 @@ By default, the main functions exported by this package use the API specified by
 
 As an example, redsys-easy provides some basic typescript-ready formatters.
 
-> :warning: **Format has changed**: Previous versions of redsys-easy used a different format than these new formatting functions, particularly the `amount` field.
+> :warning: **Format has changed**: Previous versions of redsys-easy used a different format, particularly the `amount` field.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./examples/__readme__/formatters.ts) -->
 <!-- The below code snippet is automatically added from ./examples/__readme__/formatters.ts -->
@@ -128,7 +128,7 @@ export const processSoapNotification = useOutputFormatter(baseProcessSoapNotific
 
 ## FAQ
 
-### How should I format the amount charged?
+### How should I format the amount?
 
 Redsys API uses expects amounts denominated in the smallest unit of a currency. The exported core functions of redsys-easy also follows this convention. The smallest unit of a currency is the smallest integer amount of said currency. For euros, it is cents. So 1.99 EUR would be 199 of the smallest unit.
 
