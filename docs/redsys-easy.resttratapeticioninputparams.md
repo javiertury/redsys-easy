@@ -4,6 +4,8 @@
 
 ## RestTrataPeticionInputParams interface
 
+Input parameters for a TrataPeticion Peticion HTTP request
+
 <b>Signature:</b>
 
 ```typescript
@@ -16,5 +18,5 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [DS\_MERCHANT\_DCC?](./redsys-easy.resttratapeticioninputparams.ds_merchant_dcc.md) | { monedaDCC: string; importeDCC: string; } | <i>(Optional)</i> Dynamic Currency Conversion data, json |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.resttratapeticioninputparams.ds_merchant_emv3ds.md) | EMV3DSv1AuthDataInputParams \| EMV3DSv2AuthDataInputParams \| EMV3DSv1ChallengeResponseInputParams \| EMV3DSv2ChallengeResponseInputParams | <i>(Optional)</i> EMV3DS data in json format |
+|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.resttratapeticioninputparams.ds_merchant_emv3ds.md) | ThreeDSv1AuthDataInputParams \| ThreeDSv2AuthDataInputParams \| ThreeDSv1ChallengeResponseInputParams \| ThreeDSv2ChallengeResponseInputParams | <i>(Optional)</i> EMV3DS data in json format |
 

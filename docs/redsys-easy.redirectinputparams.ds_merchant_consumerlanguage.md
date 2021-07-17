@@ -9,5 +9,5 @@ Language
 <b>Signature:</b>
 
 ```typescript
-DS_MERCHANT_CONSUMERLANGUAGE?: string;
+DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum;
 ```

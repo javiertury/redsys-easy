@@ -4,8 +4,10 @@
 
 ## create3DSMethodForm variable
 
+Creates parameters for a 3DS method form
+
 <b>Signature:</b>
 
 ```typescript
-create3DSMethodForm: (emv3dsParams: Pick<EMV3DSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm
+create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm
 ```

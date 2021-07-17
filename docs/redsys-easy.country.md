@@ -4,6 +4,8 @@
 
 ## Country type
 
+Country ISO 3166 Alpha 2 code
+
 <b>Signature:</b>
 
 ```typescript

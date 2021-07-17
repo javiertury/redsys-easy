@@ -6,18 +6,20 @@
 
 Creates Redsys API functions
 
-These API functions are anonymous and can be wrapped by formatters and processors
-
 <b>Signature:</b>
 
 ```typescript
 createRedsysAPI: (config: RedsysConfig) => {
     restIniciaPeticion: (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
     restTrataPeticion: (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
-    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectPetition;
-    processNotification: (body: ResponseJSON) => RestNotificationOutputParams;
-    wsPetition: (paramsInput: WebserviceInputParams) => Promise<WebserviceOutputParams>;
+    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectForm;
+    processRestNotification: (body: ResponseJSONSuccess) => RestNotificationOutputParams;
     processSoapNotification: (xml: string) => SoapNotificationOutputParams;
     createSoapNotificationAnswer: (order: string, allow: boolean) => string;
 }
 ```
+
+## Remarks
+
+These API functions are anonymous and can be wrapped by formatters and processors
+

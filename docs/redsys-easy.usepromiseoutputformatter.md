@@ -4,6 +4,8 @@
 
 ## usePromiseOutputFormatter variable
 
+Applies an output formatter to the resolved ouput promise of a function
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## RestTrataPeticionOutputParams interface
 
+Output parameters of a TrataPeticion HTTP request
+
 <b>Signature:</b>
 
 ```typescript
@@ -15,6 +17,6 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md) | EMV3DSv1ChallengeOutputParams \| EMV3DSv2ChallengeOutputParams | <i>(Optional)</i> EMV3DS data in json format |
+|  [Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md) | ThreeDSv1ChallengeOutputParams \| ThreeDSv2ChallengeOutputParams | <i>(Optional)</i> EMV3DS data in json format |
 |  [Ds\_Response?](./redsys-easy.resttratapeticionoutputparams.ds_response.md) | ResolvedTransactionTrait\['Ds\_Response'\] | <i>(Optional)</i> Response code |
 

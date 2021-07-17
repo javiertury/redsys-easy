@@ -4,6 +4,8 @@
 
 ## useOutputFormatter variable
 
+Applies an output formatter to a function
+
 <b>Signature:</b>
 
 ```typescript

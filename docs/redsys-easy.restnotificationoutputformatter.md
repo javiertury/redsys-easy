@@ -4,8 +4,10 @@
 
 ## restNotificationOutputFormatter variable
 
+REST notification formatter
+
 <b>Signature:</b>
 
 ```typescript
-restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormattedOutput<RawOutputParams>
+restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams = RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>
 ```

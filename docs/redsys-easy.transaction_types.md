@@ -4,6 +4,8 @@
 
 ## TRANSACTION\_TYPES variable
 
+Transaction type enum
+
 <b>Signature:</b>
 
 ```typescript

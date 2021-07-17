@@ -4,10 +4,10 @@
 
 ## deserializeCres variable
 
-Deserialize "cres" field
+Deserialize `cres` field of a 3DS v2 challenge
 
 <b>Signature:</b>
 
 ```typescript
-deserializeCres: (cres: string) => DeserializedCres
+deserializeCres: (cres: string) => ThreeDSCres
 ```

@@ -4,8 +4,15 @@
 
 ## mimicSoapNotificationReceiver variable
 
+Extracts the body of a SOAP notification from the body of the HTTP request
+
 <b>Signature:</b>
 
 ```typescript
 mimicSoapNotificationReceiver: (xml: string) => string
 ```
+
+## Remarks
+
+It does not understand SOAP or use WSDL, the implementation is a little bit hacky
+

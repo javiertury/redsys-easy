@@ -13,7 +13,7 @@ Node JS client and utilities for implementing a redsys payment gateway
 |  [GatewayError](./redsys-easy.gatewayerror.md) | Request could not be processed by Redsys |
 |  [HTTPError](./redsys-easy.httperror.md) | HTTP Error |
 |  [ParseError](./redsys-easy.parseerror.md) | Response cannot be parsed |
-|  [RedsysError](./redsys-easy.redsyserror.md) |  |
+|  [RedsysError](./redsys-easy.redsyserror.md) | Error superclass for all redsys-easy specific errors |
 |  [ResponseError](./redsys-easy.responseerror.md) | Response contained an error code |
 |  [ValidationError](./redsys-easy.validationerror.md) | Invalid input provided |
 
@@ -21,73 +21,85 @@ Node JS client and utilities for implementing a redsys payment gateway
 
 |  Interface | Description |
 |  --- | --- |
-|  [NotificationFormattedOutput](./redsys-easy.notificationformattedoutput.md) |  |
-|  [NotificationOutputParams](./redsys-easy.notificationoutputparams.md) |  |
-|  [RedirectFormattedInput](./redsys-easy.redirectformattedinput.md) |  |
-|  [RedirectInputParams](./redsys-easy.redirectinputparams.md) |  |
-|  [RedirectPetition](./redsys-easy.redirectpetition.md) |  |
-|  [RedsysConfig](./redsys-easy.redsysconfig.md) |  |
-|  [RequestFormattedInput](./redsys-easy.requestformattedinput.md) |  |
-|  [RequestFormattedOutput](./redsys-easy.requestformattedoutput.md) |  |
-|  [ResponseJSON](./redsys-easy.responsejson.md) |  |
-|  [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md) |  |
-|  [RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md) |  |
-|  [RestNotificationOutputParams](./redsys-easy.restnotificationoutputparams.md) |  |
-|  [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md) |  |
-|  [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md) |  |
-|  [SoapNotificationOutputParams](./redsys-easy.soapnotificationoutputparams.md) |  |
-|  [ThreeDSMethodForm](./redsys-easy.threedsmethodform.md) |  |
-|  [ThreeDSv1ChallengeForm](./redsys-easy.threedsv1challengeform.md) |  |
-|  [ThreeDSv1ChallengeNotificationBody](./redsys-easy.threedsv1challengenotificationbody.md) |  |
-|  [ThreeDSv2ChallengeForm](./redsys-easy.threedsv2challengeform.md) |  |
-|  [ThreeDSv2ChallengeNotificationBody](./redsys-easy.threedsv2challengenotificationbody.md) |  |
-|  [ThreeDSv2MethodNotificationBody](./redsys-easy.threedsv2methodnotificationbody.md) |  |
-|  [UrlsConfig](./redsys-easy.urlsconfig.md) |  |
-|  [WebserviceInputParams](./redsys-easy.webserviceinputparams.md) |  |
-|  [WebserviceOutputParams](./redsys-easy.webserviceoutputparams.md) |  |
+|  [NotificationFormatterOutput](./redsys-easy.notificationformatteroutput.md) | Ouput parameters for the notification output formatter |
+|  [RedirectForm](./redsys-easy.redirectform.md) | Redirect form |
+|  [RedirectFormatterInput](./redsys-easy.redirectformatterinput.md) | Input parameters for the redirect input formatter |
+|  [RedirectInputParams](./redsys-easy.redirectinputparams.md) | Input parameters for a redsys redirect request |
+|  [RedsysConfig](./redsys-easy.redsysconfig.md) | Redsys API settings |
+|  [ResponseJSONSuccess](./redsys-easy.responsejsonsuccess.md) | Body of a successful redsys JSON HTTP response or notification |
+|  [RestIniciaPeticionFormatterInput](./redsys-easy.restiniciapeticionformatterinput.md) | Input parameters for the REST iniciaPeticion input formatter |
+|  [RestIniciaPeticionFormatterOutput](./redsys-easy.restiniciapeticionformatteroutput.md) | Ouput parameters for the REST iniciaPeticion output formatter |
+|  [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md) | Input parameters for a IniciaPeticion HTTP request |
+|  [RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md) | Output parameters of a IniciaPeticion HTTP request |
+|  [RestNotificationOutputParams](./redsys-easy.restnotificationoutputparams.md) | Parameters of a redsys REST notification |
+|  [RestTrataPeticionFormatterInput](./redsys-easy.resttratapeticionformatterinput.md) | Input parameters for the REST trataPeticion input formatter |
+|  [RestTrataPeticionFormatterOutput](./redsys-easy.resttratapeticionformatteroutput.md) | Ouput parameters for the REST trataPeticion output formatter |
+|  [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md) | Input parameters for a TrataPeticion Peticion HTTP request |
+|  [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md) | Output parameters of a TrataPeticion HTTP request |
+|  [SoapNotificationOutputParams](./redsys-easy.soapnotificationoutputparams.md) | Parameters of a redsys SOAP notification |
+|  [ThreeDSCres](./redsys-easy.threedscres.md) | Contents of the <code>cres</code> field of a 3DS v2 challenge |
+|  [ThreeDSMethodData](./redsys-easy.threedsmethoddata.md) | 3DS v2 method data |
+|  [ThreeDSMethodForm](./redsys-easy.threedsmethodform.md) | 3DS v2 method form |
+|  [ThreeDSv1ChallengeForm](./redsys-easy.threedsv1challengeform.md) | 3DS v1 challenge form |
+|  [ThreeDSv1ChallengeNotificationBody](./redsys-easy.threedsv1challengenotificationbody.md) | Body of a 3DS v1 challenge completion notification |
+|  [ThreeDSv2ChallengeForm](./redsys-easy.threedsv2challengeform.md) | 3DS v2 challenge form |
+|  [ThreeDSv2ChallengeNotificationBody](./redsys-easy.threedsv2challengenotificationbody.md) | Body of a 3DS v2 challenge completion notification |
+|  [ThreeDSv2MethodNotificationBody](./redsys-easy.threedsv2methodnotificationbody.md) | Body of a 3DS v2 method completion notification |
+|  [UrlsConfig](./redsys-easy.urlsconfig.md) | URLs to configure the API |
 
 ## Variables
 
 |  Variable | Description |
 |  --- | --- |
-|  [assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md) |  |
-|  [create3DSMethodForm](./redsys-easy.create3dsmethodform.md) |  |
-|  [create3DSv1ChallengeForm](./redsys-easy.create3dsv1challengeform.md) |  |
-|  [create3DSv2ChallengeForm](./redsys-easy.create3dsv2challengeform.md) |  |
-|  [createRedirectInputFormatter](./redsys-easy.createredirectinputformatter.md) |  |
-|  [createRedsysAPI](./redsys-easy.createredsysapi.md) | Creates Redsys API functions<!-- -->These API functions are anonymous and can be wrapped by formatters and processors |
-|  [createRequestInputFormatter](./redsys-easy.createrequestinputformatter.md) |  |
-|  [CURRENCIES](./redsys-easy.currencies.md) |  |
-|  [deserializeCres](./redsys-easy.deserializecres.md) | Deserialize "cres" field |
+|  [assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md) | Asserts that response has a code that indicates success |
+|  [CARDBRANDS](./redsys-easy.cardbrands.md) | Card brand name to number |
+|  [COUNTRIES](./redsys-easy.countries.md) | Maps ISO 3166 Alpha 2 codes to UN M49 numbers |
+|  [create3DSMethodForm](./redsys-easy.create3dsmethodform.md) | Creates parameters for a 3DS method form |
+|  [create3DSv1ChallengeForm](./redsys-easy.create3dsv1challengeform.md) | Creates parameters for a 3DS v1 challenge form |
+|  [create3DSv2ChallengeForm](./redsys-easy.create3dsv2challengeform.md) | Creates parameters for a 3DS v2 challenge form |
+|  [createRedsysAPI](./redsys-easy.createredsysapi.md) | Creates Redsys API functions |
+|  [CURRENCIES](./redsys-easy.currencies.md) | Maps a ISO 4217 code to a ISO 4217 currency number and decimal positions |
+|  [deserializeCres](./redsys-easy.deserializecres.md) | Deserialize <code>cres</code> field of a 3DS v2 challenge |
 |  [deserializeThreeDSMethodData](./redsys-easy.deserializethreedsmethoddata.md) | Deserialize threeDSMethodData |
-|  [detectSoapVersion](./redsys-easy.detectsoapversion.md) |  |
-|  [getResponseCodeMessage](./redsys-easy.getresponsecodemessage.md) |  |
-|  [getSISErrorCodeMessage](./redsys-easy.getsiserrorcodemessage.md) |  |
+|  [detectSoapVersion](./redsys-easy.detectsoapversion.md) | Detects the soap version of a HTTP request |
+|  [getResponseCodeMessage](./redsys-easy.getresponsecodemessage.md) | Returns the message corresponding to a response code, in spanish |
+|  [getSISErrorCodeMessage](./redsys-easy.getsiserrorcodemessage.md) | Returns the message corresponding to a gateway error code |
 |  [isResponseCodeOk](./redsys-easy.isresponsecodeok.md) | Indicates if a response code signals success |
-|  [mimicSoap11NotificationResponse](./redsys-easy.mimicsoap11notificationresponse.md) |  |
-|  [mimicSoap12NotificationResponse](./redsys-easy.mimicsoap12notificationresponse.md) |  |
-|  [mimicSoapNotificationReceiver](./redsys-easy.mimicsoapnotificationreceiver.md) |  |
-|  [obtain3DSClientEnv](./redsys-easy.obtain3dsclientenv.md) | Obtains basic client information required by 3DS v2<!-- -->Must be executed in the browser |
-|  [PRODUCTION\_URLS](./redsys-easy.production_urls.md) |  |
-|  [randomTransactionId](./redsys-easy.randomtransactionid.md) |  |
-|  [requestOutputFormatter](./redsys-easy.requestoutputformatter.md) |  |
-|  [restNotificationOutputFormatter](./redsys-easy.restnotificationoutputformatter.md) |  |
-|  [REV\_CURRENCIES](./redsys-easy.rev_currencies.md) |  |
-|  [SANDBOX\_URLS](./redsys-easy.sandbox_urls.md) |  |
-|  [soapNotificationOutputFormatter](./redsys-easy.soapnotificationoutputformatter.md) |  |
-|  [TRANSACTION\_TYPES](./redsys-easy.transaction_types.md) |  |
-|  [useInputFormatter](./redsys-easy.useinputformatter.md) |  |
-|  [useOutputFormatter](./redsys-easy.useoutputformatter.md) |  |
-|  [usePromiseOutputFormatter](./redsys-easy.usepromiseoutputformatter.md) |  |
+|  [LANGUAGES](./redsys-easy.languages.md) | Maps an ISO 639-1 language code to redsys language number |
+|  [mimicSoap11NotificationResponse](./redsys-easy.mimicsoap11notificationresponse.md) | Creates the body of a HTTP response as SOAP 1.1 from the body of a SOAP notification response |
+|  [mimicSoap12NotificationResponse](./redsys-easy.mimicsoap12notificationresponse.md) | Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response |
+|  [mimicSoapNotificationReceiver](./redsys-easy.mimicsoapnotificationreceiver.md) | Extracts the body of a SOAP notification from the body of the HTTP request |
+|  [PRODUCTION\_URLS](./redsys-easy.production_urls.md) | Redsys production urls |
+|  [randomTransactionId](./redsys-easy.randomtransactionid.md) | Generates a random order ID following redsys requirements |
+|  [redirectInputFormatter](./redsys-easy.redirectinputformatter.md) | Redirection input formatter |
+|  [restIniciaPeticionInputFormatter](./redsys-easy.restiniciapeticioninputformatter.md) | REST iniciaPeticion input formatter |
+|  [restIniciaPeticionOutputFormatter](./redsys-easy.restiniciapeticionoutputformatter.md) | REST iniciaPeticion output formatter |
+|  [restNotificationOutputFormatter](./redsys-easy.restnotificationoutputformatter.md) | REST notification formatter |
+|  [restTrataPeticionInputFormatter](./redsys-easy.resttratapeticioninputformatter.md) | REST trataPeticion input formatter |
+|  [restTrataPeticionOutputFormatter](./redsys-easy.resttratapeticionoutputformatter.md) | REST trataPeticion output formatter |
+|  [REV\_CARDBRANDS](./redsys-easy.rev_cardbrands.md) | Card brand number to name |
+|  [REV\_COUNTRIES](./redsys-easy.rev_countries.md) | Maps UN M49 numbers to ISO 3166 Alpha 2 codes |
+|  [REV\_CURRENCIES](./redsys-easy.rev_currencies.md) | Maps a ISO 4217 number to a ISO 4217 currency code and decimal positions |
+|  [REV\_LANGUAGES](./redsys-easy.rev_languages.md) | Maps a redsys language code to an ISO 639-1 language code |
+|  [SANDBOX\_URLS](./redsys-easy.sandbox_urls.md) | Redsys sandbox urls |
+|  [soapNotificationOutputFormatter](./redsys-easy.soapnotificationoutputformatter.md) | SOAP notification formatter |
+|  [TRANSACTION\_TYPES](./redsys-easy.transaction_types.md) | Transaction type enum |
+|  [useOutputFormatter](./redsys-easy.useoutputformatter.md) | Applies an output formatter to a function |
+|  [usePromiseOutputFormatter](./redsys-easy.usepromiseoutputformatter.md) | Applies an output formatter to the resolved ouput promise of a function |
+|  [useSingleInputFormatter](./redsys-easy.usesingleinputformatter.md) | Applies an input formatter to the first argument of a function |
 
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [CardBrand](./redsys-easy.cardbrand.md) |  |
-|  [Country](./redsys-easy.country.md) |  |
-|  [Currency](./redsys-easy.currency.md) |  |
-|  [EMV3DSBrowserClientInfo](./redsys-easy.emv3dsbrowserclientinfo.md) |  |
-|  [Language](./redsys-easy.language.md) |  |
-|  [TransactionType](./redsys-easy.transactiontype.md) |  |
+|  [CardBrand](./redsys-easy.cardbrand.md) | Card brand name |
+|  [CardBrandNum](./redsys-easy.cardbrandnum.md) | Card brand number |
+|  [Country](./redsys-easy.country.md) | Country ISO 3166 Alpha 2 code |
+|  [CountryNum](./redsys-easy.countrynum.md) | Country UN M49 number |
+|  [Currency](./redsys-easy.currency.md) | ISO 4217 currency code |
+|  [CurrencyNum](./redsys-easy.currencynum.md) | ISO 4217 currency number |
+|  [Language](./redsys-easy.language.md) | ISO 639-1 language code |
+|  [LanguageNum](./redsys-easy.languagenum.md) | Redsys language code |
+|  [ThreeDSBrowserClientInfo](./redsys-easy.threedsbrowserclientinfo.md) | Browser information required by 3DS |
+|  [TransactionType](./redsys-easy.transactiontype.md) | Transaction type code |
 

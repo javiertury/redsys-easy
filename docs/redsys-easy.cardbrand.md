@@ -4,6 +4,8 @@
 
 ## CardBrand type
 
+Card brand name
+
 <b>Signature:</b>
 
 ```typescript

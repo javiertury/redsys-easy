@@ -4,8 +4,14 @@
 
 ## REV\_CURRENCIES variable
 
+Maps a ISO 4217 number to a ISO 4217 currency code and decimal positions
+
 <b>Signature:</b>
 
 ```typescript
-REV_CURRENCIES: Record<string, RevCurrencyData>
+REV_CURRENCIES: Record<CurrencyNum, RevCurrencyData>
 ```
+
+## Remarks
+
+

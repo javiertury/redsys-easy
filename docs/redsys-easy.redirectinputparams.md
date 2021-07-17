@@ -4,6 +4,8 @@
 
 ## RedirectInputParams interface
 
+Input parameters for a redsys redirect request
+
 <b>Signature:</b>
 
 ```typescript
@@ -15,8 +17,8 @@ export interface RedirectInputParams extends BaseInputParams
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [DS\_MERCHANT\_CONSUMERLANGUAGE?](./redsys-easy.redirectinputparams.ds_merchant_consumerlanguage.md) | string | <i>(Optional)</i> Language |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.redirectinputparams.ds_merchant_emv3ds.md) | EMV3DSRedirectInputParams | <i>(Optional)</i> EMV3DS data in json format |
+|  [DS\_MERCHANT\_CONSUMERLANGUAGE?](./redsys-easy.redirectinputparams.ds_merchant_consumerlanguage.md) | [LanguageNum](./redsys-easy.languagenum.md) | <i>(Optional)</i> Language |
+|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.redirectinputparams.ds_merchant_emv3ds.md) | ThreeDSRedirectInputParams | <i>(Optional)</i> EMV3DS data in json format |
 |  [DS\_MERCHANT\_MERCHANTURL?](./redsys-easy.redirectinputparams.ds_merchant_merchanturl.md) | string | <i>(Optional)</i> Notification url |
 |  [DS\_MERCHANT\_PAYMETHODS?](./redsys-easy.redirectinputparams.ds_merchant_paymethods.md) | string | <i>(Optional)</i> Payment methods |
 |  [DS\_MERCHANT\_PERSOCODE?](./redsys-easy.redirectinputparams.ds_merchant_persocode.md) | string | <i>(Optional)</i> Customization code number |

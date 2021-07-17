@@ -4,6 +4,8 @@
 
 ## randomTransactionId variable
 
+Generates a random order ID following redsys requirements
+
 <b>Signature:</b>
 
 ```typescript

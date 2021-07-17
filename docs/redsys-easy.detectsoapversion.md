@@ -4,6 +4,8 @@
 
 ## detectSoapVersion variable
 
+Detects the soap version of a HTTP request
+
 <b>Signature:</b>
 
 ```typescript

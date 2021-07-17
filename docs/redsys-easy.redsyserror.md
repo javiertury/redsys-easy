@@ -4,6 +4,8 @@
 
 ## RedsysError class
 
+Error superclass for all redsys-easy specific errors
+
 <b>Signature:</b>
 
 ```typescript

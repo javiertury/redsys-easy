@@ -4,8 +4,15 @@
 
 ## mimicSoap12NotificationResponse variable
 
+Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
+
 <b>Signature:</b>
 
 ```typescript
 mimicSoap12NotificationResponse: (answer: string) => string
 ```
+
+## Remarks
+
+It does not understand SOAP or use WSDL, the implementation is a little bit hacky
+

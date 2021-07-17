@@ -4,6 +4,8 @@
 
 ## UrlsConfig interface
 
+URLs to configure the API
+
 <b>Signature:</b>
 
 ```typescript
@@ -17,5 +19,4 @@ export interface UrlsConfig
 |  [redirect](./redsys-easy.urlsconfig.redirect.md) | string |  |
 |  [restIniciaPeticion](./redsys-easy.urlsconfig.restiniciapeticion.md) | string |  |
 |  [restTrataPeticion](./redsys-easy.urlsconfig.resttratapeticion.md) | string |  |
-|  [webserviceV2](./redsys-easy.urlsconfig.webservicev2.md) | string |  |
 

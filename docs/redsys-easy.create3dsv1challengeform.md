@@ -4,8 +4,10 @@
 
 ## create3DSv1ChallengeForm variable
 
+Creates parameters for a 3DS v1 challenge form
+
 <b>Signature:</b>
 
 ```typescript
-create3DSv1ChallengeForm: (emv3dsV1Challenge: EMV3DSv1ChallengeOutputParams, challengeNotificationUrl: string) => ThreeDSv1ChallengeForm
+create3DSv1ChallengeForm: (emv3dsV1Challenge: ThreeDSv1ChallengeOutputParams, challengeNotificationUrl: string) => ThreeDSv1ChallengeForm
 ```

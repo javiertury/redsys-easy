@@ -4,6 +4,8 @@
 
 ## assertSuccessfulResponseCode variable
 
+Asserts that response has a code that indicates success
+
 <b>Signature:</b>
 
 ```typescript

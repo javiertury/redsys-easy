@@ -4,12 +4,14 @@
 
 ## SoapNotificationOutputParams interface
 
+Parameters of a redsys SOAP notification
+
 <b>Signature:</b>
 
 ```typescript
 export interface SoapNotificationOutputParams extends NotificationOutputParams 
 ```
-<b>Extends:</b> [NotificationOutputParams](./redsys-easy.notificationoutputparams.md)
+<b>Extends:</b> NotificationOutputParams
 
 ## Properties
 

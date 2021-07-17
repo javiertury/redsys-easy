@@ -4,6 +4,8 @@
 
 ## Language type
 
+ISO 639-1 language code
+
 <b>Signature:</b>
 
 ```typescript

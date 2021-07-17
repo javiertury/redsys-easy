@@ -4,6 +4,8 @@
 
 ## SANDBOX\_URLS variable
 
+Redsys sandbox urls
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## getResponseCodeMessage variable
 
+Returns the message corresponding to a response code, in spanish
+
 <b>Signature:</b>
 
 ```typescript

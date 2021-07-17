@@ -4,6 +4,8 @@
 
 ## ThreeDSMethodForm interface
 
+3DS v2 method form
+
 <b>Signature:</b>
 
 ```typescript

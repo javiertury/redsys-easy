@@ -4,6 +4,8 @@
 
 ## Currency type
 
+ISO 4217 currency code
+
 <b>Signature:</b>
 
 ```typescript

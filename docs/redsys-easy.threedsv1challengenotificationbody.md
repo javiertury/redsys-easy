@@ -4,6 +4,8 @@
 
 ## ThreeDSv1ChallengeNotificationBody interface
 
+Body of a 3DS v1 challenge completion notification
+
 <b>Signature:</b>
 
 ```typescript

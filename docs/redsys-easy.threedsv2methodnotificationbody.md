@@ -4,6 +4,8 @@
 
 ## ThreeDSv2MethodNotificationBody interface
 
+Body of a 3DS v2 method completion notification
+
 <b>Signature:</b>
 
 ```typescript

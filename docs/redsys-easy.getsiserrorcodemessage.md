@@ -4,6 +4,8 @@
 
 ## getSISErrorCodeMessage variable
 
+Returns the message corresponding to a gateway error code
+
 <b>Signature:</b>
 
 ```typescript

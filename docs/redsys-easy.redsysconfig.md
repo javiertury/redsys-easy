@@ -4,6 +4,8 @@
 
 ## RedsysConfig interface
 
+Redsys API settings
+
 <b>Signature:</b>
 
 ```typescript
