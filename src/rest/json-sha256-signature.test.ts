@@ -26,17 +26,13 @@ import {
 } from '../../test/fixtures/rest/redirect';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  serializedJSONRequest,
-  serializedAndSignedJSONRequest
-} from '../../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  serializedJSONResponse,
-  deserializedJSONResponse
-} from '../../test/fixtures/rest/json-response';
+  restJsonRequest,
+  serializedRestJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  restJsonMerchantKey,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse
+} from '../../test/fixtures/rest/rest-json';
 
 describe('REST JSON SHA256 signature', () => {
   it('should sign request', () => {
@@ -45,8 +41,8 @@ describe('REST JSON SHA256 signature', () => {
     ).toEqual(serializedAndSignedRedirectRequest);
 
     expect(
-      sha256SignJSONRequest(jsonRequestMerchantKey, serializedJSONRequest, jsonRequest)
-    ).toEqual(serializedAndSignedJSONRequest);
+      sha256SignJSONRequest(restJsonMerchantKey, serializedRestJsonRequest, restJsonRequest)
+    ).toEqual(serializedAndSignedRestJsonRequest);
   });
 
   it('should verify response with legit signature', () => {
@@ -55,7 +51,7 @@ describe('REST JSON SHA256 signature', () => {
     ).not.toThrowError();
 
     expect(
-      () => sha256VerifyJSONResponse(jsonResponseMerchantKey, serializedJSONResponse, deserializedJSONResponse)
+      () => sha256VerifyJSONResponse(restJsonMerchantKey, serializedRestJsonResponse, deserializedRestJsonResponse)
     ).not.toThrowError();
   });
 
@@ -65,7 +61,7 @@ describe('REST JSON SHA256 signature', () => {
     ).toThrowError(new ParseError('Invalid signature'));
 
     expect(
-      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedJSONResponse, deserializedJSONResponse)
+      () => sha256VerifyJSONResponse(incorrectMerchantKey, serializedRestJsonResponse, deserializedRestJsonResponse)
     ).toThrowError(new ParseError('Invalid signature'));
   });
 
@@ -83,12 +79,12 @@ describe('REST JSON SHA256 signature', () => {
 
     expect(
       () => sha256VerifyJSONResponse(
-        jsonResponseMerchantKey,
+        restJsonMerchantKey,
         {
-          ...serializedJSONResponse,
+          ...serializedRestJsonResponse,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         },
-        deserializedJSONResponse
+        deserializedRestJsonResponse
       )
     ).toThrowError(new ParseError('Invalid signature'));
   });
@@ -107,12 +103,12 @@ describe('REST JSON SHA256 signature', () => {
 
     expect(
       () => sha256VerifyJSONResponse(
-        jsonResponseMerchantKey,
+        restJsonMerchantKey,
         {
-          ...serializedJSONResponse,
+          ...serializedRestJsonResponse,
           Ds_SignatureVersion: 'None'
         },
-        deserializedJSONResponse
+        deserializedRestJsonResponse
       )
     ).toThrowError(new RedsysError('Unknown signature version: None'));
   });

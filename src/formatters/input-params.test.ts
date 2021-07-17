@@ -1,9 +1,7 @@
 import {
-  createRedirectInputFormatter
-} from './input-params';
-
-import type {
-  FormatterOptions
+  redirectInputFormatter,
+  restIniciaPeticionInputFormatter,
+  restTrataPeticionInputFormatter
 } from './input-params';
 
 import type {
@@ -11,7 +9,7 @@ import type {
 } from '../types/input-params';
 
 import type {
-  BaseFormattedInput
+  BaseFormatterInput
 } from './types';
 
 import TRANSACTION_TYPES from '../assets/transaction-types';
@@ -21,16 +19,38 @@ import {
   formattedRedirectRequest
 } from '../../test/fixtures/formatters/rest-redirect';
 
+import {
+  unformattedRestJsonRequest,
+  restJsonRequest
+} from '../../test/fixtures/formatters/rest-json';
+
+import {
+  iniciaPeticionRequest as iniciaPeticionV1Request,
+  unformattedIniciaPeticionRequest as unformattedIniciaPeticionV1Request,
+  authDataRequest as authDataV1Request,
+  unformattedAuthDataRequest as unformattedAuthDataV1Request,
+  challengeResponseRequest as challengeResponseV1Request,
+  unformattedChallengeResponseRequest as unformattedChallengeResponseV1Request
+} from '../../test/fixtures/formatters/rest-3ds-v1';
+
+import {
+  iniciaPeticionRequest as iniciaPeticionV21Request,
+  unformattedIniciaPeticionRequest as unformattedIniciaPeticionV21Request,
+  authDataRequest as authDataV21Request,
+  unformattedAuthDataRequest as unformattedAuthDataV21Request,
+  challengeResponseRequest as challengeResponseV21Request,
+  unformattedChallengeResponseRequest as unformattedChallengeResponseV21Request
+} from '../../test/fixtures/formatters/rest-3ds-v2.1-challenge';
+
 const baseSpec = (
-  createFormatter: (opts?: FormatterOptions) => (
-    <RawParams extends object>(input: BaseFormattedInput<RawParams>) => BaseInputParams
-  )
+  inputFormatter: <RawParams extends object>(
+    input: BaseFormatterInput<RawParams>
+  ) => BaseInputParams
 ) => {
   describe('Should format base input parameters', () => {
-    it('should format atomic amount by default', () => {
-      const formatInputAtomic = createFormatter({ amountType: 'atomic' });
-      const params = formatInputAtomic({
-        amount: 4999,
+    it('should format decimal string currency unit to atomic unit', () => {
+      const params = inputFormatter({
+        amount: '49.99',
         currency: 'EUR',
         order: '0000Abc',
         merchantCode: '999008881',
@@ -47,9 +67,8 @@ const baseSpec = (
         DS_MERCHANT_CURRENCY: '978'
       });
 
-      const formatInputDefault = createFormatter();
-      const defaultParams = formatInputDefault({
-        amount: 4999,
+      const defaultParams = inputFormatter({
+        amount: 49.99 as unknown as string,
         currency: 'EUR',
         order: '0000Abc',
         merchantCode: '999008881',
@@ -67,31 +86,9 @@ const baseSpec = (
       });
     });
 
-    it('should allow format float amount', () => {
-      const formatInput = createFormatter({ amountType: 'float' });
-      const params = formatInput({
-        amount: 49.99,
-        currency: 'EUR',
-        order: '0000Abc',
-        merchantCode: '999008881',
-        terminal: '1',
-        transactionType: TRANSACTION_TYPES.AUTHORIZATION // '0'
-      });
-
-      expect(params).toEqual({
-        DS_MERCHANT_AMOUNT: '4999',
-        DS_MERCHANT_MERCHANTCODE: '999008881',
-        DS_MERCHANT_ORDER: '0000Abc',
-        DS_MERCHANT_TERMINAL: '1',
-        DS_MERCHANT_TRANSACTIONTYPE: '0',
-        DS_MERCHANT_CURRENCY: '978'
-      });
-    });
-
     it('should format currencies', () => {
-      const formatInput = createFormatter();
-      const params = formatInput({
-        amount: 4999,
+      const params = inputFormatter({
+        amount: '49.99',
         currency: 'EUR',
         order: '0000Abc',
         merchantCode: '999008881',
@@ -110,9 +107,8 @@ const baseSpec = (
     });
 
     it('should format currencies, giving priority to internal format', () => {
-      const formatInput = createFormatter();
-      const params = formatInput({
-        amount: 4999,
+      const params = inputFormatter({
+        amount: '49.99',
         currency: 'EUR',
         order: '0000Abc',
         merchantCode: '999008881',
@@ -134,9 +130,8 @@ const baseSpec = (
     });
 
     it('should format expiry dates', () => {
-      const formatInput = createFormatter();
-      const params = formatInput({
-        amount: 4999,
+      const params = inputFormatter({
+        amount: '49.99',
         currency: 'EUR',
         order: '0000Abc',
         merchantCode: '999008881',
@@ -159,13 +154,12 @@ const baseSpec = (
   });
 };
 
-describe('createRedirectInputFormatter', () => {
-  baseSpec(createRedirectInputFormatter);
+describe('redirectInputFormatter', () => {
+  baseSpec(redirectInputFormatter);
 
   it('should format languages', () => {
-    const formatInput = createRedirectInputFormatter();
-    const params = formatInput({
-      amount: 4999,
+    const params = redirectInputFormatter({
+      amount: '49.99',
       currency: 'EUR',
       order: '0000Abc',
       merchantCode: '999008881',
@@ -186,9 +180,8 @@ describe('createRedirectInputFormatter', () => {
   });
 
   it('should format languages, giving priority to internal format', () => {
-    const formatInput = createRedirectInputFormatter();
-    const params = formatInput({
-      amount: 4999,
+    const params = redirectInputFormatter({
+      amount: '49.99',
       currency: 'EUR',
       order: '0000Abc',
       merchantCode: '999008881',
@@ -212,8 +205,57 @@ describe('createRedirectInputFormatter', () => {
   });
 
   it('should format redirect request', () => {
-    const formatInput = createRedirectInputFormatter();
-    const formattedParams = formatInput(unformattedRedirectRequest);
+    const formattedParams = redirectInputFormatter(unformattedRedirectRequest);
     expect(formattedParams).toEqual(formattedRedirectRequest);
+  });
+});
+
+describe('restIniciaPeticionInputFormatter', () => {
+  baseSpec(restIniciaPeticionInputFormatter);
+
+  it('should format a 3DS v1 iniciaPeticion request', () => {
+    const params = restIniciaPeticionInputFormatter(unformattedIniciaPeticionV1Request);
+
+    expect(params).toEqual(iniciaPeticionV1Request);
+  });
+
+  it('should format a 3DS v2.1 iniciaPeticion request', () => {
+    const params = restIniciaPeticionInputFormatter(unformattedIniciaPeticionV21Request);
+
+    expect(params).toEqual(iniciaPeticionV21Request);
+  });
+});
+
+describe('restTrataPeticionInputFormatter', () => {
+  baseSpec(restTrataPeticionInputFormatter);
+
+  it('should format a json request', () => {
+    const params = restTrataPeticionInputFormatter(unformattedRestJsonRequest);
+
+    expect(params).toEqual(restJsonRequest);
+  });
+
+  it('should format a 3DS v1 authenticationData request', () => {
+    const params = restTrataPeticionInputFormatter(unformattedAuthDataV1Request);
+
+    expect(params).toEqual(authDataV1Request);
+  });
+
+  it('should format a 3DS v1 challengeResponse request', () => {
+    const params = restTrataPeticionInputFormatter(unformattedChallengeResponseV1Request);
+
+    expect(params).toEqual(challengeResponseV1Request);
+  });
+
+  it('should format a 3DS v2.1 authenticationData request', () => {
+    const params = restTrataPeticionInputFormatter(unformattedAuthDataV21Request);
+
+    expect(params).toEqual(authDataV21Request);
+  });
+
+  it('should format a 3DS v2.1 challengeResponse request', () => {
+    const params = restTrataPeticionInputFormatter(unformattedChallengeResponseV21Request);
+
+    expect(params).toEqual(challengeResponseV21Request);
   });
 });

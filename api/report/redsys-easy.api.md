@@ -9,11 +9,23 @@ export const assertSuccessfulResponseCode: (responseParams: {
     Ds_Response?: string;
 }) => void;
 
-// @public (undocumented)
+// @public
 export type CardBrand = 'VISA' | 'MASTERCARD' | 'DINERS' | 'PRIVATE' | 'AMEX' | 'JCB' | 'UPI';
 
-// @public (undocumented)
+// @public
+export type CardBrandNum = '1' | '2' | '6' | '7' | '8' | '9' | '22';
+
+// @public
+export const CARDBRANDS: Record<CardBrand, CardBrandNum>;
+
+// @public
+export const COUNTRIES: Record<Country, CountryNum>;
+
+// @public
 export type Country = 'af' | 'al' | 'aq' | 'dz' | 'as' | 'ad' | 'ao' | 'ag' | 'az' | 'ar' | 'au' | 'at' | 'bs' | 'bh' | 'bd' | 'am' | 'bb' | 'be' | 'bm' | 'bt' | 'bo' | 'ba' | 'bw' | 'bv' | 'br' | 'bz' | 'io' | 'sb' | 'vg' | 'bn' | 'bg' | 'mm' | 'bi' | 'by' | 'kh' | 'cm' | 'ca' | 'cv' | 'ky' | 'cf' | 'lk' | 'td' | 'cl' | 'cn' | 'tw' | 'cx' | 'cc' | 'co' | 'km' | 'yt' | 'cg' | 'cd' | 'ck' | 'cr' | 'hr' | 'cu' | 'cy' | 'cz' | 'bj' | 'dk' | 'dm' | 'do' | 'ec' | 'sv' | 'gq' | 'et' | 'er' | 'ee' | 'fo' | 'fk' | 'gs' | 'fj' | 'fi' | 'ax' | 'fr' | 'gf' | 'pf' | 'tf' | 'dj' | 'ga' | 'ge' | 'gm' | 'ps' | 'de' | 'gh' | 'gi' | 'ki' | 'gr' | 'gl' | 'gd' | 'gp' | 'gu' | 'gt' | 'gn' | 'gy' | 'ht' | 'hm' | 'va' | 'hn' | 'hk' | 'hu' | 'is' | 'in' | 'id' | 'ir' | 'iq' | 'ie' | 'il' | 'it' | 'ci' | 'jm' | 'jp' | 'kz' | 'jo' | 'ke' | 'kp' | 'kr' | 'kw' | 'kg' | 'la' | 'lb' | 'ls' | 'lv' | 'lr' | 'ly' | 'li' | 'lt' | 'lu' | 'mo' | 'mg' | 'mw' | 'my' | 'mv' | 'ml' | 'mt' | 'mq' | 'mr' | 'mu' | 'mx' | 'mc' | 'mn' | 'md' | 'me' | 'ms' | 'ma' | 'mz' | 'om' | 'na' | 'nr' | 'np' | 'nl' | 'cw' | 'aw' | 'sx' | 'bq' | 'nc' | 'vu' | 'nz' | 'ni' | 'ne' | 'ng' | 'nu' | 'nf' | 'no' | 'mp' | 'um' | 'fm' | 'mh' | 'pw' | 'pk' | 'pa' | 'pg' | 'py' | 'pe' | 'ph' | 'pn' | 'pl' | 'pt' | 'gw' | 'tl' | 'pr' | 'qa' | 're' | 'ro' | 'ru' | 'rw' | 'bl' | 'sh' | 'kn' | 'ai' | 'lc' | 'mf' | 'pm' | 'vc' | 'sm' | 'st' | 'sa' | 'sn' | 'rs' | 'sc' | 'sl' | 'sg' | 'sk' | 'vn' | 'si' | 'so' | 'za' | 'zw' | 'es' | 'ss' | 'sd' | 'eh' | 'sr' | 'sj' | 'sz' | 'se' | 'ch' | 'sy' | 'tj' | 'th' | 'tg' | 'tk' | 'to' | 'tt' | 'ae' | 'tn' | 'tr' | 'tm' | 'tc' | 'tv' | 'ug' | 'ua' | 'mk' | 'eg' | 'gb' | 'gg' | 'je' | 'im' | 'tz' | 'us' | 'vi' | 'bf' | 'uy' | 'uz' | 've' | 'wf' | 'ws' | 'ye' | 'zm';
+
+// @public
+export type CountryNum = '4' | '8' | '10' | '12' | '16' | '20' | '24' | '28' | '31' | '32' | '36' | '40' | '44' | '48' | '50' | '51' | '52' | '56' | '60' | '64' | '68' | '70' | '72' | '74' | '76' | '84' | '86' | '90' | '92' | '96' | '100' | '104' | '108' | '112' | '116' | '120' | '124' | '132' | '136' | '140' | '144' | '148' | '152' | '156' | '158' | '162' | '166' | '170' | '174' | '175' | '178' | '180' | '184' | '188' | '191' | '192' | '196' | '203' | '204' | '208' | '212' | '214' | '218' | '222' | '226' | '231' | '232' | '233' | '234' | '238' | '239' | '242' | '246' | '248' | '250' | '254' | '258' | '260' | '262' | '266' | '268' | '270' | '275' | '276' | '288' | '292' | '296' | '300' | '304' | '308' | '312' | '316' | '320' | '324' | '328' | '332' | '334' | '336' | '340' | '344' | '348' | '352' | '356' | '360' | '364' | '368' | '372' | '376' | '380' | '384' | '388' | '392' | '398' | '400' | '404' | '408' | '410' | '414' | '417' | '418' | '422' | '426' | '428' | '430' | '434' | '438' | '440' | '442' | '446' | '450' | '454' | '458' | '462' | '466' | '470' | '474' | '478' | '480' | '484' | '492' | '496' | '498' | '499' | '500' | '504' | '508' | '512' | '516' | '520' | '524' | '528' | '531' | '533' | '534' | '535' | '540' | '548' | '554' | '558' | '562' | '566' | '570' | '574' | '578' | '580' | '581' | '583' | '584' | '585' | '586' | '591' | '598' | '600' | '604' | '608' | '612' | '616' | '620' | '624' | '626' | '630' | '634' | '638' | '642' | '643' | '646' | '652' | '654' | '659' | '660' | '662' | '663' | '666' | '670' | '674' | '678' | '682' | '686' | '688' | '690' | '694' | '702' | '703' | '704' | '705' | '706' | '710' | '716' | '724' | '728' | '729' | '732' | '740' | '744' | '748' | '752' | '756' | '760' | '762' | '764' | '768' | '772' | '776' | '780' | '784' | '788' | '792' | '795' | '796' | '798' | '800' | '804' | '807' | '818' | '826' | '831' | '832' | '833' | '834' | '840' | '850' | '854' | '858' | '860' | '862' | '876' | '882' | '887' | '894';
 
 // Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthWithMethodOutputParams" needs to be exported by the entry point index.d.ts
 //
@@ -30,11 +42,6 @@ export const create3DSv1ChallengeForm: (emv3dsV1Challenge: ThreeDSv1ChallengeOut
 // @public
 export const create3DSv2ChallengeForm: (emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams) => ThreeDSv2ChallengeForm;
 
-// Warning: (ae-forgotten-export) The symbol "FormatterOptions" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export const createRedirectInputFormatter: (options?: FormatterOptions | undefined) => <RawParams extends object>(input: RedirectFormattedInput<RawParams>) => RedirectInputParams;
-
 // @public
 export const createRedsysAPI: (config: RedsysConfig) => {
     restIniciaPeticion: (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
@@ -45,18 +52,16 @@ export const createRedsysAPI: (config: RedsysConfig) => {
     createSoapNotificationAnswer: (order: string, allow: boolean) => string;
 };
 
-// Warning: (ae-forgotten-export) The symbol "RequestInputParams" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export const createRequestInputFormatter: (options?: FormatterOptions | undefined) => <RawParams extends object>(input: RequestFormattedInput<RawParams>) => RequestInputParams;
-
 // Warning: (ae-forgotten-export) The symbol "CurrencyData" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export const CURRENCIES: Record<Currency, CurrencyData>;
 
-// @public (undocumented)
+// @public
 export type Currency = 'ALL' | 'DZD' | 'ARS' | 'AUD' | 'BSD' | 'BHD' | 'BDT' | 'AMD' | 'BBD' | 'BMD' | 'BTN' | 'BOB' | 'BWP' | 'BZD' | 'SBD' | 'BND' | 'MMK' | 'BIF' | 'KHR' | 'CAD' | 'CVE' | 'KYD' | 'LKR' | 'CLP' | 'CNY' | 'COP' | 'KMF' | 'CRC' | 'HRK' | 'CUP' | 'CZK' | 'DKK' | 'DOP' | 'SVC' | 'ETB' | 'ERN' | 'FKP' | 'FJD' | 'DJF' | 'GMD' | 'GIP' | 'GTQ' | 'GNF' | 'GYD' | 'HTG' | 'HNL' | 'HKD' | 'HUF' | 'ISK' | 'INR' | 'IDR' | 'IRR' | 'IQD' | 'ILS' | 'JMD' | 'JPY' | 'KZT' | 'JOD' | 'KES' | 'KPW' | 'KRW' | 'KWD' | 'KGS' | 'LAK' | 'LBP' | 'LSL' | 'LRD' | 'LYD' | 'MOP' | 'MWK' | 'MYR' | 'MVR' | 'MUR' | 'MXN' | 'MNT' | 'MDL' | 'MAD' | 'OMR' | 'NAD' | 'NPR' | 'ANG' | 'AWG' | 'VUV' | 'NZD' | 'NIO' | 'NGN' | 'NOK' | 'PKR' | 'PAB' | 'PGK' | 'PYG' | 'PEN' | 'PHP' | 'QAR' | 'RUB' | 'RWF' | 'SHP' | 'SAR' | 'SCR' | 'SLL' | 'SGD' | 'VND' | 'SOS' | 'ZAR' | 'SSP' | 'SZL' | 'SEK' | 'CHF' | 'SYP' | 'THB' | 'TOP' | 'TTD' | 'AED' | 'TND' | 'UGX' | 'MKD' | 'EGP' | 'GBP' | 'TZS' | 'USD' | 'UYU' | 'UZS' | 'WST' | 'YER' | 'TWD' | 'TMT' | 'GHS' | 'RSD' | 'MZN' | 'AZN' | 'RON' | 'TRY' | 'XAF' | 'XCD' | 'XOF' | 'XPF' | 'ZMW' | 'SRD' | 'AFN' | 'TJS' | 'AOA' | 'BGN' | 'CDF' | 'BAM' | 'EUR' | 'UAH' | 'GEL' | 'PLN' | 'BRL';
+
+// @public
+export type CurrencyNum = '8' | '12' | '32' | '36' | '44' | '48' | '50' | '51' | '52' | '60' | '64' | '68' | '72' | '84' | '90' | '96' | '104' | '108' | '116' | '124' | '132' | '136' | '144' | '152' | '156' | '170' | '174' | '188' | '191' | '192' | '203' | '208' | '214' | '222' | '230' | '232' | '238' | '242' | '262' | '270' | '292' | '320' | '324' | '328' | '332' | '340' | '344' | '348' | '352' | '356' | '360' | '364' | '368' | '376' | '388' | '392' | '398' | '400' | '404' | '408' | '410' | '414' | '417' | '418' | '422' | '426' | '430' | '434' | '446' | '454' | '458' | '462' | '480' | '484' | '496' | '498' | '504' | '512' | '516' | '524' | '532' | '533' | '548' | '554' | '558' | '566' | '578' | '586' | '590' | '598' | '600' | '604' | '608' | '634' | '643' | '646' | '654' | '682' | '690' | '694' | '702' | '704' | '706' | '710' | '728' | '748' | '752' | '756' | '760' | '764' | '776' | '780' | '784' | '788' | '800' | '807' | '818' | '826' | '834' | '840' | '858' | '860' | '882' | '886' | '901' | '934' | '936' | '941' | '943' | '944' | '946' | '949' | '950' | '951' | '952' | '953' | '967' | '968' | '971' | '972' | '973' | '975' | '976' | '977' | '978' | '980' | '981' | '985' | '986';
 
 // @public
 export const deserializeCres: (cres: string) => ThreeDSCres;
@@ -98,8 +103,14 @@ export class HTTPError extends RedsysError {
 // @public
 export const isResponseCodeOk: (responseCode: string) => boolean;
 
-// @public (undocumented)
+// @public
 export type Language = 'es' | 'en' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'sv' | 'pt' | 'pl' | 'gl' | 'eu' | 'bg' | 'zh' | 'hr' | 'cs' | 'da' | 'et' | 'fi' | 'el' | 'hu' | 'ja' | 'lv' | 'lt' | 'mt' | 'ro' | 'ru' | 'sk' | 'sl' | 'tr';
+
+// @public
+export type LanguageNum = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '100' | '156' | '191' | '203' | '208' | '233' | '246' | '300' | '348' | '392' | '428' | '440' | '470' | '642' | '643' | '703' | '705' | '792';
+
+// @public
+export const LANGUAGES: Record<Language, LanguageNum>;
 
 // @public
 export const mimicSoap11NotificationResponse: (answer: string) => string;
@@ -111,18 +122,17 @@ export const mimicSoap12NotificationResponse: (answer: string) => string;
 export const mimicSoapNotificationReceiver: (xml: string) => string;
 
 // Warning: (ae-forgotten-export) The symbol "NotificationOutputParams" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "BaseFormattedOutput" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTraitFormattedOutput" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "BaseFormatterOutput" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTraitFormatterOutput" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export interface NotificationFormattedOutput<RawOutputParams extends NotificationOutputParams> extends BaseFormattedOutput<RawOutputParams>, ResolvedTransactionTraitFormattedOutput {
+// @public
+export interface NotificationFormatterOutput<RawOutputParams extends NotificationOutputParams> extends BaseFormatterOutput<RawOutputParams>, ResolvedTransactionTraitFormatterOutput {
     // (undocumented)
     date: string;
     // (undocumented)
     lang?: Language;
     // (undocumented)
     time: string;
-    // (undocumented)
     timestamp: Date;
 }
 
@@ -153,10 +163,10 @@ export interface RedirectForm {
     url: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseFormattedInput" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "BaseFormatterInput" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export interface RedirectFormattedInput<RawInputParams extends object> extends BaseFormattedInput<RawInputParams> {
+// @public
+export interface RedirectFormatterInput<RawInputParams extends Partial<RedirectInputParams>> extends BaseFormatterInput<RawInputParams> {
     // (undocumented)
     errorURL?: string;
     // (undocumented)
@@ -169,11 +179,14 @@ export interface RedirectFormattedInput<RawInputParams extends object> extends B
     successURL?: string;
 }
 
+// @public
+export const redirectInputFormatter: <RawInputParams extends Partial<RedirectInputParams> = Partial<RedirectInputParams>>(input: RedirectFormatterInput<RawInputParams>) => RedirectInputParams;
+
 // Warning: (ae-forgotten-export) The symbol "BaseInputParams" needs to be exported by the entry point index.d.ts
 //
 // @public
 export interface RedirectInputParams extends BaseInputParams {
-    DS_MERCHANT_CONSUMERLANGUAGE?: string;
+    DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum;
     // Warning: (ae-forgotten-export) The symbol "ThreeDSRedirectInputParams" needs to be exported by the entry point index.d.ts
     DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams;
     DS_MERCHANT_MERCHANTURL?: string;
@@ -197,37 +210,6 @@ export class RedsysError extends Error {
     constructor(message: string);
 }
 
-// @public (undocumented)
-export interface RequestFormattedInput<RawInputParams extends object> extends BaseFormattedInput<RawInputParams> {
-    // (undocumented)
-    customerMail?: string;
-    // (undocumented)
-    customerMobile?: string;
-    // (undocumented)
-    smsTemplate?: string;
-}
-
-// Warning: (ae-forgotten-export) The symbol "RequestOutputParams" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export interface RequestFormattedOutput<RawOutputParams extends RequestOutputParams> extends BaseFormattedOutput<RawOutputParams> {
-    // (undocumented)
-    cardNumber?: string;
-    // (undocumented)
-    expiryMonth?: string;
-    // (undocumented)
-    expiryYear?: string;
-    // (undocumented)
-    identifier?: string;
-    // (undocumented)
-    lang?: Language;
-    // (undocumented)
-    payURL?: string;
-}
-
-// @public (undocumented)
-export const requestOutputFormatter: <RawOutputParams extends RequestOutputParams>(raw: RawOutputParams) => RequestFormattedOutput<RawOutputParams>;
-
 // @public
 export class ResponseError extends RedsysError {
     // Warning: (ae-forgotten-export) The symbol "ResponseErrorOptions" needs to be exported by the entry point index.d.ts
@@ -248,6 +230,25 @@ export interface ResponseJSONSuccess {
     Ds_SignatureVersion: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "RequestFormatterInput" needs to be exported by the entry point index.d.ts
+//
+// @public
+export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial<RestIniciaPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
+    // (undocumented)
+    emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'];
+}
+
+// Warning: (ae-forgotten-export) The symbol "RequestFormatterOutput" needs to be exported by the entry point index.d.ts
+//
+// @public
+export interface RestIniciaPeticionFormatterOutput<RawOutputParams extends RestIniciaPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams> {
+    // (undocumented)
+    emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
+}
+
+// @public
+export const restIniciaPeticionInputFormatter: <RawInputParams extends Partial<RestIniciaPeticionInputParams> = Partial<RestIniciaPeticionInputParams>>(raw: RestIniciaPeticionFormatterInput<RawInputParams>) => RestIniciaPeticionInputParams;
+
 // Warning: (ae-forgotten-export) The symbol "CommonRestInputParams" needs to be exported by the entry point index.d.ts
 //
 // @public
@@ -257,6 +258,11 @@ export interface RestIniciaPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams;
 }
 
+// @public
+export const restIniciaPeticionOutputFormatter: <RawOutputParams extends RestIniciaPeticionOutputParams = RestIniciaPeticionOutputParams>(raw: RawOutputParams) => RestIniciaPeticionFormatterOutput<RawOutputParams>;
+
+// Warning: (ae-forgotten-export) The symbol "RequestOutputParams" needs to be exported by the entry point index.d.ts
+//
 // @public
 export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
     Ds_DCC?: {
@@ -280,14 +286,31 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
     Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;
 }
 
-// @public (undocumented)
-export const restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormattedOutput<RawOutputParams>;
+// @public
+export const restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams = RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>;
 
 // @public
 export interface RestNotificationOutputParams extends NotificationOutputParams {
     Ds_Date: string;
     Ds_Hour: string;
 }
+
+// @public
+export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<RestTrataPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
+    // (undocumented)
+    emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'];
+}
+
+// @public
+export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTrataPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams>, Omit<ResolvedTransactionTraitFormatterOutput, 'response'> {
+    // (undocumented)
+    emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
+    // (undocumented)
+    response?: number;
+}
+
+// @public
+export const restTrataPeticionInputFormatter: <RawInputParams extends Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>>(raw: RestTrataPeticionFormatterInput<RawInputParams>) => RestTrataPeticionInputParams;
 
 // @public
 export interface RestTrataPeticionInputParams extends CommonRestInputParams {
@@ -302,6 +325,9 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_EMV3DS?: ThreeDSv1AuthDataInputParams | ThreeDSv2AuthDataInputParams | ThreeDSv1ChallengeResponseInputParams | ThreeDSv2ChallengeResponseInputParams;
 }
 
+// @public
+export const restTrataPeticionOutputFormatter: <RawOutputParams extends RestTrataPeticionOutputParams = RestTrataPeticionOutputParams>(raw: RawOutputParams) => RestTrataPeticionFormatterOutput<RawOutputParams>;
+
 // Warning: (ae-forgotten-export) The symbol "ResolvedTransactionTrait" needs to be exported by the entry point index.d.ts
 //
 // @public
@@ -310,16 +336,25 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
     Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
 }
 
+// @public
+export const REV_CARDBRANDS: Record<CardBrandNum, CardBrand>;
+
+// @public
+export const REV_COUNTRIES: Record<CountryNum, Country>;
+
 // Warning: (ae-forgotten-export) The symbol "RevCurrencyData" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
-export const REV_CURRENCIES: Record<string, RevCurrencyData>;
+// @public
+export const REV_CURRENCIES: Record<CurrencyNum, RevCurrencyData>;
+
+// @public
+export const REV_LANGUAGES: Record<LanguageNum, Language>;
 
 // @public
 export const SANDBOX_URLS: UrlsConfig;
 
-// @public (undocumented)
-export const soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormattedOutput<RawOutputParams>;
+// @public
+export const soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams = SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>;
 
 // @public
 export interface SoapNotificationOutputParams extends NotificationOutputParams {
@@ -441,18 +476,16 @@ export interface UrlsConfig {
     restIniciaPeticion: string;
     // (undocumented)
     restTrataPeticion: string;
-    // (undocumented)
-    webserviceV2: string;
 }
 
-// @public (undocumented)
-export const useInputFormatter: <A extends readonly unknown[], B extends readonly unknown[], C>(fn: (...args: Readonly<B>) => C, inputFormatter: (...args: A) => B) => (...args: Readonly<A>) => C;
-
-// @public (undocumented)
+// @public
 export const useOutputFormatter: <A, B, C>(fn: (a: A) => B, outputFormatter: (b: B) => C) => (a: A) => C;
 
-// @public (undocumented)
+// @public
 export const usePromiseOutputFormatter: <A, B, C>(fn: (a: A) => Promise<B>, outputFormatter: (b: B) => C) => (a: A) => Promise<C>;
+
+// @public
+export const useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (args_0: B, ...args_1: C) => D, inputFormatter: AF) => (input: Parameters<AF>[0], ...otherArgs_0: C) => D;
 
 // @public
 export class ValidationError extends RedsysError {

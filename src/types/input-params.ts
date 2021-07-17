@@ -1,4 +1,6 @@
 import type { TransactionType } from '../assets/transaction-types';
+import type { CurrencyNum } from '../assets/currencies';
+import type { LanguageNum } from '../assets/lang-codes';
 
 import type {
   ThreeDSPreAuthInputParams,
@@ -31,11 +33,16 @@ export interface BaseInputParams {
   /** Merchant group number */
   DS_MERCHANT_GROUP?: string
 
-  /** Amount designated as an integer in the smallest currency division */
+  /**
+   * Amount designated as an integer in the smallest currency division
+   *
+   * @example
+   * `'199'` (1.99 EUR)
+   */
   DS_MERCHANT_AMOUNT?: string
 
   /** Currency number, ISO-4217 */
-  DS_MERCHANT_CURRENCY?: string
+  DS_MERCHANT_CURRENCY?: CurrencyNum
 
   /** Card PAN, number */
   DS_MERCHANT_PAN?: string
@@ -108,7 +115,7 @@ export interface RedirectInputParams extends BaseInputParams {
   DS_MERCHANT_URLKO?: string
 
   /** Language */
-  DS_MERCHANT_CONSUMERLANGUAGE?: string
+  DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum
 
   /** Payment methods */
   DS_MERCHANT_PAYMETHODS?: string

@@ -25,16 +25,12 @@ import {
 } from '../../test/fixtures/rest/redirect';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  serializedAndSignedJSONRequest
-} from '../../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  serializedJSONResponse,
-  deserializedJSONResponse
-} from '../../test/fixtures/rest/json-response';
+  restJsonMerchantKey,
+  restJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse
+} from '../../test/fixtures/rest/rest-json';
 
 import {
   threeDSv21MerchantKey,
@@ -52,8 +48,8 @@ describe('REST JSON', () => {
       ).toEqual(serializedAndSignedRedirectRequest);
 
       expect(
-        serializeAndSignJSONRequest(jsonRequestMerchantKey, jsonRequest)
-      ).toEqual(serializedAndSignedJSONRequest);
+        serializeAndSignJSONRequest(restJsonMerchantKey, restJsonRequest)
+      ).toEqual(serializedAndSignedRestJsonRequest);
 
       expect(
         serializeAndSignJSONRequest(threeDSv21MerchantKey, challengeResponseRequest)
@@ -66,8 +62,8 @@ describe('REST JSON', () => {
       ).toEqual(deserializedRestNotification);
 
       expect(
-        deserializeAndVerifyJSONResponse(jsonResponseMerchantKey, serializedJSONResponse)
-      ).toEqual(deserializedJSONResponse);
+        deserializeAndVerifyJSONResponse(restJsonMerchantKey, serializedRestJsonResponse)
+      ).toEqual(deserializedRestJsonResponse);
 
       expect(
         deserializeAndVerifyJSONResponse(threeDSv21MerchantKey, serializedChallengeResponseResponse)
@@ -80,7 +76,7 @@ describe('REST JSON', () => {
       ).toThrowError(new ParseError('Invalid signature'));
 
       expect(
-        () => deserializeAndVerifyJSONResponse(incorrectMerchantKey, serializedJSONResponse)
+        () => deserializeAndVerifyJSONResponse(incorrectMerchantKey, serializedRestJsonResponse)
       ).toThrowError(new ParseError('Invalid signature'));
     });
 
@@ -97,9 +93,9 @@ describe('REST JSON', () => {
 
       expect(
         () => deserializeAndVerifyJSONResponse(
-          jsonResponseMerchantKey,
+          restJsonMerchantKey,
           {
-            ...serializedJSONResponse,
+            ...serializedRestJsonResponse,
             Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
           }
         )
@@ -119,9 +115,9 @@ describe('REST JSON', () => {
 
       expect(
         () => deserializeAndVerifyJSONResponse(
-          jsonResponseMerchantKey,
+          restJsonMerchantKey,
           {
-            ...serializedJSONResponse,
+            ...serializedRestJsonResponse,
             Ds_SignatureVersion: 'None'
           }
         )

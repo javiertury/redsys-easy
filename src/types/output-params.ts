@@ -1,4 +1,8 @@
 import type { TransactionType } from '../assets/transaction-types';
+import type { CountryNum } from '../assets/countries';
+import type { CardBrandNum } from '../assets/card-brands';
+import type { CurrencyNum } from '../assets/currencies';
+import type { LanguageNum } from '../assets/lang-codes';
 
 import type {
   ThreeDSv1PreAuthOutputParams,
@@ -27,7 +31,7 @@ export interface BaseOutputParams {
   Ds_SecurePayment?: '0' | '1' | '2'
 
   /** Card country */
-  Ds_Card_Country?: string
+  Ds_Card_Country?: CountryNum
 
   /** Authorization transaction code, refunds */
   Ds_AuthorisationCode?: string
@@ -39,14 +43,16 @@ export interface BaseOutputParams {
   Ds_MerchantData?: string
 
   /** Card brand */
-  Ds_Card_Brand?: '1' | '2' | '6' | '7' | '8' | '9' | '22'
+  Ds_Card_Brand?: CardBrandNum
 
   /** Card is under PSD2 */
   Ds_Card_PSD2?: 'Y' | 'N'
 
   /**
    * PDS2 exemptions
-   * E.g. LWV;TRA[30.0];COR;MIT;ATD;WHL
+   *
+   * @example
+   * `'LWV;TRA[30.0];COR;MIT;ATD;WHL'`
    */
   Ds_Excep_SCA?: string
 
@@ -61,11 +67,16 @@ export interface BaseOutputParams {
  * Common output parameters of resolved requests or notifications
  */
 export interface ResolvedTransactionTrait {
-  /** Amount designated as an integer in the smallest currency division */
+  /**
+   * Amount designated as an integer in the smallest currency division
+   *
+   * @example
+   * `'199'` (1.99 EUR)
+   */
   Ds_Amount: string
 
   /** Currency number, ISO-4217 */
-  Ds_Currency: string
+  Ds_Currency: CurrencyNum
 
   /** Response code */
   Ds_Response: string
@@ -75,7 +86,7 @@ export interface ResolvedTransactionTrait {
  * Common output parameters of a all requests
  */
 export interface RequestOutputParams extends BaseOutputParams {
-  /** Card number */
+  /** Card number with some digits replaced with asterisks */
   Ds_CardNumber?: string
 
   /** Card expiry date, YYmm */
@@ -88,7 +99,7 @@ export interface RequestOutputParams extends BaseOutputParams {
   Ds_UrlPago2Fases?: string
 
   /** Language */
-  Ds_Language?: string
+  Ds_Language?: LanguageNum
 }
 
 /**
@@ -149,7 +160,7 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
  */
 export interface NotificationOutputParams extends BaseOutputParams, ResolvedTransactionTrait {
   /** Language */
-  Ds_ConsumerLanguage?: string
+  Ds_ConsumerLanguage?: LanguageNum
 
   /** Error code */
   Ds_ErrorCode?: string

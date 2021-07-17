@@ -54,16 +54,85 @@ const {
 
 Despite the name, a redsys payment gateway with 3DS support is quite complex. Don't despair, these examples show how it can be implemented.
   - [INSITE client](./examples/insite-client) implemented using a [solid](https://github.com/solidjs/solid) web app.
-  - [REST server](./examples/rest-server) implemented using a [koa](https://koajs.com/) http server.
+  - [REST 3DS server](./examples/rest-3ds-server) implemented using a [koa](https://koajs.com/) http server.
 
 Redirection is much simpler but less customizable
   - [Redirection integration](./examples/redirection)
 
+## Formatters
+
+By default, the main functions exported by this package use the API specified by redsys. To smooth out the corners of this API, it's also possible to wrap them with custom formatters.
+
+As an example, redsys-easy provides some basic typescript-ready formatters.
+
+> :warning: **Format has changed**: Previous versions of redsys-easy used a different format than these new formatting functions, particularly the `amount` field.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./examples/__readme__/formatters.ts) -->
+<!-- The below code snippet is automatically added from ./examples/__readme__/formatters.ts -->
+```ts
+import {
+  createRedsysAPI,
+  SANDBOX_URLS,
+  // Formatter utils
+  useSingleInputFormatter,
+  useOutputFormatter,
+  usePromiseOutputFormatter,
+  // Input formatters
+  redirectInputFormatter,
+  restIniciaPeticionInputFormatter,
+  restTrataPeticionInputFormatter,
+  // Output formatters
+  restNotificationOutputFormatter,
+  soapNotificationOutputFormatter,
+  restIniciaPeticionOutputFormatter,
+  restTrataPeticionOutputFormatter
+} from 'redsys-easy';
+
+const {
+  restIniciaPeticion: baseRestIniciaPeticion,
+  restTrataPeticion: baseRestTrataPeticion,
+  createRedirectForm: baseCreateRedirectForm,
+  processRestNotification: baseProcessRestNotification,
+  processSoapNotification: baseProcessSoapNotification
+} = createRedsysAPI({
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
+  urls: SANDBOX_URLS
+});
+
+/*
+ *            External      Internal
+ * amount      '33.5'  <->   '3350'
+ * currency    'EUR'   <->   '978'
+ *
+ * expiryYear  '34'
+ * expiryMonth '12'
+ *                     <->   '3412'
+ *
+ * lang        'es'    <->   '1'
+ * cardBrand   'VISA'  <-    '1'
+ * cardCountry 'es'    <-    '724'
+ */
+export const createRedirectForm = useSingleInputFormatter(baseCreateRedirectForm, redirectInputFormatter);
+export const restIniciaPeticion = useSingleInputFormatter(
+  usePromiseOutputFormatter(baseRestIniciaPeticion, restIniciaPeticionOutputFormatter),
+  restIniciaPeticionInputFormatter
+)
+export const restTrataPeticion = useSingleInputFormatter(
+  usePromiseOutputFormatter(baseRestTrataPeticion, restTrataPeticionOutputFormatter),
+  restTrataPeticionInputFormatter
+)
+export const processRestNotification = useOutputFormatter(baseProcessRestNotification, restNotificationOutputFormatter);
+export const processSoapNotification = useOutputFormatter(baseProcessSoapNotification, soapNotificationOutputFormatter);
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 ## FAQ
 
-### What is the smallest unit of a currency?
+### How should I format the amount charged?
 
-The smallest unit of a currency, is the smallest integer amount of said currency. For euros, it is cents. So 1.99 EUR would be 199 of the smallest unit.
+Redsys API uses expects amounts denominated in the smallest unit of a currency. The exported core functions of redsys-easy also follows this convention. The smallest unit of a currency is the smallest integer amount of said currency. For euros, it is cents. So 1.99 EUR would be 199 of the smallest unit.
+
+However you are free to wrap these core functions with a custom formatter. Particularly, redsys-easy optional formatters expect the amount to be formatted as a decimal string currency unit. For euros, it would be '1.99'.
 
 ## Acknowledgments
 

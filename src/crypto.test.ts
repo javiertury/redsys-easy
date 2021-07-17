@@ -21,18 +21,13 @@ import {
 } from '../test/fixtures/rest/redirect-notification';
 
 import {
-  jsonRequestMerchantKey,
-  jsonRequest,
-  jsonRequest3DESOrder,
-  serializedAndSignedJSONRequest
-} from '../test/fixtures/rest/json-request';
-
-import {
-  jsonResponseMerchantKey,
-  serializedJSONResponse,
-  deserializedJSONResponse,
-  jsonResponse3DESOrder
-} from '../test/fixtures/rest/json-response';
+  restJsonMerchantKey,
+  restJsonRequest,
+  serializedAndSignedRestJsonRequest,
+  serializedRestJsonResponse,
+  deserializedRestJsonResponse,
+  restJson3DESOrder
+} from '../test/fixtures/rest/rest-json';
 
 import {
   allowedSoapNotificationResponseMerchantKey,
@@ -111,12 +106,12 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(restNotification3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(jsonRequestMerchantKey, jsonRequest.DS_MERCHANT_ORDER)
-      ).toEqual(Buffer.from(jsonRequest3DESOrder, 'base64'));
+        encrypt3DES(restJsonMerchantKey, restJsonRequest.DS_MERCHANT_ORDER)
+      ).toEqual(Buffer.from(restJson3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(jsonResponseMerchantKey, deserializedJSONResponse.Ds_Order)
-      ).toEqual(Buffer.from(jsonResponse3DESOrder, 'base64'));
+        encrypt3DES(restJsonMerchantKey, deserializedRestJsonResponse.Ds_Order)
+      ).toEqual(Buffer.from(restJson3DESOrder, 'base64'));
 
       expect(
         encrypt3DES(allowedSoapNotificationResponseMerchantKey, allowedNotificationResponseParams.order)
@@ -167,20 +162,20 @@ describe('Crypto', () => {
 
       expect(
         sha256Sign(
-          jsonRequestMerchantKey,
-          jsonRequest.DS_MERCHANT_ORDER,
-          serializedAndSignedJSONRequest.Ds_MerchantParameters
+          restJsonMerchantKey,
+          restJsonRequest.DS_MERCHANT_ORDER,
+          serializedAndSignedRestJsonRequest.Ds_MerchantParameters
         )
-      ).toEqual(serializedAndSignedJSONRequest.Ds_Signature);
+      ).toEqual(serializedAndSignedRestJsonRequest.Ds_Signature);
 
       expect(
         sha256Sign(
-          jsonResponseMerchantKey,
-          deserializedJSONResponse.Ds_Order,
-          serializedJSONResponse.Ds_MerchantParameters
+          restJsonMerchantKey,
+          deserializedRestJsonResponse.Ds_Order,
+          serializedRestJsonResponse.Ds_MerchantParameters
         )
       // Redsys returns base64url encoded instead of regular base64
-      ).toEqual(base64url.toBuffer(serializedJSONResponse.Ds_Signature).toString('base64'));
+      ).toEqual(base64url.toBuffer(serializedRestJsonResponse.Ds_Signature).toString('base64'));
 
       expect(
         sha256Sign(

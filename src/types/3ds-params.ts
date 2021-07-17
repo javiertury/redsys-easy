@@ -46,7 +46,9 @@ export interface BaseThreeDSAuthenticationDataParams {
 
   /**
    * Browser Screen Color Depth
-   * screen.colorDepth.toString() or '1' if javascript is disabled
+   *
+   * @remarks
+   * `screen.colorDepth.toString()` or `'1'` if javascript is disabled
    */
   browserColorDepth: string
 
@@ -54,7 +56,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * Browser Java Enabled
    *
    * @remarks
-   * navigator.javaEnabled() or false if javascript is disabled
+   * `navigator.javaEnabled()` or `false` if javascript is disabled
    */
   browserJavaEnabled: boolean
 
@@ -62,7 +64,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * Browser Language
    *
    * @remarks
-   * navigator.language
+   * `navigator.language`
    */
   browserLanguage: string
 
@@ -70,7 +72,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * Browser Screen Height
    *
    * @remarks
-   * screen.height.toString() or '0' if javascript is disabled
+   * `screen.height.toString()` or `'0'` if javascript is disabled
    */
   browserScreenHeight: string
 
@@ -78,7 +80,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * Browser Screen Width
    *
    * @remarks
-   * screen.width.toString() or '0' if javascript is disabled
+   * `screen.width.toString()` or `'0'` if javascript is disabled
    */
   browserScreenWidth: string
 
@@ -86,7 +88,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * Browser Time Zone
    *
    * @remarks
-   * (new Date()).getTimezoneOffset().toString() or '0' if javascript is disabled
+   * `(new Date()).getTimezoneOffset().toString()` or `'0'` if javascript is disabled
    */
   browserTZ: string
 

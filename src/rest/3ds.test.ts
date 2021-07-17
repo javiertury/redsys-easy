@@ -10,15 +10,15 @@ import {
   deserializedIniciaPeticionResponse,
   threeDSMethodForm,
   threeDSMethodNotificationBody,
-  deserialized3DSMethodResponse,
-  threeDSChallengeForm as threeDSv2ChallengeForm,
+  deserializedAuthDataResponse as deserializedAuthDataV21Response,
+  threeDSChallengeForm as threeDSv21ChallengeForm,
   threeDSChallengeNotificationBody,
   deserializedCres,
   deserializedThreeDSMethodData
 } from '../../test/fixtures/rest/3ds-v2.1-challenge';
 
 import {
-  deserializedThreeDSChallengeResponse as deserializedThreeDSv1ChallengeResponse,
+  deserializedAuthDataResponse as deserializedAuthDataV1ChallengeResponse,
   threeDSChallengeForm as threeDSv1ChallengeForm
 } from '../../test/fixtures/rest/3ds-v1';
 
@@ -42,7 +42,7 @@ describe('deserializeThreeDSMethodData', () => {
 describe('create3DSv1ChallengeForm', () => {
   it('should create 3DS v1 challenge form parameters', () => {
     expect(create3DSv1ChallengeForm(
-      deserializedThreeDSv1ChallengeResponse.Ds_EMV3DS,
+      deserializedAuthDataV1ChallengeResponse.Ds_EMV3DS,
       'http://my-server:3000/post-challenge-v1'
     )).toEqual(threeDSv1ChallengeForm);
   });
@@ -51,8 +51,8 @@ describe('create3DSv1ChallengeForm', () => {
 describe('create3DSv2ChallengeForm', () => {
   it('should create 3DS v2 challenge form parameters', () => {
     expect(create3DSv2ChallengeForm(
-      deserialized3DSMethodResponse.Ds_EMV3DS
-    )).toEqual(threeDSv2ChallengeForm);
+      deserializedAuthDataV21Response.Ds_EMV3DS
+    )).toEqual(threeDSv21ChallengeForm);
   });
 });
 

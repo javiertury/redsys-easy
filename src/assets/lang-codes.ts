@@ -1,3 +1,8 @@
+/**
+ * ISO 639-1 language code
+ *
+ * @public
+ */
 export type Language =
   | 'es'
   | 'en'
@@ -30,8 +35,54 @@ export type Language =
   | 'sl'
   | 'tr';
 
-// ISO 639-1
-export const LANGUAGES: Record<Language, string> = {
+/**
+ * Redsys language code
+ *
+ * @public
+ */
+export type LanguageNum =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '100'
+  | '156'
+  | '191'
+  | '203'
+  | '208'
+  | '233'
+  | '246'
+  | '300'
+  | '348'
+  | '392'
+  | '428'
+  | '440'
+  | '470'
+  | '642'
+  | '643'
+  | '703'
+  | '705'
+  | '792';
+
+/**
+ * Maps an ISO 639-1 language code to redsys language number
+ *
+ * @remarks
+ * Some ISO 639-1 language codes may include more more than one redsys language number. In such cases the main redsys language number is used.
+ *
+ * @public
+ */
+// The Record key makes sure that all members of the key union type are defined.
+export const LANGUAGES: Record<Language, LanguageNum> = {
   es: '1',
   en: '2',
   ca: '3', // Codigo ISO "ca" compartido por catalan(3) y valenciano(10)
@@ -65,9 +116,18 @@ export const LANGUAGES: Record<Language, string> = {
   tr: '792'
 };
 
-const REV_LANGUAGES: Record<string, Language> = {};
+/**
+ * Maps a redsys language code to an ISO 639-1 language code
+ *
+ * @remarks
+ * @see {@link LANGUAGES}
+ *
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+const REV_LANGUAGES = {} as Record<LanguageNum, Language>;
 
-for (const [key, value] of Object.entries(LANGUAGES) as ReadonlyArray<[Language, string]>) {
+for (const [key, value] of Object.entries(LANGUAGES) as ReadonlyArray<[Language, LanguageNum]>) {
   REV_LANGUAGES[value] = key;
 }
 REV_LANGUAGES['10'] = 'ca';

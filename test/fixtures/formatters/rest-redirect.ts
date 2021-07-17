@@ -10,7 +10,7 @@ export const unformattedRedirectRequest = {
   transactionType: '0',
   terminal: '1',
   currency: 'EUR',
-  amount: 999,
+  amount: '9.99',
   merchantURL: 'http://www.prueba.com/urlNotificacion.php',
   successURL: 'http://www.prueba.com/urlOK.php',
   errorURL: 'http://www.prueba.com/urlKO.php'

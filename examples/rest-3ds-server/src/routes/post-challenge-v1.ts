@@ -54,6 +54,7 @@ export const postChallengeV1Handler: AppMiddleware = async ({ request, response,
 
   const currencyInfo = REV_CURRENCIES[result.Ds_Currency];
 
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!currencyInfo) {
     throw new Error('Unknown currency');
   }

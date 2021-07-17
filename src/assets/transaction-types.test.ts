@@ -1,46 +1,51 @@
+import { expectType } from 'ts-expect';
+import type { TypeEqual } from 'ts-expect';
+
 import { TRANSACTION_TYPES } from './transaction-types';
 import type { TransactionType } from './transaction-types';
 
-describe('Transaction types', () => {
-  it('Typescript type definitions must match actual values', () => {
+describe('TRANSACTION_TYPES', () => {
+  it('should use the TransactionType interface', () => {
+    expectType<TypeEqual<
+      TransactionType,
+      (typeof TRANSACTION_TYPES)[keyof typeof TRANSACTION_TYPES]
+    >>(true);
+  });
+
+  it('should have a key for each TransactionType', () => {
     /*
-     * The goal is to check that TRANSACTION_TYPES implements all TransactionType
-     * union members defined. This can't be done in pure typescript so it became
-     * a unit test.
-     *
-     * The Record transaciontTypeToIndex makes sure that all TransactionType union
-     * members are used as keys. Then at runtime we collect all transaction types
-     * using Object.keys and check that they are all included as values in
-     * TRANSACTION_TYPES.
+     * The Record key makes sure that all members of the key union type are defined.
+     * Then at runtime we collect all keys and compare them to the values of the enum
+     * to checkout that all of them are implemented
      */
 
-    const allTransactionTypeToNull: Record<TransactionType, null> = {
-      0: null,
-      1: null,
-      2: null,
-      3: null,
-      5: null,
-      6: null,
-      7: null,
-      8: null,
-      9: null,
-      15: null,
-      17: null,
-      34: null,
-      37: null,
-      44: null,
-      O: null,
-      F: null,
-      P: null,
-      Q: null,
-      R: null,
-      S: null,
-      A: null
+    const allTransactionTypeObj: Record<TransactionType, true> = {
+      0: true,
+      1: true,
+      2: true,
+      3: true,
+      5: true,
+      6: true,
+      7: true,
+      8: true,
+      9: true,
+      15: true,
+      17: true,
+      34: true,
+      37: true,
+      44: true,
+      O: true,
+      F: true,
+      P: true,
+      Q: true,
+      R: true,
+      S: true,
+      A: true
     };
 
-    const allTransactionTypes = Object.keys(allTransactionTypeToNull);
-    const implementedTransactionTypes = Object.values(TRANSACTION_TYPES);
+    const allTransactionTypes = Object.keys(allTransactionTypeObj).sort();
+    const implementedTransactionTypes = Object.values(TRANSACTION_TYPES).sort();
 
-    expect(implementedTransactionTypes).toEqual(expect.arrayContaining(allTransactionTypes));
+    expect(implementedTransactionTypes).toEqual(allTransactionTypes);
   });
 });
