@@ -4,14 +4,16 @@ import {
 } from './json-serialization';
 
 import {
+  redirectRequest,
+  serializedRedirectRequest,
   serializedRestNotification,
   deserializedRestNotification
-} from '../../test/fixtures/rest/redirect-notification';
+} from '../../test/fixtures/rest/redirect';
 
 import {
-  redirectRequest,
-  serializedRedirectRequest
-} from '../../test/fixtures/rest/redirect';
+  redirectWithIdentifierRequest,
+  serializedRedirectWithIdentifierRequest
+} from '../../test/fixtures/rest/redirect-identifier';
 
 import {
   iniciaPeticionRequest as iniciaPeticionV1Request,
@@ -32,6 +34,10 @@ describe('REST JSON serialization', () => {
     expect(
       serializeJSONMerchantParams(redirectRequest)
     ).toEqual(serializedRedirectRequest);
+
+    expect(
+      serializeJSONMerchantParams(redirectWithIdentifierRequest)
+    ).toEqual(serializedRedirectWithIdentifierRequest);
 
     expect(
       serializeJSONMerchantParams(restJsonRequest)

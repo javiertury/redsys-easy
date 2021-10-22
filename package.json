@@ -32,7 +32,7 @@
     "build:api": "api-extractor run --local",
     "build": "pnpm run build:clean && pnpm run lint && pnpm run build:code && pnpm run build:api",
     "prepublishOnly": "pnpm run build",
-    "test:unit": "jest ./src/**/*.test.ts",
+    "test:unit": "jest ./src/*.test.ts ./src/**/*.test.ts",
     "test:integration": "jest ./test/integration/**/*.test.ts",
     "test:code": "jest",
     "test:readme": "tsc -p ./tsconfig.readme.json",

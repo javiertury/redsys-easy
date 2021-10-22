@@ -16,6 +16,10 @@ import type {
 } from '../../test/fixtures/rest/redirect';
 
 import type {
+  redirectWithIdentifierRequest
+} from '../../test/fixtures/rest/redirect-identifier';
+
+import type {
   iniciaPeticionRequest as iniciaPeticionV1Request,
   authDataRequest as authDataV1Request,
   challengeResponseRequest as challengeResponseV1Request
@@ -84,6 +88,11 @@ describe('RestTrataPeticionInputParams', () => {
     expectType<TypeOf<
       RedirectInputParams,
       typeof redirectRequest
+    >>(true);
+
+    expectType<TypeOf<
+      RedirectInputParams,
+      typeof redirectWithIdentifierRequest
     >>(true);
   });
 });

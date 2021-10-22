@@ -61,6 +61,15 @@ export interface BaseOutputParams {
 
   /** Credential On File transaction identifier */
   Ds_Merchant_Cof_Txnid?: string
+
+  /** Card number with some digits replaced with asterisks */
+  Ds_CardNumber?: string
+
+  /** Card expiry date, YYmm */
+  Ds_ExpiryDate?: string
+
+  /** Stored payment method reference number */
+  Ds_Merchant_Identifier?: string
 }
 
 /**
@@ -86,15 +95,6 @@ export interface ResolvedTransactionTrait {
  * Common output parameters of a all requests
  */
 export interface RequestOutputParams extends BaseOutputParams {
-  /** Card number with some digits replaced with asterisks */
-  Ds_CardNumber?: string
-
-  /** Card expiry date, YYmm */
-  Ds_ExpiryDate?: string
-
-  /** Stored payment method reference number */
-  Ds_Merchant_Identifier?: string
-
   /** Payment link, paygold */
   Ds_UrlPago2Fases?: string
 

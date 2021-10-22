@@ -1,27 +1,28 @@
 import {
   deserializedRestNotification
-} from '../rest/redirect-notification';
+} from '../rest/redirect';
 
 export {
-  restNotificationMerchantKey,
+  redirectMerchantKey,
   serializedRestNotification,
   deserializedRestNotification
-} from '../rest/redirect-notification';
+} from '../rest/redirect';
 
 export const formattedRestNotification = {
-  time: '18:03',
-  date: '2015-11-09',
-  timestamp: new Date('2015-11-09 17:03 Z'),
-  securePayment: false,
-  amount: '1.45',
-  order: '0069',
+  time: '22:51',
+  date: '2021-10-22',
+  timestamp: new Date('2021-10-22 20:51 Z'),
+  securePayment: true,
+  amount: '49.99',
+  order: '0726qI3H7sZx',
   merchantCode: '999008881',
-  terminal: '871',
+  terminal: '001',
   response: 0,
   transactionType: '0',
-  authorisationCode: '082150',
+  authorisationCode: '052029',
   currency: 'EUR',
   cardCountry: 'es',
   lang: 'es',
+  cardBrand: 'VISA',
   raw: deserializedRestNotification
 };

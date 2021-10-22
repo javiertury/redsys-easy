@@ -14,7 +14,11 @@ import type {
 
 import type {
   deserializedRestNotification
-} from '../../test/fixtures/rest/redirect-notification';
+} from '../../test/fixtures/rest/redirect';
+
+import type {
+  deserializedRestNotificationWithIdentifier
+} from '../../test/fixtures/rest/redirect-identifier';
 
 import type {
   deserializedIniciaPeticionResponse as deserializedIniciaPeticionV1Response,
@@ -89,6 +93,11 @@ describe('RestNotificationOutputParams', () => {
     expectType<TypeOf<
       RestNotificationOutputParams,
       typeof deserializedRestNotification
+    >>(true);
+
+    expectType<TypeOf<
+      RestNotificationOutputParams,
+      typeof deserializedRestNotificationWithIdentifier
     >>(true);
   });
 });

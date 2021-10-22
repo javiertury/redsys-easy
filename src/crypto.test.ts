@@ -10,15 +10,17 @@ import {
   redirectMerchantKey,
   redirectRequest,
   redirectRequest3DESOrder,
-  serializedAndSignedRedirectRequest
+  serializedAndSignedRedirectRequest,
+  serializedRestNotification,
+  deserializedRestNotification
 } from '../test/fixtures/rest/redirect';
 
 import {
-  restNotificationMerchantKey,
-  serializedRestNotification,
-  deserializedRestNotification,
-  restNotification3DESOrder
-} from '../test/fixtures/rest/redirect-notification';
+  redirectWithIdentifierMerchantKey,
+  redirectWithIdentifierRequest,
+  redirectWithIdentifier3DESOrder,
+  deserializedRestNotificationWithIdentifier
+} from '../test/fixtures/rest/redirect-identifier';
 
 import {
   restJsonMerchantKey,
@@ -102,8 +104,16 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(restNotificationMerchantKey, deserializedRestNotification.Ds_Order)
-      ).toEqual(Buffer.from(restNotification3DESOrder, 'base64'));
+        encrypt3DES(redirectWithIdentifierMerchantKey, redirectWithIdentifierRequest.DS_MERCHANT_ORDER)
+      ).toEqual(Buffer.from(redirectWithIdentifier3DESOrder, 'base64'));
+
+      expect(
+        encrypt3DES(redirectMerchantKey, deserializedRestNotification.Ds_Order)
+      ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
+
+      expect(
+        encrypt3DES(redirectWithIdentifierMerchantKey, deserializedRestNotificationWithIdentifier.Ds_Order)
+      ).toEqual(Buffer.from(redirectWithIdentifier3DESOrder, 'base64'));
 
       expect(
         encrypt3DES(restJsonMerchantKey, restJsonRequest.DS_MERCHANT_ORDER)
@@ -153,7 +163,7 @@ describe('Crypto', () => {
 
       expect(
         sha256Sign(
-          restNotificationMerchantKey,
+          redirectMerchantKey,
           deserializedRestNotification.Ds_Order,
           serializedRestNotification.Ds_MerchantParameters
         )

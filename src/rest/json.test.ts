@@ -13,15 +13,11 @@ import {
 } from '../../test/fixtures/merchant-keys';
 
 import {
-  restNotificationMerchantKey,
-  serializedRestNotification,
-  deserializedRestNotification
-} from '../../test/fixtures/rest/redirect-notification';
-
-import {
   redirectMerchantKey,
   redirectRequest,
-  serializedAndSignedRedirectRequest
+  serializedAndSignedRedirectRequest,
+  serializedRestNotification,
+  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect';
 
 import {
@@ -58,7 +54,7 @@ describe('REST JSON', () => {
 
     it('should deserialize and verify response with legit signature', () => {
       expect(
-        deserializeAndVerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification)
+        deserializeAndVerifyJSONResponse(redirectMerchantKey, serializedRestNotification)
       ).toEqual(deserializedRestNotification);
 
       expect(
@@ -83,7 +79,7 @@ describe('REST JSON', () => {
     it('should fail to verify response if signature is forged', () => {
       expect(
         () => deserializeAndVerifyJSONResponse(
-          restNotificationMerchantKey,
+          redirectMerchantKey,
           {
             ...serializedRestNotification,
             Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
@@ -105,7 +101,7 @@ describe('REST JSON', () => {
     it('should fail to verify response if signature version is unknown', () => {
       expect(
         () => deserializeAndVerifyJSONResponse(
-          restNotificationMerchantKey,
+          redirectMerchantKey,
           {
             ...serializedRestNotification,
             Ds_SignatureVersion: 'None'

@@ -13,17 +13,20 @@ import {
 } from '../../test/fixtures/merchant-keys';
 
 import {
-  restNotificationMerchantKey,
-  serializedRestNotification,
-  deserializedRestNotification
-} from '../../test/fixtures/rest/redirect-notification';
-
-import {
   redirectMerchantKey,
   redirectRequest,
   serializedRedirectRequest,
-  serializedAndSignedRedirectRequest
+  serializedAndSignedRedirectRequest,
+  serializedRestNotification,
+  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect';
+
+import {
+  redirectWithIdentifierMerchantKey,
+  redirectWithIdentifierRequest,
+  serializedAndSignedRedirectWithIdentifierRequest,
+  serializedRedirectWithIdentifierRequest
+} from '../../test/fixtures/rest/redirect-identifier';
 
 import {
   restJsonRequest,
@@ -41,13 +44,17 @@ describe('REST JSON SHA256 signature', () => {
     ).toEqual(serializedAndSignedRedirectRequest);
 
     expect(
+      sha256SignJSONRequest(redirectWithIdentifierMerchantKey, serializedRedirectWithIdentifierRequest, redirectWithIdentifierRequest)
+    ).toEqual(serializedAndSignedRedirectWithIdentifierRequest);
+
+    expect(
       sha256SignJSONRequest(restJsonMerchantKey, serializedRestJsonRequest, restJsonRequest)
     ).toEqual(serializedAndSignedRestJsonRequest);
   });
 
   it('should verify response with legit signature', () => {
     expect(
-      () => sha256VerifyJSONResponse(restNotificationMerchantKey, serializedRestNotification, deserializedRestNotification)
+      () => sha256VerifyJSONResponse(redirectMerchantKey, serializedRestNotification, deserializedRestNotification)
     ).not.toThrowError();
 
     expect(
@@ -68,7 +75,7 @@ describe('REST JSON SHA256 signature', () => {
   it('should fail to verify response if signature is forged', () => {
     expect(
       () => sha256VerifyJSONResponse(
-        restNotificationMerchantKey,
+        redirectMerchantKey,
         {
           ...serializedRestNotification,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
@@ -92,7 +99,7 @@ describe('REST JSON SHA256 signature', () => {
   it('should fail to verify response if signature version is unknown', () => {
     expect(
       () => sha256VerifyJSONResponse(
-        restNotificationMerchantKey,
+        redirectMerchantKey,
         {
           ...serializedRestNotification,
           Ds_SignatureVersion: 'None'
