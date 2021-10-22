@@ -1,7 +1,7 @@
 {
   "name": "redsys-easy",
   "description": "Node JS interface for Redsys payment gateway",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "license": "MIT",
   "keywords": [

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/javiertury/redsys-easy/compare/v4.0.0...v4.0.1) (2021-10-22)
+
+
+### Bug Fixes
+
+* **types:** notification output parameters ([7dd4a46](https://github.com/javiertury/redsys-easy/commit/7dd4a4695400c030f1f78bb71ccd11e3dfa67269)), closes [#8](https://github.com/javiertury/redsys-easy/issues/8)
+
 ## [4.0.0](https://github.com/javiertury/redsys-easy/compare/v2.0.0...v4.0.0) (2021-07-17)
 
 
