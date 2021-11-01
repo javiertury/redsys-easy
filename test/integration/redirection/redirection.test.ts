@@ -19,8 +19,7 @@ import cardParams from './data/card-params.json';
 import settings from '../settings';
 import type { ResponseJSONSuccess } from 'redsys-easy';
 import {
-  encodePostParams,
-  wait
+  encodePostParams
 } from '../utils';
 
 const {
@@ -52,16 +51,40 @@ interface TestContext {
   nextParams?: Record<string, string | undefined>
 }
 
+type RequesetListener = (ctx: KoaContext) => void;
+
 describe('Redirect Integration', () => {
   const ctx: TestContext = {};
 
-  const serverHandler = jest.fn();
+  let notificationContext: KoaContext | undefined;
+
+  let requestListeners: RequesetListener[] = [];
+  const onRequest = (fn: RequesetListener) => {
+    requestListeners.push(fn);
+
+    return () => {
+      requestListeners = requestListeners.filter(listener => listener !== fn);
+    };
+  };
+
+  const getNotification = async (timeout: number) => {
+    if (notificationContext) return notificationContext;
+
+    return await new Promise<KoaContext>((resolve, reject) => {
+      const unsubscribe = onRequest(ctx => {
+        resolve(ctx);
+        unsubscribe();
+      });
+      setTimeout(() => reject(new Error('Missing transaction notification')), timeout);
+    });
+  };
 
   beforeAll(() => {
     const app = new Koa();
     app.use(bodyParser());
     app.use(async (serverCtx, next) => {
-      serverHandler(serverCtx);
+      notificationContext = serverCtx;
+      requestListeners.forEach(fn => fn(serverCtx));
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return await next();
@@ -262,11 +285,8 @@ describe('Redirect Integration', () => {
    * See <projectFolder>/integration-settings.sample.js
    */
   it('should receive a success notification', async () => {
-    await wait(2000);
+    const serverCtx = await getNotification(2000);
 
-    expect(serverHandler).toHaveBeenCalledTimes(1);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const serverCtx = serverHandler.mock.calls[0][0] as KoaContext;
     expect(typeof serverCtx).toBe('object');
     expect(serverCtx).not.toBeNull();
     expect(serverCtx.method).toEqual('POST');
