@@ -4,10 +4,5 @@
     ":preserveSemverRanges",
     ":automergeDisabled",
     ":semanticCommits"
-  ],
-  "postUpgradeTasks": {
-    "commands": ["pnpm install"],
-    "fileFilters": ["pnpm-lock.yaml"],
-    "executionMode": "branch"
-  }
+  ]
 }
