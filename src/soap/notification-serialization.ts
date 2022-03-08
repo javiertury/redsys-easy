@@ -1,4 +1,4 @@
-import xmlParser from 'fast-xml-parser';
+import { XMLParser } from 'fast-xml-parser';
 
 import type {
   ParsedSoapNotifiation,
@@ -10,6 +10,8 @@ export const serializeSoapNotificationResponse = ({ allow: allowOperation }: Soa
   return `<Response Ds_Version="0.0"><Ds_Response_Merchant>${answer}</Ds_Response_Merchant></Response>`;
 };
 
+const xmlParser = new XMLParser({ parseTagValue: false });
+
 export const deserializeSoapNotification = (xml: string): ParsedSoapNotifiation['Message'] => {
-  return (xmlParser.parse(xml, { parseNodeValue: false }) as ParsedSoapNotifiation).Message;
+  return (xmlParser.parse(xml) as ParsedSoapNotifiation).Message;
 };
