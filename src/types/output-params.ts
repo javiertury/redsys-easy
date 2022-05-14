@@ -62,8 +62,14 @@ export interface BaseOutputParams {
   /** Credential On File transaction identifier */
   Ds_Merchant_Cof_Txnid?: string
 
-  /** Card number with some digits replaced with asterisks */
+  /**
+   * Card number with some digits replaced with asterisks
+   * @deprecated
+   */
   Ds_CardNumber?: string
+
+  /** Card number with some digits replaced with asterisks */
+  Ds_Card_Number?: string
 
   /** Card expiry date, YYmm */
   Ds_ExpiryDate?: string

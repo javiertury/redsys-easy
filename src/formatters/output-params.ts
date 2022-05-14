@@ -191,12 +191,14 @@ export const requestOutputFormatter = <
   raw: RawOutputParams
 ): RequestFormatterOutput<RawOutputParams> => {
   const {
-    Ds_CardNumber: cardNumber,
+    Ds_CardNumber: deprecatedCardNumber,
+    Ds_Card_Number: newCardNumber,
     Ds_Merchant_Identifier: identifier,
     Ds_ExpiryDate: rawExpiryDate,
     Ds_UrlPago2Fases: payURL,
     Ds_Language: rawLang
   } = raw;
+  const cardNumber = newCardNumber ?? deprecatedCardNumber;
 
   return {
     ...baseOutputFormatter(raw),

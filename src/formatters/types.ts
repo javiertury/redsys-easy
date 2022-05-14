@@ -312,7 +312,7 @@ export interface RequestFormatterOutput <
    */
   identifier?: string
   /**
-   * @see {@link RestTrataPeticionOutputParams.Ds_CardNumber}
+   * @see {@link RestTrataPeticionOutputParams.Ds_Card_Number}
    */
   cardNumber?: string
   /**
