@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/javiertury/redsys-easy/compare/v4.0.1...v4.0.2) (2022-05-14)
+
+
+### Bug Fixes
+
+* support Ds_Card_Number in response ([84199f9](https://github.com/javiertury/redsys-easy/commit/84199f94d1bccf8c81822435ca803790207dfc2e)), closes [#11](https://github.com/javiertury/redsys-easy/issues/11)
+
 ### [4.0.1](https://github.com/javiertury/redsys-easy/compare/v4.0.0...v4.0.1) (2021-10-22)
 
 
