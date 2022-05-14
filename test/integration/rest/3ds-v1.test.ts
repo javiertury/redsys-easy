@@ -29,6 +29,7 @@ import {
   clientPostHeaders
 } from '../../fixtures/client';
 import settings from '../settings';
+import { createDsControlExpectation } from '../../support/misc';
 
 const {
   threeDS
@@ -207,7 +208,8 @@ describe('Rest 3DS v1', () => {
       Ds_MerchantData: 'foo',
       Ds_ProcessedPayMethod: '1',
       Ds_Response: '0000',
-      Ds_SecurePayment: '2'
+      Ds_SecurePayment: '2',
+      ...createDsControlExpectation(result)
     });
   });
 });

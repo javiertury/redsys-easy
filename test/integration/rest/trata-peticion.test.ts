@@ -6,6 +6,7 @@ import {
 } from 'redsys-easy';
 
 import { noThreeDS } from '../../fixtures/cards';
+import { createDsControlExpectation } from '../../support/misc';
 
 const {
   secretKey,
@@ -54,7 +55,8 @@ describe('Rest trataPeticion', () => {
       Ds_Card_Country: '724',
       Ds_Language: '1',
       Ds_MerchantData: 'foo',
-      Ds_ProcessedPayMethod: '3'
+      Ds_ProcessedPayMethod: '3',
+      ...createDsControlExpectation(result)
     });
   });
 });
