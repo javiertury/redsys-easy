@@ -44,11 +44,11 @@ const {
 });
 
 interface TestContext {
-  server?: Server
-  referer?: string
-  cookie?: string
-  nextPostUrl?: string
-  nextParams?: Record<string, string | undefined>
+  server?: Server | undefined
+  referer?: string | undefined
+  cookie?: string | undefined
+  nextPostUrl?: string | undefined
+  nextParams?: Record<string, string | undefined> | undefined
 }
 
 type RequesetListener = (ctx: KoaContext) => void;
@@ -169,13 +169,13 @@ describe('Redirect Integration', () => {
     const $ = cheerio.load(text);
 
     const params: Record<string, string | undefined> = {};
-    params.PaReq = $('input[name=PaReq]').attr('value');
-    expect(typeof params.PaReq).toBe('string');
-    expect(params.PaReq).not.toEqual('');
-    params.TermUrl = $('input[name=TermUrl]').attr('value');
-    expect(typeof params.TermUrl).toBe('string');
-    expect(params.TermUrl).not.toEqual('');
-    params.MD = $('input[name=MD]').attr('value');
+    params['PaReq'] = $('input[name=PaReq]').attr('value');
+    expect(typeof params['PaReq']).toBe('string');
+    expect(params['PaReq']).not.toEqual('');
+    params['TermUrl'] = $('input[name=TermUrl]').attr('value');
+    expect(typeof params['TermUrl']).toBe('string');
+    expect(params['TermUrl']).not.toEqual('');
+    params['MD'] = $('input[name=MD]').attr('value');
 
     ctx.nextPostUrl = $('form[name=datos]').attr('action');
     expect(typeof ctx.nextPostUrl).toBe('string');
@@ -204,11 +204,11 @@ describe('Redirect Integration', () => {
     const $2 = cheerio.load(text2);
 
     const params2: Record<string, string | undefined> = {};
-    params2.paReq = $2('input[name=paReq]').attr('value');
-    expect(typeof params2.paReq).toBe('string');
-    expect(params2.paReq).not.toEqual('');
-    params2.md = $2('input[name=md]').attr('value');
-    params2.termUrl = $2('input[name=termUrl]').attr('value');
+    params2['paReq'] = $2('input[name=paReq]').attr('value');
+    expect(typeof params2['paReq']).toBe('string');
+    expect(params2['paReq']).not.toEqual('');
+    params2['md'] = $2('input[name=md]').attr('value');
+    params2['termUrl'] = $2('input[name=termUrl]').attr('value');
 
     const nextPostPath = $2('form[name=formulario]').attr('action');
     expect(typeof nextPostPath).toBe('string');
@@ -247,10 +247,10 @@ describe('Redirect Integration', () => {
     const $ = cheerio.load(text);
 
     const params: Record<string, string | undefined> = {};
-    params.PaRes = $('input[name=PaRes]').attr('value');
-    expect(typeof params.PaRes).toBe('string');
-    expect(params.PaRes).not.toEqual('');
-    params.MD = $('input[name=MD]').attr('value');
+    params['PaRes'] = $('input[name=PaRes]').attr('value');
+    expect(typeof params['PaRes']).toBe('string');
+    expect(params['PaRes']).not.toEqual('');
+    params['MD'] = $('input[name=MD]').attr('value');
 
     ctx.nextPostUrl = $('form[name=formulario]').attr('action');
     expect(typeof ctx.nextPostUrl).toBe('string');

@@ -77,6 +77,8 @@ export interface RedsysConfig {
 
 /**
  * Sends a iniciaPeticion request using REST interface
+ *
+ * @public
  */
 export type RestIniciaPeticion = (
   paramsInput: RestIniciaPeticionInputParams
@@ -84,6 +86,8 @@ export type RestIniciaPeticion = (
 
 /**
  * Sends a trataPeticion request using REST interface
+ *
+ * @public
  */
 export type RestTrataPeticion = (
   paramsInput: RestTrataPeticionInputParams
@@ -91,11 +95,15 @@ export type RestTrataPeticion = (
 
 /**
  * Creates the parameters needed for a redirect form
+ *
+ * @public
  */
 export type CreateRedirectForm = (paramsInput: RedirectInputParams) => RedirectForm;
 
 /**
  * Processes a JSON REST notification
+ *
+ * @public
  */
 export type ProcessRestNotification = (
   /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
@@ -104,6 +112,8 @@ export type ProcessRestNotification = (
 
 /**
  * Parses and verifies the body of a SOAP notification
+ *
+ * @public
  */
 export type ProcessSoapNotification = (
   /** SOAP notification as a XML string */
@@ -112,6 +122,8 @@ export type ProcessSoapNotification = (
 
 /**
  * Creates an answer for a SOAP notification, serializes and signs it
+ *
+ * @public
  */
 export type CreateSoapNotificationAnswer = (
   /** Order identifier */
@@ -120,6 +132,11 @@ export type CreateSoapNotificationAnswer = (
   allow: boolean
 ) => string;
 
+/**
+ * Redsys API
+ *
+ * @public
+ */
 export interface RedsysAPI {
   restIniciaPeticion: RestIniciaPeticion;
   restTrataPeticion: RestTrataPeticion;

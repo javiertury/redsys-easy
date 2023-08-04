@@ -28,25 +28,25 @@ export interface BaseOutputParams {
   Ds_TransactionType: TransactionType;
 
   /** Secure payment indicator */
-  Ds_SecurePayment?: '0' | '1' | '2';
+  Ds_SecurePayment?: '0' | '1' | '2' | undefined;
 
   /** Card country */
-  Ds_Card_Country?: CountryNum;
+  Ds_Card_Country?: CountryNum | undefined;
 
   /** Authorization transaction code, refunds */
-  Ds_AuthorisationCode?: string;
+  Ds_AuthorisationCode?: string | undefined;
 
   /** Card type */
-  Ds_Card_Type?: 'C' | 'D';
+  Ds_Card_Type?: 'C' | 'D' | undefined;
 
   /** Merchant data */
-  Ds_MerchantData?: string;
+  Ds_MerchantData?: string | undefined;
 
   /** Card brand */
-  Ds_Card_Brand?: CardBrandNum;
+  Ds_Card_Brand?: CardBrandNum | undefined;
 
   /** Card is under PSD2 */
-  Ds_Card_PSD2?: 'Y' | 'N';
+  Ds_Card_PSD2?: 'Y' | 'N' | undefined;
 
   /**
    * PDS2 exemptions
@@ -54,28 +54,28 @@ export interface BaseOutputParams {
    * @example
    * `'LWV;TRA[30.0];COR;MIT;ATD;WHL'`
    */
-  Ds_Excep_SCA?: string;
+  Ds_Excep_SCA?: string | undefined;
 
   /** Payment method number */
-  Ds_ProcessedPayMethod?: string;
+  Ds_ProcessedPayMethod?: string | undefined;
 
   /** Credential On File transaction identifier */
-  Ds_Merchant_Cof_Txnid?: string;
+  Ds_Merchant_Cof_Txnid?: string | undefined;
 
   /**
    * Card number with some digits replaced with asterisks
    * @deprecated
    */
-  Ds_CardNumber?: string;
+  Ds_CardNumber?: string | undefined;
 
   /** Card number with some digits replaced with asterisks */
-  Ds_Card_Number?: string;
+  Ds_Card_Number?: string | undefined;
 
   /** Card expiry date, YYmm */
-  Ds_ExpiryDate?: string;
+  Ds_ExpiryDate?: string | undefined;
 
   /** Stored payment method reference number */
-  Ds_Merchant_Identifier?: string;
+  Ds_Merchant_Identifier?: string | undefined;
 }
 
 /**
@@ -102,10 +102,10 @@ export interface ResolvedTransactionTrait {
  */
 export interface RequestOutputParams extends BaseOutputParams {
   /** Payment link, paygold */
-  Ds_UrlPago2Fases?: string;
+  Ds_UrlPago2Fases?: string | undefined;
 
   /** Language */
-  Ds_Language?: LanguageNum;
+  Ds_Language?: LanguageNum | undefined;
 }
 
 /**
@@ -115,7 +115,7 @@ export interface RequestOutputParams extends BaseOutputParams {
  */
 export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
   /** EMV3DS data in json format */
-  Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;
+  Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams | undefined;
 
   /** Dynamic Currency Conversion data, json */
   Ds_DCC?: {
@@ -143,7 +143,7 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
       /** Amount, decimal number */
       importeCome: string;
     };
-  };
+  } | undefined;
 }
 
 /**
@@ -155,10 +155,10 @@ export interface RestTrataPeticionOutputParams
   extends RequestOutputParams,
     Omit<ResolvedTransactionTrait, 'Ds_Response'> {
   /** Response code */
-  Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
+  Ds_Response?: ResolvedTransactionTrait['Ds_Response'] | undefined;
 
   /** EMV3DS data in json format */
-  Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams;
+  Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams | undefined;
 }
 
 /**
@@ -168,10 +168,10 @@ export interface NotificationOutputParams
   extends BaseOutputParams,
     ResolvedTransactionTrait {
   /** Language */
-  Ds_ConsumerLanguage?: LanguageNum;
+  Ds_ConsumerLanguage?: LanguageNum | undefined;
 
   /** Error code */
-  Ds_ErrorCode?: string;
+  Ds_ErrorCode?: string | undefined;
 }
 
 /**

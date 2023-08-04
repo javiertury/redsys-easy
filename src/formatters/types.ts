@@ -52,78 +52,78 @@ export interface BaseFormatterInput<
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_AMOUNT}
    */
-  amount?: string;
+  amount?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CURRENCY}
    */
-  currency?: Currency;
+  currency?: Currency | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_PAN}
    */
-  pan?: string;
+  pan?: string | undefined;
   /**
    * Card expiry year, YY
    *
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EXPIRYDATE}
    */
-  expiryYear?: string;
+  expiryYear?: string | undefined;
   /**
    * Card expiry month, MM
    *
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EXPIRYDATE}
    */
-  expiryMonth?: string;
+  expiryMonth?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CVV2}
    */
-  cvv?: string;
+  cvv?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_MERCHANTNAME}
    */
-  merchantName?: string;
+  merchantName?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_IDENTIFIER}
    */
-  identifier?: string;
+  identifier?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_GROUP}
    */
-  group?: string;
+  group?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_DIRECTPAYMENT}
    */
-  directPayment?: BaseInputParams['DS_MERCHANT_DIRECTPAYMENT'];
+  directPayment?: BaseInputParams['DS_MERCHANT_DIRECTPAYMENT'] | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_MERCHANTDATA}
    */
-  merchantData?: string;
+  merchantData?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_IDOPER}
    */
-  operationId?: string;
+  operationId?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_PRODUCTDESCRIPTION}
    */
-  productDescription?: string;
+  productDescription?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TAX_REFERENCE}
    */
-  taxReference?: string;
+  taxReference?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TRANSACTIONDATE}
    */
-  transactionDate?: string;
+  transactionDate?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TITULAR}
    */
-  cardHolder?: string;
+  cardHolder?: string | undefined;
 
   /**
    * @see {@link RestTrataPeticionInputParams}
    */
-  raw?: RawInputParams;
+  raw?: RawInputParams | undefined;
 }
 
 /**
@@ -137,23 +137,23 @@ export interface RedirectFormatterInput<
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_MERCHANTURL}
    */
-  merchantURL?: string;
+  merchantURL?: string | undefined;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_URLOK}
    */
-  successURL?: string;
+  successURL?: string | undefined;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_URLKO}
    */
-  errorURL?: string;
+  errorURL?: string | undefined;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_PAYMETHODS}
    */
-  payMethods?: string;
+  payMethods?: string | undefined;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_CONSUMERLANGUAGE}
    */
-  lang?: Language;
+  lang?: Language | undefined;
 }
 
 export interface RequestFormatterInput<
@@ -162,15 +162,15 @@ export interface RequestFormatterInput<
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_MOBILE}
    */
-  customerMobile?: string;
+  customerMobile?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_MAIL}
    */
-  customerMail?: string;
+  customerMail?: string | undefined;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_SMS_TEXT}
    */
-  smsTemplate?: string;
+  smsTemplate?: string | undefined;
 }
 
 /**
@@ -184,7 +184,7 @@ export interface RestIniciaPeticionFormatterInput<
   /**
    * @see {@link RestIniciaPeticionInputParams.DS_MERCHANT_EMV3DS}
    */
-  emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'];
+  emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'] | undefined;
 }
 
 /**
@@ -198,7 +198,7 @@ export interface RestTrataPeticionFormatterInput<
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EMV3DS}
    */
-  emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'];
+  emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'] | undefined;
 }
 
 /*
@@ -225,31 +225,31 @@ export interface BaseFormatterOutput<RawOutputParams extends BaseOutputParams> {
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_SecurePayment}
    */
-  securePayment?: boolean;
+  securePayment?: boolean | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Country}
    */
-  cardCountry?: Country;
+  cardCountry?: Country | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Brand}
    */
-  cardBrand?: CardBrand;
+  cardBrand?: CardBrand | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_PSD2}
    */
-  cardPSD2?: boolean;
+  cardPSD2?: boolean | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_MerchantData}
    */
-  merchantData?: string;
+  merchantData?: string | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_AuthorisationCode}
    */
-  authorisationCode?: string;
+  authorisationCode?: string | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Type}
    */
-  cardType?: BaseOutputParams['Ds_Card_Type'];
+  cardType?: BaseOutputParams['Ds_Card_Type'] | undefined;
 
   raw: RawOutputParams;
 }
@@ -299,7 +299,7 @@ export interface NotificationFormatterOutput<
   /**
    * @see {@link RestNotificationOutputParams.Ds_ConsumerLanguage}
    */
-  lang?: Language;
+  lang?: Language | undefined;
 }
 
 export interface RequestFormatterOutput<
@@ -308,33 +308,33 @@ export interface RequestFormatterOutput<
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Merchant_Identifier}
    */
-  identifier?: string;
+  identifier?: string | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Number}
    */
-  cardNumber?: string;
+  cardNumber?: string | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_UrlPago2Fases}
    */
-  payURL?: string;
+  payURL?: string | undefined;
   /**
    * Card expiry year, YY
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryYear?: string;
+  expiryYear?: string | undefined;
   /**
    * Card expiry month, MM
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryMonth?: string;
+  expiryMonth?: string | undefined;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Language}
    */
-  lang?: Language;
+  lang?: Language | undefined;
 }
 
 /**
@@ -348,7 +348,7 @@ export interface RestIniciaPeticionFormatterOutput<
   /**
    * @see {@link RestIniciaPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
+  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'] | undefined;
 }
 
 /**
@@ -363,10 +363,10 @@ export interface RestTrataPeticionFormatterOutput<
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Response}
    */
-  response?: number;
+  response?: number | undefined;
 
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
+  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'] | undefined;
 }

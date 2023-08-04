@@ -53,10 +53,10 @@ export const escapeXML = (str: string) => {
 type SoapRequest =
   | {
       headers: Record<string, string>;
-      body?: string;
+      body?: string | undefined;
     }
   | {
-      headers?: Record<string, string>;
+      headers?: Record<string, string> | undefined;
       body: string;
     };
 

@@ -6,9 +6,9 @@ export const waitForIframeToPostMessage = async ({
   /** Iframe */
   iframe: HTMLIFrameElement
   /** Condition */
-  condition?: (event: MessageEvent) => boolean
+  condition?: ((event: MessageEvent) => boolean) | undefined
   /** Max time to wait, in milliseconds */
-  timeout?: number
+  timeout?: number | undefined
 }): Promise<{ loaded: boolean }> => {
   const maybeTimeoutPromise = timeout != null
     ? new Promise(resolve => setTimeout(resolve, timeout))

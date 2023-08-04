@@ -8,7 +8,7 @@ import type { fetch as fetch_2 } from 'undici';
 
 // @public
 export const assertSuccessfulResponse: (responseParams: {
-    Ds_Response?: string;
+    Ds_Response?: string | undefined;
 }) => void;
 
 // @public
@@ -136,7 +136,7 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
     // (undocumented)
     date: string;
     // (undocumented)
-    lang?: Language;
+    lang?: Language | undefined;
     // (undocumented)
     time: string;
     timestamp: Date;
@@ -144,7 +144,7 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
 
 // @public
 export class ParseError extends RedsysError {
-    constructor(message: string, value?: unknown, location?: unknown);
+    constructor(message: string, value?: unknown | undefined, location?: unknown | undefined);
     // (undocumented)
     description: string | undefined;
     // (undocumented)
@@ -182,15 +182,15 @@ export interface RedirectForm {
 // @public
 export interface RedirectFormatterInput<RawInputParams extends Partial<RedirectInputParams>> extends BaseFormatterInput<RawInputParams> {
     // (undocumented)
-    errorURL?: string;
+    errorURL?: string | undefined;
     // (undocumented)
-    lang?: Language;
+    lang?: Language | undefined;
     // (undocumented)
-    merchantURL?: string;
+    merchantURL?: string | undefined;
     // (undocumented)
-    payMethods?: string;
+    payMethods?: string | undefined;
     // (undocumented)
-    successURL?: string;
+    successURL?: string | undefined;
 }
 
 // @public
@@ -200,18 +200,18 @@ export const redirectInputFormatter: <RawInputParams extends Partial<RedirectInp
 //
 // @public
 export interface RedirectInputParams extends BaseInputParams {
-    DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum;
+    DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum | undefined;
     // Warning: (ae-forgotten-export) The symbol "ThreeDSRedirectInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams;
-    DS_MERCHANT_MERCHANTURL?: string;
-    DS_MERCHANT_PAYMETHODS?: string;
-    DS_MERCHANT_PERSOCODE?: string;
-    DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N';
-    DS_MERCHANT_URLKO?: string;
-    DS_MERCHANT_URLOK?: string;
+    DS_MERCHANT_EMV3DS?: ThreeDSRedirectInputParams | undefined;
+    DS_MERCHANT_MERCHANTURL?: string | undefined;
+    DS_MERCHANT_PAYMETHODS?: string | undefined;
+    DS_MERCHANT_PERSOCODE?: string | undefined;
+    DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N' | undefined;
+    DS_MERCHANT_URLKO?: string | undefined;
+    DS_MERCHANT_URLOK?: string | undefined;
 }
 
-// @public (undocumented)
+// @public
 export interface RedsysAPI {
     // (undocumented)
     createRedirectForm: CreateRedirectForm;
@@ -270,7 +270,7 @@ export type RestIniciaPeticion = (paramsInput: RestIniciaPeticionInputParams) =>
 // @public
 export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial<RestIniciaPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
     // (undocumented)
-    emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'];
+    emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'] | undefined;
 }
 
 // Warning: (ae-forgotten-export) The symbol "RequestFormatterOutput" needs to be exported by the entry point index.d.ts
@@ -278,7 +278,7 @@ export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial
 // @public
 export interface RestIniciaPeticionFormatterOutput<RawOutputParams extends RestIniciaPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams> {
     // (undocumented)
-    emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
+    emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'] | undefined;
 }
 
 // @public
@@ -288,9 +288,9 @@ export const restIniciaPeticionInputFormatter: <RawInputParams extends Partial<R
 //
 // @public
 export interface RestIniciaPeticionInputParams extends CommonRestInputParams {
-    DS_MERCHANT_DCC?: 'Y' | 'N';
+    DS_MERCHANT_DCC?: 'Y' | 'N' | undefined;
     // Warning: (ae-forgotten-export) The symbol "ThreeDSPreAuthInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams;
+    DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams | undefined;
 }
 
 // @public
@@ -315,10 +315,10 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
             litMonedaCome: string;
             importeCome: string;
         };
-    };
+    } | undefined;
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv1PreAuthOutputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthOutputParams" needs to be exported by the entry point index.d.ts
-    Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;
+    Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams | undefined;
 }
 
 // @public
@@ -336,15 +336,15 @@ export type RestTrataPeticion = (paramsInput: RestTrataPeticionInputParams) => P
 // @public
 export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<RestTrataPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
     // (undocumented)
-    emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'];
+    emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'] | undefined;
 }
 
 // @public
 export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTrataPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams>, Omit<ResolvedTransactionTraitFormatterOutput, 'response'> {
     // (undocumented)
-    emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
+    emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'] | undefined;
     // (undocumented)
-    response?: number;
+    response?: number | undefined;
 }
 
 // @public
@@ -355,12 +355,12 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_DCC?: {
         monedaDCC: string;
         importeDCC: string;
-    };
+    } | undefined;
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv1AuthDataInputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv2AuthDataInputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv1ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv2ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
-    DS_MERCHANT_EMV3DS?: ThreeDSv1AuthDataInputParams | ThreeDSv2AuthDataInputParams | ThreeDSv1ChallengeResponseInputParams | ThreeDSv2ChallengeResponseInputParams;
+    DS_MERCHANT_EMV3DS?: ThreeDSv1AuthDataInputParams | ThreeDSv2AuthDataInputParams | ThreeDSv1ChallengeResponseInputParams | ThreeDSv2ChallengeResponseInputParams | undefined;
 }
 
 // @public
@@ -370,8 +370,8 @@ export const restTrataPeticionOutputFormatter: <RawOutputParams extends RestTrat
 //
 // @public
 export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> {
-    Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams;
-    Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
+    Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams | undefined;
+    Ds_Response?: ResolvedTransactionTrait['Ds_Response'] | undefined;
 }
 
 // @public

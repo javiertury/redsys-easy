@@ -35,8 +35,8 @@ const formatExpiryDate = ({
   expiryYear,
   expiryMonth
 }: {
-  expiryYear?: string;
-  expiryMonth?: string;
+  expiryYear?: string | undefined;
+  expiryMonth?: string | undefined;
 }): string => {
   if (expiryMonth?.length !== 2) {
     throw new ValidationError('Invalid expiryMonth', { expiryMonth });
@@ -53,7 +53,7 @@ const formatExpiryDate = ({
  */
 const formatAmount = (
   value: string | number,
-  context: { currency?: Currency }
+  context: { currency?: Currency | undefined }
 ): string => {
   const { currency } = context;
 

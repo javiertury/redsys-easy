@@ -42,7 +42,7 @@ export class ParseError extends RedsysError {
   location: unknown | undefined;
   description: string | undefined;
 
-  constructor(message: string, value?: unknown, location?: unknown) {
+  constructor(message: string, value?: unknown | undefined, location?: unknown | undefined) {
     super(message);
     this.name = 'RedsysParseError';
     this.value = value;
@@ -51,9 +51,9 @@ export class ParseError extends RedsysError {
 }
 
 interface HTTPErrorOptions {
-  message?: string;
+  message?: string | undefined;
   code: number;
-  response?: unknown;
+  response?: unknown | undefined;
 }
 
 /**
@@ -83,9 +83,9 @@ export class HTTPError extends RedsysError {
 }
 
 interface GatewayErrorOptions {
-  message?: string;
+  message?: string | undefined;
   code: string;
-  response?: unknown;
+  response?: unknown | undefined;
 }
 
 /**
@@ -115,9 +115,9 @@ export class GatewayError extends RedsysError {
 }
 
 interface ResponseErrorOptions {
-  message?: string;
+  message?: string | undefined;
   code: number;
-  response?: unknown;
+  response?: unknown | undefined;
 }
 
 /**

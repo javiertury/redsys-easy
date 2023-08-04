@@ -19,13 +19,13 @@ export interface ThreeDSRequestorAuthenticationInfo {
 
 export interface ThreeDSRequestorPriorAuthenticationInfo {
   /** Reference */
-  threeDSReqPriorRef?: string;
+  threeDSReqPriorRef?: string | undefined;
 
   /** Authentication method code */
-  threeDSReqPriorAuthMethod?: string;
+  threeDSReqPriorAuthMethod?: string | undefined;
 
   /** Authentication timestamp, yyyymmddHHMM */
-  threeDSReqPriorAuthTimestamp?: string;
+  threeDSReqPriorAuthTimestamp?: string | undefined;
 }
 
 export interface BaseThreeDSAuthenticationDataParams {
@@ -102,169 +102,169 @@ export interface BaseThreeDSAuthenticationDataParams {
   browserAcceptHeader: string;
 
   /** Browser IP Address, ipv4 or ipv6 */
-  browserIP?: string;
+  browserIP?: string | undefined;
 
   /** Additional account information, max 64 characters */
-  acctID?: string;
+  acctID?: string | undefined;
 
   /** Account information, json */
   acctInfo?: {
     /** Account creation ellapsed time code */
-    chAccAgeInd?: '01' | '02' | '03' | '04' | '05';
+    chAccAgeInd?: '01' | '02' | '03' | '04' | '05' | undefined;
 
     /** Account modification date, yyyymmdd */
-    chAccChange?: string;
+    chAccChange?: string | undefined;
 
     /** Account modification ellapsed time code */
-    chAccChangeInd?: '01' | '02' | '03' | '04';
+    chAccChangeInd?: '01' | '02' | '03' | '04' | undefined;
 
     /** Account creation date, yyyymmdd */
-    chAccDate?: string;
+    chAccDate?: string | undefined;
 
     /** Last password change date, yyyymmdd */
-    chAccPwChange?: string;
+    chAccPwChange?: string | undefined;
 
     /** Password change ellapsed time code */
-    chAccPwChangeInd?: '01' | '02' | '03' | '04' | '05';
+    chAccPwChangeInd?: '01' | '02' | '03' | '04' | '05' | undefined;
 
     /** Number of purchases during the last 6 months */
-    nbPurchaseAccount?: string;
+    nbPurchaseAccount?: string | undefined;
 
     /** Attemps to add a card during the last 24 hours */
-    provisionAttemptsDay?: string;
+    provisionAttemptsDay?: string | undefined;
 
     /** Number of transactions attempted during the last 24 hours */
-    txnActivityDay?: string;
+    txnActivityDay?: string | undefined;
 
     /** Number of transactions attempted last year */
-    txnActivityYear?: string;
+    txnActivityYear?: string | undefined;
 
     /** Card registration date, yyyymmdd */
-    paymentAccAge?: string;
+    paymentAccAge?: string | undefined;
 
     /** Card registration ellapsed time code */
-    paymentAccInd?: '01' | '02' | '03' | '04' | '05';
+    paymentAccInd?: '01' | '02' | '03' | '04' | '05' | undefined;
 
     /** First usage of shipping address date, yyyymmdd */
-    shipAddressUsage?: string;
+    shipAddressUsage?: string | undefined;
 
     /** First usage of shipping address ellapsed time code */
-    shipAddressUsageInd?: '01' | '02' | '03' | '04' | '05';
+    shipAddressUsageInd?: '01' | '02' | '03' | '04' | '05' | undefined;
 
     /** Cardholder shipping name indicator code */
-    shipNameIndicator?: '01' | '02';
+    shipNameIndicator?: '01' | '02' | undefined;
 
     /** Suspicious activity code */
-    suspiciousAccActivity?: '01' | '02';
-  };
+    suspiciousAccActivity?: '01' | '02' | undefined;
+  } | undefined;
 
   /** Matching shipping and billing addresses indicator */
-  addrMatch?: 'Y' | 'N';
+  addrMatch?: 'Y' | 'N' | undefined;
 
   /** Billing address city */
-  billAddrCity?: string;
+  billAddrCity?: string | undefined;
 
   /** Billing address line 1 */
-  billAddrLine1?: string;
+  billAddrLine1?: string | undefined;
 
   /** Billing address line 2 */
-  billAddrLine2?: string;
+  billAddrLine2?: string | undefined;
 
   /** Billing address line 3 */
-  billAddrLine3?: string;
+  billAddrLine3?: string | undefined;
 
   /** Billing address postal code */
-  billAddrPostCode?: string;
+  billAddrPostCode?: string | undefined;
 
   /** Billing address state code, ISO 3166-2 */
-  billAddrState?: string;
+  billAddrState?: string | undefined;
 
   /** Billing address country code, ISO 3166-1 */
-  billAddrCountry?: string;
+  billAddrCountry?: string | undefined;
 
   /** Cardholder name */
-  cardholderName?: string;
+  cardholderName?: string | undefined;
 
   /** Challenge window size */
-  challengeWindowSize?: string;
+  challengeWindowSize?: string | undefined;
 
   /** Account email address */
-  email?: string;
+  email?: string | undefined;
 
   /** Account landline phone number */
-  homePhone?: ThreeDSPhone;
+  homePhone?: ThreeDSPhone | undefined;
 
   /** Account mobile phone number */
-  mobilePhone?: ThreeDSPhone;
+  mobilePhone?: ThreeDSPhone | undefined;
 
   /** Account work phone number */
-  workPhone?: ThreeDSPhone;
+  workPhone?: ThreeDSPhone | undefined;
 
   /** Merchant risk indicator, json */
   merchantRiskIndicator?: {
     /** Delivery email address */
-    deliveryEmailAddress?: string;
+    deliveryEmailAddress?: string | undefined;
 
     /** Delivery time code */
-    deliveryTimeframe?: '01' | '02' | '03' | '04';
+    deliveryTimeframe?: '01' | '02' | '03' | '04' | undefined;
 
     /** Gift card amount */
-    giftCardAmount?: string;
+    giftCardAmount?: string | undefined;
 
     /** Count of gift cards used */
-    giftCardCount?: string;
+    giftCardCount?: string | undefined;
 
     /** Gift card currency number, ISO-4217 */
-    giftCardCurr?: string;
+    giftCardCurr?: string | undefined;
 
     /** Preorder availability date, yyyymmdd */
-    preOrderDate?: string;
+    preOrderDate?: string | undefined;
 
     /** Preorder availability indicator code */
-    preOrderPurchaseInd?: '01' | '02';
+    preOrderPurchaseInd?: '01' | '02' | undefined;
 
     /** Reorder indicator code */
-    reorderItemsInd?: '01' | '02';
+    reorderItemsInd?: '01' | '02' | undefined;
 
     /** Shipping indicator code */
-    shipIndicator?: '01' | '02' | '03' | '04' | '05' | '06' | '07';
-  };
+    shipIndicator?: '01' | '02' | '03' | '04' | '05' | '06' | '07' | undefined;
+  } | undefined;
 
   /** Number of purchase installments */
-  purchaseInstalData?: string;
+  purchaseInstalData?: string | undefined;
 
   /** Recurring payments expiration date, yyyymmdd */
-  recurringExpiry?: string;
+  recurringExpiry?: string | undefined;
 
   /** Minimum number of days between recurring payments */
-  recurringFrequency?: string;
+  recurringFrequency?: string | undefined;
 
   /** Shipping address city */
-  shipAddrCity?: string;
+  shipAddrCity?: string | undefined;
 
   /** Shipping address line 1 */
-  shipAddrLine1?: string;
+  shipAddrLine1?: string | undefined;
 
   /** Shipping address line 2 */
-  shipAddrLine2?: string;
+  shipAddrLine2?: string | undefined;
 
   /** Shipping address line 3 */
-  shipAddrLine3?: string;
+  shipAddrLine3?: string | undefined;
 
   /** Shipping address postal code */
-  shipAddrPostCode?: string;
+  shipAddrPostCode?: string | undefined;
 
   /** Shipping address state code, ISO 3166-2 */
-  shipAddrState?: string;
+  shipAddrState?: string | undefined;
 
   /** Shipping address country code, ISO 3166-1 */
-  shipAddrCountry?: string;
+  shipAddrCountry?: string | undefined;
 
   /** Authentication information, json */
-  threeDSRequestorAuthenticationInfo?: ThreeDSRequestorAuthenticationInfo;
+  threeDSRequestorAuthenticationInfo?: ThreeDSRequestorAuthenticationInfo | undefined;
 
   /** Previous authentication information, json */
-  threeDSRequestorPriorAuthenticationInfo?: ThreeDSRequestorPriorAuthenticationInfo;
+  threeDSRequestorPriorAuthenticationInfo?: ThreeDSRequestorPriorAuthenticationInfo | undefined;
 }
 
 /**

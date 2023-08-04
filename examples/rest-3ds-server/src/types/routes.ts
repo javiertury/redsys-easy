@@ -65,7 +65,7 @@ interface PreauthV22Output {
 
   // Data for 3DS method
   // The frontend should create an iframe and use a POST request to submit this data
-  threeDSMethodForm?: ThreeDSMethodForm
+  threeDSMethodForm?: ThreeDSMethodForm | undefined
 }
 
 export type PreauthOutput = PreauthV1Output | PreauthV22Output;
@@ -111,7 +111,7 @@ export interface AuthBody {
    *
    * Better if client send more information than strictly required
    */
-  clientInfo?: ThreeDSBrowserClientInfo
+  clientInfo?: ThreeDSBrowserClientInfo | undefined
 }
 
 interface AuthChallengeV1Output {

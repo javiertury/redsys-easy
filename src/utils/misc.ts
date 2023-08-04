@@ -112,7 +112,7 @@ export const assertSuccessfulResponseCode = (
  * @public
  */
 export const assertSuccessfulResponse = (responseParams: {
-  Ds_Response?: string;
+  Ds_Response?: string | undefined;
 }) => {
   const { Ds_Response: resCode } = responseParams;
 

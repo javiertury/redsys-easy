@@ -27,7 +27,7 @@ const obtain3DSBrowserInfo = (): ThreeDSBrowserClientInfo => {
 };
 
 interface SectionProps {
-  hidden?: boolean
+  hidden?: boolean | undefined
 }
 
 type SectionName = 'payment-data' | 'challenge-v1' | 'challenge-v2';
