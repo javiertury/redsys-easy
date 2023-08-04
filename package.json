@@ -1,7 +1,7 @@
 {
   "name": "redsys-easy",
   "description": "Node JS interface for Redsys payment gateway",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "author": "Javier Garcia <javiertury@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -40,7 +40,7 @@
     "docs:api": "api-documenter markdown --input-folder ./api/temp --output-folder ./docs",
     "docs:readme": "md-magic --path ./README.md",
     "docs": "pnpm run docs:api && pnpm run docs:readme",
-    "release": "pnpm run test && standard-version --dry-run && pnpm run docs && standard-version --commit-all"
+    "release": "pnpm run test && standard-version --dry-run && pnpm run docs && git add docs CHANGELOG.md && standard-version --commit-all"
   },
   "files": [
     "lib"

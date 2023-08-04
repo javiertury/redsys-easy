@@ -25,6 +25,7 @@ Node JS client and utilities for implementing a redsys payment gateway
 |  [RedirectForm](./redsys-easy.redirectform.md) | Redirect form |
 |  [RedirectFormatterInput](./redsys-easy.redirectformatterinput.md) | Input parameters for the redirect input formatter |
 |  [RedirectInputParams](./redsys-easy.redirectinputparams.md) | Input parameters for a redsys redirect request |
+|  [RedsysAPI](./redsys-easy.redsysapi.md) |  |
 |  [RedsysConfig](./redsys-easy.redsysconfig.md) | Redsys API settings |
 |  [ResponseJSONSuccess](./redsys-easy.responsejsonsuccess.md) | Body of a successful redsys JSON HTTP response or notification |
 |  [RestIniciaPeticionFormatterInput](./redsys-easy.restiniciapeticionformatterinput.md) | Input parameters for the REST iniciaPeticion input formatter |
@@ -51,7 +52,8 @@ Node JS client and utilities for implementing a redsys payment gateway
 
 |  Variable | Description |
 |  --- | --- |
-|  [assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md) | Asserts that response has a code that indicates success |
+|  [assertSuccessfulResponse](./redsys-easy.assertsuccessfulresponse.md) | Asserts that response has a code indicating success |
+|  [assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md) | Asserts that a response code indicates success |
 |  [CARDBRANDS](./redsys-easy.cardbrands.md) | Card brand name to number |
 |  [COUNTRIES](./redsys-easy.countries.md) | Maps ISO 3166 Alpha 2 codes to UN M49 numbers |
 |  [create3DSMethodForm](./redsys-easy.create3dsmethodform.md) | Creates parameters for a 3DS method form |
@@ -96,10 +98,16 @@ Node JS client and utilities for implementing a redsys payment gateway
 |  [CardBrandNum](./redsys-easy.cardbrandnum.md) | Card brand number |
 |  [Country](./redsys-easy.country.md) | Country ISO 3166 Alpha 2 code |
 |  [CountryNum](./redsys-easy.countrynum.md) | Country UN M49 number |
+|  [CreateRedirectForm](./redsys-easy.createredirectform.md) | Creates the parameters needed for a redirect form |
+|  [CreateSoapNotificationAnswer](./redsys-easy.createsoapnotificationanswer.md) | Creates an answer for a SOAP notification, serializes and signs it |
 |  [Currency](./redsys-easy.currency.md) | ISO 4217 currency code |
 |  [CurrencyNum](./redsys-easy.currencynum.md) | ISO 4217 currency number |
 |  [Language](./redsys-easy.language.md) | ISO 639-1 language code |
 |  [LanguageNum](./redsys-easy.languagenum.md) | Redsys language code |
+|  [ProcessRestNotification](./redsys-easy.processrestnotification.md) | Processes a JSON REST notification |
+|  [ProcessSoapNotification](./redsys-easy.processsoapnotification.md) | Parses and verifies the body of a SOAP notification |
+|  [RestIniciaPeticion](./redsys-easy.restiniciapeticion.md) | Sends a iniciaPeticion request using REST interface |
+|  [RestTrataPeticion](./redsys-easy.resttratapeticion.md) | Sends a trataPeticion request using REST interface |
 |  [ThreeDSBrowserClientInfo](./redsys-easy.threedsbrowserclientinfo.md) | Browser information required by 3DS |
 |  [TransactionType](./redsys-easy.transactiontype.md) | Transaction type code |
 

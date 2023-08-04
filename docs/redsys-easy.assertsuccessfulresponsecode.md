@@ -4,12 +4,10 @@
 
 ## assertSuccessfulResponseCode variable
 
-Asserts that response has a code that indicates success
+Asserts that a response code indicates success
 
 **Signature:**
 
 ```typescript
-assertSuccessfulResponseCode: (responseParams: {
-    Ds_Response?: string;
-}) => void
+assertSuccessfulResponseCode: (responseCode: string | number | undefined) => void
 ```

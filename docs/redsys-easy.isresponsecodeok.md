@@ -9,5 +9,5 @@ Indicates if a response code signals success
 **Signature:**
 
 ```typescript
-isResponseCodeOk: (responseCode: string) => boolean
+isResponseCodeOk: (responseCode: string | number) => boolean
 ```

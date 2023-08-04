@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/javiertury/redsys-easy/compare/v4.0.3...v5.0.0) (2023-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* export types and refactor response assertion utils
+
+### Features
+
+* export types and refactor response assertion utils ([855a3aa](https://github.com/javiertury/redsys-easy/commit/855a3aa04eda2709a61a00412997b4386f6952b0))
+* replace Math.random with crypto.randomInt ([f3b1b0b](https://github.com/javiertury/redsys-easy/commit/f3b1b0b3425ffd453a6abe8938aef46c50ccb3ce))
+* replace node-fetch with undici ([fe5abe1](https://github.com/javiertury/redsys-easy/commit/fe5abe1c87e21865b1179e9eb6c6ebdff9ee66bd))
+
+## [5.0.0](https://github.com/javiertury/redsys-easy/compare/v4.0.3...v5.0.0) (2023-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* export types and refactor response assertion utils
+
+### Features
+
+* export types and refactor response assertion utils ([855a3aa](https://github.com/javiertury/redsys-easy/commit/855a3aa04eda2709a61a00412997b4386f6952b0))
+* replace Math.random with crypto.randomInt ([f3b1b0b](https://github.com/javiertury/redsys-easy/commit/f3b1b0b3425ffd453a6abe8938aef46c50ccb3ce))
+* replace node-fetch with undici ([fe5abe1](https://github.com/javiertury/redsys-easy/commit/fe5abe1c87e21865b1179e9eb6c6ebdff9ee66bd))
+
 ### [4.0.3](https://github.com/javiertury/redsys-easy/compare/v4.0.2...v4.0.3) (2023-08-04)
 
 ### [4.0.2](https://github.com/javiertury/redsys-easy/compare/v4.0.1...v4.0.2) (2022-05-14)

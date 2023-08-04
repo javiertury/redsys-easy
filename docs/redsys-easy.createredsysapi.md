@@ -9,14 +9,7 @@ Creates Redsys API functions
 **Signature:**
 
 ```typescript
-createRedsysAPI: (config: RedsysConfig) => {
-    restIniciaPeticion: (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
-    restTrataPeticion: (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
-    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectForm;
-    processRestNotification: (body: ResponseJSONSuccess) => RestNotificationOutputParams;
-    processSoapNotification: (xml: string) => SoapNotificationOutputParams;
-    createSoapNotificationAnswer: (order: string, allow: boolean) => string;
-}
+createRedsysAPI: (config: RedsysConfig) => RedsysAPI
 ```
 
 ## Remarks
