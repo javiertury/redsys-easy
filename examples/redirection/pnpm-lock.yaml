@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@koa/cors':
-    specifier: ^3.1.0
-    version: 3.1.0
+    specifier: ^4.0.0
+    version: 4.0.0
   koa:
     specifier: ^2.13.1
     version: 2.13.1
@@ -46,9 +46,9 @@ devDependencies:
 
 packages:
 
-  /@koa/cors@3.1.0:
-    resolution: {integrity: sha512-7ulRC1da/rBa6kj6P4g2aJfnET3z8Uf3SWu60cjbtxTA5g8lxRdX/Bd2P92EagGwwAhANeNw8T8if99rJliR6Q==}
-    engines: {node: '>= 8.0.0'}
+  /@koa/cors@4.0.0:
+    resolution: {integrity: sha512-Y4RrbvGTlAaa04DBoPBWJqDR5gPj32OOz827ULXfgB1F7piD1MB/zwn8JR2LAnvdILhxUbXbkXGWuNVsFuVFCQ==}
+    engines: {node: '>= 14.0.0'}
     dependencies:
       vary: 1.1.2
     dev: false
@@ -767,7 +767,7 @@ packages:
     dev: false
 
   /vary@1.1.2:
-    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
+    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
     dev: false
 
