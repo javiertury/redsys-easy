@@ -6,7 +6,7 @@
 
 Contents of the `cres` field of a 3DS v2 challenge
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSCres 
@@ -14,11 +14,11 @@ export interface ThreeDSCres
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [acsTransID](./redsys-easy.threedscres.acstransid.md) | string |  |
-|  [messageType](./redsys-easy.threedscres.messagetype.md) | 'CRes' |  |
-|  [messageVersion](./redsys-easy.threedscres.messageversion.md) | '2.1.0' \| '2.2.0' |  |
-|  [threeDSServerTransID](./redsys-easy.threedscres.threedsservertransid.md) | string |  |
-|  [transStatus](./redsys-easy.threedscres.transstatus.md) | 'Y' \| 'N' |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [acsTransID](./redsys-easy.threedscres.acstransid.md) |  | string |  |
+|  [messageType](./redsys-easy.threedscres.messagetype.md) |  | 'CRes' |  |
+|  [messageVersion](./redsys-easy.threedscres.messageversion.md) |  | '2.1.0' \| '2.2.0' |  |
+|  [threeDSServerTransID](./redsys-easy.threedscres.threedsservertransid.md) |  | string |  |
+|  [transStatus](./redsys-easy.threedscres.transstatus.md) |  | 'Y' \| 'N' |  |
 

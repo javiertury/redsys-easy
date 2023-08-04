@@ -6,7 +6,7 @@
 
 Returns the message corresponding to a response code, in spanish
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getResponseCodeMessage: (code: string | number) => string | undefined

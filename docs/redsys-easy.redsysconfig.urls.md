@@ -4,7 +4,7 @@
 
 ## RedsysConfig.urls property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 urls: UrlsConfig;

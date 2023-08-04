@@ -4,7 +4,7 @@
 
 ## ThreeDSv2ChallengeNotificationBody.threeDSSessionData property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 threeDSSessionData: string;

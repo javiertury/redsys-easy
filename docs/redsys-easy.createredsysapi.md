@@ -6,7 +6,7 @@
 
 Creates Redsys API functions
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 createRedsysAPI: (config: RedsysConfig) => {

@@ -6,7 +6,7 @@
 
 Maps an ISO 639-1 language code to redsys language number
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 LANGUAGES: Record<Language, LanguageNum>

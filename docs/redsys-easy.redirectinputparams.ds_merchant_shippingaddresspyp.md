@@ -6,7 +6,7 @@
 
 Obtain paypal address
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N';

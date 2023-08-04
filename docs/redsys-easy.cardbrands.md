@@ -6,7 +6,7 @@
 
 Card brand name to number
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 CARDBRANDS: Record<CardBrand, CardBrandNum>

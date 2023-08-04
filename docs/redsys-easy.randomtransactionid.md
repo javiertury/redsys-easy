@@ -6,7 +6,7 @@
 
 Generates a random order ID following redsys requirements
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 randomTransactionId: () => string

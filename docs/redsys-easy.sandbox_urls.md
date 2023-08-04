@@ -6,7 +6,7 @@
 
 Redsys sandbox urls
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 SANDBOX_URLS: UrlsConfig

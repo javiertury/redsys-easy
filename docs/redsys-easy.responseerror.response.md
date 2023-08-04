@@ -4,7 +4,7 @@
 
 ## ResponseError.response property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 response: unknown | undefined;

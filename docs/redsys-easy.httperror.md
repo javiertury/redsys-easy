@@ -6,12 +6,12 @@
 
 HTTP Error
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class HTTPError extends RedsysError 
 ```
-<b>Extends:</b> [RedsysError](./redsys-easy.redsyserror.md)
+**Extends:** [RedsysError](./redsys-easy.redsyserror.md)
 
 ## Constructors
 

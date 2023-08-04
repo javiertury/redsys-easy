@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `GatewayError` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor({ message, code, response }: GatewayErrorOptions);

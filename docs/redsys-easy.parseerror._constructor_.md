@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `ParseError` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(message: string, value?: unknown, location?: unknown);
@@ -17,6 +17,6 @@ constructor(message: string, value?: unknown, location?: unknown);
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  message | string |  |
-|  value | unknown |  |
-|  location | unknown |  |
+|  value | unknown | _(Optional)_ |
+|  location | unknown | _(Optional)_ |
 

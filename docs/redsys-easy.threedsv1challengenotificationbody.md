@@ -6,7 +6,7 @@
 
 Body of a 3DS v1 challenge completion notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSv1ChallengeNotificationBody 
@@ -14,8 +14,8 @@ export interface ThreeDSv1ChallengeNotificationBody
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [MD](./redsys-easy.threedsv1challengenotificationbody.md.md) | string | Merchant data, random generated identifier hex encoded? |
-|  [PaRes](./redsys-easy.threedsv1challengenotificationbody.pares.md) | string | Payment authentication Request, XML that is gzip compressed and base64 encoded |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [MD](./redsys-easy.threedsv1challengenotificationbody.md.md) |  | string | Merchant data, random generated identifier hex encoded? |
+|  [PaRes](./redsys-easy.threedsv1challengenotificationbody.pares.md) |  | string | Payment authentication Request, XML that is gzip compressed and base64 encoded |
 

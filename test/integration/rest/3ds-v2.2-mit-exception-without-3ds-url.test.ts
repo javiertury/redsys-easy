@@ -4,7 +4,7 @@
  * It's supposedly a 3DS v2.2 with MIT exception, but it asks for a 3DS v1 with challenge
  */
 
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import cheerio from 'cheerio';
 import { threeDSv22FrictionlessMitWithout3DSURL } from '../../fixtures/cards';
 import {

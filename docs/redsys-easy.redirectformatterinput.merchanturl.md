@@ -4,7 +4,7 @@
 
 ## RedirectFormatterInput.merchantURL property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 merchantURL?: string;

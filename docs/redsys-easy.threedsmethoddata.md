@@ -6,7 +6,7 @@
 
 3DS v2 method data
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSMethodData 
@@ -14,8 +14,8 @@ export interface ThreeDSMethodData
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [threeDSMethodNotificationURL](./redsys-easy.threedsmethoddata.threedsmethodnotificationurl.md) | string |  |
-|  [threeDSServerTransID](./redsys-easy.threedsmethoddata.threedsservertransid.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [threeDSMethodNotificationURL](./redsys-easy.threedsmethoddata.threedsmethodnotificationurl.md) |  | string |  |
+|  [threeDSServerTransID](./redsys-easy.threedsmethoddata.threedsservertransid.md) |  | string |  |
 

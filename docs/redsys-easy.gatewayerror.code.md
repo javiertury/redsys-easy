@@ -4,7 +4,7 @@
 
 ## GatewayError.code property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 code: string | undefined;

@@ -6,7 +6,7 @@
 
 Maps UN M49 numbers to ISO 3166 Alpha 2 codes
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 REV_COUNTRIES: Record<CountryNum, Country>

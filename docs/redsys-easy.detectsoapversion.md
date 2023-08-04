@@ -6,7 +6,7 @@
 
 Detects the soap version of a HTTP request
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1"

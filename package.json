@@ -58,13 +58,12 @@
     "commit-msg": "pnpm exec commitlint -e"
   },
   "dependencies": {
-    "@types/node-fetch": "^2.5.11",
     "base64url": "^3.0.1",
     "dayjs": "^1.11.9",
     "decimal.js": "^10.4.3",
     "fast-xml-parser": "^4.2.7",
-    "node-fetch": "^2.6.1",
-    "tslib": "^2.6.1"
+    "tslib": "^2.6.1",
+    "undici": "^5.23.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",

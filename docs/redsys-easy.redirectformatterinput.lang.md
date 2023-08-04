@@ -4,7 +4,7 @@
 
 ## RedirectFormatterInput.lang property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 lang?: Language;

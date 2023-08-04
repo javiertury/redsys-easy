@@ -6,7 +6,7 @@
 
 Indicates if a response code signals success
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 isResponseCodeOk: (responseCode: string) => boolean

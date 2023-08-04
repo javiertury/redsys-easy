@@ -6,7 +6,7 @@
 
 Body of a 3DS v2 challenge completion notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSv2ChallengeNotificationBody 
@@ -14,8 +14,8 @@ export interface ThreeDSv2ChallengeNotificationBody
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [cres](./redsys-easy.threedsv2challengenotificationbody.cres.md) | string | Challenge response, JSON that is base64 encoded |
-|  [threeDSSessionData](./redsys-easy.threedsv2challengenotificationbody.threedssessiondata.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [cres](./redsys-easy.threedsv2challengenotificationbody.cres.md) |  | string | Challenge response, JSON that is base64 encoded |
+|  [threeDSSessionData](./redsys-easy.threedsv2challengenotificationbody.threedssessiondata.md) |  | string |  |
 

@@ -6,10 +6,10 @@
 
 Browser information required by 3DS
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type ThreeDSBrowserClientInfo = Pick<BaseThreeDSAuthenticationDataParams, 'browserLanguage' | 'browserColorDepth' | 'browserScreenHeight' | 'browserScreenWidth' | 'browserTZ' | 'browserJavaEnabled'>;
+export type ThreeDSBrowserClientInfo = Pick<BaseThreeDSAuthenticationDataParams, 'browserLanguage' | 'browserColorDepth' | 'browserScreenHeight' | 'browserScreenWidth' | 'browserTZ' | 'browserJavaEnabled'>;
 ```
 
 ## Remarks
@@ -30,6 +30,5 @@ const obtain3DSBrowserInfo = (): ThreeDSBrowserClientInfo => {
     browserJavaEnabled: navigator.javaEnabled()
   };
 };
-
 ```
 

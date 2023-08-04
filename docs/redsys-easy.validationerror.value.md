@@ -4,7 +4,7 @@
 
 ## ValidationError.value property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 value: unknown;

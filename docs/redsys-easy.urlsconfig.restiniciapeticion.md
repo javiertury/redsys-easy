@@ -4,7 +4,7 @@
 
 ## UrlsConfig.restIniciaPeticion property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restIniciaPeticion: string;

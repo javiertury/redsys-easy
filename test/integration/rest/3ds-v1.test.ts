@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import cheerio from 'cheerio';
 import { threeDSv1 } from '../../fixtures/cards';
 import {

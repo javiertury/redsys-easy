@@ -6,12 +6,12 @@
 
 Request could not be processed by Redsys
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class GatewayError extends RedsysError 
 ```
-<b>Extends:</b> [RedsysError](./redsys-easy.redsyserror.md)
+**Extends:** [RedsysError](./redsys-easy.redsyserror.md)
 
 ## Constructors
 

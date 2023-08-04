@@ -4,7 +4,7 @@
 
 ## RedirectFormatterInput.payMethods property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 payMethods?: string;

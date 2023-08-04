@@ -4,7 +4,7 @@
 
 ## ThreeDSMethodData.threeDSMethodNotificationURL property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 threeDSMethodNotificationURL: string;

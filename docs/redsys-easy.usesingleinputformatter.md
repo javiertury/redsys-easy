@@ -6,7 +6,7 @@
 
 Applies an input formatter to the first argument of a function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (args_0: B, ...args_1: C) => D, inputFormatter: AF) => (input: Parameters<AF>[0], ...otherArgs_0: C) => D

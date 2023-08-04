@@ -4,7 +4,7 @@
 
 ## ThreeDSCres.messageType property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 messageType: 'CRes';

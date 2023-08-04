@@ -4,7 +4,7 @@
 
 ## ResponseJSONSuccess.Ds\_MerchantParameters property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_MerchantParameters: string;

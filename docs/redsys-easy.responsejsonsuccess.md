@@ -6,7 +6,7 @@
 
 Body of a successful redsys JSON HTTP response or notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ResponseJSONSuccess 
@@ -14,9 +14,9 @@ export interface ResponseJSONSuccess
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Ds\_MerchantParameters](./redsys-easy.responsejsonsuccess.ds_merchantparameters.md) | string |  |
-|  [Ds\_Signature](./redsys-easy.responsejsonsuccess.ds_signature.md) | string |  |
-|  [Ds\_SignatureVersion](./redsys-easy.responsejsonsuccess.ds_signatureversion.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [Ds\_MerchantParameters](./redsys-easy.responsejsonsuccess.ds_merchantparameters.md) |  | string |  |
+|  [Ds\_Signature](./redsys-easy.responsejsonsuccess.ds_signature.md) |  | string |  |
+|  [Ds\_SignatureVersion](./redsys-easy.responsejsonsuccess.ds_signatureversion.md) |  | string |  |
 

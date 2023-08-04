@@ -4,7 +4,7 @@
 
 ## ThreeDSCres.acsTransID property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 acsTransID: string;

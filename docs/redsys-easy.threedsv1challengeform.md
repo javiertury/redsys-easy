@@ -6,7 +6,7 @@
 
 3DS v1 challenge form
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSv1ChallengeForm 
@@ -14,8 +14,8 @@ export interface ThreeDSv1ChallengeForm
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [body](./redsys-easy.threedsv1challengeform.body.md) | { PaReq: string; MD: string; TermUrl: string; } |  |
-|  [url](./redsys-easy.threedsv1challengeform.url.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [body](./redsys-easy.threedsv1challengeform.body.md) |  | { PaReq: string; MD: string; TermUrl: string; } |  |
+|  [url](./redsys-easy.threedsv1challengeform.url.md) |  | string |  |
 

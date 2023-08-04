@@ -6,7 +6,7 @@
 
 Redirection input formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 redirectInputFormatter: <RawInputParams extends Partial<RedirectInputParams> = Partial<RedirectInputParams>>(input: RedirectFormatterInput<RawInputParams>) => RedirectInputParams

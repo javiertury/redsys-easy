@@ -6,7 +6,7 @@
 
 3DS v2 method form
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSMethodForm 
@@ -14,8 +14,8 @@ export interface ThreeDSMethodForm
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [body](./redsys-easy.threedsmethodform.body.md) | { threeDSMethodData: string; } |  |
-|  [url](./redsys-easy.threedsmethodform.url.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [body](./redsys-easy.threedsmethodform.body.md) |  | { threeDSMethodData: string; } |  |
+|  [url](./redsys-easy.threedsmethodform.url.md) |  | string |  |
 

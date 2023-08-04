@@ -6,7 +6,7 @@
 
 Maps a ISO 4217 code to a ISO 4217 currency number and decimal positions
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 CURRENCIES: Record<Currency, CurrencyData>

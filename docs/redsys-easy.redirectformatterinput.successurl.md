@@ -4,7 +4,7 @@
 
 ## RedirectFormatterInput.successURL property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 successURL?: string;

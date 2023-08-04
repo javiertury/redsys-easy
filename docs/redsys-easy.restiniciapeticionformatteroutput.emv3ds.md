@@ -4,7 +4,7 @@
 
 ## RestIniciaPeticionFormatterOutput.emv3ds property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];

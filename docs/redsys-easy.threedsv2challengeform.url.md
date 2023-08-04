@@ -4,7 +4,7 @@
 
 ## ThreeDSv2ChallengeForm.url property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 url: string;

@@ -4,7 +4,7 @@
 
 ## ResponseJSONSuccess.Ds\_SignatureVersion property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_SignatureVersion: string;

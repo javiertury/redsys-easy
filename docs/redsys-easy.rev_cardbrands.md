@@ -6,7 +6,7 @@
 
 Card brand number to name
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 REV_CARDBRANDS: Record<CardBrandNum, CardBrand>

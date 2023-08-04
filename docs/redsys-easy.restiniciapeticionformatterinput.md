@@ -6,16 +6,16 @@
 
 Input parameters for the REST iniciaPeticion input formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial<RestIniciaPeticionInputParams>> extends RequestFormatterInput<RawInputParams> 
 ```
-<b>Extends:</b> RequestFormatterInput&lt;RawInputParams&gt;
+**Extends:** RequestFormatterInput&lt;RawInputParams&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [emv3ds?](./redsys-easy.restiniciapeticionformatterinput.emv3ds.md) | [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [emv3ds?](./redsys-easy.restiniciapeticionformatterinput.emv3ds.md) |  | [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] | _(Optional)_ |
 

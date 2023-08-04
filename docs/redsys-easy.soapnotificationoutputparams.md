@@ -6,17 +6,17 @@
 
 Parameters of a redsys SOAP notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface SoapNotificationOutputParams extends NotificationOutputParams 
 ```
-<b>Extends:</b> NotificationOutputParams
+**Extends:** NotificationOutputParams
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Fecha](./redsys-easy.soapnotificationoutputparams.fecha.md) | string | Transaction date, DD/MM/YYYY |
-|  [Hora](./redsys-easy.soapnotificationoutputparams.hora.md) | string | Transaction time, hh:mm |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [Fecha](./redsys-easy.soapnotificationoutputparams.fecha.md) |  | string | Transaction date, DD/MM/YYYY |
+|  [Hora](./redsys-easy.soapnotificationoutputparams.hora.md) |  | string | Transaction time, hh:mm |
 

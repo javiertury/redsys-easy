@@ -4,7 +4,7 @@
 
 ## ThreeDSCres.threeDSServerTransID property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 threeDSServerTransID: string;

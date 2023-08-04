@@ -6,7 +6,7 @@
 
 REST trataPeticion input formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restTrataPeticionInputFormatter: <RawInputParams extends Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>>(raw: RestTrataPeticionFormatterInput<RawInputParams>) => RestTrataPeticionInputParams

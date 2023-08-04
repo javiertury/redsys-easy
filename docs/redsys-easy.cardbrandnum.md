@@ -6,8 +6,8 @@
 
 Card brand number
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type CardBrandNum = '1' | '2' | '6' | '7' | '8' | '9' | '22';
+export type CardBrandNum = '1' | '2' | '6' | '7' | '8' | '9' | '22';
 ```

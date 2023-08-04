@@ -4,7 +4,7 @@
 
 ## ThreeDSCres.transStatus property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 transStatus: 'Y' | 'N';

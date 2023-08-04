@@ -6,7 +6,7 @@
 
 Body of a 3DS v2 method completion notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThreeDSv2MethodNotificationBody 
@@ -14,7 +14,7 @@ export interface ThreeDSv2MethodNotificationBody
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [threeDSMethodData](./redsys-easy.threedsv2methodnotificationbody.threedsmethoddata.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [threeDSMethodData](./redsys-easy.threedsv2methodnotificationbody.threedsmethoddata.md) |  | string |  |
 

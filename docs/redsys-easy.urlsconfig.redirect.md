@@ -4,7 +4,7 @@
 
 ## UrlsConfig.redirect property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 redirect: string;

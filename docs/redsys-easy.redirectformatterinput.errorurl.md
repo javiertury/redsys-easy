@@ -4,7 +4,7 @@
 
 ## RedirectFormatterInput.errorURL property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 errorURL?: string;

@@ -6,7 +6,7 @@
 
 Transaction type enum
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 TRANSACTION_TYPES: {

@@ -6,17 +6,17 @@
 
 Ouput parameters for the REST trataPeticion output formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTrataPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams>, Omit<ResolvedTransactionTraitFormatterOutput, 'response'> 
 ```
-<b>Extends:</b> RequestFormatterOutput&lt;RawOutputParams&gt;, Omit&lt;ResolvedTransactionTraitFormatterOutput, 'response'&gt;
+**Extends:** RequestFormatterOutput&lt;RawOutputParams&gt;, Omit&lt;ResolvedTransactionTraitFormatterOutput, 'response'&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [emv3ds?](./redsys-easy.resttratapeticionformatteroutput.emv3ds.md) | [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | <i>(Optional)</i> |
-|  [response?](./redsys-easy.resttratapeticionformatteroutput.response.md) | number | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [emv3ds?](./redsys-easy.resttratapeticionformatteroutput.emv3ds.md) |  | [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | _(Optional)_ |
+|  [response?](./redsys-easy.resttratapeticionformatteroutput.response.md) |  | number | _(Optional)_ |
 

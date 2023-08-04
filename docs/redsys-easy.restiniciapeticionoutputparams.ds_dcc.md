@@ -6,7 +6,7 @@
 
 Dynamic Currency Conversion data, json
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_DCC?: {

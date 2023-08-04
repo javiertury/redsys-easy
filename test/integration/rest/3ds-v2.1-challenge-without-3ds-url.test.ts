@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import { threeDSv21ChallengeWithout3DSURL } from '../../fixtures/cards';
 import {
   createRedsysAPI,

@@ -6,7 +6,7 @@
 
 REST iniciaPeticion output formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restIniciaPeticionOutputFormatter: <RawOutputParams extends RestIniciaPeticionOutputParams = RestIniciaPeticionOutputParams>(raw: RawOutputParams) => RestIniciaPeticionFormatterOutput<RawOutputParams>

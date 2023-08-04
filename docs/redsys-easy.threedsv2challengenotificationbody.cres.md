@@ -6,7 +6,7 @@
 
 Challenge response, JSON that is base64 encoded
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cres: string;

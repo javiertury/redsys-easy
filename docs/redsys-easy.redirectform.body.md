@@ -4,7 +4,7 @@
 
 ## RedirectForm.body property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 body: SHA256SignedJSONParameters;

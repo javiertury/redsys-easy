@@ -6,12 +6,12 @@
 
 Invalid input provided
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class ValidationError extends RedsysError 
 ```
-<b>Extends:</b> [RedsysError](./redsys-easy.redsyserror.md)
+**Extends:** [RedsysError](./redsys-easy.redsyserror.md)
 
 ## Constructors
 

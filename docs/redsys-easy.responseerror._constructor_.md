@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `ResponseError` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor({ message, code, response }: ResponseErrorOptions);

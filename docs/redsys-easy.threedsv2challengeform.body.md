@@ -4,7 +4,7 @@
 
 ## ThreeDSv2ChallengeForm.body property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 body: {

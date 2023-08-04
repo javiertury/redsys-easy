@@ -6,12 +6,12 @@
 
 Response contained an error code
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class ResponseError extends RedsysError 
 ```
-<b>Extends:</b> [RedsysError](./redsys-easy.redsyserror.md)
+**Extends:** [RedsysError](./redsys-easy.redsyserror.md)
 
 ## Constructors
 

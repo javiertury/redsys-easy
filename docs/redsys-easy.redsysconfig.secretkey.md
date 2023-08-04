@@ -4,7 +4,7 @@
 
 ## RedsysConfig.secretKey property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 secretKey: string;

@@ -6,7 +6,7 @@
 
 Payment methods
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 DS_MERCHANT_PAYMETHODS?: string;

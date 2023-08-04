@@ -6,7 +6,7 @@
 
 Deserialize `cres` field of a 3DS v2 challenge
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 deserializeCres: (cres: string) => ThreeDSCres

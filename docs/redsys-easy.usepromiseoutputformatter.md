@@ -6,7 +6,7 @@
 
 Applies an output formatter to the resolved ouput promise of a function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 usePromiseOutputFormatter: <A, B, C>(fn: (a: A) => Promise<B>, outputFormatter: (b: B) => C) => (a: A) => Promise<C>

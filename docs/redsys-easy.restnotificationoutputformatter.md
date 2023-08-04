@@ -6,7 +6,7 @@
 
 REST notification formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams = RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>

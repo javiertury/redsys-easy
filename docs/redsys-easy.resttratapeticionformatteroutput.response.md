@@ -4,7 +4,7 @@
 
 ## RestTrataPeticionFormatterOutput.response property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 response?: number;

@@ -6,8 +6,8 @@
 
 ISO 639-1 language code
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type Language = 'es' | 'en' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'sv' | 'pt' | 'pl' | 'gl' | 'eu' | 'bg' | 'zh' | 'hr' | 'cs' | 'da' | 'et' | 'fi' | 'el' | 'hu' | 'ja' | 'lv' | 'lt' | 'mt' | 'ro' | 'ru' | 'sk' | 'sl' | 'tr';
+export type Language = 'es' | 'en' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'sv' | 'pt' | 'pl' | 'gl' | 'eu' | 'bg' | 'zh' | 'hr' | 'cs' | 'da' | 'et' | 'fi' | 'el' | 'hu' | 'ja' | 'lv' | 'lt' | 'mt' | 'ro' | 'ru' | 'sk' | 'sl' | 'tr';
 ```

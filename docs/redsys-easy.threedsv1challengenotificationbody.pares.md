@@ -6,7 +6,7 @@
 
 Payment authentication Request, XML that is gzip compressed and base64 encoded
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 PaRes: string;

@@ -6,17 +6,17 @@
 
 Input parameters for a IniciaPeticion HTTP request
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestIniciaPeticionInputParams extends CommonRestInputParams 
 ```
-<b>Extends:</b> CommonRestInputParams
+**Extends:** CommonRestInputParams
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md) | 'Y' \| 'N' | <i>(Optional)</i> Dynamic Currency Conversion data, json |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md) | ThreeDSPreAuthInputParams | <i>(Optional)</i> EMV3DS data in json format |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md) |  | 'Y' \| 'N' | _(Optional)_ Dynamic Currency Conversion data, json |
+|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSPreAuthInputParams | _(Optional)_ EMV3DS data in json format |
 

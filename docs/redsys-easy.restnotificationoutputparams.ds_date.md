@@ -6,7 +6,7 @@
 
 Transaction date, DD/MM/YYYY
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_Date: string;

@@ -6,7 +6,7 @@
 
 Timestamp of transaction
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 timestamp: Date;

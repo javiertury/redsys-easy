@@ -4,7 +4,7 @@
 
 ## UrlsConfig.restTrataPeticion property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restTrataPeticion: string;

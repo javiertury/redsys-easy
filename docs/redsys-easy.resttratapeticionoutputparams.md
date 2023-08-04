@@ -6,17 +6,17 @@
 
 Output parameters of a TrataPeticion HTTP request
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> 
 ```
-<b>Extends:</b> RequestOutputParams, Omit&lt;ResolvedTransactionTrait, 'Ds\_Response'&gt;
+**Extends:** RequestOutputParams, Omit&lt;ResolvedTransactionTrait, 'Ds\_Response'&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md) | ThreeDSv1ChallengeOutputParams \| ThreeDSv2ChallengeOutputParams | <i>(Optional)</i> EMV3DS data in json format |
-|  [Ds\_Response?](./redsys-easy.resttratapeticionoutputparams.ds_response.md) | ResolvedTransactionTrait\['Ds\_Response'\] | <i>(Optional)</i> Response code |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md) |  | ThreeDSv1ChallengeOutputParams \| ThreeDSv2ChallengeOutputParams | _(Optional)_ EMV3DS data in json format |
+|  [Ds\_Response?](./redsys-easy.resttratapeticionoutputparams.ds_response.md) |  | ResolvedTransactionTrait\['Ds\_Response'\] | _(Optional)_ Response code |
 

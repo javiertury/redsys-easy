@@ -6,7 +6,7 @@
 
 SOAP notification formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams = SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>

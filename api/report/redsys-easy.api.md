@@ -4,6 +4,8 @@
 
 ```ts
 
+import type { fetch as fetch_2 } from 'undici';
+
 // @public
 export const assertSuccessfulResponseCode: (responseParams: {
     Ds_Response?: string;
@@ -199,6 +201,8 @@ export interface RedirectInputParams extends BaseInputParams {
 
 // @public
 export interface RedsysConfig {
+    // (undocumented)
+    fetch?: typeof fetch_2 | undefined;
     // (undocumented)
     secretKey: string;
     // (undocumented)

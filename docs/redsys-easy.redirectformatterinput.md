@@ -6,20 +6,20 @@
 
 Input parameters for the redirect input formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RedirectFormatterInput<RawInputParams extends Partial<RedirectInputParams>> extends BaseFormatterInput<RawInputParams> 
 ```
-<b>Extends:</b> BaseFormatterInput&lt;RawInputParams&gt;
+**Extends:** BaseFormatterInput&lt;RawInputParams&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [errorURL?](./redsys-easy.redirectformatterinput.errorurl.md) | string | <i>(Optional)</i> |
-|  [lang?](./redsys-easy.redirectformatterinput.lang.md) | [Language](./redsys-easy.language.md) | <i>(Optional)</i> |
-|  [merchantURL?](./redsys-easy.redirectformatterinput.merchanturl.md) | string | <i>(Optional)</i> |
-|  [payMethods?](./redsys-easy.redirectformatterinput.paymethods.md) | string | <i>(Optional)</i> |
-|  [successURL?](./redsys-easy.redirectformatterinput.successurl.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [errorURL?](./redsys-easy.redirectformatterinput.errorurl.md) |  | string | _(Optional)_ |
+|  [lang?](./redsys-easy.redirectformatterinput.lang.md) |  | [Language](./redsys-easy.language.md) | _(Optional)_ |
+|  [merchantURL?](./redsys-easy.redirectformatterinput.merchanturl.md) |  | string | _(Optional)_ |
+|  [payMethods?](./redsys-easy.redirectformatterinput.paymethods.md) |  | string | _(Optional)_ |
+|  [successURL?](./redsys-easy.redirectformatterinput.successurl.md) |  | string | _(Optional)_ |
 

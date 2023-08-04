@@ -6,7 +6,7 @@
 
 Redsys API settings
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RedsysConfig 
@@ -14,8 +14,9 @@ export interface RedsysConfig
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [secretKey](./redsys-easy.redsysconfig.secretkey.md) | string |  |
-|  [urls](./redsys-easy.redsysconfig.urls.md) | [UrlsConfig](./redsys-easy.urlsconfig.md) |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [fetch?](./redsys-easy.redsysconfig.fetch.md) |  | typeof Fetch \| undefined | _(Optional)_ |
+|  [secretKey](./redsys-easy.redsysconfig.secretkey.md) |  | string |  |
+|  [urls](./redsys-easy.redsysconfig.urls.md) |  | [UrlsConfig](./redsys-easy.urlsconfig.md) |  |
 

@@ -6,7 +6,7 @@
 
 REST trataPeticion output formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 restTrataPeticionOutputFormatter: <RawOutputParams extends RestTrataPeticionOutputParams = RestTrataPeticionOutputParams>(raw: RawOutputParams) => RestTrataPeticionFormatterOutput<RawOutputParams>

@@ -6,7 +6,7 @@
 
 Redirect form
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RedirectForm 
@@ -14,8 +14,8 @@ export interface RedirectForm
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [body](./redsys-easy.redirectform.body.md) | SHA256SignedJSONParameters |  |
-|  [url](./redsys-easy.redirectform.url.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [body](./redsys-easy.redirectform.body.md) |  | SHA256SignedJSONParameters |  |
+|  [url](./redsys-easy.redirectform.url.md) |  | string |  |
 

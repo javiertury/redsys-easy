@@ -6,16 +6,16 @@
 
 Ouput parameters for the REST iniciaPeticion output formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestIniciaPeticionFormatterOutput<RawOutputParams extends RestIniciaPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams> 
 ```
-<b>Extends:</b> RequestFormatterOutput&lt;RawOutputParams&gt;
+**Extends:** RequestFormatterOutput&lt;RawOutputParams&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [emv3ds?](./redsys-easy.restiniciapeticionformatteroutput.emv3ds.md) | [RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [emv3ds?](./redsys-easy.restiniciapeticionformatteroutput.emv3ds.md) |  | [RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | _(Optional)_ |
 

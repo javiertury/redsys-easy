@@ -6,7 +6,7 @@
 
 Transaction time, hh:mm
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_Hour: string;

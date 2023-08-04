@@ -6,7 +6,7 @@
 
 Response code
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_Response?: ResolvedTransactionTrait['Ds_Response'];

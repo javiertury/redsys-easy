@@ -6,7 +6,7 @@
 
 Returns the message corresponding to a gateway error code
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getSISErrorCodeMessage: (code: string) => string | undefined

@@ -6,7 +6,7 @@
 
 Asserts that response has a code that indicates success
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 assertSuccessfulResponseCode: (responseParams: {

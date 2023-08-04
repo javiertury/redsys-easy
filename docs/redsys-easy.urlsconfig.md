@@ -6,7 +6,7 @@
 
 URLs to configure the API
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface UrlsConfig 
@@ -14,9 +14,9 @@ export interface UrlsConfig
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [redirect](./redsys-easy.urlsconfig.redirect.md) | string |  |
-|  [restIniciaPeticion](./redsys-easy.urlsconfig.restiniciapeticion.md) | string |  |
-|  [restTrataPeticion](./redsys-easy.urlsconfig.resttratapeticion.md) | string |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [redirect](./redsys-easy.urlsconfig.redirect.md) |  | string |  |
+|  [restIniciaPeticion](./redsys-easy.urlsconfig.restiniciapeticion.md) |  | string |  |
+|  [restTrataPeticion](./redsys-easy.urlsconfig.resttratapeticion.md) |  | string |  |
 

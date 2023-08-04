@@ -6,8 +6,8 @@
 
 Transaction type code
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type TransactionType = '0' | '1' | '2' | '3' | '5' | '6' | '7' | '8' | '9' | '15' | '17' | '34' | '37' | '44' | 'O' | 'F' | 'P' | 'Q' | 'R' | 'S' | 'A';
+export type TransactionType = '0' | '1' | '2' | '3' | '5' | '6' | '7' | '8' | '9' | '15' | '17' | '34' | '37' | '44' | 'O' | 'F' | 'P' | 'Q' | 'R' | 'S' | 'A';
 ```

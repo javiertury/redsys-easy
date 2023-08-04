@@ -4,7 +4,7 @@
 
 ## ThreeDSCres.messageVersion property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 messageVersion: '2.1.0' | '2.2.0';

@@ -4,7 +4,7 @@
 
 ## NotificationFormatterOutput.date property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 date: string;

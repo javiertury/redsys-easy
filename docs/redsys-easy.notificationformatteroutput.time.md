@@ -4,7 +4,7 @@
 
 ## NotificationFormatterOutput.time property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 time: string;

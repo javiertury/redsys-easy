@@ -4,7 +4,7 @@
 
 ## HTTPError.code property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 code: number | undefined;

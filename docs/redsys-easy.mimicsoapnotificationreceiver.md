@@ -6,7 +6,7 @@
 
 Extracts the body of a SOAP notification from the body of the HTTP request
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 mimicSoapNotificationReceiver: (xml: string) => string

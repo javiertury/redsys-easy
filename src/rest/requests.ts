@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import type { fetch as Fetch } from 'undici';
 
 import { HTTPError, GatewayError } from '../errors';
 
@@ -17,11 +17,17 @@ import {
 export const jsonRequest = async <
   RequestParams extends CommonRawRequestParams,
   ResponseParams extends CommonRawResponseParams
->(
-  url: string,
-  merchantKey: string,
-  rawRequestParams: RequestParams
-): Promise<ResponseParams> => {
+>({
+  fetch,
+  url,
+  merchantKey,
+  rawRequestParams
+}: {
+  fetch: typeof Fetch;
+  url: string;
+  merchantKey: string;
+  rawRequestParams: RequestParams;
+}): Promise<ResponseParams> => {
   const payload = serializeAndSignJSONRequest(merchantKey, rawRequestParams);
 
   const response = await fetch(url, {

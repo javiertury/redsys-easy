@@ -6,23 +6,23 @@
 
 Input parameters for a redsys redirect request
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RedirectInputParams extends BaseInputParams 
 ```
-<b>Extends:</b> BaseInputParams
+**Extends:** BaseInputParams
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [DS\_MERCHANT\_CONSUMERLANGUAGE?](./redsys-easy.redirectinputparams.ds_merchant_consumerlanguage.md) | [LanguageNum](./redsys-easy.languagenum.md) | <i>(Optional)</i> Language |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.redirectinputparams.ds_merchant_emv3ds.md) | ThreeDSRedirectInputParams | <i>(Optional)</i> EMV3DS data in json format |
-|  [DS\_MERCHANT\_MERCHANTURL?](./redsys-easy.redirectinputparams.ds_merchant_merchanturl.md) | string | <i>(Optional)</i> Notification url |
-|  [DS\_MERCHANT\_PAYMETHODS?](./redsys-easy.redirectinputparams.ds_merchant_paymethods.md) | string | <i>(Optional)</i> Payment methods |
-|  [DS\_MERCHANT\_PERSOCODE?](./redsys-easy.redirectinputparams.ds_merchant_persocode.md) | string | <i>(Optional)</i> Customization code number |
-|  [DS\_MERCHANT\_SHIPPINGADDRESSPYP?](./redsys-easy.redirectinputparams.ds_merchant_shippingaddresspyp.md) | 'S' \| 'N' | <i>(Optional)</i> Obtain paypal address |
-|  [DS\_MERCHANT\_URLKO?](./redsys-easy.redirectinputparams.ds_merchant_urlko.md) | string | <i>(Optional)</i> Failure redirection url |
-|  [DS\_MERCHANT\_URLOK?](./redsys-easy.redirectinputparams.ds_merchant_urlok.md) | string | <i>(Optional)</i> Success redirection url |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [DS\_MERCHANT\_CONSUMERLANGUAGE?](./redsys-easy.redirectinputparams.ds_merchant_consumerlanguage.md) |  | [LanguageNum](./redsys-easy.languagenum.md) | _(Optional)_ Language |
+|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.redirectinputparams.ds_merchant_emv3ds.md) |  | ThreeDSRedirectInputParams | _(Optional)_ EMV3DS data in json format |
+|  [DS\_MERCHANT\_MERCHANTURL?](./redsys-easy.redirectinputparams.ds_merchant_merchanturl.md) |  | string | _(Optional)_ Notification url |
+|  [DS\_MERCHANT\_PAYMETHODS?](./redsys-easy.redirectinputparams.ds_merchant_paymethods.md) |  | string | _(Optional)_ Payment methods |
+|  [DS\_MERCHANT\_PERSOCODE?](./redsys-easy.redirectinputparams.ds_merchant_persocode.md) |  | string | _(Optional)_ Customization code number |
+|  [DS\_MERCHANT\_SHIPPINGADDRESSPYP?](./redsys-easy.redirectinputparams.ds_merchant_shippingaddresspyp.md) |  | 'S' \| 'N' | _(Optional)_ Obtain paypal address |
+|  [DS\_MERCHANT\_URLKO?](./redsys-easy.redirectinputparams.ds_merchant_urlko.md) |  | string | _(Optional)_ Failure redirection url |
+|  [DS\_MERCHANT\_URLOK?](./redsys-easy.redirectinputparams.ds_merchant_urlok.md) |  | string | _(Optional)_ Success redirection url |
 

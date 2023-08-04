@@ -6,7 +6,7 @@
 
 EMV3DS data in json format
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;

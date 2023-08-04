@@ -4,7 +4,7 @@
 
 ## ValidationError.parameters property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 parameters: object;

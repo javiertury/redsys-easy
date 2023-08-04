@@ -6,12 +6,12 @@
 
 Error superclass for all redsys-easy specific errors
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare class RedsysError extends Error 
 ```
-<b>Extends:</b> Error
+**Extends:** Error
 
 ## Constructors
 

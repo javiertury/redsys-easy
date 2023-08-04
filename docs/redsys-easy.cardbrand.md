@@ -6,8 +6,8 @@
 
 Card brand name
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare type CardBrand = 'VISA' | 'MASTERCARD' | 'DINERS' | 'PRIVATE' | 'AMEX' | 'JCB' | 'UPI';
+export type CardBrand = 'VISA' | 'MASTERCARD' | 'DINERS' | 'PRIVATE' | 'AMEX' | 'JCB' | 'UPI';
 ```

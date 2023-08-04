@@ -6,7 +6,7 @@
 
 Merchant data, random generated identifier hex encoded?
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 MD: string;

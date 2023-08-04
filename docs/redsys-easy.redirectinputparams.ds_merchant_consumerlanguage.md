@@ -6,7 +6,7 @@
 
 Language
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum;

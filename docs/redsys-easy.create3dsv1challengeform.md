@@ -6,7 +6,7 @@
 
 Creates parameters for a 3DS v1 challenge form
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 create3DSv1ChallengeForm: (emv3dsV1Challenge: ThreeDSv1ChallengeOutputParams, challengeNotificationUrl: string) => ThreeDSv1ChallengeForm

@@ -6,7 +6,7 @@
 
 Redsys production urls
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 PRODUCTION_URLS: UrlsConfig

@@ -6,17 +6,17 @@
 
 Parameters of a redsys REST notification
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestNotificationOutputParams extends NotificationOutputParams 
 ```
-<b>Extends:</b> NotificationOutputParams
+**Extends:** NotificationOutputParams
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [Ds\_Date](./redsys-easy.restnotificationoutputparams.ds_date.md) | string | Transaction date, DD/MM/YYYY |
-|  [Ds\_Hour](./redsys-easy.restnotificationoutputparams.ds_hour.md) | string | Transaction time, hh:mm |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [Ds\_Date](./redsys-easy.restnotificationoutputparams.ds_date.md) |  | string | Transaction date, DD/MM/YYYY |
+|  [Ds\_Hour](./redsys-easy.restnotificationoutputparams.ds_hour.md) |  | string | Transaction time, hh:mm |
 

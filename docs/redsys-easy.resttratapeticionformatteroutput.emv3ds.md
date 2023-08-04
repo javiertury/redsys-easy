@@ -4,7 +4,7 @@
 
 ## RestTrataPeticionFormatterOutput.emv3ds property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];

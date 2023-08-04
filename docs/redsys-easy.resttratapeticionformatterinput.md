@@ -6,16 +6,16 @@
 
 Input parameters for the REST trataPeticion input formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<RestTrataPeticionInputParams>> extends RequestFormatterInput<RawInputParams> 
 ```
-<b>Extends:</b> RequestFormatterInput&lt;RawInputParams&gt;
+**Extends:** RequestFormatterInput&lt;RawInputParams&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [emv3ds?](./redsys-easy.resttratapeticionformatterinput.emv3ds.md) | [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [emv3ds?](./redsys-easy.resttratapeticionformatterinput.emv3ds.md) |  | [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] | _(Optional)_ |
 

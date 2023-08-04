@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import type { Context as KoaContext } from 'koa';
 import bodyParser from 'koa-bodyparser';
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import cheerio from 'cheerio';
 import url from 'url';
 import type { Server } from 'http';

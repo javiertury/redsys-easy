@@ -6,19 +6,19 @@
 
 Ouput parameters for the notification output formatter
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface NotificationFormatterOutput<RawOutputParams extends NotificationOutputParams> extends BaseFormatterOutput<RawOutputParams>, ResolvedTransactionTraitFormatterOutput 
 ```
-<b>Extends:</b> BaseFormatterOutput&lt;RawOutputParams&gt;, ResolvedTransactionTraitFormatterOutput
+**Extends:** BaseFormatterOutput&lt;RawOutputParams&gt;, ResolvedTransactionTraitFormatterOutput
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [date](./redsys-easy.notificationformatteroutput.date.md) | string |  |
-|  [lang?](./redsys-easy.notificationformatteroutput.lang.md) | [Language](./redsys-easy.language.md) | <i>(Optional)</i> |
-|  [time](./redsys-easy.notificationformatteroutput.time.md) | string |  |
-|  [timestamp](./redsys-easy.notificationformatteroutput.timestamp.md) | Date | Timestamp of transaction |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [date](./redsys-easy.notificationformatteroutput.date.md) |  | string |  |
+|  [lang?](./redsys-easy.notificationformatteroutput.lang.md) |  | [Language](./redsys-easy.language.md) | _(Optional)_ |
+|  [time](./redsys-easy.notificationformatteroutput.time.md) |  | string |  |
+|  [timestamp](./redsys-easy.notificationformatteroutput.timestamp.md) |  | Date | Timestamp of transaction |
 

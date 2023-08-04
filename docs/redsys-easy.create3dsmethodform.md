@@ -6,7 +6,7 @@
 
 Creates parameters for a 3DS method form
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm

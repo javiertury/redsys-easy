@@ -6,7 +6,7 @@
 
 Deserialize threeDSMethodData
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 deserializeThreeDSMethodData: (threeDSMethodData: string) => ThreeDSMethodData

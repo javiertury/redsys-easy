@@ -4,7 +4,7 @@
 
 ## ThreeDSv2MethodNotificationBody.threeDSMethodData property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 threeDSMethodData: string;

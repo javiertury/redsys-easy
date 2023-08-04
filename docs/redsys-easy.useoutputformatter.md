@@ -6,7 +6,7 @@
 
 Applies an output formatter to a function
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 useOutputFormatter: <A, B, C>(fn: (a: A) => B, outputFormatter: (b: B) => C) => (a: A) => C

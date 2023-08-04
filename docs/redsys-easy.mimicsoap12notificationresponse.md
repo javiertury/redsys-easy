@@ -6,7 +6,7 @@
 
 Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 mimicSoap12NotificationResponse: (answer: string) => string

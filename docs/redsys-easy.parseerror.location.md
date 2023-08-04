@@ -4,7 +4,7 @@
 
 ## ParseError.location property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 location: unknown | undefined;
