@@ -3,9 +3,7 @@ import {
   verifySoapNotification
 } from './notification-signature';
 
-import {
-  ParseError
-} from '../errors';
+import { ParseError } from '../errors';
 
 import {
   soapNotificationMerchantKey,
@@ -27,9 +25,7 @@ import {
   serializedAndSignedAllowedNotificationResponseParams
 } from '../../test/fixtures/soap/allowed-notification-response';
 
-import {
-  incorrectMerchantKey
-} from '../../test/fixtures/merchant-keys';
+import { incorrectMerchantKey } from '../../test/fixtures/merchant-keys';
 
 describe('SOAP Notification signature', () => {
   it('should sign "allowed" response', () => {
@@ -38,7 +34,9 @@ describe('SOAP Notification signature', () => {
       serializedAllowedNotificationResponseParams,
       allowedNotificationResponseParams
     );
-    expect(signedJSONRequest).toEqual(serializedAndSignedAllowedNotificationResponseParams);
+    expect(signedJSONRequest).toEqual(
+      serializedAndSignedAllowedNotificationResponseParams
+    );
   });
 
   it('should sign "denied" response', () => {
@@ -47,12 +45,14 @@ describe('SOAP Notification signature', () => {
       serializedDeniedNotificationResponseParams,
       deniedNotificationResponseParams
     );
-    expect(signedJSONRequest).toEqual(serializedAndSignedDeniedNotificationResponseParams);
+    expect(signedJSONRequest).toEqual(
+      serializedAndSignedDeniedNotificationResponseParams
+    );
   });
 
   it('should verify notification with legit signature', () => {
-    expect(
-      () => verifySoapNotification(
+    expect(() =>
+      verifySoapNotification(
         soapNotificationMerchantKey,
         serializedAndSignedSoapNotificationParams,
         deserializedSoapNotification
@@ -61,8 +61,8 @@ describe('SOAP Notification signature', () => {
   });
 
   it('should fail to verify notification if merchant key is incorrect', () => {
-    expect(
-      () => verifySoapNotification(
+    expect(() =>
+      verifySoapNotification(
         incorrectMerchantKey,
         serializedAndSignedSoapNotificationParams,
         deserializedSoapNotification
@@ -71,17 +71,18 @@ describe('SOAP Notification signature', () => {
   });
 
   it('should fail to verify notification if signature is forged', () => {
-    const verify = () => verifySoapNotification(
-      soapNotificationMerchantKey,
-      serializedAndSignedSoapNotificationParams.replace(
-        /<Signature>.*<\/Signature>/,
-        '<Signature>SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>'
-      ),
-      {
-        ...deserializedSoapNotification,
-        Signature: 'SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok='
-      }
-    );
+    const verify = () =>
+      verifySoapNotification(
+        soapNotificationMerchantKey,
+        serializedAndSignedSoapNotificationParams.replace(
+          /<Signature>.*<\/Signature>/,
+          '<Signature>SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>'
+        ),
+        {
+          ...deserializedSoapNotification,
+          Signature: 'SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok='
+        }
+      );
     expect(verify).toThrowError(new ParseError('Invalid signature'));
   });
 });

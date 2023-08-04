@@ -291,7 +291,7 @@ describe('Redirect Integration', () => {
     expect(serverCtx).not.toBeNull();
     expect(serverCtx.method).toEqual('POST');
 
-    const body = serverCtx.request.body as unknown as ResponseJSONSuccess;
+    const body = serverCtx.request.body as ResponseJSONSuccess;
     expect(typeof body).toBe('object');
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);

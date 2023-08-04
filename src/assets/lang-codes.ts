@@ -127,7 +127,9 @@ export const LANGUAGES: Record<Language, LanguageNum> = {
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 const REV_LANGUAGES = {} as Record<LanguageNum, Language>;
 
-for (const [key, value] of Object.entries(LANGUAGES) as ReadonlyArray<[Language, LanguageNum]>) {
+for (const [key, value] of Object.entries(LANGUAGES) as ReadonlyArray<
+  [Language, LanguageNum]
+>) {
   REV_LANGUAGES[value] = key;
 }
 REV_LANGUAGES['10'] = 'ca';

@@ -33,7 +33,9 @@ describe('ResponseError', () => {
       code: 9051,
       response: { Ds_Response: 9051 }
     });
-    expect(error.message).toEqual('Response error 9051: Error número de pedido repetido\nFoo');
+    expect(error.message).toEqual(
+      'Response error 9051: Error número de pedido repetido\nFoo'
+    );
     expect(error.code).toEqual(9051);
     expect(error.response).toEqual({ Ds_Response: 9051 });
   });

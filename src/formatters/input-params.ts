@@ -24,19 +24,25 @@ import { isStringNotEmpty } from '../utils/misc';
 const formatInputCurrency = (input: Currency): CurrencyNum => {
   const currencyData = CURRENCIES[input];
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  if (!currencyData || !currencyData.num) {
+  if (!currencyData?.num) {
     throw new ValidationError('Unsupported currency', { currency: input });
   }
 
   return currencyData.num;
 };
 
-const formatExpiryDate = ({ expiryYear, expiryMonth }: { expiryYear?: string, expiryMonth?: string }): string => {
+const formatExpiryDate = ({
+  expiryYear,
+  expiryMonth
+}: {
+  expiryYear?: string;
+  expiryMonth?: string;
+}): string => {
   if (expiryMonth?.length !== 2) {
-    throw new ValidationError('Invalid expiryMonth', { expiryMonth: expiryMonth });
+    throw new ValidationError('Invalid expiryMonth', { expiryMonth });
   }
   if (expiryYear?.length !== 2) {
-    throw new ValidationError('Invalid expiryYear', { expiryYear: expiryYear });
+    throw new ValidationError('Invalid expiryYear', { expiryYear });
   }
 
   return `${expiryYear}${expiryMonth}`;
@@ -52,21 +58,27 @@ const formatAmount = (
   const { currency } = context;
 
   if (!currency) {
-    throw new ValidationError('Missing currency', { currency: currency });
+    throw new ValidationError('Missing currency', { currency });
   }
 
   const currencyData = CURRENCIES[currency];
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  if (!currencyData || !currencyData.decimals) {
-    throw new ValidationError('Unsupported currency', { currency: currency });
+  if (!currencyData?.decimals) {
+    throw new ValidationError('Unsupported currency', { currency });
   }
 
-  const rawValue = typeof value === 'number'
-    ? Math.round(value * Math.pow(10, currencyData.decimals)).toString()
-    : new Decimal(value).mul(Math.pow(10, currencyData.decimals)).round().toFixed(0);
+  const rawValue =
+    typeof value === 'number'
+      ? Math.round(value * Math.pow(10, currencyData.decimals)).toString()
+      : new Decimal(value)
+          .mul(Math.pow(10, currencyData.decimals))
+          .round()
+          .toFixed(0);
 
   if (rawValue.length > 12) {
-    throw new ValidationError('Amount to charge is too large', { amount: value });
+    throw new ValidationError('Amount to charge is too large', {
+      amount: value
+    });
   }
 
   return rawValue;
@@ -80,9 +92,7 @@ const formatLang = (value: Language): LanguageNum => {
   return langInt;
 };
 
-const baseInputFormatter = <
-  RawInputParams extends Partial<BaseInputParams>
->(
+const baseInputFormatter = <RawInputParams extends Partial<BaseInputParams>>(
   input: BaseFormatterInput<RawInputParams>
 ): BaseInputParams => {
   const {
@@ -126,21 +136,47 @@ const baseInputFormatter = <
     DS_MERCHANT_MERCHANTCODE: merchantCode,
     DS_MERCHANT_TRANSACTIONTYPE: transactionType,
     DS_MERCHANT_TERMINAL: terminal,
-    ...(amount != null ? { DS_MERCHANT_AMOUNT: formatAmount(amount, { currency }) } : undefined),
-    ...(isStringNotEmpty(currency) ? { DS_MERCHANT_CURRENCY: formatInputCurrency(currency) } : undefined),
-    ...(isStringNotEmpty(merchantName) ? { DS_MERCHANT_MERCHANTNAME: merchantName } : undefined),
-    ...(isStringNotEmpty(identifier) ? { DS_MERCHANT_IDENTIFIER: identifier } : undefined),
+    ...(amount != null
+      ? { DS_MERCHANT_AMOUNT: formatAmount(amount, { currency }) }
+      : undefined),
+    ...(isStringNotEmpty(currency)
+      ? { DS_MERCHANT_CURRENCY: formatInputCurrency(currency) }
+      : undefined),
+    ...(isStringNotEmpty(merchantName)
+      ? { DS_MERCHANT_MERCHANTNAME: merchantName }
+      : undefined),
+    ...(isStringNotEmpty(identifier)
+      ? { DS_MERCHANT_IDENTIFIER: identifier }
+      : undefined),
     ...(isStringNotEmpty(group) ? { DS_MERCHANT_GROUP: group } : undefined),
-    ...(isStringNotEmpty(expiryYear) || isStringNotEmpty(expiryMonth) ? { DS_MERCHANT_EXPIRYDATE: formatExpiryDate({ expiryYear, expiryMonth }) } : undefined),
+    ...(isStringNotEmpty(expiryYear) || isStringNotEmpty(expiryMonth)
+      ? {
+          DS_MERCHANT_EXPIRYDATE: formatExpiryDate({ expiryYear, expiryMonth })
+        }
+      : undefined),
     ...(isStringNotEmpty(pan) ? { DS_MERCHANT_PAN: pan } : undefined),
     ...(isStringNotEmpty(cvv) ? { DS_MERCHANT_CVV2: cvv } : undefined),
-    ...(isStringNotEmpty(directPayment) ? { DS_MERCHANT_DIRECTPAYMENT: directPayment } : undefined),
-    ...(isStringNotEmpty(merchantData) ? { DS_MERCHANT_MERCHANTDATA: merchantData } : undefined),
-    ...(isStringNotEmpty(operationId) ? { DS_MERCHANT_IDOPER: operationId } : undefined),
-    ...(isStringNotEmpty(productDescription) ? { DS_MERCHANT_PRODUCTDESCRIPTION: productDescription } : undefined),
-    ...(isStringNotEmpty(taxReference) ? { DS_MERCHANT_TAX_REFERENCE: taxReference } : undefined),
-    ...(isStringNotEmpty(transactionDate) ? { DS_MERCHANT_TRANSACTIONDATE: transactionDate } : undefined),
-    ...(isStringNotEmpty(cardHolder) ? { DS_MERCHANT_TITULAR: cardHolder } : undefined),
+    ...(isStringNotEmpty(directPayment)
+      ? { DS_MERCHANT_DIRECTPAYMENT: directPayment }
+      : undefined),
+    ...(isStringNotEmpty(merchantData)
+      ? { DS_MERCHANT_MERCHANTDATA: merchantData }
+      : undefined),
+    ...(isStringNotEmpty(operationId)
+      ? { DS_MERCHANT_IDOPER: operationId }
+      : undefined),
+    ...(isStringNotEmpty(productDescription)
+      ? { DS_MERCHANT_PRODUCTDESCRIPTION: productDescription }
+      : undefined),
+    ...(isStringNotEmpty(taxReference)
+      ? { DS_MERCHANT_TAX_REFERENCE: taxReference }
+      : undefined),
+    ...(isStringNotEmpty(transactionDate)
+      ? { DS_MERCHANT_TRANSACTIONDATE: transactionDate }
+      : undefined),
+    ...(isStringNotEmpty(cardHolder)
+      ? { DS_MERCHANT_TITULAR: cardHolder }
+      : undefined),
     ...raw
   };
 };
@@ -151,26 +187,31 @@ const baseInputFormatter = <
  * @public
  */
 export const redirectInputFormatter = <
-  RawInputParams extends Partial<RedirectInputParams> = Partial<RedirectInputParams>
+  RawInputParams extends
+    Partial<RedirectInputParams> = Partial<RedirectInputParams>
 >(
   input: RedirectFormatterInput<RawInputParams>
 ): RedirectInputParams => {
-  const {
-    merchantURL,
-    successURL,
-    errorURL,
-    payMethods,
-    lang,
-    ...baseInput
-  } = input;
+  const { merchantURL, successURL, errorURL, payMethods, lang, ...baseInput } =
+    input;
 
   return {
     ...baseInputFormatter(baseInput),
-    ...(isStringNotEmpty(merchantURL) ? { DS_MERCHANT_MERCHANTURL: merchantURL } : undefined),
-    ...(isStringNotEmpty(successURL) ? { DS_MERCHANT_URLOK: successURL } : undefined),
-    ...(isStringNotEmpty(errorURL) ? { DS_MERCHANT_URLKO: errorURL } : undefined),
-    ...(isStringNotEmpty(payMethods) ? { DS_MERCHANT_PAYMETHODS: payMethods } : undefined),
-    ...(isStringNotEmpty(lang) ? { DS_MERCHANT_CONSUMERLANGUAGE: formatLang(lang) } : undefined),
+    ...(isStringNotEmpty(merchantURL)
+      ? { DS_MERCHANT_MERCHANTURL: merchantURL }
+      : undefined),
+    ...(isStringNotEmpty(successURL)
+      ? { DS_MERCHANT_URLOK: successURL }
+      : undefined),
+    ...(isStringNotEmpty(errorURL)
+      ? { DS_MERCHANT_URLKO: errorURL }
+      : undefined),
+    ...(isStringNotEmpty(payMethods)
+      ? { DS_MERCHANT_PAYMETHODS: payMethods }
+      : undefined),
+    ...(isStringNotEmpty(lang)
+      ? { DS_MERCHANT_CONSUMERLANGUAGE: formatLang(lang) }
+      : undefined),
     // Overwrite formatted parameters
     ...baseInput.raw
   };
@@ -181,18 +222,19 @@ export const requestInputFormatter = <
 >(
   input: RequestFormatterInput<RawInputParams>
 ): RequestInputParams => {
-  const {
-    customerMail,
-    customerMobile,
-    smsTemplate,
-    ...baseInput
-  } = input;
+  const { customerMail, customerMobile, smsTemplate, ...baseInput } = input;
 
   return {
     ...baseInputFormatter(baseInput),
-    ...(isStringNotEmpty(customerMobile) ? { DS_MERCHANT_CUSTOMER_MOBILE: customerMobile } : undefined),
-    ...(isStringNotEmpty(customerMail) ? { DS_MERCHANT_CUSTOMER_MAIL: customerMail } : undefined),
-    ...(isStringNotEmpty(smsTemplate) ? { DS_MERCHANT_CUSTOMER_SMS_TEXT: smsTemplate } : undefined),
+    ...(isStringNotEmpty(customerMobile)
+      ? { DS_MERCHANT_CUSTOMER_MOBILE: customerMobile }
+      : undefined),
+    ...(isStringNotEmpty(customerMail)
+      ? { DS_MERCHANT_CUSTOMER_MAIL: customerMail }
+      : undefined),
+    ...(isStringNotEmpty(smsTemplate)
+      ? { DS_MERCHANT_CUSTOMER_SMS_TEXT: smsTemplate }
+      : undefined),
     // Overwrite formatted parameters
     ...baseInput.raw
   };
@@ -204,14 +246,12 @@ export const requestInputFormatter = <
  * @public
  */
 export const restIniciaPeticionInputFormatter = <
-  RawInputParams extends Partial<RestIniciaPeticionInputParams> = Partial<RestIniciaPeticionInputParams>
+  RawInputParams extends
+    Partial<RestIniciaPeticionInputParams> = Partial<RestIniciaPeticionInputParams>
 >(
   raw: RestIniciaPeticionFormatterInput<RawInputParams>
 ): RestIniciaPeticionInputParams => {
-  const {
-    emv3ds,
-    ...requestInput
-  } = raw;
+  const { emv3ds, ...requestInput } = raw;
 
   return {
     ...requestInputFormatter(requestInput),
@@ -227,14 +267,12 @@ export const restIniciaPeticionInputFormatter = <
  * @public
  */
 export const restTrataPeticionInputFormatter = <
-  RawInputParams extends Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>
+  RawInputParams extends
+    Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>
 >(
   raw: RestTrataPeticionFormatterInput<RawInputParams>
 ): RestTrataPeticionInputParams => {
-  const {
-    emv3ds,
-    ...requestInput
-  } = raw;
+  const { emv3ds, ...requestInput } = raw;
 
   return {
     ...requestInputFormatter(requestInput),

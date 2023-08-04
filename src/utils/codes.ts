@@ -7,12 +7,15 @@ import RESPONSE_CODES from '../assets/response-codes';
  *
  * @public
  */
-export const getResponseCodeMessage = (code: string | number): string | undefined => {
+export const getResponseCodeMessage = (
+  code: string | number
+): string | undefined => {
   if (typeof code !== 'number' && typeof code !== 'string') {
     return;
   }
 
-  const lookupNum = typeof code === 'string' ? Number.parseFloat(code.trim()) : code;
+  const lookupNum =
+    typeof code === 'string' ? Number.parseFloat(code.trim()) : code;
 
   if (!Number.isInteger(lookupNum) || lookupNum < 0) {
     return;

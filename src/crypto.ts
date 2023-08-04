@@ -9,7 +9,10 @@ import crypto from 'crypto';
  * @params blocksize - Size of block
  */
 export const zeroPad = (buf: Buffer, blocksize: number): Buffer => {
-  const pad = Buffer.alloc((blocksize - (buf.length % blocksize)) % blocksize, 0);
+  const pad = Buffer.alloc(
+    (blocksize - (buf.length % blocksize)) % blocksize,
+    0
+  );
   return Buffer.concat([buf, pad]);
 };
 
@@ -29,7 +32,10 @@ export const encrypt3DES = (key: string, message: string): Buffer => {
 
   const cipher = crypto.createCipheriv('des-ede3-cbc', keyBuf, iv);
   cipher.setAutoPadding(false);
-  const encryptedBuf = Buffer.concat([cipher.update(paddedMessageBuf), cipher.final()]);
+  const encryptedBuf = Buffer.concat([
+    cipher.update(paddedMessageBuf),
+    cipher.final()
+  ]);
 
   // Make sure that encrypted buffer is not longer than the padded message
   const maxLength = Math.ceil(messageBuf.length / 8) * 8;
@@ -43,7 +49,14 @@ export const encrypt3DES = (key: string, message: string): Buffer => {
  * @params order - Order number
  * @params params - Payload to sign
  */
-export const sha256Sign = (merchantKey: string, order: string, params: string) => {
+export const sha256Sign = (
+  merchantKey: string,
+  order: string,
+  params: string
+) => {
   const orderKeyBuf = encrypt3DES(merchantKey, order);
-  return crypto.createHmac('sha256', orderKeyBuf).update(params).digest('base64');
+  return crypto
+    .createHmac('sha256', orderKeyBuf)
+    .update(params)
+    .digest('base64');
 };

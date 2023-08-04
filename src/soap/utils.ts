@@ -1,33 +1,36 @@
 import { ParseError } from '../errors';
 
 export const unescapeXML = (str: string) => {
-  const xml = str.replace(/&(lt|#60|gt|#62|quot|#34|amp|#38|apos|#39);/g, (_match, p1) => {
-    switch (p1) {
-      case 'lt':
-      case '#60':
-        return '<';
-      case 'gt':
-      case '#62':
-        return '>';
-      case 'quot':
-      case '#34':
-        return '"';
-      case 'amp':
-      case '#38':
-        return '&';
-      case 'apos':
-      case '#39':
-        return '\'';
-      default:
-        throw new ParseError('Unknown xml escape character', p1, str);
+  const xml = str.replace(
+    /&(lt|#60|gt|#62|quot|#34|amp|#38|apos|#39);/g,
+    (_match, p1) => {
+      switch (p1) {
+        case 'lt':
+        case '#60':
+          return '<';
+        case 'gt':
+        case '#62':
+          return '>';
+        case 'quot':
+        case '#34':
+          return '"';
+        case 'amp':
+        case '#38':
+          return '&';
+        case 'apos':
+        case '#39':
+          return "'";
+        default:
+          throw new ParseError('Unknown xml escape character', p1, str);
+      }
     }
-  });
+  );
 
   return xml;
 };
 
 export const escapeXML = (str: string) => {
-  const xml = str.replace(/<|>|"|&|'/g, match => {
+  const xml = str.replace(/<|>|"|&|'/g, (match) => {
     switch (match) {
       case '<':
         return '&lt;';
@@ -37,7 +40,7 @@ export const escapeXML = (str: string) => {
         return '&quot;';
       case '&':
         return '&amp;';
-      case '\'':
+      case "'":
         return '&apos;';
       default:
         throw new ParseError('Unknown special xml character', match, str);
@@ -47,13 +50,15 @@ export const escapeXML = (str: string) => {
   return xml;
 };
 
-type SoapRequest = {
-  headers: Record<string, string>
-  body?: string
-} | {
-  headers?: Record<string, string>
-  body: string
-};
+type SoapRequest =
+  | {
+      headers: Record<string, string>;
+      body?: string;
+    }
+  | {
+      headers?: Record<string, string>;
+      body: string;
+    };
 
 /**
  * Detects the soap version of a HTTP request

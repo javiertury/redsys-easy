@@ -2,22 +2,17 @@ import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
 import { LANGUAGES, REV_LANGUAGES } from './lang-codes';
-import type {
-  Language,
-  LanguageNum
-} from './lang-codes';
+import type { Language, LanguageNum } from './lang-codes';
 
 describe('LANGUAGES and REV_LANGUAGES', () => {
   it('should use the Language interface', () => {
-    expectType<TypeEqual<
-      Record<Language, LanguageNum>,
-      typeof LANGUAGES
-    >>(true);
+    expectType<TypeEqual<Record<Language, LanguageNum>, typeof LANGUAGES>>(
+      true
+    );
 
-    expectType<TypeEqual<
-      Record<LanguageNum, Language>,
-      typeof REV_LANGUAGES
-    >>(true);
+    expectType<TypeEqual<Record<LanguageNum, Language>, typeof REV_LANGUAGES>>(
+      true
+    );
   });
 
   it('should implement all of LanguageNum', () => {
@@ -61,7 +56,9 @@ describe('LANGUAGES and REV_LANGUAGES', () => {
     };
 
     const allLanguageNums = Object.keys(allLanguageNumsObj).sort();
-    const allStandardLanguageNums = allLanguageNums.filter(langNum => langNum !== '10').sort();
+    const allStandardLanguageNums = allLanguageNums
+      .filter((langNum) => langNum !== '10')
+      .sort();
     const implementedLanguageNums = Object.values(LANGUAGES).sort();
 
     expect(implementedLanguageNums).toEqual(allStandardLanguageNums);

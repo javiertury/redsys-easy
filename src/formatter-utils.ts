@@ -18,10 +18,9 @@ export const useSingleInputFormatter = <
 >(
   fn: (...args: [B, ...C]) => D,
   inputFormatter: AF
-): (
-  (input: Parameters<AF>[0], ...otherArgs: [...C]) => D
-) => {
-  return (input: Parameters<AF>[0], ...otherArgs): D => fn(inputFormatter(input), ...otherArgs);
+): ((input: Parameters<AF>[0], ...otherArgs: [...C]) => D) => {
+  return (input: Parameters<AF>[0], ...otherArgs): D =>
+    fn(inputFormatter(input), ...otherArgs);
 };
 
 /**

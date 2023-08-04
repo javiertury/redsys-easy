@@ -7,17 +7,11 @@ import type {
   RedirectInputParams
 } from '../../src/types/input-params';
 
-import type {
-  restJsonRequest
-} from '../../test/fixtures/rest/rest-json';
+import type { restJsonRequest } from '../../test/fixtures/rest/rest-json';
 
-import type {
-  redirectRequest
-} from '../../test/fixtures/rest/redirect';
+import type { redirectRequest } from '../../test/fixtures/rest/redirect';
 
-import type {
-  redirectWithIdentifierRequest
-} from '../../test/fixtures/rest/redirect-identifier';
+import type { redirectWithIdentifierRequest } from '../../test/fixtures/rest/redirect-identifier';
 
 import type {
   iniciaPeticionRequest as iniciaPeticionV1Request,
@@ -36,15 +30,13 @@ import type {
  */
 describe('RestIniciaPeticionInputParams', () => {
   it('should match real data', () => {
-    expectType<TypeOf<
-      RestIniciaPeticionInputParams,
-      typeof iniciaPeticionV1Request
-    >>(true);
+    expectType<
+      TypeOf<RestIniciaPeticionInputParams, typeof iniciaPeticionV1Request>
+    >(true);
 
-    expectType<TypeOf<
-      RestIniciaPeticionInputParams,
-      typeof iniciaPeticionV21Request
-    >>(true);
+    expectType<
+      TypeOf<RestIniciaPeticionInputParams, typeof iniciaPeticionV21Request>
+    >(true);
   });
 });
 
@@ -53,30 +45,25 @@ describe('RestIniciaPeticionInputParams', () => {
  */
 describe('RestTrataPeticionInputParams', () => {
   it('should match real data', () => {
-    expectType<TypeOf<
-      RestTrataPeticionInputParams,
-      typeof restJsonRequest
-    >>(true);
+    expectType<TypeOf<RestTrataPeticionInputParams, typeof restJsonRequest>>(
+      true
+    );
 
-    expectType<TypeOf<
-      RestTrataPeticionInputParams,
-      typeof authDataV1Request
-    >>(true);
+    expectType<TypeOf<RestTrataPeticionInputParams, typeof authDataV1Request>>(
+      true
+    );
 
-    expectType<TypeOf<
-      RestTrataPeticionInputParams,
-      typeof challengeResponseV1Request
-    >>(true);
+    expectType<
+      TypeOf<RestTrataPeticionInputParams, typeof challengeResponseV1Request>
+    >(true);
 
-    expectType<TypeOf<
-      RestTrataPeticionInputParams,
-      typeof authDataV21Request
-    >>(true);
+    expectType<TypeOf<RestTrataPeticionInputParams, typeof authDataV21Request>>(
+      true
+    );
 
-    expectType<TypeOf<
-      RestTrataPeticionInputParams,
-      typeof challengeResponseV21Request
-    >>(true);
+    expectType<
+      TypeOf<RestTrataPeticionInputParams, typeof challengeResponseV21Request>
+    >(true);
   });
 });
 
@@ -85,14 +72,10 @@ describe('RestTrataPeticionInputParams', () => {
  */
 describe('RestTrataPeticionInputParams', () => {
   it('should match real data', () => {
-    expectType<TypeOf<
-      RedirectInputParams,
-      typeof redirectRequest
-    >>(true);
+    expectType<TypeOf<RedirectInputParams, typeof redirectRequest>>(true);
 
-    expectType<TypeOf<
-      RedirectInputParams,
-      typeof redirectWithIdentifierRequest
-    >>(true);
+    expectType<
+      TypeOf<RedirectInputParams, typeof redirectWithIdentifierRequest>
+    >(true);
   });
 });

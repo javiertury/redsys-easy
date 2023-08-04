@@ -55,58 +55,97 @@ const {
 /* eslint-disable @typescript-eslint/indent */
 describe('Formatter utils interfaces', () => {
   it('should work with redirect formatter', () => {
-    const wrappedFormatter = useSingleInputFormatter(createRedirectForm, redirectInputFormatter);
+    const wrappedFormatter = useSingleInputFormatter(
+      createRedirectForm,
+      redirectInputFormatter
+    );
 
-    expectType<TypeEqual<
-      (input: RedirectFormatterInput<Partial<RedirectInputParams>>) => RedirectForm,
-      typeof wrappedFormatter
-    >>(true);
+    expectType<
+      TypeEqual<
+        (
+          input: RedirectFormatterInput<Partial<RedirectInputParams>>
+        ) => RedirectForm,
+        typeof wrappedFormatter
+      >
+    >(true);
   });
 
   it('should work with rest iniciaPeticion formatters', () => {
     const wrappedFormatter = useSingleInputFormatter(
-      usePromiseOutputFormatter(restIniciaPeticion, restIniciaPeticionOutputFormatter),
+      usePromiseOutputFormatter(
+        restIniciaPeticion,
+        restIniciaPeticionOutputFormatter
+      ),
       restIniciaPeticionInputFormatter
     );
 
-    expectType<TypeEqual<
-      (
-        input: RestIniciaPeticionFormatterInput<Partial<RestIniciaPeticionInputParams>>
-      ) => Promise<RestIniciaPeticionFormatterOutput<RestIniciaPeticionOutputParams>>,
-      typeof wrappedFormatter
-    >>(true);
+    expectType<
+      TypeEqual<
+        (
+          input: RestIniciaPeticionFormatterInput<
+            Partial<RestIniciaPeticionInputParams>
+          >
+        ) => Promise<
+          RestIniciaPeticionFormatterOutput<RestIniciaPeticionOutputParams>
+        >,
+        typeof wrappedFormatter
+      >
+    >(true);
   });
 
   it('should work with rest trataPeticion formatters', () => {
     const wrappedFormatter = useSingleInputFormatter(
-      usePromiseOutputFormatter(restTrataPeticion, restTrataPeticionOutputFormatter),
+      usePromiseOutputFormatter(
+        restTrataPeticion,
+        restTrataPeticionOutputFormatter
+      ),
       restTrataPeticionInputFormatter
     );
 
-    expectType<TypeEqual<
-      (
-        input: RestTrataPeticionFormatterInput<Partial<RestTrataPeticionInputParams>>
-      ) => Promise<RestTrataPeticionFormatterOutput<RestTrataPeticionOutputParams>>,
-      typeof wrappedFormatter
-    >>(true);
+    expectType<
+      TypeEqual<
+        (
+          input: RestTrataPeticionFormatterInput<
+            Partial<RestTrataPeticionInputParams>
+          >
+        ) => Promise<
+          RestTrataPeticionFormatterOutput<RestTrataPeticionOutputParams>
+        >,
+        typeof wrappedFormatter
+      >
+    >(true);
   });
 
   it('should work with rest notification formatters', () => {
-    const wrappedFormatter = useOutputFormatter(processRestNotification, restNotificationOutputFormatter);
+    const wrappedFormatter = useOutputFormatter(
+      processRestNotification,
+      restNotificationOutputFormatter
+    );
 
-    expectType<TypeEqual<
-      (input: ResponseJSONSuccess) => NotificationFormatterOutput<RestNotificationOutputParams>,
-      typeof wrappedFormatter
-    >>(true);
+    expectType<
+      TypeEqual<
+        (
+          input: ResponseJSONSuccess
+        ) => NotificationFormatterOutput<RestNotificationOutputParams>,
+        typeof wrappedFormatter
+      >
+    >(true);
   });
 
   it('should work with soap notification formatters', () => {
-    const wrappedFormatter = useOutputFormatter(processSoapNotification, soapNotificationOutputFormatter);
+    const wrappedFormatter = useOutputFormatter(
+      processSoapNotification,
+      soapNotificationOutputFormatter
+    );
 
-    expectType<TypeEqual<
-      (input: string) => NotificationFormatterOutput<SoapNotificationOutputParams>,
-      typeof wrappedFormatter
-    >>(true);
+    expectType<
+      TypeEqual<
+        (
+          input: string
+        ) => NotificationFormatterOutput<SoapNotificationOutputParams>,
+        typeof wrappedFormatter
+      >
+    >(true);
   });
 });
 /* eslint-enable @typescript-eslint/indent */

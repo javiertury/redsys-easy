@@ -5,9 +5,7 @@ import type {
   SoapNotificationResponse
 } from '../types/api';
 
-import {
-  ParseError
-} from '../errors';
+import { ParseError } from '../errors';
 
 export const verifySoapNotification = (
   merchantKey: string,
@@ -20,7 +18,10 @@ export const verifySoapNotification = (
   const endPos = xml.indexOf(endToken);
 
   if (startPos < 0 || endPos < 0 || startPos > endPos) {
-    throw new ParseError('Cannot find payload of SOAP notification Request', xml);
+    throw new ParseError(
+      'Cannot find payload of SOAP notification Request',
+      xml
+    );
   }
 
   const signedStr = xml.slice(startPos, endPos + endToken.length);

@@ -2,23 +2,15 @@ import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
 import { COUNTRIES } from './countries';
-import type {
-  Country,
-  CountryNum,
-  REV_COUNTRIES
-} from './countries';
+import type { Country, CountryNum, REV_COUNTRIES } from './countries';
 
 describe('COUNTRIES and REV_COUNTRIES', () => {
   it('should use the Country interface', () => {
-    expectType<TypeEqual<
-      Record<Country, CountryNum>,
-      typeof COUNTRIES
-    >>(true);
+    expectType<TypeEqual<Record<Country, CountryNum>, typeof COUNTRIES>>(true);
 
-    expectType<TypeEqual<
-      Record<CountryNum, Country>,
-      typeof REV_COUNTRIES
-    >>(true);
+    expectType<TypeEqual<Record<CountryNum, Country>, typeof REV_COUNTRIES>>(
+      true
+    );
   });
 
   it('should implement all of CountryNum', () => {

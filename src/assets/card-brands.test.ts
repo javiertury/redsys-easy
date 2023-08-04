@@ -1,27 +1,19 @@
 import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
-import {
-  CARDBRANDS
-} from './card-brands';
+import { CARDBRANDS } from './card-brands';
 
-import type {
-  CardBrand,
-  CardBrandNum,
-  REV_CARDBRANDS
-} from './card-brands';
+import type { CardBrand, CardBrandNum, REV_CARDBRANDS } from './card-brands';
 
 describe('CARDBRANDS and REV_CARDBRANDS', () => {
   it('should use the CardBrand interface', () => {
-    expectType<TypeEqual<
-      Record<CardBrand, CardBrandNum>,
-      typeof CARDBRANDS
-    >>(true);
+    expectType<TypeEqual<Record<CardBrand, CardBrandNum>, typeof CARDBRANDS>>(
+      true
+    );
 
-    expectType<TypeEqual<
-      Record<CardBrandNum, CardBrand>,
-      typeof REV_CARDBRANDS
-    >>(true);
+    expectType<
+      TypeEqual<Record<CardBrandNum, CardBrand>, typeof REV_CARDBRANDS>
+    >(true);
   });
 
   it('should implement all of CardBrandNum', () => {

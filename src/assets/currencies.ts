@@ -311,8 +311,8 @@ export type CurrencyNum =
   | '986';
 
 interface CurrencyData {
-  num: CurrencyNum
-  decimals: number
+  num: CurrencyNum;
+  decimals: number;
 }
 
 /**
@@ -536,8 +536,8 @@ export const CURRENCIES: Record<Currency, CurrencyData> = {
 };
 
 interface RevCurrencyData {
-  code: Currency
-  decimals: number
+  code: Currency;
+  decimals: number;
 }
 
 /**

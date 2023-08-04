@@ -6,7 +6,8 @@
     "jest/globals": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -34,14 +35,6 @@
         "warn"
       ]
     }],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1,
-        "MemberExpression": 0
-      }
-    ],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -53,7 +46,8 @@
       "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "standard-with-typescript"
+        "standard-with-typescript",
+        "prettier"
       ],
       "rules": {
         "@typescript-eslint/semi": ["error", "always"],
@@ -71,26 +65,6 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/dot-notation": "off",
-        "@typescript-eslint/indent": ["error", 2, {
-          "SwitchCase": 1,
-          "VariableDeclarator": 1,
-          "outerIIFEBody": 1,
-          "MemberExpression": 1,
-          "FunctionDeclaration": { "parameters": 1, "body": 1 },
-          "FunctionExpression": { "parameters": 1, "body": 1 },
-          "CallExpression": { "arguments": 1 },
-          "ArrayExpression": 1,
-          "ObjectExpression": 1,
-          "ImportDeclaration": 1,
-          "flatTernaryExpressions": false,
-          "ignoreComments": false,
-          "ignoredNodes": [
-            "TemplateLiteral *",
-            "TSTypeParameterInstantiation",
-            "TSTypeAliasDeclaration > TSIntersectionType",
-            "TSTypeAliasDeclaration > TSUnionType"
-          ]
-        }],
         "@typescript-eslint/naming-convention": ["error", {
           "selector": "variableLike",
           "leadingUnderscore": "allow",
@@ -101,7 +75,8 @@
           "leadingUnderscore": "allow",
           "trailingUnderscore": "allow",
           "format": ["camelCase", "PascalCase", "UPPER_CASE", "snake_case"]
-        }]
+        }],
+        "@typescript-eslint/no-confusing-void-expression": ["off"]
       }
     },
     {

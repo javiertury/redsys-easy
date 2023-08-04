@@ -1,6 +1,4 @@
-import type {
-  BaseInputParams
-} from './input-params';
+import type { BaseInputParams } from './input-params';
 import type {
   BaseOutputParams,
   SoapNotificationOutputParams
@@ -11,9 +9,9 @@ export type CommonRawRequestParams = Pick<BaseInputParams, 'DS_MERCHANT_ORDER'>;
 
 export interface ParsedSoapNotifiation {
   Message: {
-    Signature: string
-    Request: SoapNotificationOutputParams
-  }
+    Signature: string;
+    Request: SoapNotificationOutputParams;
+  };
 }
 
 /**
@@ -23,9 +21,9 @@ export interface ParsedSoapNotifiation {
  */
 export interface ThreeDSv1ChallengeNotificationBody {
   /** Payment authentication Request, XML that is gzip compressed and base64 encoded */
-  PaRes: string
+  PaRes: string;
   /** Merchant data, random generated identifier hex encoded? */
-  MD: string
+  MD: string;
 }
 
 /**
@@ -34,7 +32,7 @@ export interface ThreeDSv1ChallengeNotificationBody {
  * @public
  */
 export interface ThreeDSv2MethodNotificationBody {
-  threeDSMethodData: string
+  threeDSMethodData: string;
 }
 
 /**
@@ -44,8 +42,8 @@ export interface ThreeDSv2MethodNotificationBody {
  */
 export interface ThreeDSv2ChallengeNotificationBody {
   /** Challenge response, JSON that is base64 encoded */
-  cres: string
-  threeDSSessionData: string
+  cres: string;
+  threeDSSessionData: string;
 }
 
 /**
@@ -54,16 +52,16 @@ export interface ThreeDSv2ChallengeNotificationBody {
  * @public
  */
 export interface ResponseJSONSuccess {
-  Ds_SignatureVersion: string
-  Ds_Signature: string
-  Ds_MerchantParameters: string
+  Ds_SignatureVersion: string;
+  Ds_Signature: string;
+  Ds_MerchantParameters: string;
 }
 
 /**
  * Body of a failed redsys JSON HTTP response
  */
 export interface ResponseJSONError {
-  errorCode: string
+  errorCode: string;
 }
 
 /**
@@ -75,14 +73,14 @@ export type ResponseJSON = ResponseJSONSuccess | ResponseJSONError;
  * SHA256 signed JSON request parameters
  */
 export interface SHA256SignedJSONParameters {
-  Ds_SignatureVersion: 'HMAC_SHA256_V1'
-  Ds_MerchantParameters: string
-  Ds_Signature: string
+  Ds_SignatureVersion: 'HMAC_SHA256_V1';
+  Ds_MerchantParameters: string;
+  Ds_Signature: string;
 }
 
 export interface SoapNotificationResponse {
-  order: string
-  allow: boolean
+  order: string;
+  allow: boolean;
 }
 
 /**
@@ -91,6 +89,6 @@ export interface SoapNotificationResponse {
  * @public
  */
 export interface RedirectForm {
-  url: string
-  body: SHA256SignedJSONParameters
+  url: string;
+  body: SHA256SignedJSONParameters;
 }

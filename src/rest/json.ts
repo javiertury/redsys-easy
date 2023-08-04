@@ -15,16 +15,22 @@ import {
   sha256SignJSONRequest
 } from './json-sha256-signature';
 
-export const deserializeAndVerifyJSONResponse = <ResponseParams extends CommonRawResponseParams>(
+export const deserializeAndVerifyJSONResponse = <
+  ResponseParams extends CommonRawResponseParams
+>(
   merchantKey: string,
   response: ResponseJSONSuccess
 ): ResponseParams => {
-  const params = deserializeJSONMerchantParams<ResponseParams>(response.Ds_MerchantParameters);
+  const params = deserializeJSONMerchantParams<ResponseParams>(
+    response.Ds_MerchantParameters
+  );
   sha256VerifyJSONResponse(merchantKey, response, params);
   return params;
 };
 
-export const serializeAndSignJSONRequest = <RequestParams extends CommonRawRequestParams>(
+export const serializeAndSignJSONRequest = <
+  RequestParams extends CommonRawRequestParams
+>(
   merchantKey: string,
   requestParams: RequestParams
 ): SHA256SignedJSONParameters => {

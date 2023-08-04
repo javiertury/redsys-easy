@@ -4,16 +4,9 @@
  * @packageDocumentation
  */
 
-export {
-  createRedsysAPI,
-  PRODUCTION_URLS,
-  SANDBOX_URLS
-} from './client';
+export { createRedsysAPI, PRODUCTION_URLS, SANDBOX_URLS } from './client';
 
-export type {
-  UrlsConfig,
-  RedsysConfig
-} from './client';
+export type { UrlsConfig, RedsysConfig } from './client';
 
 export {
   randomTransactionId,
@@ -21,10 +14,7 @@ export {
   isResponseCodeOk
 } from './utils/misc';
 
-export {
-  getResponseCodeMessage,
-  getSISErrorCodeMessage
-} from './utils/codes';
+export { getResponseCodeMessage, getSISErrorCodeMessage } from './utils/codes';
 
 export {
   RedsysError,

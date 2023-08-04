@@ -17,14 +17,7 @@ export type CardBrand =
  *
  * @public
  */
-export type CardBrandNum =
-  | '1'
-  | '2'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '22';
+export type CardBrandNum = '1' | '2' | '6' | '7' | '8' | '9' | '22';
 
 /**
  * Card brand name to number
@@ -53,7 +46,9 @@ export const CARDBRANDS: Record<CardBrand, CardBrandNum> = {
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 const REV_CARDBRANDS = {} as Record<CardBrandNum, CardBrand>;
 
-for (const [key, value] of Object.entries(CARDBRANDS) as ReadonlyArray<[CardBrand, CardBrandNum]>) {
+for (const [key, value] of Object.entries(CARDBRANDS) as ReadonlyArray<
+  [CardBrand, CardBrandNum]
+>) {
   REV_CARDBRANDS[value] = key;
 }
 

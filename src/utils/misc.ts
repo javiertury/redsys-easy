@@ -1,7 +1,4 @@
-import {
-  ParseError,
-  ResponseError
-} from '../errors';
+import { ParseError, ResponseError } from '../errors';
 import type {
   CommonRawRequestParams,
   CommonRawResponseParams
@@ -14,7 +11,8 @@ const drawPositiveDiscreteUniform = (max: number) => {
   return Math.floor(Math.random() * (max + 1));
 };
 
-const alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const alphanumeric =
+  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 /**
  * Generates a random order ID following redsys requirements
@@ -29,7 +27,8 @@ export const randomTransactionId = () => {
   const alphanum = new Array(8);
 
   for (let idx = 0; idx < 8; idx++) {
-    alphanum[idx] = alphanumeric[drawPositiveDiscreteUniform(alphanumeric.length - 1)];
+    alphanum[idx] =
+      alphanumeric[drawPositiveDiscreteUniform(alphanumeric.length - 1)];
   }
 
   const alphanumStr = alphanum.join('');
@@ -40,7 +39,9 @@ export const extractAndAssertOrderFromRequestParams = (
   requestParams: CommonRawRequestParams
 ): string => {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
-  const order = requestParams['DS_MERCHANT_ORDER'] || (requestParams as Record<string, string>)['Ds_Merchant_Order'];
+  const order =
+    requestParams['DS_MERCHANT_ORDER'] ||
+    (requestParams as Record<string, string>)['Ds_Merchant_Order'];
 
   if (typeof order !== 'string' || !order) {
     throw new ParseError('Missing order number');
@@ -53,7 +54,9 @@ export const extractAndAssertOrderFromResponseParams = (
   responseParams: CommonRawResponseParams
 ): string => {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
-  const order = responseParams['Ds_Order'] || (responseParams as Record<string, string>)['DS_ORDER'];
+  const order =
+    responseParams['Ds_Order'] ||
+    (responseParams as Record<string, string>)['DS_ORDER'];
 
   if (typeof order !== 'string' || !order) {
     throw new ParseError('Missing order number');
@@ -69,10 +72,11 @@ export const extractAndAssertOrderFromResponseParams = (
  */
 export const isResponseCodeOk = (responseCode: string): boolean => {
   const numResCode = Number.parseInt(responseCode);
-  return Number.isFinite(numResCode) && (
-    (numResCode >= 0 && numResCode < 100) ||
-    numResCode === 400 || // Transaction cancellation authorized
-    numResCode === 900 // Refund authorized
+  return (
+    Number.isFinite(numResCode) &&
+    ((numResCode >= 0 && numResCode < 100) ||
+      numResCode === 400 || // Transaction cancellation authorized
+      numResCode === 900) // Refund authorized
   );
 };
 
@@ -81,9 +85,9 @@ export const isResponseCodeOk = (responseCode: string): boolean => {
  *
  * @public
  */
-export const assertSuccessfulResponseCode = (
-  responseParams: { Ds_Response?: string }
-) => {
+export const assertSuccessfulResponseCode = (responseParams: {
+  Ds_Response?: string;
+}) => {
   const { Ds_Response: resCode } = responseParams;
 
   if (resCode == null) {
@@ -91,8 +95,13 @@ export const assertSuccessfulResponseCode = (
   }
 
   if (!isResponseCodeOk(resCode)) {
-    throw new ResponseError({ code: Number.parseInt(resCode), response: responseParams });
+    throw new ResponseError({
+      code: Number.parseInt(resCode),
+      response: responseParams
+    });
   }
 };
 
-export const isStringNotEmpty = <T extends string>(str: T | undefined): str is T => str != null && str.length > 0;
+export const isStringNotEmpty = <T extends string>(
+  str: T | undefined
+): str is T => str != null && str.length > 0;

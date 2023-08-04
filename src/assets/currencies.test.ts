@@ -2,29 +2,35 @@ import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
 import { CURRENCIES } from './currencies';
-import type {
-  Currency,
-  CurrencyNum,
-  REV_CURRENCIES
-} from './currencies';
+import type { Currency, CurrencyNum, REV_CURRENCIES } from './currencies';
 
 describe('CURRENCIES and REV_CURRENCIES', () => {
   it('should use the Currency interface', () => {
-    expectType<TypeEqual<
-      Record<Currency, {
-        num: CurrencyNum
-        decimals: number
-      }>,
-      typeof CURRENCIES
-    >>(true);
+    expectType<
+      TypeEqual<
+        Record<
+          Currency,
+          {
+            num: CurrencyNum;
+            decimals: number;
+          }
+        >,
+        typeof CURRENCIES
+      >
+    >(true);
 
-    expectType<TypeEqual<
-      Record<CurrencyNum, {
-        code: Currency
-        decimals: number
-      }>,
-      typeof REV_CURRENCIES
-    >>(true);
+    expectType<
+      TypeEqual<
+        Record<
+          CurrencyNum,
+          {
+            code: Currency;
+            decimals: number;
+          }
+        >,
+        typeof REV_CURRENCIES
+      >
+    >(true);
   });
 
   it('should implement all of CurrencyNum', () => {
@@ -186,7 +192,9 @@ describe('CURRENCIES and REV_CURRENCIES', () => {
     };
 
     const allCurrencyNums = Object.keys(allCurrencyNumsObj).sort();
-    const implementedCurrencyNums = Object.values(CURRENCIES).map(({ num }) => num).sort();
+    const implementedCurrencyNums = Object.values(CURRENCIES)
+      .map(({ num }) => num)
+      .sort();
 
     expect(implementedCurrencyNums).toEqual(allCurrencyNums);
   });

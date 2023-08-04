@@ -1,6 +1,4 @@
-import {
-  RedsysError
-} from './errors';
+import { RedsysError } from './errors';
 
 import {
   deserializeAndVerifyJSONResponse,
@@ -12,14 +10,9 @@ import {
   serializeAndSignSoapNotificationResponse
 } from './soap/notification';
 
-import {
-  jsonRequest
-} from './rest/requests';
+import { jsonRequest } from './rest/requests';
 
-import type {
-  ResponseJSONSuccess,
-  RedirectForm
-} from './types/api';
+import type { ResponseJSONSuccess, RedirectForm } from './types/api';
 
 import type {
   RestIniciaPeticionInputParams,
@@ -40,9 +33,9 @@ import type {
  * @public
  */
 export interface UrlsConfig {
-  redirect: string
-  restTrataPeticion: string
-  restIniciaPeticion: string
+  redirect: string;
+  restTrataPeticion: string;
+  restIniciaPeticion: string;
 }
 
 /**
@@ -64,7 +57,8 @@ export const PRODUCTION_URLS: UrlsConfig = {
 export const SANDBOX_URLS: UrlsConfig = {
   redirect: 'https://sis-t.redsys.es:25443/sis/realizarPago',
   restTrataPeticion: 'https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST',
-  restIniciaPeticion: 'https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST'
+  restIniciaPeticion:
+    'https://sis-t.redsys.es:25443/sis/rest/iniciaPeticionREST'
 };
 
 /**
@@ -73,8 +67,8 @@ export const SANDBOX_URLS: UrlsConfig = {
  * @public
  */
 export interface RedsysConfig {
-  secretKey: string
-  urls: UrlsConfig
+  secretKey: string;
+  urls: UrlsConfig;
 }
 
 /**
@@ -91,8 +85,10 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   }
 
   if (
-    typeof config.urls !== 'object' || config.urls == null ||
-    !config.urls.restIniciaPeticion || !config.urls.restTrataPeticion ||
+    typeof config.urls !== 'object' ||
+    config.urls == null ||
+    !config.urls.restIniciaPeticion ||
+    !config.urls.restTrataPeticion ||
     !config.urls.redirect
   ) {
     throw new RedsysError('URLs must be provided');
@@ -104,9 +100,10 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   const restIniciaPeticion = async (
     paramsInput: RestIniciaPeticionInputParams
   ): Promise<RestIniciaPeticionOutputParams> => {
-    return await jsonRequest<RestIniciaPeticionInputParams, RestIniciaPeticionOutputParams>(
-      config.urls.restIniciaPeticion, config.secretKey, paramsInput
-    );
+    return await jsonRequest<
+      RestIniciaPeticionInputParams,
+      RestIniciaPeticionOutputParams
+    >(config.urls.restIniciaPeticion, config.secretKey, paramsInput);
   };
 
   /**
@@ -115,9 +112,10 @@ export const createRedsysAPI = (config: RedsysConfig) => {
   const restTrataPeticion = async (
     paramsInput: RestTrataPeticionInputParams
   ): Promise<RestTrataPeticionOutputParams> => {
-    const result = await jsonRequest<RestTrataPeticionInputParams, RestTrataPeticionOutputParams>(
-      config.urls.restTrataPeticion, config.secretKey, paramsInput
-    );
+    const result = await jsonRequest<
+      RestTrataPeticionInputParams,
+      RestTrataPeticionOutputParams
+    >(config.urls.restTrataPeticion, config.secretKey, paramsInput);
 
     return result;
   };
@@ -144,7 +142,10 @@ export const createRedsysAPI = (config: RedsysConfig) => {
     body: ResponseJSONSuccess
   ): RestNotificationOutputParams => {
     // A notification can't contain a gateway error, it didn't initiate the request
-    return deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(config.secretKey, body);
+    return deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
+      config.secretKey,
+      body
+    );
   };
 
   /**

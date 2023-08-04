@@ -1,48 +1,48 @@
 export interface ThreeDSPhone {
   /** Country prefix number */
-  cc: string
+  cc: string;
 
   /** Phone number */
-  subscriber: string
+  subscriber: string;
 }
 
 export interface ThreeDSRequestorAuthenticationInfo {
   /** Authentication Data */
-  threeDSReqAuthData: string
+  threeDSReqAuthData: string;
 
   /** Authentication method code */
-  threeDSReqAuthMethod: string
+  threeDSReqAuthMethod: string;
 
   /** Authentication timestamp, yyyymmddHHMM */
-  threeDSReqAuthTimestamp: string
+  threeDSReqAuthTimestamp: string;
 }
 
 export interface ThreeDSRequestorPriorAuthenticationInfo {
   /** Reference */
-  threeDSReqPriorRef?: string
+  threeDSReqPriorRef?: string;
 
   /** Authentication method code */
-  threeDSReqPriorAuthMethod?: string
+  threeDSReqPriorAuthMethod?: string;
 
   /** Authentication timestamp, yyyymmddHHMM */
-  threeDSReqPriorAuthTimestamp?: string
+  threeDSReqPriorAuthTimestamp?: string;
 }
 
 export interface BaseThreeDSAuthenticationDataParams {
   /** 3DSecure protocol version */
-  protocolVersion: '1.0.2' | '2.1.0' | '2.2.0'
+  protocolVersion: '1.0.2' | '2.1.0' | '2.2.0';
 
   /** 3DSecure information type */
-  threeDSInfo: 'AuthenticationData'
+  threeDSInfo: 'AuthenticationData';
 
   /** Challenge notification URL */
-  notificationURL: string
+  notificationURL: string;
 
   /** 3DSecure Method result indicator */
-  threeDSCompInd: 'Y' | 'N' | 'U'
+  threeDSCompInd: 'Y' | 'N' | 'U';
 
   /** 3DSecure transaction identifier */
-  threeDSServerTransID: string
+  threeDSServerTransID: string;
 
   /**
    * Browser Screen Color Depth
@@ -50,7 +50,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `screen.colorDepth.toString()` or `'1'` if javascript is disabled
    */
-  browserColorDepth: string
+  browserColorDepth: string;
 
   /**
    * Browser Java Enabled
@@ -58,7 +58,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `navigator.javaEnabled()` or `false` if javascript is disabled
    */
-  browserJavaEnabled: boolean
+  browserJavaEnabled: boolean;
 
   /**
    * Browser Language
@@ -66,7 +66,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `navigator.language`
    */
-  browserLanguage: string
+  browserLanguage: string;
 
   /**
    * Browser Screen Height
@@ -74,7 +74,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `screen.height.toString()` or `'0'` if javascript is disabled
    */
-  browserScreenHeight: string
+  browserScreenHeight: string;
 
   /**
    * Browser Screen Width
@@ -82,7 +82,7 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `screen.width.toString()` or `'0'` if javascript is disabled
    */
-  browserScreenWidth: string
+  browserScreenWidth: string;
 
   /**
    * Browser Time Zone
@@ -90,181 +90,181 @@ export interface BaseThreeDSAuthenticationDataParams {
    * @remarks
    * `(new Date()).getTimezoneOffset().toString()` or `'0'` if javascript is disabled
    */
-  browserTZ: string
+  browserTZ: string;
 
   /** Browser JavaScript Enabled */
-  browserJavascriptEnabled: boolean
+  browserJavascriptEnabled: boolean;
 
   /** Browser User-Agent */
-  browserUserAgent: string
+  browserUserAgent: string;
 
   /** Browser Accept Header */
-  browserAcceptHeader: string
+  browserAcceptHeader: string;
 
   /** Browser IP Address, ipv4 or ipv6 */
-  browserIP?: string
+  browserIP?: string;
 
   /** Additional account information, max 64 characters */
-  acctID?: string
+  acctID?: string;
 
   /** Account information, json */
   acctInfo?: {
     /** Account creation ellapsed time code */
-    chAccAgeInd?: '01' | '02' | '03' | '04' | '05'
+    chAccAgeInd?: '01' | '02' | '03' | '04' | '05';
 
     /** Account modification date, yyyymmdd */
-    chAccChange?: string
+    chAccChange?: string;
 
     /** Account modification ellapsed time code */
-    chAccChangeInd?: '01' | '02' | '03' | '04'
+    chAccChangeInd?: '01' | '02' | '03' | '04';
 
     /** Account creation date, yyyymmdd */
-    chAccDate?: string
+    chAccDate?: string;
 
     /** Last password change date, yyyymmdd */
-    chAccPwChange?: string
+    chAccPwChange?: string;
 
     /** Password change ellapsed time code */
-    chAccPwChangeInd?: '01' | '02' | '03' | '04' | '05'
+    chAccPwChangeInd?: '01' | '02' | '03' | '04' | '05';
 
     /** Number of purchases during the last 6 months */
-    nbPurchaseAccount?: string
+    nbPurchaseAccount?: string;
 
     /** Attemps to add a card during the last 24 hours */
-    provisionAttemptsDay?: string
+    provisionAttemptsDay?: string;
 
     /** Number of transactions attempted during the last 24 hours */
-    txnActivityDay?: string
+    txnActivityDay?: string;
 
     /** Number of transactions attempted last year */
-    txnActivityYear?: string
+    txnActivityYear?: string;
 
     /** Card registration date, yyyymmdd */
-    paymentAccAge?: string
+    paymentAccAge?: string;
 
     /** Card registration ellapsed time code */
-    paymentAccInd?: '01' | '02' | '03' | '04' | '05'
+    paymentAccInd?: '01' | '02' | '03' | '04' | '05';
 
     /** First usage of shipping address date, yyyymmdd */
-    shipAddressUsage?: string
+    shipAddressUsage?: string;
 
     /** First usage of shipping address ellapsed time code */
-    shipAddressUsageInd?: '01' | '02' | '03' | '04' | '05'
+    shipAddressUsageInd?: '01' | '02' | '03' | '04' | '05';
 
     /** Cardholder shipping name indicator code */
-    shipNameIndicator?: '01' | '02'
+    shipNameIndicator?: '01' | '02';
 
     /** Suspicious activity code */
-    suspiciousAccActivity?: '01' | '02'
-  }
+    suspiciousAccActivity?: '01' | '02';
+  };
 
   /** Matching shipping and billing addresses indicator */
-  addrMatch?: 'Y' | 'N'
+  addrMatch?: 'Y' | 'N';
 
   /** Billing address city */
-  billAddrCity?: string
+  billAddrCity?: string;
 
   /** Billing address line 1 */
-  billAddrLine1?: string
+  billAddrLine1?: string;
 
   /** Billing address line 2 */
-  billAddrLine2?: string
+  billAddrLine2?: string;
 
   /** Billing address line 3 */
-  billAddrLine3?: string
+  billAddrLine3?: string;
 
   /** Billing address postal code */
-  billAddrPostCode?: string
+  billAddrPostCode?: string;
 
   /** Billing address state code, ISO 3166-2 */
-  billAddrState?: string
+  billAddrState?: string;
 
   /** Billing address country code, ISO 3166-1 */
-  billAddrCountry?: string
+  billAddrCountry?: string;
 
   /** Cardholder name */
-  cardholderName?: string
+  cardholderName?: string;
 
   /** Challenge window size */
-  challengeWindowSize?: string
+  challengeWindowSize?: string;
 
   /** Account email address */
-  email?: string
+  email?: string;
 
   /** Account landline phone number */
-  homePhone?: ThreeDSPhone
+  homePhone?: ThreeDSPhone;
 
   /** Account mobile phone number */
-  mobilePhone?: ThreeDSPhone
+  mobilePhone?: ThreeDSPhone;
 
   /** Account work phone number */
-  workPhone?: ThreeDSPhone
+  workPhone?: ThreeDSPhone;
 
   /** Merchant risk indicator, json */
   merchantRiskIndicator?: {
     /** Delivery email address */
-    deliveryEmailAddress?: string
+    deliveryEmailAddress?: string;
 
     /** Delivery time code */
-    deliveryTimeframe?: '01' | '02' | '03' | '04'
+    deliveryTimeframe?: '01' | '02' | '03' | '04';
 
     /** Gift card amount */
-    giftCardAmount?: string
+    giftCardAmount?: string;
 
     /** Count of gift cards used */
-    giftCardCount?: string
+    giftCardCount?: string;
 
     /** Gift card currency number, ISO-4217 */
-    giftCardCurr?: string
+    giftCardCurr?: string;
 
     /** Preorder availability date, yyyymmdd */
-    preOrderDate?: string
+    preOrderDate?: string;
 
     /** Preorder availability indicator code */
-    preOrderPurchaseInd?: '01' | '02'
+    preOrderPurchaseInd?: '01' | '02';
 
     /** Reorder indicator code */
-    reorderItemsInd?: '01' | '02'
+    reorderItemsInd?: '01' | '02';
 
     /** Shipping indicator code */
-    shipIndicator?: '01' | '02' | '03' | '04' | '05' | '06' | '07'
-  }
+    shipIndicator?: '01' | '02' | '03' | '04' | '05' | '06' | '07';
+  };
 
   /** Number of purchase installments */
-  purchaseInstalData?: string
+  purchaseInstalData?: string;
 
   /** Recurring payments expiration date, yyyymmdd */
-  recurringExpiry?: string
+  recurringExpiry?: string;
 
   /** Minimum number of days between recurring payments */
-  recurringFrequency?: string
+  recurringFrequency?: string;
 
   /** Shipping address city */
-  shipAddrCity?: string
+  shipAddrCity?: string;
 
   /** Shipping address line 1 */
-  shipAddrLine1?: string
+  shipAddrLine1?: string;
 
   /** Shipping address line 2 */
-  shipAddrLine2?: string
+  shipAddrLine2?: string;
 
   /** Shipping address line 3 */
-  shipAddrLine3?: string
+  shipAddrLine3?: string;
 
   /** Shipping address postal code */
-  shipAddrPostCode?: string
+  shipAddrPostCode?: string;
 
   /** Shipping address state code, ISO 3166-2 */
-  shipAddrState?: string
+  shipAddrState?: string;
 
   /** Shipping address country code, ISO 3166-1 */
-  shipAddrCountry?: string
+  shipAddrCountry?: string;
 
   /** Authentication information, json */
-  threeDSRequestorAuthenticationInfo?: ThreeDSRequestorAuthenticationInfo
+  threeDSRequestorAuthenticationInfo?: ThreeDSRequestorAuthenticationInfo;
 
   /** Previous authentication information, json */
-  threeDSRequestorPriorAuthenticationInfo?: ThreeDSRequestorPriorAuthenticationInfo
+  threeDSRequestorPriorAuthenticationInfo?: ThreeDSRequestorPriorAuthenticationInfo;
 }
 
 /**
@@ -304,36 +304,38 @@ export type ThreeDSBrowserClientInfo = Pick<
  */
 
 export interface ThreeDSPreAuthInputParams {
-  threeDSInfo: 'CardData'
+  threeDSInfo: 'CardData';
 }
 
-export interface ThreeDSv1AuthDataInputParams extends Pick<
-  BaseThreeDSAuthenticationDataParams,
-  | 'protocolVersion'
-  | 'threeDSInfo'
-  | 'browserAcceptHeader'
-  | 'browserUserAgent'
-> {
-  protocolVersion: '1.0.2'
-  threeDSInfo: 'AuthenticationData'
+export interface ThreeDSv1AuthDataInputParams
+  extends Pick<
+    BaseThreeDSAuthenticationDataParams,
+    | 'protocolVersion'
+    | 'threeDSInfo'
+    | 'browserAcceptHeader'
+    | 'browserUserAgent'
+  > {
+  protocolVersion: '1.0.2';
+  threeDSInfo: 'AuthenticationData';
 }
 
-export interface ThreeDSv2AuthDataInputParams extends BaseThreeDSAuthenticationDataParams {
-  protocolVersion: '2.1.0' | '2.2.0'
-  threeDSInfo: 'AuthenticationData'
+export interface ThreeDSv2AuthDataInputParams
+  extends BaseThreeDSAuthenticationDataParams {
+  protocolVersion: '2.1.0' | '2.2.0';
+  threeDSInfo: 'AuthenticationData';
 }
 
 export interface ThreeDSv1ChallengeResponseInputParams {
-  protocolVersion: '1.0.2'
-  threeDSInfo: 'ChallengeResponse'
-  PARes: string
-  MD: string
+  protocolVersion: '1.0.2';
+  threeDSInfo: 'ChallengeResponse';
+  PARes: string;
+  MD: string;
 }
 
 export interface ThreeDSv2ChallengeResponseInputParams {
-  protocolVersion: '2.1.0' | '2.2.0'
-  threeDSInfo: 'ChallengeResponse'
-  cres: string
+  protocolVersion: '2.1.0' | '2.2.0';
+  threeDSInfo: 'ChallengeResponse';
+  cres: string;
 }
 
 /** 3D Secure input parameters */
@@ -344,7 +346,8 @@ export type ThreeDSInputParams =
   | ThreeDSv1ChallengeResponseInputParams
   | ThreeDSv2ChallengeResponseInputParams;
 
-export type ThreeDSRedirectInputParams = Omit<BaseThreeDSAuthenticationDataParams,
+export type ThreeDSRedirectInputParams = Omit<
+  BaseThreeDSAuthenticationDataParams,
   | 'protocolVersion'
   | 'threeDSInfo'
   | 'notificationURL'
@@ -367,18 +370,19 @@ export type ThreeDSRedirectInputParams = Omit<BaseThreeDSAuthenticationDataParam
  */
 
 export interface ThreeDSv1PreAuthOutputParams {
-  protocolVersion: 'NO_3DS_v2'
-  threeDSInfo: 'CardConfiguration'
+  protocolVersion: 'NO_3DS_v2';
+  threeDSInfo: 'CardConfiguration';
 }
 
 export interface ThreeDSv2PreAuthWithoutMethodOutputParams {
-  protocolVersion: '2.1.0' | '2.2.0'
-  threeDSInfo: 'CardConfiguration'
-  threeDSServerTransID: string
+  protocolVersion: '2.1.0' | '2.2.0';
+  threeDSInfo: 'CardConfiguration';
+  threeDSServerTransID: string;
 }
 
-export interface ThreeDSv2PreAuthWithMethodOutputParams extends ThreeDSv2PreAuthWithoutMethodOutputParams {
-  threeDSMethodURL: string
+export interface ThreeDSv2PreAuthWithMethodOutputParams
+  extends ThreeDSv2PreAuthWithoutMethodOutputParams {
+  threeDSMethodURL: string;
 }
 
 export type ThreeDSv2PreAuthOutputParams =
@@ -386,18 +390,18 @@ export type ThreeDSv2PreAuthOutputParams =
   | ThreeDSv2PreAuthWithMethodOutputParams;
 
 export interface ThreeDSv1ChallengeOutputParams {
-  protocolVersion: '1.0.2'
-  threeDSInfo: 'ChallengeRequest'
-  acsURL: string
-  MD: string
-  PAReq: string
+  protocolVersion: '1.0.2';
+  threeDSInfo: 'ChallengeRequest';
+  acsURL: string;
+  MD: string;
+  PAReq: string;
 }
 
 export interface ThreeDSv2ChallengeOutputParams {
-  protocolVersion: '2.1.0' | '2.2.0'
-  threeDSInfo: 'ChallengeRequest'
-  acsURL: string
-  creq: string
+  protocolVersion: '2.1.0' | '2.2.0';
+  threeDSInfo: 'ChallengeRequest';
+  acsURL: string;
+  creq: string;
 }
 
 /**
@@ -413,15 +417,15 @@ export type ThreeDSOutputParams =
  * 3D Secure v2 challenge solution parameters
  */
 export interface ThreeDSv2ChallengeSolutionNotificationOutputParams {
-  cres: string
+  cres: string;
 }
 
 /**
  * 3D Secure v1 challenge solution parameters
  */
 export interface ThreeDSv1ChallengeSolutionNotificationOutputParams {
-  MD: string
-  PaRes: string
+  MD: string;
+  PaRes: string;
 }
 
 /**
@@ -430,8 +434,8 @@ export interface ThreeDSv1ChallengeSolutionNotificationOutputParams {
  * @public
  */
 export interface ThreeDSMethodData {
-  threeDSServerTransID: string
-  threeDSMethodNotificationURL: string
+  threeDSServerTransID: string;
+  threeDSMethodNotificationURL: string;
 }
 
 /**
@@ -440,10 +444,10 @@ export interface ThreeDSMethodData {
  * @public
  */
 export interface ThreeDSMethodForm {
-  url: string
+  url: string;
   body: {
-    threeDSMethodData: string
-  }
+    threeDSMethodData: string;
+  };
 }
 
 /*
@@ -456,15 +460,15 @@ export interface ThreeDSMethodForm {
  * @public
  */
 export interface ThreeDSv1ChallengeForm {
-  url: string
+  url: string;
   body: {
     /** Payment authentication Request, XML that is gzip compressed and base64 encoded */
-    PaReq: string
+    PaReq: string;
     /** Merchant data, random generated identifier hex encoded? */
-    MD: string
+    MD: string;
     /** Post challenge redirect URL */
-    TermUrl: string
-  }
+    TermUrl: string;
+  };
 }
 
 /**
@@ -473,11 +477,11 @@ export interface ThreeDSv1ChallengeForm {
  * @public
  */
 export interface ThreeDSv2ChallengeForm {
-  url: string
+  url: string;
   body: {
     /** Challenge request, JSON that is base64 encoded */
-    creq: string
-  }
+    creq: string;
+  };
 }
 
 /**
@@ -487,9 +491,9 @@ export interface ThreeDSv2ChallengeForm {
  */
 export interface ThreeDSCres {
   // Even for 3DS v2.2, the version seems to be fixed at 2.1
-  messageVersion: '2.1.0' | '2.2.0'
-  threeDSServerTransID: string
-  acsTransID: string
-  messageType: 'CRes'
-  transStatus: 'Y' | 'N'
+  messageVersion: '2.1.0' | '2.2.0';
+  threeDSServerTransID: string;
+  acsTransID: string;
+  messageType: 'CRes';
+  transStatus: 'Y' | 'N';
 }

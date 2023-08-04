@@ -5,13 +5,17 @@ import type {
   SoapNotificationResponse
 } from '../types/api';
 
-export const serializeSoapNotificationResponse = ({ allow: allowOperation }: SoapNotificationResponse): string => {
+export const serializeSoapNotificationResponse = ({
+  allow: allowOperation
+}: SoapNotificationResponse): string => {
   const answer = allowOperation ? 'OK' : 'KO';
   return `<Response Ds_Version="0.0"><Ds_Response_Merchant>${answer}</Ds_Response_Merchant></Response>`;
 };
 
 const xmlParser = new XMLParser({ parseTagValue: false });
 
-export const deserializeSoapNotification = (xml: string): ParsedSoapNotifiation['Message'] => {
+export const deserializeSoapNotification = (
+  xml: string
+): ParsedSoapNotifiation['Message'] => {
   return (xmlParser.parse(xml) as ParsedSoapNotifiation).Message;
 };

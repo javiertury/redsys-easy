@@ -6,10 +6,7 @@ import {
   extractAndAssertOrderFromResponseParams
 } from '../utils/misc';
 
-import {
-  RedsysError,
-  ParseError
-} from '../errors';
+import { RedsysError, ParseError } from '../errors';
 
 import type {
   ResponseJSONSuccess,
@@ -24,18 +21,26 @@ export const sha256VerifyJSONResponse = (
   responseParams: CommonRawResponseParams
 ): void => {
   if (response.Ds_SignatureVersion !== 'HMAC_SHA256_V1') {
-    throw new RedsysError(`Unknown signature version: ${response.Ds_SignatureVersion}`);
+    throw new RedsysError(
+      `Unknown signature version: ${response.Ds_SignatureVersion}`
+    );
   }
 
   const order: string = extractAndAssertOrderFromResponseParams(responseParams);
 
   const signature: string | undefined = response.Ds_Signature;
   // Base64url with padding, only substitutes + and /
-  const expSignature: string = sha256Sign(merchantKey,
-    order, response.Ds_MerchantParameters);
+  const expSignature: string = sha256Sign(
+    merchantKey,
+    order,
+    response.Ds_MerchantParameters
+  );
 
   // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
-  if (!signature || !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))) {
+  if (
+    !signature ||
+    !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))
+  ) {
     throw new ParseError('Invalid signature');
   }
 };

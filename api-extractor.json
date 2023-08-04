@@ -3,6 +3,10 @@
 
   "mainEntryPointFilePath": "<projectFolder>/lib/index.d.ts",
 
+  "compiler": {
+    "tsconfigFilePath": "<projectFolder>/tsconfig.build.json"
+  },
+
   "apiReport": {
     "enabled": true,
     "reportFileName": "<unscopedPackageName>.api.md",

@@ -21,7 +21,10 @@ import type {
  * @public
  */
 export const create3DSMethodForm = (
-  emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>,
+  emv3dsParams: Pick<
+    ThreeDSv2PreAuthWithMethodOutputParams,
+    'threeDSServerTransID' | 'threeDSMethodURL'
+  >,
   notificationURL: string
 ): ThreeDSMethodForm => {
   const methodData: ThreeDSMethodData = {
@@ -89,5 +92,7 @@ export const deserializeThreeDSMethodData = (
  * @public
  */
 export const deserializeCres = (cres: string): ThreeDSCres => {
-  return JSON.parse(Buffer.from(cres, 'base64').toString('utf8')) as ThreeDSCres;
+  return JSON.parse(
+    Buffer.from(cres, 'base64').toString('utf8')
+  ) as ThreeDSCres;
 };

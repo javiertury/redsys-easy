@@ -20,17 +20,27 @@ import {
 
 describe('SOAP Notification serialization', () => {
   it('should serialize "allowed" response', () => {
-    const serializedParams = serializeSoapNotificationResponse(allowedNotificationResponseParams);
-    expect(serializedParams).toEqual(serializedAllowedNotificationResponseParams);
+    const serializedParams = serializeSoapNotificationResponse(
+      allowedNotificationResponseParams
+    );
+    expect(serializedParams).toEqual(
+      serializedAllowedNotificationResponseParams
+    );
   });
 
   it('should serialize "denied" response', () => {
-    const serializedParams = serializeSoapNotificationResponse(deniedNotificationResponseParams);
-    expect(serializedParams).toEqual(serializedDeniedNotificationResponseParams);
+    const serializedParams = serializeSoapNotificationResponse(
+      deniedNotificationResponseParams
+    );
+    expect(serializedParams).toEqual(
+      serializedDeniedNotificationResponseParams
+    );
   });
 
   it('should deserialize notification', () => {
-    const deserializedParams = deserializeSoapNotification(serializedAndSignedSoapNotificationParams);
+    const deserializedParams = deserializeSoapNotification(
+      serializedAndSignedSoapNotificationParams
+    );
     expect(deserializedParams).toEqual(deserializedSoapNotification);
   });
 });

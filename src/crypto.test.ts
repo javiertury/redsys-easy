@@ -1,10 +1,6 @@
 import base64url from 'base64url';
 
-import {
-  zeroPad,
-  encrypt3DES,
-  sha256Sign
-} from './crypto';
+import { zeroPad, encrypt3DES, sha256Sign } from './crypto';
 
 import {
   redirectMerchantKey,
@@ -57,35 +53,35 @@ import {
 describe('Crypto', () => {
   describe('zeroPad', () => {
     it('should pad buffer if not already aligned', () => {
-      expect(
-        zeroPad(Buffer.from('A0', 'hex'), 2)
-      ).toEqual(Buffer.from('A000', 'hex'));
+      expect(zeroPad(Buffer.from('A0', 'hex'), 2)).toEqual(
+        Buffer.from('A000', 'hex')
+      );
 
-      expect(
-        zeroPad(Buffer.from('A077', 'hex'), 4)
-      ).toEqual(Buffer.from('A0770000', 'hex'));
+      expect(zeroPad(Buffer.from('A077', 'hex'), 4)).toEqual(
+        Buffer.from('A0770000', 'hex')
+      );
 
-      expect(
-        zeroPad(Buffer.from('A077', 'hex'), 8)
-      ).toEqual(Buffer.from('A077000000000000', 'hex'));
+      expect(zeroPad(Buffer.from('A077', 'hex'), 8)).toEqual(
+        Buffer.from('A077000000000000', 'hex')
+      );
 
-      expect(
-        zeroPad(Buffer.from('A077', 'hex'), 16)
-      ).toEqual(Buffer.from('A0770000000000000000000000000000', 'hex'));
+      expect(zeroPad(Buffer.from('A077', 'hex'), 16)).toEqual(
+        Buffer.from('A0770000000000000000000000000000', 'hex')
+      );
     });
 
     it('should not pad buffer if already aligned', () => {
-      expect(
-        zeroPad(Buffer.from('A077', 'hex'), 2)
-      ).toEqual(Buffer.from('A077', 'hex'));
+      expect(zeroPad(Buffer.from('A077', 'hex'), 2)).toEqual(
+        Buffer.from('A077', 'hex')
+      );
 
-      expect(
-        zeroPad(Buffer.from('A07712F0', 'hex'), 4)
-      ).toEqual(Buffer.from('A07712F0', 'hex'));
+      expect(zeroPad(Buffer.from('A07712F0', 'hex'), 4)).toEqual(
+        Buffer.from('A07712F0', 'hex')
+      );
 
-      expect(
-        zeroPad(Buffer.from('A07712F0FF4CD8FF', 'hex'), 8)
-      ).toEqual(Buffer.from('A07712F0FF4CD8FF', 'hex'));
+      expect(zeroPad(Buffer.from('A07712F0FF4CD8FF', 'hex'), 8)).toEqual(
+        Buffer.from('A07712F0FF4CD8FF', 'hex')
+      );
 
       expect(
         zeroPad(Buffer.from('A07712F0FF4CD8FFA07712F0FF4CD8FF', 'hex'), 16)
@@ -104,7 +100,10 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(redirectWithIdentifierMerchantKey, redirectWithIdentifierRequest.DS_MERCHANT_ORDER)
+        encrypt3DES(
+          redirectWithIdentifierMerchantKey,
+          redirectWithIdentifierRequest.DS_MERCHANT_ORDER
+        )
       ).toEqual(Buffer.from(redirectWithIdentifier3DESOrder, 'base64'));
 
       expect(
@@ -112,7 +111,10 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(redirectWithIdentifierMerchantKey, deserializedRestNotificationWithIdentifier.Ds_Order)
+        encrypt3DES(
+          redirectWithIdentifierMerchantKey,
+          deserializedRestNotificationWithIdentifier.Ds_Order
+        )
       ).toEqual(Buffer.from(redirectWithIdentifier3DESOrder, 'base64'));
 
       expect(
@@ -124,30 +126,37 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(restJson3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(allowedSoapNotificationResponseMerchantKey, allowedNotificationResponseParams.order)
+        encrypt3DES(
+          allowedSoapNotificationResponseMerchantKey,
+          allowedNotificationResponseParams.order
+        )
       ).toEqual(Buffer.from(allowedNotificationResponse3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(deniedSoapNotificationResponseMerchantKey, deniedNotificationResponseParams.order)
+        encrypt3DES(
+          deniedSoapNotificationResponseMerchantKey,
+          deniedNotificationResponseParams.order
+        )
       ).toEqual(Buffer.from(deniedNotificationResponse3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(soapNotificationMerchantKey, deserializedSoapNotification.Request.Ds_Order)
+        encrypt3DES(
+          soapNotificationMerchantKey,
+          deserializedSoapNotification.Request.Ds_Order
+        )
       ).toEqual(Buffer.from(soapNotification3DESOrder, 'base64'));
     });
 
     it('should throw if key length is not 8 bytes', () => {
-      expect(
-        () => encrypt3DES('ky', 'abcd')
-      ).toThrow('Invalid key length');
+      expect(() => encrypt3DES('ky', 'abcd')).toThrow('Invalid key length');
 
-      expect(
-        () => encrypt3DES('oHcS8P9M2P+g', 'abcd')
-      ).toThrow('Invalid key length');
+      expect(() => encrypt3DES('oHcS8P9M2P+g', 'abcd')).toThrow(
+        'Invalid key length'
+      );
 
-      expect(
-        () => encrypt3DES('oHcS8P9M2P+gdxLw/0zY/w==', 'abcd')
-      ).toThrow('Invalid key length');
+      expect(() => encrypt3DES('oHcS8P9M2P+gdxLw/0zY/w==', 'abcd')).toThrow(
+        'Invalid key length'
+      );
     });
   });
 
@@ -167,8 +176,12 @@ describe('Crypto', () => {
           deserializedRestNotification.Ds_Order,
           serializedRestNotification.Ds_MerchantParameters
         )
-      // Redsys returns base64url encoded instead of regular base64
-      ).toEqual(base64url.toBuffer(serializedRestNotification.Ds_Signature).toString('base64'));
+        // Redsys returns base64url encoded instead of regular base64
+      ).toEqual(
+        base64url
+          .toBuffer(serializedRestNotification.Ds_Signature)
+          .toString('base64')
+      );
 
       expect(
         sha256Sign(
@@ -184,8 +197,12 @@ describe('Crypto', () => {
           deserializedRestJsonResponse.Ds_Order,
           serializedRestJsonResponse.Ds_MerchantParameters
         )
-      // Redsys returns base64url encoded instead of regular base64
-      ).toEqual(base64url.toBuffer(serializedRestJsonResponse.Ds_Signature).toString('base64'));
+        // Redsys returns base64url encoded instead of regular base64
+      ).toEqual(
+        base64url
+          .toBuffer(serializedRestJsonResponse.Ds_Signature)
+          .toString('base64')
+      );
 
       expect(
         sha256Sign(

@@ -31,34 +31,40 @@ import {
 
 describe('REST JSON serialization', () => {
   it('should serialize merchant parameters', () => {
-    expect(
-      serializeJSONMerchantParams(redirectRequest)
-    ).toEqual(serializedRedirectRequest);
+    expect(serializeJSONMerchantParams(redirectRequest)).toEqual(
+      serializedRedirectRequest
+    );
 
-    expect(
-      serializeJSONMerchantParams(redirectWithIdentifierRequest)
-    ).toEqual(serializedRedirectWithIdentifierRequest);
+    expect(serializeJSONMerchantParams(redirectWithIdentifierRequest)).toEqual(
+      serializedRedirectWithIdentifierRequest
+    );
 
-    expect(
-      serializeJSONMerchantParams(restJsonRequest)
-    ).toEqual(serializedRestJsonRequest);
+    expect(serializeJSONMerchantParams(restJsonRequest)).toEqual(
+      serializedRestJsonRequest
+    );
 
-    expect(
-      serializeJSONMerchantParams(iniciaPeticionV1Request)
-    ).toEqual(serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters);
+    expect(serializeJSONMerchantParams(iniciaPeticionV1Request)).toEqual(
+      serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters
+    );
   });
 
   it('should deserialize merchant parameters', () => {
     expect(
-      deserializeJSONMerchantParams(serializedRestNotification.Ds_MerchantParameters)
+      deserializeJSONMerchantParams(
+        serializedRestNotification.Ds_MerchantParameters
+      )
     ).toEqual(deserializedRestNotification);
 
     expect(
-      deserializeJSONMerchantParams(serializedRestJsonResponse.Ds_MerchantParameters)
+      deserializeJSONMerchantParams(
+        serializedRestJsonResponse.Ds_MerchantParameters
+      )
     ).toEqual(deserializedRestJsonResponse);
 
     expect(
-      deserializeJSONMerchantParams(searializedInicaPeticionV1Response.Ds_MerchantParameters)
+      deserializeJSONMerchantParams(
+        searializedInicaPeticionV1Response.Ds_MerchantParameters
+      )
     ).toEqual(deserializedIniciaPeticionV1Response);
   });
 });

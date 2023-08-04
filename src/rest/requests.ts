@@ -1,9 +1,6 @@
 import fetch from 'node-fetch';
 
-import {
-  HTTPError,
-  GatewayError
-} from '../errors';
+import { HTTPError, GatewayError } from '../errors';
 
 import type {
   CommonRawRequestParams,
@@ -35,7 +32,9 @@ export const jsonRequest = async <
     body: JSON.stringify(payload)
   });
 
-  const responseData = await (response.json() as Promise<ResponseJSONSuccess | ResponseJSONError>);
+  const responseData = await (response.json() as Promise<
+    ResponseJSONSuccess | ResponseJSONError
+  >);
 
   if (!response.ok) {
     throw new HTTPError({
@@ -51,5 +50,8 @@ export const jsonRequest = async <
     });
   }
 
-  return deserializeAndVerifyJSONResponse<ResponseParams>(merchantKey, responseData);
+  return deserializeAndVerifyJSONResponse<ResponseParams>(
+    merchantKey,
+    responseData
+  );
 };

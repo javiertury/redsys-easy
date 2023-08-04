@@ -10,7 +10,7 @@ import {
  * @public
  */
 export class RedsysError extends Error {
-  constructor (message: string) {
+  constructor(message: string) {
     super(message);
     this.name = 'RedsysError';
   }
@@ -25,7 +25,7 @@ export class ValidationError extends RedsysError {
   value: unknown;
   parameters: object;
 
-  constructor (message: string, parameters: object) {
+  constructor(message: string, parameters: object) {
     super(message);
     this.name = 'RedsysValidationError';
     this.parameters = parameters;
@@ -42,7 +42,7 @@ export class ParseError extends RedsysError {
   location: unknown | undefined;
   description: string | undefined;
 
-  constructor (message: string, value?: unknown, location?: unknown) {
+  constructor(message: string, value?: unknown, location?: unknown) {
     super(message);
     this.name = 'RedsysParseError';
     this.value = value;
@@ -51,9 +51,9 @@ export class ParseError extends RedsysError {
 }
 
 interface HTTPErrorOptions {
-  message?: string
-  code: number
-  response?: unknown
+  message?: string;
+  code: number;
+  response?: unknown;
 }
 
 /**
@@ -65,11 +65,12 @@ export class HTTPError extends RedsysError {
   code: number | undefined;
   response: unknown | undefined;
 
-  constructor ({ message, code, response }: HTTPErrorOptions) {
+  constructor({ message, code, response }: HTTPErrorOptions) {
     const codeDescription = getHTTPErrorCodeMessage(code);
-    const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
-      : '';
+    const codeInfo =
+      code !== undefined
+        ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
+        : '';
     const augmentationLine = message != null && message ? `\n${message}` : '';
     const augmentedMessage = `HTTP error${codeInfo}${augmentationLine}`;
 
@@ -82,9 +83,9 @@ export class HTTPError extends RedsysError {
 }
 
 interface GatewayErrorOptions {
-  message?: string
-  code: string
-  response?: unknown
+  message?: string;
+  code: string;
+  response?: unknown;
 }
 
 /**
@@ -96,11 +97,12 @@ export class GatewayError extends RedsysError {
   code: string | undefined;
   response: unknown | undefined;
 
-  constructor ({ message, code, response }: GatewayErrorOptions) {
+  constructor({ message, code, response }: GatewayErrorOptions) {
     const codeDescription = getSISErrorCodeMessage(code);
-    const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
-      : '';
+    const codeInfo =
+      code !== undefined
+        ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
+        : '';
     const augmentationLine = message != null && message ? `\n${message}` : '';
     const augmentedMessage = `Gateway error${codeInfo}${augmentationLine}`;
 
@@ -113,9 +115,9 @@ export class GatewayError extends RedsysError {
 }
 
 interface ResponseErrorOptions {
-  message?: string
-  code: number
-  response?: unknown
+  message?: string;
+  code: number;
+  response?: unknown;
 }
 
 /**
@@ -127,11 +129,12 @@ export class ResponseError extends RedsysError {
   code: number | undefined;
   response: unknown | undefined;
 
-  constructor ({ message, code, response }: ResponseErrorOptions) {
+  constructor({ message, code, response }: ResponseErrorOptions) {
     const codeDescription = getResponseCodeMessage(code);
-    const codeInfo = code !== undefined
-      ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
-      : '';
+    const codeInfo =
+      code !== undefined
+        ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
+        : '';
     const augmentationLine = message != null && message ? `\n${message}` : '';
     const augmentedMessage = `Response error${codeInfo}${augmentationLine}`;
 

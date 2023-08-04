@@ -4,13 +4,9 @@ import {
   restTrataPeticionInputFormatter
 } from './input-params';
 
-import type {
-  BaseInputParams
-} from '../types/input-params';
+import type { BaseInputParams } from '../types/input-params';
 
-import type {
-  BaseFormatterInput
-} from './types';
+import type { BaseFormatterInput } from './types';
 
 import TRANSACTION_TYPES from '../assets/transaction-types';
 
@@ -214,13 +210,17 @@ describe('restIniciaPeticionInputFormatter', () => {
   baseSpec(restIniciaPeticionInputFormatter);
 
   it('should format a 3DS v1 iniciaPeticion request', () => {
-    const params = restIniciaPeticionInputFormatter(unformattedIniciaPeticionV1Request);
+    const params = restIniciaPeticionInputFormatter(
+      unformattedIniciaPeticionV1Request
+    );
 
     expect(params).toEqual(iniciaPeticionV1Request);
   });
 
   it('should format a 3DS v2.1 iniciaPeticion request', () => {
-    const params = restIniciaPeticionInputFormatter(unformattedIniciaPeticionV21Request);
+    const params = restIniciaPeticionInputFormatter(
+      unformattedIniciaPeticionV21Request
+    );
 
     expect(params).toEqual(iniciaPeticionV21Request);
   });
@@ -236,25 +236,33 @@ describe('restTrataPeticionInputFormatter', () => {
   });
 
   it('should format a 3DS v1 authenticationData request', () => {
-    const params = restTrataPeticionInputFormatter(unformattedAuthDataV1Request);
+    const params = restTrataPeticionInputFormatter(
+      unformattedAuthDataV1Request
+    );
 
     expect(params).toEqual(authDataV1Request);
   });
 
   it('should format a 3DS v1 challengeResponse request', () => {
-    const params = restTrataPeticionInputFormatter(unformattedChallengeResponseV1Request);
+    const params = restTrataPeticionInputFormatter(
+      unformattedChallengeResponseV1Request
+    );
 
     expect(params).toEqual(challengeResponseV1Request);
   });
 
   it('should format a 3DS v2.1 authenticationData request', () => {
-    const params = restTrataPeticionInputFormatter(unformattedAuthDataV21Request);
+    const params = restTrataPeticionInputFormatter(
+      unformattedAuthDataV21Request
+    );
 
     expect(params).toEqual(authDataV21Request);
   });
 
   it('should format a 3DS v2.1 challengeResponse request', () => {
-    const params = restTrataPeticionInputFormatter(unformattedChallengeResponseV21Request);
+    const params = restTrataPeticionInputFormatter(
+      unformattedChallengeResponseV21Request
+    );
 
     expect(params).toEqual(challengeResponseV21Request);
   });

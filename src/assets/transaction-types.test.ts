@@ -6,10 +6,12 @@ import type { TransactionType } from './transaction-types';
 
 describe('TRANSACTION_TYPES', () => {
   it('should use the TransactionType interface', () => {
-    expectType<TypeEqual<
-      TransactionType,
-      (typeof TRANSACTION_TYPES)[keyof typeof TRANSACTION_TYPES]
-    >>(true);
+    expectType<
+      TypeEqual<
+        TransactionType,
+        (typeof TRANSACTION_TYPES)[keyof typeof TRANSACTION_TYPES]
+      >
+    >(true);
   });
 
   it('should have a key for each TransactionType', () => {

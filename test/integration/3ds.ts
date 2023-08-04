@@ -24,8 +24,8 @@ export const createChallengeFinalForm = ({
   const rreq = {
     // This UUID seems to be a constant
     dsTransID: '8a07108d-78b0-4f19-9bde-d13e00360515',
-    threeDSServerTransID: threeDSServerTransID,
-    acsTransID: acsTransID,
+    threeDSServerTransID,
+    acsTransID,
     authenticationMethod: {
       acsInterface: '02',
       acsUiTemplate: '05'
@@ -33,8 +33,8 @@ export const createChallengeFinalForm = ({
     interactionCounter: '01',
     messageCategory: '01',
     messageType: 'RReq',
-    messageVersion: messageVersion,
-    transStatus: transStatus,
+    messageVersion,
+    transStatus,
     ...(['Y', 'N'].includes(transStatus) ? { authenticationType: '01' } : undefined),
     ...(transStatus === 'N' ? { transStatusReason: '01' } : undefined),
     ...(transStatus === 'Y'

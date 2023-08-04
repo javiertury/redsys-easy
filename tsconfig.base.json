@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "allowJs": true,
     "resolveJsonModule": true
   },

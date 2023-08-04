@@ -24,25 +24,25 @@ import type {
  * Input
  */
 
-export interface BaseFormatterInput <
+export interface BaseFormatterInput<
   RawInputParams extends Partial<BaseInputParams>
 > {
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_MERCHANTCODE}
    */
-  merchantCode: string
+  merchantCode: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TRANSACTIONTYPE}
    */
-  transactionType: TransactionType
+  transactionType: TransactionType;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_ORDER}
    */
-  order: string
+  order: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TERMINAL}
    */
-  terminal: string
+  terminal: string;
   /**
    * Amount designated as a decimal string currency unit
    *
@@ -52,78 +52,78 @@ export interface BaseFormatterInput <
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_AMOUNT}
    */
-  amount?: string
+  amount?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CURRENCY}
    */
-  currency?: Currency
+  currency?: Currency;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_PAN}
    */
-  pan?: string
+  pan?: string;
   /**
    * Card expiry year, YY
    *
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EXPIRYDATE}
    */
-  expiryYear?: string
+  expiryYear?: string;
   /**
    * Card expiry month, MM
    *
    * @remarks
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EXPIRYDATE}
    */
-  expiryMonth?: string
+  expiryMonth?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CVV2}
    */
-  cvv?: string
+  cvv?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_MERCHANTNAME}
    */
-  merchantName?: string
+  merchantName?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_IDENTIFIER}
    */
-  identifier?: string
+  identifier?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_GROUP}
    */
-  group?: string
+  group?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_DIRECTPAYMENT}
    */
-  directPayment?: BaseInputParams['DS_MERCHANT_DIRECTPAYMENT']
+  directPayment?: BaseInputParams['DS_MERCHANT_DIRECTPAYMENT'];
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_MERCHANTDATA}
    */
-  merchantData?: string
+  merchantData?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_IDOPER}
    */
-  operationId?: string
+  operationId?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_PRODUCTDESCRIPTION}
    */
-  productDescription?: string
+  productDescription?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TAX_REFERENCE}
    */
-  taxReference?: string
+  taxReference?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TRANSACTIONDATE}
    */
-  transactionDate?: string
+  transactionDate?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_TITULAR}
    */
-  cardHolder?: string
+  cardHolder?: string;
 
   /**
    * @see {@link RestTrataPeticionInputParams}
    */
-  raw?: RawInputParams
+  raw?: RawInputParams;
 }
 
 /**
@@ -131,46 +131,46 @@ export interface BaseFormatterInput <
  *
  * @public
  */
-export interface RedirectFormatterInput <
+export interface RedirectFormatterInput<
   RawInputParams extends Partial<RedirectInputParams>
 > extends BaseFormatterInput<RawInputParams> {
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_MERCHANTURL}
    */
-  merchantURL?: string
+  merchantURL?: string;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_URLOK}
    */
-  successURL?: string
+  successURL?: string;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_URLKO}
    */
-  errorURL?: string
+  errorURL?: string;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_PAYMETHODS}
    */
-  payMethods?: string
+  payMethods?: string;
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_CONSUMERLANGUAGE}
    */
-  lang?: Language
+  lang?: Language;
 }
 
-export interface RequestFormatterInput <
+export interface RequestFormatterInput<
   RawInputParams extends Partial<RequestInputParams>
 > extends BaseFormatterInput<RawInputParams> {
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_MOBILE}
    */
-  customerMobile?: string
+  customerMobile?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_MAIL}
    */
-  customerMail?: string
+  customerMail?: string;
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_CUSTOMER_SMS_TEXT}
    */
-  smsTemplate?: string
+  smsTemplate?: string;
 }
 
 /**
@@ -178,13 +178,13 @@ export interface RequestFormatterInput <
  *
  * @public
  */
-export interface RestIniciaPeticionFormatterInput <
+export interface RestIniciaPeticionFormatterInput<
   RawInputParams extends Partial<RestIniciaPeticionInputParams>
 > extends RequestFormatterInput<RawInputParams> {
   /**
    * @see {@link RestIniciaPeticionInputParams.DS_MERCHANT_EMV3DS}
    */
-  emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS']
+  emv3ds?: RestIniciaPeticionInputParams['DS_MERCHANT_EMV3DS'];
 }
 
 /**
@@ -192,68 +192,66 @@ export interface RestIniciaPeticionFormatterInput <
  *
  * @public
  */
-export interface RestTrataPeticionFormatterInput <
+export interface RestTrataPeticionFormatterInput<
   RawInputParams extends Partial<RestTrataPeticionInputParams>
 > extends RequestFormatterInput<RawInputParams> {
   /**
    * @see {@link RestTrataPeticionInputParams.DS_MERCHANT_EMV3DS}
    */
-  emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS']
+  emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'];
 }
 
 /*
  * Output
  */
 
-export interface BaseFormatterOutput <
-  RawOutputParams extends BaseOutputParams
-> {
+export interface BaseFormatterOutput<RawOutputParams extends BaseOutputParams> {
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_MerchantCode}
    */
-  merchantCode: string
+  merchantCode: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Terminal}
    */
-  terminal: string
+  terminal: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Order}
    */
-  order: string
+  order: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_TransactionType}
    */
-  transactionType: TransactionType
+  transactionType: TransactionType;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_SecurePayment}
    */
-  securePayment?: boolean
+  securePayment?: boolean;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Country}
    */
-  cardCountry?: Country
+  cardCountry?: Country;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Brand}
    */
-  cardBrand?: CardBrand
+  cardBrand?: CardBrand;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_PSD2}
    */
-  cardPSD2?: boolean
+  cardPSD2?: boolean;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_MerchantData}
    */
-  merchantData?: string
+  merchantData?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_AuthorisationCode}
    */
-  authorisationCode?: string
+  authorisationCode?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Type}
    */
-  cardType?: BaseOutputParams['Ds_Card_Type']
+  cardType?: BaseOutputParams['Ds_Card_Type'];
 
-  raw: RawOutputParams
+  raw: RawOutputParams;
 }
 
 export interface ResolvedTransactionTraitFormatterOutput {
@@ -266,15 +264,15 @@ export interface ResolvedTransactionTraitFormatterOutput {
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_Amount}
    */
-  amount: string
+  amount: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Currency}
    */
-  currency: Currency
+  currency: Currency;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Response}
    */
-  response: number
+  response: number;
 }
 
 /**
@@ -282,61 +280,61 @@ export interface ResolvedTransactionTraitFormatterOutput {
  *
  * @public
  */
-export interface NotificationFormatterOutput <
+export interface NotificationFormatterOutput<
   RawOutputParams extends NotificationOutputParams
 > extends BaseFormatterOutput<RawOutputParams>,
-  ResolvedTransactionTraitFormatterOutput {
+    ResolvedTransactionTraitFormatterOutput {
   /**
    * @see {@link RestNotificationOutputParams.Ds_Date}
    */
-  date: string
+  date: string;
   /**
    * @see {@link RestNotificationOutputParams.Ds_Hour}
    */
-  time: string
+  time: string;
   /**
    * Timestamp of transaction
    */
-  timestamp: Date
+  timestamp: Date;
   /**
    * @see {@link RestNotificationOutputParams.Ds_ConsumerLanguage}
    */
-  lang?: Language
+  lang?: Language;
 }
 
-export interface RequestFormatterOutput <
+export interface RequestFormatterOutput<
   RawOutputParams extends RequestOutputParams
 > extends BaseFormatterOutput<RawOutputParams> {
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Merchant_Identifier}
    */
-  identifier?: string
+  identifier?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Number}
    */
-  cardNumber?: string
+  cardNumber?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_UrlPago2Fases}
    */
-  payURL?: string
+  payURL?: string;
   /**
    * Card expiry year, YY
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryYear?: string
+  expiryYear?: string;
   /**
    * Card expiry month, MM
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryMonth?: string
+  expiryMonth?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Language}
    */
-  lang?: Language
+  lang?: Language;
 }
 
 /**
@@ -344,13 +342,13 @@ export interface RequestFormatterOutput <
  *
  * @public
  */
-export interface RestIniciaPeticionFormatterOutput <
+export interface RestIniciaPeticionFormatterOutput<
   RawOutputParams extends RestIniciaPeticionOutputParams
 > extends RequestFormatterOutput<RawOutputParams> {
   /**
    * @see {@link RestIniciaPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS']
+  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
 }
 
 /**
@@ -358,17 +356,17 @@ export interface RestIniciaPeticionFormatterOutput <
  *
  * @public
  */
-export interface RestTrataPeticionFormatterOutput <
+export interface RestTrataPeticionFormatterOutput<
   RawOutputParams extends RestTrataPeticionOutputParams
 > extends RequestFormatterOutput<RawOutputParams>,
-  Omit<ResolvedTransactionTraitFormatterOutput, 'response'> {
+    Omit<ResolvedTransactionTraitFormatterOutput, 'response'> {
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Response}
    */
-  response?: number
+  response?: number;
 
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS']
+  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
 }
