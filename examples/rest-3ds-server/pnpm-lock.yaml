@@ -1,8 +1,8 @@
 dependencies:
-  '@koa/cors': 3.1.0
+  '@koa/cors': 4.0.0
   koa: 2.13.1
   koa-bodyparser: 4.3.0
-  redsys-easy: 'link:../..'
+  redsys-easy: link:../..
   typescript: 4.3.5
 devDependencies:
   '@koa/router': 10.0.0
@@ -14,14 +14,14 @@ devDependencies:
   tsc-watch: 4.4.0_typescript@4.3.5
 lockfileVersion: 5.2
 packages:
-  /@koa/cors/3.1.0:
+  /@koa/cors/4.0.0:
     dependencies:
       vary: 1.1.2
     dev: false
     engines:
-      node: '>= 8.0.0'
+      node: '>= 14.0.0'
     resolution:
-      integrity: sha512-7ulRC1da/rBa6kj6P4g2aJfnET3z8Uf3SWu60cjbtxTA5g8lxRdX/Bd2P92EagGwwAhANeNw8T8if99rJliR6Q==
+      integrity: sha512-Y4RrbvGTlAaa04DBoPBWJqDR5gPj32OOz827ULXfgB1F7piD1MB/zwn8JR2LAnvdILhxUbXbkXGWuNVsFuVFCQ==
   /@koa/router/10.0.0:
     dependencies:
       debug: 4.3.2
@@ -783,7 +783,7 @@ packages:
     engines:
       node: '>= 0.8'
     resolution:
-      integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+      integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
   /which/2.0.2:
     dependencies:
       isexe: 2.0.0
@@ -804,7 +804,7 @@ packages:
     resolution:
       integrity: sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 specifiers:
-  '@koa/cors': ^3.1.0
+  '@koa/cors': ^4.0.0
   '@koa/router': ^10.0.0
   '@types/koa': ^2.13.4
   '@types/koa-bodyparser': ^4.3.2
