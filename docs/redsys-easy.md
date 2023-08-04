@@ -25,7 +25,7 @@ Node JS client and utilities for implementing a redsys payment gateway
 |  [RedirectForm](./redsys-easy.redirectform.md) | Redirect form |
 |  [RedirectFormatterInput](./redsys-easy.redirectformatterinput.md) | Input parameters for the redirect input formatter |
 |  [RedirectInputParams](./redsys-easy.redirectinputparams.md) | Input parameters for a redsys redirect request |
-|  [RedsysAPI](./redsys-easy.redsysapi.md) |  |
+|  [RedsysAPI](./redsys-easy.redsysapi.md) | Redsys API |
 |  [RedsysConfig](./redsys-easy.redsysconfig.md) | Redsys API settings |
 |  [ResponseJSONSuccess](./redsys-easy.responsejsonsuccess.md) | Body of a successful redsys JSON HTTP response or notification |
 |  [RestIniciaPeticionFormatterInput](./redsys-easy.restiniciapeticionformatterinput.md) | Input parameters for the REST iniciaPeticion input formatter |

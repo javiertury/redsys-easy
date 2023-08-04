@@ -9,5 +9,5 @@ Success redirection url
 **Signature:**
 
 ```typescript
-DS_MERCHANT_URLOK?: string;
+DS_MERCHANT_URLOK?: string | undefined;
 ```

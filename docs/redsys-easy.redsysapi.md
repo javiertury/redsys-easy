@@ -4,6 +4,8 @@
 
 ## RedsysAPI interface
 
+Redsys API
+
 **Signature:**
 
 ```typescript

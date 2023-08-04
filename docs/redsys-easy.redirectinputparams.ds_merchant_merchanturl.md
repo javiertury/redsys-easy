@@ -9,5 +9,5 @@ Notification url
 **Signature:**
 
 ```typescript
-DS_MERCHANT_MERCHANTURL?: string;
+DS_MERCHANT_MERCHANTURL?: string | undefined;
 ```

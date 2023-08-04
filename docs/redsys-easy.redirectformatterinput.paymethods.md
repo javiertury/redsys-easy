@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-payMethods?: string;
+payMethods?: string | undefined;
 ```

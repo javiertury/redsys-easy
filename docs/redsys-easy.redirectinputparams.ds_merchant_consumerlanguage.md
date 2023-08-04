@@ -9,5 +9,5 @@ Language
 **Signature:**
 
 ```typescript
-DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum;
+DS_MERCHANT_CONSUMERLANGUAGE?: LanguageNum | undefined;
 ```

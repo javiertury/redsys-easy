@@ -12,5 +12,5 @@ Dynamic Currency Conversion data, json
 DS_MERCHANT_DCC?: {
         monedaDCC: string;
         importeDCC: string;
-    };
+    } | undefined;
 ```

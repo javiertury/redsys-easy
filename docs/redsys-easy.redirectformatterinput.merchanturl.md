@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-merchantURL?: string;
+merchantURL?: string | undefined;
 ```

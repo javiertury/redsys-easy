@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/javiertury/redsys-easy/compare/v5.0.0...v5.1.0) (2023-08-04)
+
+
+### Features
+
+* stricter types ([3d8aa69](https://github.com/javiertury/redsys-easy/commit/3d8aa6989f148c1e06d78ffa512c99adcb7c387e))
+
 ## [5.0.0](https://github.com/javiertury/redsys-easy/compare/v4.0.3...v5.0.0) (2023-08-04)
 
 

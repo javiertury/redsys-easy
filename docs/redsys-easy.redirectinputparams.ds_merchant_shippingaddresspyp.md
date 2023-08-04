@@ -9,5 +9,5 @@ Obtain paypal address
 **Signature:**
 
 ```typescript
-DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N';
+DS_MERCHANT_SHIPPINGADDRESSPYP?: 'S' | 'N' | undefined;
 ```

@@ -17,6 +17,6 @@ export interface RestIniciaPeticionInputParams extends CommonRestInputParams
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md) |  | 'Y' \| 'N' | _(Optional)_ Dynamic Currency Conversion data, json |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSPreAuthInputParams | _(Optional)_ EMV3DS data in json format |
+|  [DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md) |  | 'Y' \| 'N' \| undefined | _(Optional)_ Dynamic Currency Conversion data, json |
+|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSPreAuthInputParams \| undefined | _(Optional)_ EMV3DS data in json format |
 

@@ -9,5 +9,5 @@ Dynamic Currency Conversion data, json
 **Signature:**
 
 ```typescript
-DS_MERCHANT_DCC?: 'Y' | 'N';
+DS_MERCHANT_DCC?: 'Y' | 'N' | undefined;
 ```

@@ -17,6 +17,6 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [Ds\_DCC?](./redsys-easy.restiniciapeticionoutputparams.ds_dcc.md) |  | { InfoMonedaTarjeta: { monedaDCC: string; litMonedaDCC: string; litMonedaRDCC: string; importeDCC: string; cambioDCC: string; fechaCambioDCC: string; markUp: number; }; InfoMonedaComercio: { monedaCome: string; litMonedaCome: string; importeCome: string; }; } | _(Optional)_ Dynamic Currency Conversion data, json |
-|  [Ds\_EMV3DS?](./redsys-easy.restiniciapeticionoutputparams.ds_emv3ds.md) |  | ThreeDSv1PreAuthOutputParams \| ThreeDSv2PreAuthOutputParams | _(Optional)_ EMV3DS data in json format |
+|  [Ds\_DCC?](./redsys-easy.restiniciapeticionoutputparams.ds_dcc.md) |  | { InfoMonedaTarjeta: { monedaDCC: string; litMonedaDCC: string; litMonedaRDCC: string; importeDCC: string; cambioDCC: string; fechaCambioDCC: string; markUp: number; }; InfoMonedaComercio: { monedaCome: string; litMonedaCome: string; importeCome: string; }; } \| undefined | _(Optional)_ Dynamic Currency Conversion data, json |
+|  [Ds\_EMV3DS?](./redsys-easy.restiniciapeticionoutputparams.ds_emv3ds.md) |  | ThreeDSv1PreAuthOutputParams \| ThreeDSv2PreAuthOutputParams \| undefined | _(Optional)_ EMV3DS data in json format |
 

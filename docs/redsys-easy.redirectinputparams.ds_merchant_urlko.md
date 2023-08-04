@@ -9,5 +9,5 @@ Failure redirection url
 **Signature:**
 
 ```typescript
-DS_MERCHANT_URLKO?: string;
+DS_MERCHANT_URLKO?: string | undefined;
 ```

@@ -9,5 +9,5 @@ EMV3DS data in json format
 **Signature:**
 
 ```typescript
-DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams;
+DS_MERCHANT_EMV3DS?: ThreeDSPreAuthInputParams | undefined;
 ```

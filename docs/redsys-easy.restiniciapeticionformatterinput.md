@@ -17,5 +17,5 @@ export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [emv3ds?](./redsys-easy.restiniciapeticionformatterinput.emv3ds.md) |  | [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] | _(Optional)_ |
+|  [emv3ds?](./redsys-easy.restiniciapeticionformatterinput.emv3ds.md) |  | [RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] \| undefined | _(Optional)_ |
 

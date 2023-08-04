@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-errorURL?: string;
+errorURL?: string | undefined;
 ```

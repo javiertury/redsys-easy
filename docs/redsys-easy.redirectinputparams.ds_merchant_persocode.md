@@ -9,5 +9,5 @@ Customization code number
 **Signature:**
 
 ```typescript
-DS_MERCHANT_PERSOCODE?: string;
+DS_MERCHANT_PERSOCODE?: string | undefined;
 ```

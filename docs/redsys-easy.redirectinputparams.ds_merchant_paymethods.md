@@ -9,5 +9,5 @@ Payment methods
 **Signature:**
 
 ```typescript
-DS_MERCHANT_PAYMETHODS?: string;
+DS_MERCHANT_PAYMETHODS?: string | undefined;
 ```

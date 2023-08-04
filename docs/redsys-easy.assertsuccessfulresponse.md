@@ -10,6 +10,6 @@ Asserts that response has a code indicating success
 
 ```typescript
 assertSuccessfulResponse: (responseParams: {
-    Ds_Response?: string;
+    Ds_Response?: string | undefined;
 }) => void
 ```
