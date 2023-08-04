@@ -170,7 +170,7 @@ packages:
       convert-source-map: 1.8.0
       debug: 4.3.2
       gensync: 1.0.0-beta.2
-      json5: 2.2.0
+      json5: 2.2.3
       semver: 6.3.0
       source-map: 0.5.7
     transitivePeerDependencies:
@@ -4370,12 +4370,10 @@ packages:
     resolution: {integrity: sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=}
     dev: true
 
-  /json5@2.2.0:
-    resolution: {integrity: sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==}
+  /json5@2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
-    dependencies:
-      minimist: 1.2.8
     dev: true
 
   /jsonfile@4.0.0:
@@ -6158,7 +6156,7 @@ packages:
       fast-json-stable-stringify: 2.1.0
       jest: 27.0.6
       jest-util: 27.0.6
-      json5: 2.2.0
+      json5: 2.2.3
       lodash: 4.17.21
       make-error: 1.3.6
       mkdirp: 1.0.4
@@ -6170,7 +6168,7 @@ packages:
   /tsconfig-paths@3.10.1:
     resolution: {integrity: sha512-rETidPDgCpltxF7MjBZlAFPUHv5aHH2MymyPvh+vEyWAED4Eb/WeMbsnD/JDr4OKPOA1TssDHgIcpTN5Kh0p6Q==}
     dependencies:
-      json5: 2.2.0
+      json5: 2.2.3
       minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
