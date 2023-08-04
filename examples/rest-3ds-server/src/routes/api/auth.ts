@@ -7,7 +7,7 @@ import {
   TRANSACTION_TYPES,
   create3DSv1ChallengeForm,
   create3DSv2ChallengeForm,
-  assertSuccessfulResponseCode
+  assertSuccessfulResponse
 } from 'redsys-easy';
 import {
   createBasicRedsysOrderParams
@@ -190,7 +190,7 @@ export const authHandler: AppMiddleware = async ({ request, response, db }, next
       }
     }
   } else {
-    assertSuccessfulResponseCode(result);
+    assertSuccessfulResponse(result);
 
     db.orders.update(orderId, { status: 'payed' });
 

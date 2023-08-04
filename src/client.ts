@@ -76,6 +76,60 @@ export interface RedsysConfig {
 }
 
 /**
+ * Sends a iniciaPeticion request using REST interface
+ */
+export type RestIniciaPeticion = (
+  paramsInput: RestIniciaPeticionInputParams
+) => Promise<RestIniciaPeticionOutputParams>;
+
+/**
+ * Sends a trataPeticion request using REST interface
+ */
+export type RestTrataPeticion = (
+  paramsInput: RestTrataPeticionInputParams
+) => Promise<RestTrataPeticionOutputParams>;
+
+/**
+ * Creates the parameters needed for a redirect form
+ */
+export type CreateRedirectForm = (paramsInput: RedirectInputParams) => RedirectForm;
+
+/**
+ * Processes a JSON REST notification
+ */
+export type ProcessRestNotification = (
+  /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
+  body: ResponseJSONSuccess
+) => RestNotificationOutputParams;
+
+/**
+ * Parses and verifies the body of a SOAP notification
+ */
+export type ProcessSoapNotification = (
+  /** SOAP notification as a XML string */
+  xml: string
+) => SoapNotificationOutputParams;
+
+/**
+ * Creates an answer for a SOAP notification, serializes and signs it
+ */
+export type CreateSoapNotificationAnswer = (
+  /** Order identifier */
+  order: string,
+  /** Indicates if the payment is allowed to proceed */
+  allow: boolean
+) => string;
+
+export interface RedsysAPI {
+  restIniciaPeticion: RestIniciaPeticion;
+  restTrataPeticion: RestTrataPeticion;
+  createRedirectForm: CreateRedirectForm;
+  processRestNotification: ProcessRestNotification;
+  processSoapNotification: ProcessSoapNotification;
+  createSoapNotificationAnswer: CreateSoapNotificationAnswer;
+}
+
+/**
  * Creates Redsys API functions
  *
  * @remarks
@@ -83,7 +137,7 @@ export interface RedsysConfig {
  *
  * @public
  */
-export const createRedsysAPI = (config: RedsysConfig) => {
+export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   const fetch: typeof Fetch = config.fetch ?? defaultFetch;
 
   if (!config.secretKey || typeof config.secretKey !== 'string') {

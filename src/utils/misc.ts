@@ -7,7 +7,7 @@ import type {
 /**
  * Discrete uniform distribution with domain (0 to *max*)
  */
-const drawPositiveDiscreteUniform = (max: number) => {
+const drawPositiveDiscreteUniform = (max: number): number => {
   return Math.floor(Math.random() * (max + 1));
 };
 
@@ -70,8 +70,11 @@ export const extractAndAssertOrderFromResponseParams = (
  *
  * @public
  */
-export const isResponseCodeOk = (responseCode: string): boolean => {
-  const numResCode = Number.parseInt(responseCode);
+export const isResponseCodeOk = (responseCode: string | number): boolean => {
+  const numResCode =
+    typeof responseCode === 'string'
+      ? Number.parseInt(responseCode)
+      : responseCode;
   return (
     Number.isFinite(numResCode) &&
     ((numResCode >= 0 && numResCode < 100) ||
@@ -81,11 +84,33 @@ export const isResponseCodeOk = (responseCode: string): boolean => {
 };
 
 /**
- * Asserts that response has a code that indicates success
+ * Asserts that a response code indicates success
  *
  * @public
  */
-export const assertSuccessfulResponseCode = (responseParams: {
+export const assertSuccessfulResponseCode = (
+  responseCode: string | number | undefined
+) => {
+  if (responseCode == null) {
+    throw new ParseError('Missing response code');
+  }
+
+  if (!isResponseCodeOk(responseCode)) {
+    throw new ResponseError({
+      code:
+        typeof responseCode === 'string'
+          ? Number.parseInt(responseCode)
+          : responseCode
+    });
+  }
+};
+
+/**
+ * Asserts that response has a code indicating success
+ *
+ * @public
+ */
+export const assertSuccessfulResponse = (responseParams: {
   Ds_Response?: string;
 }) => {
   const { Ds_Response: resCode } = responseParams;

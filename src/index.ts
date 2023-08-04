@@ -6,11 +6,22 @@
 
 export { createRedsysAPI, PRODUCTION_URLS, SANDBOX_URLS } from './client';
 
-export type { UrlsConfig, RedsysConfig } from './client';
+export type {
+  UrlsConfig,
+  RedsysConfig,
+  RedsysAPI,
+  RestIniciaPeticion,
+  RestTrataPeticion,
+  CreateRedirectForm,
+  ProcessRestNotification,
+  ProcessSoapNotification,
+  CreateSoapNotificationAnswer
+} from './client';
 
 export {
   randomTransactionId,
   assertSuccessfulResponseCode,
+  assertSuccessfulResponse,
   isResponseCodeOk
 } from './utils/misc';
 

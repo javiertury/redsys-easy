@@ -5,7 +5,7 @@ import type {
   ThreeDSv1ChallengeNotificationBody
 } from 'redsys-easy';
 import {
-  assertSuccessfulResponseCode,
+  assertSuccessfulResponse,
   REV_CURRENCIES
 } from 'redsys-easy';
 
@@ -46,7 +46,7 @@ export const postChallengeV1Handler: AppMiddleware = async ({ request, response,
     }
   });
 
-  assertSuccessfulResponseCode(result);
+  assertSuccessfulResponse(result);
 
   const orderId = threeDSInfo.params.DS_MERCHANT_ORDER;
 

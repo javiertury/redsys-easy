@@ -5,7 +5,7 @@ import type {
   ThreeDSv2ChallengeNotificationBody
 } from 'redsys-easy';
 import {
-  assertSuccessfulResponseCode,
+  assertSuccessfulResponse,
   REV_CURRENCIES,
   deserializeCres
 } from 'redsys-easy';
@@ -50,7 +50,7 @@ export const postChallengeV2Handler: AppMiddleware = async ({ request, response,
     }
   });
 
-  assertSuccessfulResponseCode(result);
+  assertSuccessfulResponse(result);
 
   db.orders.update(threeDSInfo.orderId, { status: 'payed' });
 

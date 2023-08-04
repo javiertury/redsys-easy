@@ -7,9 +7,12 @@
 import type { fetch as fetch_2 } from 'undici';
 
 // @public
-export const assertSuccessfulResponseCode: (responseParams: {
+export const assertSuccessfulResponse: (responseParams: {
     Ds_Response?: string;
 }) => void;
+
+// @public
+export const assertSuccessfulResponseCode: (responseCode: string | number | undefined) => void;
 
 // @public
 export type CardBrand = 'VISA' | 'MASTERCARD' | 'DINERS' | 'PRIVATE' | 'AMEX' | 'JCB' | 'UPI';
@@ -103,7 +106,7 @@ export class HTTPError extends RedsysError {
 }
 
 // @public
-export const isResponseCodeOk: (responseCode: string) => boolean;
+export const isResponseCodeOk: (responseCode: string | number) => boolean;
 
 // @public
 export type Language = 'es' | 'en' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'sv' | 'pt' | 'pl' | 'gl' | 'eu' | 'bg' | 'zh' | 'hr' | 'cs' | 'da' | 'et' | 'fi' | 'el' | 'hu' | 'ja' | 'lv' | 'lt' | 'mt' | 'ro' | 'ru' | 'sk' | 'sl' | 'tr';
