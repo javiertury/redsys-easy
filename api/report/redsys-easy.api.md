@@ -48,14 +48,15 @@ export const create3DSv1ChallengeForm: (emv3dsV1Challenge: ThreeDSv1ChallengeOut
 export const create3DSv2ChallengeForm: (emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams) => ThreeDSv2ChallengeForm;
 
 // @public
-export const createRedsysAPI: (config: RedsysConfig) => {
-    restIniciaPeticion: (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
-    restTrataPeticion: (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
-    createRedirectForm: (paramsInput: RedirectInputParams) => RedirectForm;
-    processRestNotification: (body: ResponseJSONSuccess) => RestNotificationOutputParams;
-    processSoapNotification: (xml: string) => SoapNotificationOutputParams;
-    createSoapNotificationAnswer: (order: string, allow: boolean) => string;
-};
+export type CreateRedirectForm = (paramsInput: RedirectInputParams) => RedirectForm;
+
+// @public
+export const createRedsysAPI: (config: RedsysConfig) => RedsysAPI;
+
+// @public
+export type CreateSoapNotificationAnswer = (
+order: string,
+allow: boolean) => string;
 
 // Warning: (ae-forgotten-export) The symbol "CurrencyData" needs to be exported by the entry point index.d.ts
 //
@@ -153,6 +154,14 @@ export class ParseError extends RedsysError {
 }
 
 // @public
+export type ProcessRestNotification = (
+body: ResponseJSONSuccess) => RestNotificationOutputParams;
+
+// @public
+export type ProcessSoapNotification = (
+xml: string) => SoapNotificationOutputParams;
+
+// @public
 export const PRODUCTION_URLS: UrlsConfig;
 
 // @public
@@ -202,6 +211,22 @@ export interface RedirectInputParams extends BaseInputParams {
     DS_MERCHANT_URLOK?: string;
 }
 
+// @public (undocumented)
+export interface RedsysAPI {
+    // (undocumented)
+    createRedirectForm: CreateRedirectForm;
+    // (undocumented)
+    createSoapNotificationAnswer: CreateSoapNotificationAnswer;
+    // (undocumented)
+    processRestNotification: ProcessRestNotification;
+    // (undocumented)
+    processSoapNotification: ProcessSoapNotification;
+    // (undocumented)
+    restIniciaPeticion: RestIniciaPeticion;
+    // (undocumented)
+    restTrataPeticion: RestTrataPeticion;
+}
+
 // @public
 export interface RedsysConfig {
     // (undocumented)
@@ -236,6 +261,9 @@ export interface ResponseJSONSuccess {
     // (undocumented)
     Ds_SignatureVersion: string;
 }
+
+// @public
+export type RestIniciaPeticion = (paramsInput: RestIniciaPeticionInputParams) => Promise<RestIniciaPeticionOutputParams>;
 
 // Warning: (ae-forgotten-export) The symbol "RequestFormatterInput" needs to be exported by the entry point index.d.ts
 //
@@ -301,6 +329,9 @@ export interface RestNotificationOutputParams extends NotificationOutputParams {
     Ds_Date: string;
     Ds_Hour: string;
 }
+
+// @public
+export type RestTrataPeticion = (paramsInput: RestTrataPeticionInputParams) => Promise<RestTrataPeticionOutputParams>;
 
 // @public
 export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<RestTrataPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
