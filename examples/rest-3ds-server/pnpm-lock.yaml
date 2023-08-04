@@ -18,8 +18,8 @@ dependencies:
     specifier: ../../
     version: link:../..
   typescript:
-    specifier: ^4.3.5
-    version: 4.3.5
+    specifier: ^5.0.0
+    version: 5.0.2
 
 devDependencies:
   '@koa/router':
@@ -42,7 +42,7 @@ devDependencies:
     version: 3.0.2
   tsc-watch:
     specifier: ^4.4.0
-    version: 4.4.0(typescript@4.3.5)
+    version: 4.4.0(typescript@5.0.2)
 
 packages:
 
@@ -728,7 +728,7 @@ packages:
     resolution: {integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==}
     engines: {node: '>=0.6'}
 
-  /tsc-watch@4.4.0(typescript@4.3.5):
+  /tsc-watch@4.4.0(typescript@5.0.2):
     resolution: {integrity: sha512-+0Yey6ptOOXAnt44OKTk2/EnQnmA0auL7VWXm9d9abMS4tabt0Xdr9B4AK6OJbWAre9ZdLA81+Nk8sz9unptyA==}
     engines: {node: '>=8.17.0'}
     hasBin: true
@@ -740,7 +740,7 @@ packages:
       ps-tree: 1.2.0
       string-argv: 0.1.2
       strip-ansi: 6.0.0
-      typescript: 4.3.5
+      typescript: 5.0.2
     dev: true
 
   /tsscmp@1.0.6:
@@ -756,9 +756,9 @@ packages:
       mime-types: 2.1.31
     dev: false
 
-  /typescript@4.3.5:
-    resolution: {integrity: sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==}
-    engines: {node: '>=4.2.0'}
+  /typescript@5.0.2:
+    resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
+    engines: {node: '>=12.20'}
     hasBin: true
 
   /unpipe@1.0.0:
