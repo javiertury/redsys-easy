@@ -54,8 +54,8 @@
     "*.{js,ts}": "eslint"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpx lint-staged",
-    "commit-msg": "pnpx commitlint -e"
+    "pre-commit": "pnpm exec lint-staged",
+    "commit-msg": "pnpm exec commitlint -e"
   },
   "dependencies": {
     "@types/node-fetch": "^2.5.11",

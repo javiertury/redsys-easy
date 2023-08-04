@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "build:clean": "rimraf lib",
-    "build": "pnpm run build:clean && pnpx tsc --project tsconfig.build.json",
-    "start": "pnpx tsc-watch --project tsconfig.build.json --onCompilationComplete 'node --enable-source-maps ./lib/index.js'"
+    "build": "pnpm run build:clean && pnpm exec tsc --project tsconfig.build.json",
+    "start": "pnpm exec tsc-watch --project tsconfig.build.json --onCompilationComplete 'node --enable-source-maps ./lib/index.js'"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
