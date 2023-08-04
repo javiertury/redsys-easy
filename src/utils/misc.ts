@@ -1,3 +1,4 @@
+import { randomInt } from 'node:crypto';
 import { ParseError, ResponseError } from '../errors';
 import type {
   CommonRawRequestParams,
@@ -8,7 +9,7 @@ import type {
  * Discrete uniform distribution with domain (0 to *max*)
  */
 const drawPositiveDiscreteUniform = (max: number): number => {
-  return Math.floor(Math.random() * (max + 1));
+  return randomInt(max + 1);
 };
 
 const alphanumeric =
