@@ -17,6 +17,6 @@ export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTr
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [emv3ds?](./redsys-easy.resttratapeticionformatteroutput.emv3ds.md) |  | [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] \| undefined | _(Optional)_ |
-|  [response?](./redsys-easy.resttratapeticionformatteroutput.response.md) |  | number \| undefined | _(Optional)_ |
+|  [emv3ds?](./redsys-easy.resttratapeticionformatteroutput.emv3ds.md) |  | [RestTrataPeticionOutputParams](./redsys-easy.resttratapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | _(Optional)_ |
+|  [response?](./redsys-easy.resttratapeticionformatteroutput.response.md) |  | number | _(Optional)_ |
 

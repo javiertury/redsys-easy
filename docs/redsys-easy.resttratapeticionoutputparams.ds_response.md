@@ -9,5 +9,5 @@ Response code
 **Signature:**
 
 ```typescript
-Ds_Response?: ResolvedTransactionTrait['Ds_Response'] | undefined;
+Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
 ```

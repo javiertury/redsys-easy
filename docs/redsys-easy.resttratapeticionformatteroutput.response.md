@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-response?: number | undefined;
+response?: number;
 ```

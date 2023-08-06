@@ -18,7 +18,7 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [date](./redsys-easy.notificationformatteroutput.date.md) |  | string |  |
-|  [lang?](./redsys-easy.notificationformatteroutput.lang.md) |  | [Language](./redsys-easy.language.md) \| undefined | _(Optional)_ |
+|  [lang?](./redsys-easy.notificationformatteroutput.lang.md) |  | [Language](./redsys-easy.language.md) | _(Optional)_ |
 |  [time](./redsys-easy.notificationformatteroutput.time.md) |  | string |  |
 |  [timestamp](./redsys-easy.notificationformatteroutput.timestamp.md) |  | Date | Timestamp of transaction |
 

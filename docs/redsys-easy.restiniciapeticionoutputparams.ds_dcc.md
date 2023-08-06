@@ -24,5 +24,5 @@ Ds_DCC?: {
             litMonedaCome: string;
             importeCome: string;
         };
-    } | undefined;
+    };
 ```

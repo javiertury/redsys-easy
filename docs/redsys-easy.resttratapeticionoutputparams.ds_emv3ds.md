@@ -9,5 +9,5 @@ EMV3DS data in json format
 **Signature:**
 
 ```typescript
-Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams | undefined;
+Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams;
 ```

@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'] | undefined;
+emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
 ```
