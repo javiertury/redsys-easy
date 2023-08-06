@@ -136,7 +136,7 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
     // (undocumented)
     date: string;
     // (undocumented)
-    lang?: Language | undefined;
+    lang?: Language;
     // (undocumented)
     time: string;
     timestamp: Date;
@@ -278,7 +278,7 @@ export interface RestIniciaPeticionFormatterInput<RawInputParams extends Partial
 // @public
 export interface RestIniciaPeticionFormatterOutput<RawOutputParams extends RestIniciaPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams> {
     // (undocumented)
-    emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'] | undefined;
+    emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
 }
 
 // @public
@@ -315,10 +315,10 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams {
             litMonedaCome: string;
             importeCome: string;
         };
-    } | undefined;
+    };
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv1PreAuthOutputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthOutputParams" needs to be exported by the entry point index.d.ts
-    Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams | undefined;
+    Ds_EMV3DS?: ThreeDSv1PreAuthOutputParams | ThreeDSv2PreAuthOutputParams;
 }
 
 // @public
@@ -342,9 +342,9 @@ export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<
 // @public
 export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTrataPeticionOutputParams> extends RequestFormatterOutput<RawOutputParams>, Omit<ResolvedTransactionTraitFormatterOutput, 'response'> {
     // (undocumented)
-    emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'] | undefined;
+    emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
     // (undocumented)
-    response?: number | undefined;
+    response?: number;
 }
 
 // @public
@@ -370,8 +370,8 @@ export const restTrataPeticionOutputFormatter: <RawOutputParams extends RestTrat
 //
 // @public
 export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit<ResolvedTransactionTrait, 'Ds_Response'> {
-    Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams | undefined;
-    Ds_Response?: ResolvedTransactionTrait['Ds_Response'] | undefined;
+    Ds_EMV3DS?: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams;
+    Ds_Response?: ResolvedTransactionTrait['Ds_Response'];
 }
 
 // @public

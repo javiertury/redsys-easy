@@ -131,3 +131,17 @@ export const assertSuccessfulResponse = (responseParams: {
 export const isStringNotEmpty = <T extends string>(
   str: T | undefined
 ): str is T => str != null && str.length > 0;
+
+/**
+ * Map over maybe monad
+ *
+ * If value is defined apply function and return output, otherwise return undefined.
+ */
+export const mapMaybeMonad = <V, Out>(
+  value: V | undefined,
+  fn: (value: V) => Out
+): Out | undefined => {
+  return value !== undefined
+    ? fn(value)
+    : undefined;
+};

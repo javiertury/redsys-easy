@@ -31,7 +31,7 @@ import type {
   ResolvedTransactionTraitFormatterOutput
 } from './types';
 
-import { isStringNotEmpty } from '../utils/misc';
+import { isStringNotEmpty, mapMaybeMonad } from '../utils/misc';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -77,10 +77,10 @@ export const baseOutputFormatter = <RawOutputParams extends BaseOutputParams>(
       ? { securePayment: rawSecurePayment === '1' || rawSecurePayment === '2' }
       : undefined),
     ...(isStringNotEmpty(rawCardCountry)
-      ? { cardCountry: formatCountry(rawCardCountry) }
+      ? mapMaybeMonad(formatCountry(rawCardCountry), cardCountry => ({ cardCountry }))
       : undefined),
     ...(isStringNotEmpty(rawCardBrand)
-      ? { cardBrand: formatCardBrand(rawCardBrand) }
+      ? mapMaybeMonad(formatCardBrand(rawCardBrand), cardBrand => ({ cardBrand }))
       : undefined),
     ...(isStringNotEmpty(rawCardPSD2)
       ? { cardPSD2: rawCardPSD2 === 'Y' }
@@ -136,7 +136,7 @@ const notificationOutputFormatter = <
     ...formatPrice(raw),
     response: formatResponse(rawResponse),
     ...(isStringNotEmpty(rawConsumerLanguage)
-      ? { lang: formatLang(rawConsumerLanguage) }
+      ? mapMaybeMonad(formatLang(rawConsumerLanguage), lang => ({ lang }))
       : undefined)
   };
 };
@@ -217,7 +217,10 @@ export const requestOutputFormatter = <
           expiryMonth: rawExpiryDate.slice(2, 4)
         }
       : undefined),
-    ...(isStringNotEmpty(rawLang) ? { lang: formatLang(rawLang) } : undefined)
+    ...(isStringNotEmpty(rawLang)
+      ? mapMaybeMonad(formatLang(rawLang), lang => ({ lang }))
+      : undefined
+    )
   };
 };
 

@@ -225,31 +225,31 @@ export interface BaseFormatterOutput<RawOutputParams extends BaseOutputParams> {
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_SecurePayment}
    */
-  securePayment?: boolean | undefined;
+  securePayment?: boolean;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Country}
    */
-  cardCountry?: Country | undefined;
+  cardCountry?: Country;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Brand}
    */
-  cardBrand?: CardBrand | undefined;
+  cardBrand?: CardBrand;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_PSD2}
    */
-  cardPSD2?: boolean | undefined;
+  cardPSD2?: boolean;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_MerchantData}
    */
-  merchantData?: string | undefined;
+  merchantData?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_AuthorisationCode}
    */
-  authorisationCode?: string | undefined;
+  authorisationCode?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Type}
    */
-  cardType?: BaseOutputParams['Ds_Card_Type'] | undefined;
+  cardType?: BaseOutputParams['Ds_Card_Type'];
 
   raw: RawOutputParams;
 }
@@ -299,7 +299,7 @@ export interface NotificationFormatterOutput<
   /**
    * @see {@link RestNotificationOutputParams.Ds_ConsumerLanguage}
    */
-  lang?: Language | undefined;
+  lang?: Language;
 }
 
 export interface RequestFormatterOutput<
@@ -308,33 +308,33 @@ export interface RequestFormatterOutput<
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Merchant_Identifier}
    */
-  identifier?: string | undefined;
+  identifier?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Card_Number}
    */
-  cardNumber?: string | undefined;
+  cardNumber?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_UrlPago2Fases}
    */
-  payURL?: string | undefined;
+  payURL?: string;
   /**
    * Card expiry year, YY
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryYear?: string | undefined;
+  expiryYear?: string;
   /**
    * Card expiry month, MM
    *
    * @remarks
    * @see {@link RestTrataPeticionOutputParams.Ds_ExpiryDate}
    */
-  expiryMonth?: string | undefined;
+  expiryMonth?: string;
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Language}
    */
-  lang?: Language | undefined;
+  lang?: Language;
 }
 
 /**
@@ -348,7 +348,7 @@ export interface RestIniciaPeticionFormatterOutput<
   /**
    * @see {@link RestIniciaPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'] | undefined;
+  emv3ds?: RestIniciaPeticionOutputParams['Ds_EMV3DS'];
 }
 
 /**
@@ -363,10 +363,10 @@ export interface RestTrataPeticionFormatterOutput<
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_Response}
    */
-  response?: number | undefined;
+  response?: number;
 
   /**
    * @see {@link RestTrataPeticionOutputParams.Ds_EMV3DS}
    */
-  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'] | undefined;
+  emv3ds?: RestTrataPeticionOutputParams['Ds_EMV3DS'];
 }

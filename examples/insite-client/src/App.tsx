@@ -15,7 +15,7 @@ const App: Component = () => {
   const [checkoutData, setCheckoutData] = createSignal<CheckoutOutput>();
 
   return (
-    <div class={styles.App}>
+    <div class={styles['App']}>
       <Switch fallback={<div>Not Found</div>}>
         <Match when={router.page === 'checkout'}>
           <CheckoutPage productIds={productIds()} onCheckoutDataChanged={setCheckoutData} />

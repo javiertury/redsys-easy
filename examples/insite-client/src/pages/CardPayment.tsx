@@ -281,14 +281,14 @@ export const CardPaymentPage: Component<Props> = (props) => {
       <NonVisibleSection>
         {/* 3DS Method iframe, invisible */}
         <iframe
-          ref={threeDSMethodIframeEl}
+          ref={threeDSMethodIframeEl!}
           name="threeDSMethodIframe" />
         <form
-          ref={threeDSMethodFormEl}
+          ref={threeDSMethodFormEl!}
           method='post'
           target="threeDSMethodIframe">{/* Name of iframe */}
           <input
-            ref={threeDSMethodDataEl}
+            ref={threeDSMethodDataEl!}
             name="threeDSMethodData"
             type="hidden" />
         </form>
@@ -296,23 +296,23 @@ export const CardPaymentPage: Component<Props> = (props) => {
       <Section hidden={activeSection() !== 'challenge-v1'}>
         {/* Challenge form */}
         <iframe
-          ref={challengeV1IframeEl}
+          ref={challengeV1IframeEl!}
           name="challengeV1Iframe"
           style="height: 100vh; width: 100vw;" />
         <form
-          ref={challengeV1FormEl}
+          ref={challengeV1FormEl!}
           method='post'
           target="challengeV1Iframe">{/* Name of iframe */}
           <input
-            ref={challengeV1MDEl}
+            ref={challengeV1MDEl!}
             type="hidden"
             name="MD" />
           <input
-            ref={challengeV1PaReqEl}
+            ref={challengeV1PaReqEl!}
             type="hidden"
             name="PaReq" />
           <input
-            ref={challengeV1TermUrlEl}
+            ref={challengeV1TermUrlEl!}
             type="hidden"
             name="TermUrl" />
         </form>
@@ -320,15 +320,15 @@ export const CardPaymentPage: Component<Props> = (props) => {
       <Section hidden={activeSection() !== 'challenge-v2'}>
         {/* Challenge form */}
         <iframe
-          ref={challengeV2IframeEl}
+          ref={challengeV2IframeEl!}
           name="challengeV2Iframe"
           style="height: 100vh; width: 100vw;" />
         <form
-          ref={challengeV2FormEl}
+          ref={challengeV2FormEl!}
           method='post'
           target="challengeV2Iframe">{/* Name of iframe */}
           <input
-            ref={challengeV2CreqEl}
+            ref={challengeV2CreqEl!}
             type="hidden"
             name="creq" />
         </form>

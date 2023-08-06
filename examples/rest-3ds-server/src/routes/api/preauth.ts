@@ -62,7 +62,7 @@ export const preauthHandler: AppMiddleware = async ({ request, response, db }, n
     params.DS_MERCHANT_EXPIRYDATE = `${expiryYear}${expiryMonth}`;
     params.DS_MERCHANT_CVV2 = cvv;
   } else {
-    throw new Error(`Unknown transaction type ${(transactionData as Record<string, string>).type as string}`);
+    throw new Error(`Unknown transaction type ${(transactionData as Record<string, string>)['type'] as string}`);
   }
 
   /** Pre-auth information */

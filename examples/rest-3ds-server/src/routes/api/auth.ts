@@ -186,7 +186,7 @@ export const authHandler: AppMiddleware = async ({ request, response, db }, next
         break;
       }
       default: {
-        throw new Error(`Unknown 3DS protocol version: ${(result.Ds_EMV3DS as Record<string, string>).protocolVersion as string}`);
+        throw new Error(`Unknown 3DS protocol version: ${(result.Ds_EMV3DS as Record<string, string>)['protocolVersion'] as string}`);
       }
     }
   } else {
