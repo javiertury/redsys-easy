@@ -21,8 +21,8 @@ dependencies:
     specifier: ^2.6.1
     version: 2.6.1
   undici:
-    specifier: ^5.23.0
-    version: 5.26.2
+    specifier: ^6.0.0
+    version: 6.0.0
 
 devDependencies:
   '@commitlint/cli':
@@ -6956,9 +6956,9 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /undici@5.26.2:
-    resolution: {integrity: sha512-a4PDLQgLTPHVzOK+x3F79/M4GtyYPl+aX9AAK7aQxpwxDwCqkeZCScy7Gk5kWT3JtdFq1uhO3uZJdLtHI4dK9A==}
-    engines: {node: '>=14.0'}
+  /undici@6.0.0:
+    resolution: {integrity: sha512-m3nzx/3ji00Y6wY9hAJTBOBdtcMj0SyxpHKd5kaxghTftjB3icbYaPXGeogxIVcm6FVvnAM9aB6wz9L8Sntt8w==}
+    engines: {node: '>=18.0'}
     dependencies:
       '@fastify/busboy': 2.0.0
     dev: false
