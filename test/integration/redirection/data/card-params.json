@@ -12,10 +12,5 @@
   "browserTZ": "-60",
   "browserUserAgent": "Mozilla/5.0+(X11;+Fedora;+Linux+x86_64;+rv:72.0)+Gecko/20100101+Firefox/72.0",
   "threeDSCompInd": "U",
-  "Sis_Numero_Tarjeta_UPI": "",
-  "Sis_Caducidad_Tarjeta_Mes_UPI": "",
-  "Sis_Caducidad_Tarjeta_Anno_UPI": "",
-  "Sis_Tarjeta_CVV2_UPI": "",
-  "ds_sis_pago_upi": "false", 
   "bcancel":""
 }

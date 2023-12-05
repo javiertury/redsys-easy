@@ -184,6 +184,13 @@ describe('Rest 3DS v2.2 challenge without 3ds url', () => {
     } as const;
 
     const result = await restTrataPeticion(params);
+
+    const dsControlEntry = Object.entries(result).find(([k,_v]) => k.startsWith('Ds_Control_'));
+
+    if (dsControlEntry == null) {
+      throw new Error('Undefined Ds_Control key');
+    }
+
     expect(result).toEqual({
       Ds_Amount: '3350',
       Ds_Currency: '978',
@@ -199,7 +206,9 @@ describe('Rest 3DS v2.2 challenge without 3ds url', () => {
       Ds_MerchantData: '',
       Ds_ProcessedPayMethod: '78',
       Ds_Response: '0000',
-      Ds_SecurePayment: '2'
+      Ds_SecurePayment: '2',
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      [dsControlEntry[0]]: dsControlEntry[1]
     });
   });
 });
