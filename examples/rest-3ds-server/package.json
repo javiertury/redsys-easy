@@ -11,7 +11,7 @@
     "start": "pnpm exec tsc-watch --project tsconfig.build.json --onCompilationComplete 'node --enable-source-maps ./lib/index.js'"
   },
   "dependencies": {
-    "@koa/cors": "^4.0.0",
+    "@koa/cors": "^5.0.0",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.4.1",
     "redsys-easy": "../../",
