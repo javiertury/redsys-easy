@@ -326,13 +326,7 @@ export type RestTrataPeticion = (paramsInput: RestTrataPeticionInputParams) => P
 // @public
 export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<RestTrataPeticionInputParams>> extends RequestFormatterInput<RawInputParams> {
     // (undocumented)
-    customerMail?: string | undefined;
-    // (undocumented)
-    customerMobile?: string | undefined;
-    // (undocumented)
     emv3ds?: RestTrataPeticionInputParams['DS_MERCHANT_EMV3DS'] | undefined;
-    // (undocumented)
-    smsTemplate?: string | undefined;
 }
 
 // @public
@@ -347,10 +341,7 @@ export interface RestTrataPeticionFormatterOutput<RawOutputParams extends RestTr
 export const restTrataPeticionInputFormatter: <RawInputParams extends Partial<RestTrataPeticionInputParams> = Partial<RestTrataPeticionInputParams>>(raw: RestTrataPeticionFormatterInput<RawInputParams>) => RestTrataPeticionInputParams;
 
 // @public
-export interface RestTrataPeticionInputParams extends CommonRestInputParams, Pick<RedirectInputParams, 'DS_MERCHANT_MERCHANTURL' | 'DS_MERCHANT_URLOK' | 'DS_MERCHANT_URLKO' | 'DS_MERCHANT_CONSUMERLANGUAGE' | 'DS_MERCHANT_PAYMETHODS' | 'DS_MERCHANT_SHIPPINGADDRESSPYP'> {
-    DS_MERCHANT_CUSTOMER_MAIL?: string | undefined;
-    DS_MERCHANT_CUSTOMER_MOBILE?: string | undefined;
-    DS_MERCHANT_CUSTOMER_SMS_TEXT?: string | undefined;
+export interface RestTrataPeticionInputParams extends CommonRestInputParams {
     DS_MERCHANT_DCC?: {
         monedaDCC: string;
         importeDCC: string;
@@ -360,8 +351,6 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams, Pic
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv1ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "ThreeDSv2ChallengeResponseInputParams" needs to be exported by the entry point index.d.ts
     DS_MERCHANT_EMV3DS?: ThreeDSv1AuthDataInputParams | ThreeDSv2AuthDataInputParams | ThreeDSv1ChallengeResponseInputParams | ThreeDSv2ChallengeResponseInputParams | undefined;
-    DS_MERCHANT_P2F_EXPIRYDATE?: string | undefined;
-    DS_MERCHANT_P2F_XMLDATA?: string | undefined;
 }
 
 // @public
