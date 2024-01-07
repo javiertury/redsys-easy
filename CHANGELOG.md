@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.2](https://github.com/javiertury/redsys-easy/compare/v5.2.1...v5.2.2) (2024-01-07)
+
+
+### Bug Fixes
+
+* paygold redirect-related input parameters ([791bafc](https://github.com/javiertury/redsys-easy/commit/791bafc9d4f86c7e8286a4d309fe2b7e2db6749d)), closes [#43](https://github.com/javiertury/redsys-easy/issues/43)
+
 ### [5.2.1](https://github.com/javiertury/redsys-easy/compare/v5.2.0...v5.2.1) (2023-12-05)
 
 ## [5.2.0](https://github.com/javiertury/redsys-easy/compare/v5.1.0...v5.2.0) (2023-08-06)
