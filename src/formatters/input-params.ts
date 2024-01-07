@@ -116,6 +116,11 @@ const baseInputFormatter = <RawInputParams extends Partial<BaseInputParams>>(
     taxReference,
     transactionDate,
     cardHolder,
+    merchantURL,
+    successURL,
+    errorURL,
+    payMethods,
+    lang, 
     raw,
     ...unknownInput
   } = input;
@@ -177,26 +182,6 @@ const baseInputFormatter = <RawInputParams extends Partial<BaseInputParams>>(
     ...(isStringNotEmpty(cardHolder)
       ? { DS_MERCHANT_TITULAR: cardHolder }
       : undefined),
-    ...raw
-  };
-};
-
-/**
- * Redirection input formatter
- *
- * @public
- */
-export const redirectInputFormatter = <
-  RawInputParams extends
-    Partial<RedirectInputParams> = Partial<RedirectInputParams>
->(
-  input: RedirectFormatterInput<RawInputParams>
-): RedirectInputParams => {
-  const { merchantURL, successURL, errorURL, payMethods, lang, ...baseInput } =
-    input;
-
-  return {
-    ...baseInputFormatter(baseInput),
     ...(isStringNotEmpty(merchantURL)
       ? { DS_MERCHANT_MERCHANTURL: merchantURL }
       : undefined),
@@ -212,6 +197,26 @@ export const redirectInputFormatter = <
     ...(isStringNotEmpty(lang)
       ? { DS_MERCHANT_CONSUMERLANGUAGE: formatLang(lang) }
       : undefined),
+    ...raw
+  };
+};
+
+/**
+ * Redirection input formatter
+ *
+ * @public
+ */
+export const redirectInputFormatter = <
+  RawInputParams extends
+    Partial<RedirectInputParams> = Partial<RedirectInputParams>
+>(
+  input: RedirectFormatterInput<RawInputParams>
+): RedirectInputParams => {
+  const { ...baseInput } =
+    input;
+
+  return {
+    ...baseInputFormatter(baseInput),
     // Overwrite formatted parameters
     ...baseInput.raw
   };

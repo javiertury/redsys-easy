@@ -17,5 +17,8 @@ export interface RestTrataPeticionFormatterInput<RawInputParams extends Partial<
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [customerMail?](./redsys-easy.resttratapeticionformatterinput.customermail.md) |  | string \| undefined | _(Optional)_ |
+|  [customerMobile?](./redsys-easy.resttratapeticionformatterinput.customermobile.md) |  | string \| undefined | _(Optional)_ |
 |  [emv3ds?](./redsys-easy.resttratapeticionformatterinput.emv3ds.md) |  | [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md)<!-- -->\['DS\_MERCHANT\_EMV3DS'\] \| undefined | _(Optional)_ |
+|  [smsTemplate?](./redsys-easy.resttratapeticionformatterinput.smstemplate.md) |  | string \| undefined | _(Optional)_ |
 

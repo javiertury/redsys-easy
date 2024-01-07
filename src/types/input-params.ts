@@ -93,7 +93,16 @@ export interface BaseInputParams {
   DS_MERCHANT_COF_TXNID?: string | undefined;
 
   /** Credential On File transaction type */
-  DS_MERCHANT_COF_TYPE?: 'I' | 'R' | 'H' | 'E' | 'D' | 'M' | 'N' | 'C' | undefined;
+  DS_MERCHANT_COF_TYPE?:
+    | 'I'
+    | 'R'
+    | 'H'
+    | 'E'
+    | 'D'
+    | 'M'
+    | 'N'
+    | 'C'
+    | undefined;
 }
 
 /**
@@ -132,7 +141,20 @@ export interface RedirectInputParams extends BaseInputParams {
  *
  * @public
  */
-export interface RequestInputParams extends BaseInputParams {
+export interface RequestInputParams
+  extends BaseInputParams,
+    // Paygold uses some redirection input parameters
+    // although this is not properly documented in the official Redsys manual
+    Pick<
+      RedirectInputParams,
+      | 'DS_MERCHANT_MERCHANTURL'
+      | 'DS_MERCHANT_URLOK'
+      | 'DS_MERCHANT_URLKO'
+      | 'DS_MERCHANT_CONSUMERLANGUAGE'
+      | 'DS_MERCHANT_PAYMETHODS'
+      | 'DS_MERCHANT_PERSOCODE'
+      | 'DS_MERCHANT_SHIPPINGADDRESSPYP'
+    > {
   /** xPay data, hex */
   DS_XPAYDATA?: string | undefined;
 
@@ -174,40 +196,42 @@ export interface RequestInputParams extends BaseInputParams {
 
 export interface CommonRestInputParams extends RequestInputParams {
   /** MPI External parameters, json */
-  DS_MERCHANT_MPIEXTERNAL?: {
-    /** Authenticator identifier, base64 */
-    TXID: string;
+  DS_MERCHANT_MPIEXTERNAL?:
+    | {
+        /** Authenticator identifier, base64 */
+        TXID: string;
 
-    /** CAVV, base64 */
-    CAVV: string;
+        /** CAVV, base64 */
+        CAVV: string;
 
-    /** ECI, number */
-    ECI: '5' | '6' | '7';
+        /** ECI, number */
+        ECI: '5' | '6' | '7';
 
-    /** Eci, number */
-    Eci: string;
+        /** Eci, number */
+        Eci: string;
 
-    /** 3DSecure transaction identifier */
-    threeDSServerTransID: string;
+        /** 3DSecure transaction identifier */
+        threeDSServerTransID: string;
 
-    /** DS identifier */
-    dsTransID: string;
+        /** DS identifier */
+        dsTransID: string;
 
-    /** CAVV, base64 */
-    authenticationValue: string;
+        /** CAVV, base64 */
+        authenticationValue: string;
 
-    /** 3DSecure version */
-    ProtocolVersion: '2.1.0';
+        /** 3DSecure version */
+        ProtocolVersion: '2.1.0';
 
-    /** Authentication Method */
-    authenticationMethod: string;
+        /** Authentication Method */
+        authenticationMethod: string;
 
-    /** Authentication type */
-    authenticationType: string;
+        /** Authentication type */
+        authenticationType: string;
 
-    /** Authentication flow */
-    authenticationFlow: 'F' | 'C';
-  } | undefined;
+        /** Authentication flow */
+        authenticationFlow: 'F' | 'C';
+      }
+    | undefined;
 }
 
 /**
@@ -238,10 +262,12 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams {
     | undefined;
 
   /** Dynamic Currency Conversion data, json */
-  DS_MERCHANT_DCC?: {
-    /** Card currency number, ISO-4217 */
-    monedaDCC: string;
-    /** Amount in card currency, decimal number */
-    importeDCC: string;
-  } | undefined;
+  DS_MERCHANT_DCC?:
+    | {
+        /** Card currency number, ISO-4217 */
+        monedaDCC: string;
+        /** Amount in card currency, decimal number */
+        importeDCC: string;
+      }
+    | undefined;
 }

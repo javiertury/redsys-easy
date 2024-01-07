@@ -13,13 +13,3 @@ export interface RedirectFormatterInput<RawInputParams extends Partial<RedirectI
 ```
 **Extends:** BaseFormatterInput&lt;RawInputParams&gt;
 
-## Properties
-
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [errorURL?](./redsys-easy.redirectformatterinput.errorurl.md) |  | string \| undefined | _(Optional)_ |
-|  [lang?](./redsys-easy.redirectformatterinput.lang.md) |  | [Language](./redsys-easy.language.md) \| undefined | _(Optional)_ |
-|  [merchantURL?](./redsys-easy.redirectformatterinput.merchanturl.md) |  | string \| undefined | _(Optional)_ |
-|  [payMethods?](./redsys-easy.redirectformatterinput.paymethods.md) |  | string \| undefined | _(Optional)_ |
-|  [successURL?](./redsys-easy.redirectformatterinput.successurl.md) |  | string \| undefined | _(Optional)_ |
-

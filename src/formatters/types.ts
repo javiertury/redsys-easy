@@ -120,20 +120,9 @@ export interface BaseFormatterInput<
    */
   cardHolder?: string | undefined;
 
-  /**
-   * @see {@link RestTrataPeticionInputParams}
-   */
-  raw?: RawInputParams | undefined;
-}
+  // Redirection input parameters are also used in paygold requests
+  // although this is not properly documented in the official Redsys manual
 
-/**
- * Input parameters for the redirect input formatter
- *
- * @public
- */
-export interface RedirectFormatterInput<
-  RawInputParams extends Partial<RedirectInputParams>
-> extends BaseFormatterInput<RawInputParams> {
   /**
    * @see {@link RedirectInputParams.DS_MERCHANT_MERCHANTURL}
    */
@@ -154,6 +143,21 @@ export interface RedirectFormatterInput<
    * @see {@link RedirectInputParams.DS_MERCHANT_CONSUMERLANGUAGE}
    */
   lang?: Language | undefined;
+
+  /**
+   * @see {@link RestTrataPeticionInputParams}
+   */
+  raw?: RawInputParams | undefined;
+}
+
+/**
+ * Input parameters for the redirect input formatter
+ *
+ * @public
+ */
+export interface RedirectFormatterInput<
+  RawInputParams extends Partial<RedirectInputParams>
+> extends BaseFormatterInput<RawInputParams> {
 }
 
 export interface RequestFormatterInput<

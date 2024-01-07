@@ -9,14 +9,19 @@ Input parameters for a TrataPeticion Peticion HTTP request
 **Signature:**
 
 ```typescript
-export interface RestTrataPeticionInputParams extends CommonRestInputParams 
+export interface RestTrataPeticionInputParams extends CommonRestInputParams, Pick<RedirectInputParams, 'DS_MERCHANT_MERCHANTURL' | 'DS_MERCHANT_URLOK' | 'DS_MERCHANT_URLKO' | 'DS_MERCHANT_CONSUMERLANGUAGE' | 'DS_MERCHANT_PAYMETHODS' | 'DS_MERCHANT_SHIPPINGADDRESSPYP'> 
 ```
-**Extends:** CommonRestInputParams
+**Extends:** CommonRestInputParams, Pick&lt;[RedirectInputParams](./redsys-easy.redirectinputparams.md)<!-- -->, 'DS\_MERCHANT\_MERCHANTURL' \| 'DS\_MERCHANT\_URLOK' \| 'DS\_MERCHANT\_URLKO' \| 'DS\_MERCHANT\_CONSUMERLANGUAGE' \| 'DS\_MERCHANT\_PAYMETHODS' \| 'DS\_MERCHANT\_SHIPPINGADDRESSPYP'&gt;
 
 ## Properties
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [DS\_MERCHANT\_CUSTOMER\_MAIL?](./redsys-easy.resttratapeticioninputparams.ds_merchant_customer_mail.md) |  | string \| undefined | _(Optional)_ Customer email address, paygold |
+|  [DS\_MERCHANT\_CUSTOMER\_MOBILE?](./redsys-easy.resttratapeticioninputparams.ds_merchant_customer_mobile.md) |  | string \| undefined | _(Optional)_ Customer phone, paygold |
+|  [DS\_MERCHANT\_CUSTOMER\_SMS\_TEXT?](./redsys-easy.resttratapeticioninputparams.ds_merchant_customer_sms_text.md) |  | string \| undefined | <p>_(Optional)_ SMS text content, paygold</p><p>Parameters: @<!-- -->URL<!-- -->@<!-- -->, @<!-- -->COMERCIO<!-- -->@<!-- -->, @<!-- -->IMPORTE<!-- -->@ and @<!-- -->MONEDA<!-- -->@</p> |
 |  [DS\_MERCHANT\_DCC?](./redsys-easy.resttratapeticioninputparams.ds_merchant_dcc.md) |  | { monedaDCC: string; importeDCC: string; } \| undefined | _(Optional)_ Dynamic Currency Conversion data, json |
 |  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.resttratapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSv1AuthDataInputParams \| ThreeDSv2AuthDataInputParams \| ThreeDSv1ChallengeResponseInputParams \| ThreeDSv2ChallengeResponseInputParams \| undefined | _(Optional)_ EMV3DS data in json format |
+|  [DS\_MERCHANT\_P2F\_EXPIRYDATE?](./redsys-easy.resttratapeticioninputparams.ds_merchant_p2f_expirydate.md) |  | string \| undefined | _(Optional)_ Expiration date for paygold links, YYYY-MM-DD-hh:mm:ss.sss or number of minutes |
+|  [DS\_MERCHANT\_P2F\_XMLDATA?](./redsys-easy.resttratapeticioninputparams.ds_merchant_p2f_xmldata.md) |  | string \| undefined | <p>_(Optional)_ Email text content, paygold</p><p>Parameters: nombreComprador, direccionComprador and textoLibre1.</p> |
 
