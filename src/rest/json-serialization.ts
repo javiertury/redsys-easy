@@ -13,11 +13,20 @@ export const deserializeJSONMerchantParams = <
     throw new ParseError('Payload must be a base-64 encoded string');
   }
   const payload = JSON.parse(
-    decodeURIComponent(Buffer.from(strPayload, 'base64').toString('utf8'))
+    Buffer.from(strPayload, 'base64').toString('utf8')
   ) as DeserializedResponseParams | null | undefined;
 
   if (typeof payload !== 'object' || payload == null) {
     throw new ParseError('Cannot parse notification payload');
+  }
+
+  const payloadObj = payload as Record<string, unknown>;
+  for (const key of Object.keys(payload)) {
+    const value = payloadObj[key];
+    if (typeof value !== 'string') continue;
+    try {
+      payloadObj[key] = decodeURIComponent(value);
+    } catch (e) {}
   }
 
   return payload;

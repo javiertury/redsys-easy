@@ -67,4 +67,35 @@ describe('REST JSON serialization', () => {
       )
     ).toEqual(deserializedIniciaPeticionV1Response);
   });
+
+  it('correctly deserializes merchant params dates', () => {
+    expect(
+      deserializeJSONMerchantParams(
+        Buffer.from(
+          JSON.stringify({ Ds_Date: '23%2F06%2F2024', Ds_Hour: '12%3A30' })
+        ).toString('base64')
+      )
+    ).toEqual({
+      Ds_Date: '23/06/2024',
+      Ds_Hour: '12:30'
+    });
+  });
+
+  it('correctly deserializes merchant params with markup percentage', () => {
+    expect(
+      deserializeJSONMerchantParams(
+        Buffer.from(
+          JSON.stringify({
+            Ds_Date: '23%2F06%2F2024',
+            Ds_Hour: '12%3A30',
+            Ds_Markup_DCC: '5.5%'
+          })
+        ).toString('base64')
+      )
+    ).toEqual({
+      Ds_Date: '23/06/2024',
+      Ds_Hour: '12:30',
+      Ds_Markup_DCC: '5.5%'
+    });
+  });
 });
