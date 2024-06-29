@@ -13,7 +13,7 @@ export const deserializeJSONMerchantParams = <
     throw new ParseError('Payload must be a base-64 encoded string');
   }
   const payload = JSON.parse(
-    decodeURIComponent(Buffer.from(strPayload, 'base64').toString('utf8'))
+    Buffer.from(strPayload, 'base64').toString('utf8')
   ) as DeserializedResponseParams | null | undefined;
 
   if (typeof payload !== 'object' || payload == null) {

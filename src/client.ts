@@ -8,6 +8,8 @@ import {
   serializeAndSignJSONRequest
 } from './rest/json';
 
+import { decodeUrlEntries } from './rest/utils';
+
 import {
   deserializeAndVerifySoapNotification,
   serializeAndSignSoapNotificationResponse
@@ -98,7 +100,9 @@ export type RestTrataPeticion = (
  *
  * @public
  */
-export type CreateRedirectForm = (paramsInput: RedirectInputParams) => RedirectForm;
+export type CreateRedirectForm = (
+  paramsInput: RedirectInputParams
+) => RedirectForm;
 
 /**
  * Processes a JSON REST notification
@@ -141,6 +145,8 @@ export interface RedsysAPI {
   restIniciaPeticion: RestIniciaPeticion;
   restTrataPeticion: RestTrataPeticion;
   createRedirectForm: CreateRedirectForm;
+  processRedirectNotification: ProcessRestNotification;
+  processDirectRestNotification: ProcessRestNotification;
   processRestNotification: ProcessRestNotification;
   processSoapNotification: ProcessSoapNotification;
   createSoapNotificationAnswer: CreateSoapNotificationAnswer;
@@ -222,9 +228,26 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   };
 
   /**
-   * Processes a JSON REST notification
+   * Processes a URLOK/URLKO query notification
    */
-  const processRestNotification = (
+  const processRedirectNotification = (
+    /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
+    body: ResponseJSONSuccess
+  ): RestNotificationOutputParams => {
+    // A notification can't contain a gateway error, it didn't initiate the request
+    const params =
+      deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
+        config.secretKey,
+        body
+      );
+
+    return decodeUrlEntries(params);
+  };
+
+  /**
+   * Processes a direct JSON REST notification
+   */
+  const processDirectRestNotification = (
     /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
     body: ResponseJSONSuccess
   ): RestNotificationOutputParams => {
@@ -233,6 +256,33 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       config.secretKey,
       body
     );
+  };
+
+  /**
+   * Processes either a URLOK/URLKO query or a JSON REST notification
+   *
+   * @remarks
+   * This utility exists only for backwards compatibility. Users are adviced
+   * not to rely on the autodetection of this tool and use specific functions
+   * @see {@link processRedirectNotification}
+   * @see {@link processDirectRestNotification}
+   *
+   * @deprecated
+   */
+  const processRestNotification = (
+    /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
+    body: ResponseJSONSuccess
+  ): RestNotificationOutputParams => {
+    // A notification can't contain a gateway error, it didn't initiate the request
+    const params =
+      deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
+        config.secretKey,
+        body
+      );
+
+    return typeof params.Ds_Date === 'string' && params.Ds_Date.includes('%2F')
+      ? decodeUrlEntries(params)
+      : params;
   };
 
   /**
@@ -264,6 +314,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     restIniciaPeticion,
     restTrataPeticion,
     createRedirectForm,
+    processRedirectNotification,
+    processDirectRestNotification,
     processRestNotification,
     processSoapNotification,
     createSoapNotificationAnswer

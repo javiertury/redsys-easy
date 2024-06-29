@@ -11,8 +11,7 @@ import {
   redirectMerchantKey,
   redirectRequest,
   serializedAndSignedRedirectRequest,
-  serializedRestNotification,
-  deserializedRestNotification
+  serializedRedirectRestNotification
 } from '../../test/fixtures/rest/redirect';
 
 import {
@@ -30,6 +29,11 @@ import {
   serializedChallengeResponseResponse,
   deserializedChallengeResponseResponse
 } from '../../test/fixtures/rest/3ds-v2.1-challenge';
+
+import {
+  serializedRestNotificationWithDcc,
+  deserializedRestNotificationWithDcc,
+} from '../../test/fixtures/rest/redirect-dcc';
 
 describe('REST JSON', () => {
   describe('SHA256', () => {
@@ -54,9 +58,9 @@ describe('REST JSON', () => {
       expect(
         deserializeAndVerifyJSONResponse(
           redirectMerchantKey,
-          serializedRestNotification
+          serializedRestNotificationWithDcc
         )
-      ).toEqual(deserializedRestNotification);
+      ).toEqual(deserializedRestNotificationWithDcc);
 
       expect(
         deserializeAndVerifyJSONResponse(
@@ -77,7 +81,7 @@ describe('REST JSON', () => {
       expect(() =>
         deserializeAndVerifyJSONResponse(
           incorrectMerchantKey,
-          serializedRestNotification
+          serializedRedirectRestNotification
         )
       ).toThrowError(new ParseError('Invalid signature'));
 
@@ -92,7 +96,7 @@ describe('REST JSON', () => {
     it('should fail to verify response if signature is forged', () => {
       expect(() =>
         deserializeAndVerifyJSONResponse(redirectMerchantKey, {
-          ...serializedRestNotification,
+          ...serializedRedirectRestNotification,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         })
       ).toThrowError(new ParseError('Invalid signature'));
@@ -108,7 +112,7 @@ describe('REST JSON', () => {
     it('should fail to verify response if signature version is unknown', () => {
       expect(() =>
         deserializeAndVerifyJSONResponse(redirectMerchantKey, {
-          ...serializedRestNotification,
+          ...serializedRedirectRestNotification,
           Ds_SignatureVersion: 'None'
         })
       ).toThrowError(new RedsysError('Unknown signature version: None'));

@@ -1,11 +1,11 @@
 import {
-  deserializedRestNotification
+  deserializedRedirectRestNotification
 } from '../rest/redirect';
 
 export {
   redirectMerchantKey,
-  serializedRestNotification,
-  deserializedRestNotification
+  serializedRedirectRestNotification as serializedRestNotification,
+  deserializedRedirectRestNotification as deserializedRestNotification
 } from '../rest/redirect';
 
 export const formattedRestNotification = {
@@ -24,5 +24,5 @@ export const formattedRestNotification = {
   cardCountry: 'es',
   lang: 'es',
   cardBrand: 'VISA',
-  raw: deserializedRestNotification
+  raw: deserializedRedirectRestNotification
 };

@@ -37,7 +37,7 @@ const { URL } = url;
 
 const {
   createRedirectForm,
-  processRestNotification
+  processDirectRestNotification
 } = createRedsysAPI({
   urls: SANDBOX_URLS,
   secretKey
@@ -296,7 +296,7 @@ describe('Redirect Integration', () => {
     expect(body).not.toBeNull();
     expect(serverCtx.href).toEqual(redirectData.merchantURL);
 
-    const params = processRestNotification(body);
+    const params = processDirectRestNotification(body);
     expect(params.Ds_Response).toEqual('0000');
   });
 
