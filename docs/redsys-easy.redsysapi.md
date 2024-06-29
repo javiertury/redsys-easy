@@ -18,6 +18,8 @@ export interface RedsysAPI
 |  --- | --- | --- | --- |
 |  [createRedirectForm](./redsys-easy.redsysapi.createredirectform.md) |  | [CreateRedirectForm](./redsys-easy.createredirectform.md) |  |
 |  [createSoapNotificationAnswer](./redsys-easy.redsysapi.createsoapnotificationanswer.md) |  | [CreateSoapNotificationAnswer](./redsys-easy.createsoapnotificationanswer.md) |  |
+|  [processDirectRestNotification](./redsys-easy.redsysapi.processdirectrestnotification.md) |  | [ProcessRestNotification](./redsys-easy.processrestnotification.md) |  |
+|  [processRedirectNotification](./redsys-easy.redsysapi.processredirectnotification.md) |  | [ProcessRestNotification](./redsys-easy.processrestnotification.md) |  |
 |  [processRestNotification](./redsys-easy.redsysapi.processrestnotification.md) |  | [ProcessRestNotification](./redsys-easy.processrestnotification.md) |  |
 |  [processSoapNotification](./redsys-easy.redsysapi.processsoapnotification.md) |  | [ProcessSoapNotification](./redsys-easy.processsoapnotification.md) |  |
 |  [restIniciaPeticion](./redsys-easy.redsysapi.restiniciapeticion.md) |  | [RestIniciaPeticion](./redsys-easy.restiniciapeticion.md) |  |

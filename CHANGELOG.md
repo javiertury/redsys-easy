@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.5](https://github.com/javiertury/redsys-easy/compare/v5.2.4...v5.2.5) (2024-06-29)
+
+
+### Bug Fixes
+
+* apply decodeURIComponent only to redirect notifications ([3a1f991](https://github.com/javiertury/redsys-easy/commit/3a1f991cd85b74491adca55c7a467fbc7fd6376a))
+* **deserialize:** decode merchant parameters one by one, allowing for decode failures in case a paremeter value is not encoded ([e28e99a](https://github.com/javiertury/redsys-easy/commit/e28e99a0824e4910739684dd57e0807674ba313c))
+
 ### [5.2.4](https://github.com/javiertury/redsys-easy/compare/v5.2.3...v5.2.4) (2024-04-07)
 
 ### [5.2.3](https://github.com/javiertury/redsys-easy/compare/v5.2.2...v5.2.3) (2024-02-17)
