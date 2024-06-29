@@ -45,7 +45,8 @@ const {
   restIniciaPeticion,
   restTrataPeticion,
   createRedirectForm,
-  processRestNotification,
+  processRedirectNotification: processRedirectRestNotification,
+  processDirectRestNotification,
   processSoapNotification
 } = createRedsysAPI({
   secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
@@ -117,8 +118,8 @@ describe('Formatter utils interfaces', () => {
   });
 
   it('should work with rest notification formatters', () => {
-    const wrappedFormatter = useOutputFormatter(
-      processRestNotification,
+    const wrappedUrlFormatter = useOutputFormatter(
+      processRedirectRestNotification,
       restNotificationOutputFormatter
     );
 
@@ -127,7 +128,21 @@ describe('Formatter utils interfaces', () => {
         (
           input: ResponseJSONSuccess
         ) => NotificationFormatterOutput<RestNotificationOutputParams>,
-        typeof wrappedFormatter
+        typeof wrappedUrlFormatter
+      >
+    >(true);
+
+    const wrappedDirectRestNotificationFormatter = useOutputFormatter(
+      processDirectRestNotification,
+      restNotificationOutputFormatter
+    );
+
+    expectType<
+      TypeEqual<
+        (
+          input: ResponseJSONSuccess
+        ) => NotificationFormatterOutput<RestNotificationOutputParams>,
+        typeof wrappedDirectRestNotificationFormatter
       >
     >(true);
   });

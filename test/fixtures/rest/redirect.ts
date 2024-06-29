@@ -22,13 +22,13 @@ export const serializedAndSignedRedirectRequest = {
   Ds_Signature: 'TyW+LIa2GZnhCPLM7JSPwbQn4ZjOvMO/KiIf4yJgwo8='
 };
 
-export const serializedRestNotification = {
+export const serializedRedirectRestNotification = {
   Ds_SignatureVersion: 'HMAC_SHA256_V1',
   Ds_MerchantParameters: 'eyJEc19EYXRlIjoiMjIlMkYxMCUyRjIwMjEiLCJEc19Ib3VyIjoiMjIlM0E1MSIsIkRzX1NlY3VyZVBheW1lbnQiOiIxIiwiRHNfQ2FyZF9OdW1iZXIiOiI0NTQ4ODEqKioqKiowMDA0IiwiRHNfQ2FyZF9Db3VudHJ5IjoiNzI0IiwiRHNfQW1vdW50IjoiNDk5OSIsIkRzX0N1cnJlbmN5IjoiOTc4IiwiRHNfT3JkZXIiOiIwNzI2cUkzSDdzWngiLCJEc19NZXJjaGFudENvZGUiOiI5OTkwMDg4ODEiLCJEc19UZXJtaW5hbCI6IjAwMSIsIkRzX1Jlc3BvbnNlIjoiMDAwMCIsIkRzX01lcmNoYW50RGF0YSI6IiIsIkRzX1RyYW5zYWN0aW9uVHlwZSI6IjAiLCJEc19Db25zdW1lckxhbmd1YWdlIjoiMSIsIkRzX0F1dGhvcmlzYXRpb25Db2RlIjoiMDUyMDI5IiwiRHNfQ2FyZF9CcmFuZCI6IjEiLCJEc19Qcm9jZXNzZWRQYXlNZXRob2QiOiIxIn0=',
   Ds_Signature: '52nPyUkyDws__OfMqDka_yN-arxzulELZC1TYTvvR0s='
 };
 
-export const deserializedRestNotification = {
+export const deserializedRedirectRestNotification = {
   Ds_Date: '22/10/2021',
   Ds_Hour: '22:51',
   Ds_SecurePayment: '1',

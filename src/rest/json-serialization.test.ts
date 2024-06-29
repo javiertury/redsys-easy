@@ -6,8 +6,6 @@ import {
 import {
   redirectRequest,
   serializedRedirectRequest,
-  serializedRestNotification,
-  deserializedRestNotification
 } from '../../test/fixtures/rest/redirect';
 
 import {
@@ -16,10 +14,17 @@ import {
 } from '../../test/fixtures/rest/redirect-identifier';
 
 import {
+  serializedRestNotificationWithDcc,
+  deserializedRestNotificationWithDcc,
+} from '../../test/fixtures/rest/redirect-dcc';
+
+import {
   iniciaPeticionRequest as iniciaPeticionV1Request,
   serializedAndSignedIniciaPeticionRequest as serializedAndSignedIniciaPeticionV1Request,
   searializedInicaPeticionResponse as searializedInicaPeticionV1Response,
-  deserializedIniciaPeticionResponse as deserializedIniciaPeticionV1Response
+  deserializedIniciaPeticionResponse as deserializedIniciaPeticionV1Response,
+  serializedAuthDataResponse as searializedAuthDataV1Response,
+  deserializedAuthDataResponse as deserializedAuthDataV1Response
 } from '../../test/fixtures/rest/3ds-v1';
 
 import {
@@ -51,9 +56,9 @@ describe('REST JSON serialization', () => {
   it('should deserialize merchant parameters', () => {
     expect(
       deserializeJSONMerchantParams(
-        serializedRestNotification.Ds_MerchantParameters
+        serializedRestNotificationWithDcc.Ds_MerchantParameters
       )
-    ).toEqual(deserializedRestNotification);
+    ).toEqual(deserializedRestNotificationWithDcc);
 
     expect(
       deserializeJSONMerchantParams(
@@ -68,34 +73,11 @@ describe('REST JSON serialization', () => {
     ).toEqual(deserializedIniciaPeticionV1Response);
   });
 
-  it('correctly deserializes merchant params dates', () => {
+  it('should decode auth data', () => {
     expect(
       deserializeJSONMerchantParams(
-        Buffer.from(
-          JSON.stringify({ Ds_Date: '23%2F06%2F2024', Ds_Hour: '12%3A30' })
-        ).toString('base64')
+        searializedAuthDataV1Response.Ds_MerchantParameters
       )
-    ).toEqual({
-      Ds_Date: '23/06/2024',
-      Ds_Hour: '12:30'
-    });
-  });
-
-  it('correctly deserializes merchant params with markup percentage', () => {
-    expect(
-      deserializeJSONMerchantParams(
-        Buffer.from(
-          JSON.stringify({
-            Ds_Date: '23%2F06%2F2024',
-            Ds_Hour: '12%3A30',
-            Ds_Markup_DCC: '5.5%'
-          })
-        ).toString('base64')
-      )
-    ).toEqual({
-      Ds_Date: '23/06/2024',
-      Ds_Hour: '12:30',
-      Ds_Markup_DCC: '5.5%'
-    });
+    ).toEqual(deserializedAuthDataV1Response);
   });
 });

@@ -12,8 +12,8 @@ import {
   redirectRequest,
   serializedRedirectRequest,
   serializedAndSignedRedirectRequest,
-  serializedRestNotification,
-  deserializedRestNotification
+  serializedRedirectRestNotification,
+  deserializedRedirectRestNotification
 } from '../../test/fixtures/rest/redirect';
 
 import {
@@ -63,8 +63,8 @@ describe('REST JSON SHA256 signature', () => {
     expect(() =>
       sha256VerifyJSONResponse(
         redirectMerchantKey,
-        serializedRestNotification,
-        deserializedRestNotification
+        serializedRedirectRestNotification,
+        deserializedRedirectRestNotification
       )
     ).not.toThrowError();
 
@@ -81,8 +81,8 @@ describe('REST JSON SHA256 signature', () => {
     expect(() =>
       sha256VerifyJSONResponse(
         incorrectMerchantKey,
-        serializedRestNotification,
-        deserializedRestNotification
+        serializedRedirectRestNotification,
+        deserializedRedirectRestNotification
       )
     ).toThrowError(new ParseError('Invalid signature'));
 
@@ -100,10 +100,10 @@ describe('REST JSON SHA256 signature', () => {
       sha256VerifyJSONResponse(
         redirectMerchantKey,
         {
-          ...serializedRestNotification,
+          ...serializedRedirectRestNotification,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         },
-        deserializedRestNotification
+        deserializedRedirectRestNotification
       )
     ).toThrowError(new ParseError('Invalid signature'));
 
@@ -124,10 +124,10 @@ describe('REST JSON SHA256 signature', () => {
       sha256VerifyJSONResponse(
         redirectMerchantKey,
         {
-          ...serializedRestNotification,
+          ...serializedRedirectRestNotification,
           Ds_SignatureVersion: 'None'
         },
-        deserializedRestNotification
+        deserializedRedirectRestNotification
       )
     ).toThrowError(new RedsysError('Unknown signature version: None'));
 

@@ -20,15 +20,6 @@ export const deserializeJSONMerchantParams = <
     throw new ParseError('Cannot parse notification payload');
   }
 
-  const payloadObj = payload as Record<string, unknown>;
-  for (const key of Object.keys(payload)) {
-    const value = payloadObj[key];
-    if (typeof value !== 'string') continue;
-    try {
-      payloadObj[key] = decodeURIComponent(value);
-    } catch (e) {}
-  }
-
   return payload;
 };
 

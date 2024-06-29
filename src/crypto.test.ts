@@ -7,8 +7,8 @@ import {
   redirectRequest,
   redirectRequest3DESOrder,
   serializedAndSignedRedirectRequest,
-  serializedRestNotification,
-  deserializedRestNotification
+  serializedRedirectRestNotification,
+  deserializedRedirectRestNotification
 } from '../test/fixtures/rest/redirect';
 
 import {
@@ -107,7 +107,7 @@ describe('Crypto', () => {
       ).toEqual(Buffer.from(redirectWithIdentifier3DESOrder, 'base64'));
 
       expect(
-        encrypt3DES(redirectMerchantKey, deserializedRestNotification.Ds_Order)
+        encrypt3DES(redirectMerchantKey, deserializedRedirectRestNotification.Ds_Order)
       ).toEqual(Buffer.from(redirectRequest3DESOrder, 'base64'));
 
       expect(
@@ -173,13 +173,13 @@ describe('Crypto', () => {
       expect(
         sha256Sign(
           redirectMerchantKey,
-          deserializedRestNotification.Ds_Order,
-          serializedRestNotification.Ds_MerchantParameters
+          deserializedRedirectRestNotification.Ds_Order,
+          serializedRedirectRestNotification.Ds_MerchantParameters
         )
         // Redsys returns base64url encoded instead of regular base64
       ).toEqual(
         base64url
-          .toBuffer(serializedRestNotification.Ds_Signature)
+          .toBuffer(serializedRedirectRestNotification.Ds_Signature)
           .toString('base64')
       );
 

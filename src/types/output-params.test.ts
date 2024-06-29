@@ -10,7 +10,7 @@ import type {
 
 import type { deserializedRestJsonResponse } from '../../test/fixtures/rest/rest-json';
 
-import type { deserializedRestNotification } from '../../test/fixtures/rest/redirect';
+import type { deserializedRedirectRestNotification } from '../../test/fixtures/rest/redirect';
 
 import type { deserializedRestNotificationWithIdentifier } from '../../test/fixtures/rest/redirect-identifier';
 
@@ -94,7 +94,7 @@ describe('RestTrataPeticionOutputParams', () => {
 describe('RestNotificationOutputParams', () => {
   it('should match real data', () => {
     expectType<
-      TypeOf<RestNotificationOutputParams, typeof deserializedRestNotification>
+      TypeOf<RestNotificationOutputParams, typeof deserializedRedirectRestNotification>
     >(true);
 
     expectType<
