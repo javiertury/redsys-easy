@@ -208,6 +208,10 @@ export interface RedsysAPI {
     // (undocumented)
     createSoapNotificationAnswer: CreateSoapNotificationAnswer;
     // (undocumented)
+    processDirectRestNotification: ProcessRestNotification;
+    // (undocumented)
+    processRedirectNotification: ProcessRestNotification;
+    // (undocumented)
     processRestNotification: ProcessRestNotification;
     // (undocumented)
     processSoapNotification: ProcessSoapNotification;
