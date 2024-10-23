@@ -15,8 +15,63 @@ export interface RestTrataPeticionOutputParams extends RequestOutputParams, Omit
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md) |  | ThreeDSv1ChallengeOutputParams \| ThreeDSv2ChallengeOutputParams | _(Optional)_ EMV3DS data in json format |
-|  [Ds\_Response?](./redsys-easy.resttratapeticionoutputparams.ds_response.md) |  | ResolvedTransactionTrait\['Ds\_Response'\] | _(Optional)_ Response code |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Ds\_EMV3DS?](./redsys-easy.resttratapeticionoutputparams.ds_emv3ds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ThreeDSv1ChallengeOutputParams \| ThreeDSv2ChallengeOutputParams
+
+
+</td><td>
+
+_(Optional)_ EMV3DS data in json format
+
+
+</td></tr>
+<tr><td>
+
+[Ds\_Response?](./redsys-easy.resttratapeticionoutputparams.ds_response.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ResolvedTransactionTrait\['Ds\_Response'\]
+
+
+</td><td>
+
+_(Optional)_ Response code
+
+
+</td></tr>
+</tbody></table>

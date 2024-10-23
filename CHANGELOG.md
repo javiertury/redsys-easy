@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [5.2.6](https://github.com/javiertury/redsys-easy/compare/v5.2.5...v5.2.6) (2024-10-23)
 
 ### [5.2.5](https://github.com/javiertury/redsys-easy/compare/v5.2.4...v5.2.5) (2024-06-29)
 

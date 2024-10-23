@@ -14,9 +14,76 @@ export interface UrlsConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [redirect](./redsys-easy.urlsconfig.redirect.md) |  | string |  |
-|  [restIniciaPeticion](./redsys-easy.urlsconfig.restiniciapeticion.md) |  | string |  |
-|  [restTrataPeticion](./redsys-easy.urlsconfig.resttratapeticion.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[redirect](./redsys-easy.urlsconfig.redirect.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[restIniciaPeticion](./redsys-easy.urlsconfig.restiniciapeticion.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[restTrataPeticion](./redsys-easy.urlsconfig.resttratapeticion.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

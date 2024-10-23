@@ -15,8 +15,63 @@ export interface RestIniciaPeticionInputParams extends CommonRestInputParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md) |  | 'Y' \| 'N' \| undefined | _(Optional)_ Dynamic Currency Conversion data, json |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSPreAuthInputParams \| undefined | _(Optional)_ EMV3DS data in json format |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[DS\_MERCHANT\_DCC?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_dcc.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'Y' \| 'N' \| undefined
+
+
+</td><td>
+
+_(Optional)_ Dynamic Currency Conversion data, json
+
+
+</td></tr>
+<tr><td>
+
+[DS\_MERCHANT\_EMV3DS?](./redsys-easy.restiniciapeticioninputparams.ds_merchant_emv3ds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ThreeDSPreAuthInputParams \| undefined
+
+
+</td><td>
+
+_(Optional)_ EMV3DS data in json format
+
+
+</td></tr>
+</tbody></table>

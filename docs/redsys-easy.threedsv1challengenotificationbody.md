@@ -14,8 +14,63 @@ export interface ThreeDSv1ChallengeNotificationBody
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [MD](./redsys-easy.threedsv1challengenotificationbody.md.md) |  | string | Merchant data, random generated identifier hex encoded? |
-|  [PaRes](./redsys-easy.threedsv1challengenotificationbody.pares.md) |  | string | Payment authentication Request, XML that is gzip compressed and base64 encoded |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[MD](./redsys-easy.threedsv1challengenotificationbody.md.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Merchant data, random generated identifier hex encoded?
+
+
+</td></tr>
+<tr><td>
+
+[PaRes](./redsys-easy.threedsv1challengenotificationbody.pares.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Payment authentication Request, XML that is gzip compressed and base64 encoded
+
+
+</td></tr>
+</tbody></table>

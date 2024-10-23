@@ -15,8 +15,63 @@ export interface RestIniciaPeticionOutputParams extends RequestOutputParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [Ds\_DCC?](./redsys-easy.restiniciapeticionoutputparams.ds_dcc.md) |  | { InfoMonedaTarjeta: { monedaDCC: string; litMonedaDCC: string; litMonedaRDCC: string; importeDCC: string; cambioDCC: string; fechaCambioDCC: string; markUp: number; }; InfoMonedaComercio: { monedaCome: string; litMonedaCome: string; importeCome: string; }; } | _(Optional)_ Dynamic Currency Conversion data, json |
-|  [Ds\_EMV3DS?](./redsys-easy.restiniciapeticionoutputparams.ds_emv3ds.md) |  | ThreeDSv1PreAuthOutputParams \| ThreeDSv2PreAuthOutputParams | _(Optional)_ EMV3DS data in json format |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Ds\_DCC?](./redsys-easy.restiniciapeticionoutputparams.ds_dcc.md)
+
+
+</td><td>
+
+
+</td><td>
+
+{ InfoMonedaTarjeta: { monedaDCC: string; litMonedaDCC: string; litMonedaRDCC: string; importeDCC: string; cambioDCC: string; fechaCambioDCC: string; markUp: number; }; InfoMonedaComercio: { monedaCome: string; litMonedaCome: string; importeCome: string; }; }
+
+
+</td><td>
+
+_(Optional)_ Dynamic Currency Conversion data, json
+
+
+</td></tr>
+<tr><td>
+
+[Ds\_EMV3DS?](./redsys-easy.restiniciapeticionoutputparams.ds_emv3ds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ThreeDSv1PreAuthOutputParams \| ThreeDSv2PreAuthOutputParams
+
+
+</td><td>
+
+_(Optional)_ EMV3DS data in json format
+
+
+</td></tr>
+</tbody></table>

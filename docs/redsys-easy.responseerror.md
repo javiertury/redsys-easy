@@ -15,14 +15,93 @@ export declare class ResponseError extends RedsysError
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)({ message, code, response })](./redsys-easy.responseerror._constructor_.md) |  | Constructs a new instance of the <code>ResponseError</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)({ message, code, response })](./redsys-easy.responseerror._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `ResponseError` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [code](./redsys-easy.responseerror.code.md) |  | number \| undefined |  |
-|  [response](./redsys-easy.responseerror.response.md) |  | unknown \| undefined |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[code](./redsys-easy.responseerror.code.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number \| undefined
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[response](./redsys-easy.responseerror.response.md)
+
+
+</td><td>
+
+
+</td><td>
+
+unknown \| undefined
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

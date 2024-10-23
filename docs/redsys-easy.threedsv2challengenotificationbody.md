@@ -14,8 +14,61 @@ export interface ThreeDSv2ChallengeNotificationBody
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [cres](./redsys-easy.threedsv2challengenotificationbody.cres.md) |  | string | Challenge response, JSON that is base64 encoded |
-|  [threeDSSessionData](./redsys-easy.threedsv2challengenotificationbody.threedssessiondata.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[cres](./redsys-easy.threedsv2challengenotificationbody.cres.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Challenge response, JSON that is base64 encoded
+
+
+</td></tr>
+<tr><td>
+
+[threeDSSessionData](./redsys-easy.threedsv2challengenotificationbody.threedssessiondata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

@@ -15,8 +15,63 @@ export interface SoapNotificationOutputParams extends NotificationOutputParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [Fecha](./redsys-easy.soapnotificationoutputparams.fecha.md) |  | string | Transaction date, DD/MM/YYYY |
-|  [Hora](./redsys-easy.soapnotificationoutputparams.hora.md) |  | string | Transaction time, hh:mm |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Fecha](./redsys-easy.soapnotificationoutputparams.fecha.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Transaction date, DD/MM/YYYY
+
+
+</td></tr>
+<tr><td>
+
+[Hora](./redsys-easy.soapnotificationoutputparams.hora.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Transaction time, hh:mm
+
+
+</td></tr>
+</tbody></table>

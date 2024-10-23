@@ -14,7 +14,42 @@ export interface ThreeDSv2MethodNotificationBody
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [threeDSMethodData](./redsys-easy.threedsv2methodnotificationbody.threedsmethoddata.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[threeDSMethodData](./redsys-easy.threedsv2methodnotificationbody.threedsmethoddata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

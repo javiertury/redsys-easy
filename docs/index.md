@@ -6,7 +6,26 @@
 
 ## Packages
 
-|  Package | Description |
-|  --- | --- |
-|  [redsys-easy](./redsys-easy.md) | Node JS client and utilities for implementing a redsys payment gateway |
+<table><thead><tr><th>
 
+Package
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[redsys-easy](./redsys-easy.md)
+
+
+</td><td>
+
+Node JS client and utilities for implementing a redsys payment gateway
+
+
+</td></tr>
+</tbody></table>

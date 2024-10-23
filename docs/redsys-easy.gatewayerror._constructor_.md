@@ -14,7 +14,34 @@ constructor({ message, code, response }: GatewayErrorOptions);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { message, code, response } | GatewayErrorOptions |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ message, code, response }
+
+
+</td><td>
+
+GatewayErrorOptions
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

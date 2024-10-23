@@ -15,15 +15,110 @@ export declare class ParseError extends RedsysError
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(message, value, location)](./redsys-easy.parseerror._constructor_.md) |  | Constructs a new instance of the <code>ParseError</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(message, value, location)](./redsys-easy.parseerror._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `ParseError` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [description](./redsys-easy.parseerror.description.md) |  | string \| undefined |  |
-|  [location](./redsys-easy.parseerror.location.md) |  | unknown \| undefined |  |
-|  [value](./redsys-easy.parseerror.value.md) |  | unknown |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[description](./redsys-easy.parseerror.description.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string \| undefined
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[location](./redsys-easy.parseerror.location.md)
+
+
+</td><td>
+
+
+</td><td>
+
+unknown \| undefined
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[value](./redsys-easy.parseerror.value.md)
+
+
+</td><td>
+
+
+</td><td>
+
+unknown
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

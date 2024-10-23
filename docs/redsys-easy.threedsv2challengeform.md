@@ -14,8 +14,59 @@ export interface ThreeDSv2ChallengeForm
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [body](./redsys-easy.threedsv2challengeform.body.md) |  | { creq: string; } |  |
-|  [url](./redsys-easy.threedsv2challengeform.url.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[body](./redsys-easy.threedsv2challengeform.body.md)
+
+
+</td><td>
+
+
+</td><td>
+
+{ creq: string; }
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[url](./redsys-easy.threedsv2challengeform.url.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

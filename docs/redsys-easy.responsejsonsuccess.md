@@ -14,9 +14,76 @@ export interface ResponseJSONSuccess
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [Ds\_MerchantParameters](./redsys-easy.responsejsonsuccess.ds_merchantparameters.md) |  | string |  |
-|  [Ds\_Signature](./redsys-easy.responsejsonsuccess.ds_signature.md) |  | string |  |
-|  [Ds\_SignatureVersion](./redsys-easy.responsejsonsuccess.ds_signatureversion.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Ds\_MerchantParameters](./redsys-easy.responsejsonsuccess.ds_merchantparameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[Ds\_Signature](./redsys-easy.responsejsonsuccess.ds_signature.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[Ds\_SignatureVersion](./redsys-easy.responsejsonsuccess.ds_signatureversion.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

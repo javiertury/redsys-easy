@@ -15,14 +15,93 @@ export declare class ValidationError extends RedsysError
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(message, parameters)](./redsys-easy.validationerror._constructor_.md) |  | Constructs a new instance of the <code>ValidationError</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(message, parameters)](./redsys-easy.validationerror._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `ValidationError` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [parameters](./redsys-easy.validationerror.parameters.md) |  | object |  |
-|  [value](./redsys-easy.validationerror.value.md) |  | unknown |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[parameters](./redsys-easy.validationerror.parameters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+object
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[value](./redsys-easy.validationerror.value.md)
+
+
+</td><td>
+
+
+</td><td>
+
+unknown
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

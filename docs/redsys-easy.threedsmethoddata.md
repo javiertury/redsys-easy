@@ -14,8 +14,59 @@ export interface ThreeDSMethodData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [threeDSMethodNotificationURL](./redsys-easy.threedsmethoddata.threedsmethodnotificationurl.md) |  | string |  |
-|  [threeDSServerTransID](./redsys-easy.threedsmethoddata.threedsservertransid.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[threeDSMethodNotificationURL](./redsys-easy.threedsmethoddata.threedsmethodnotificationurl.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[threeDSServerTransID](./redsys-easy.threedsmethoddata.threedsservertransid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

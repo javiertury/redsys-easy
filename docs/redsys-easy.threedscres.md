@@ -14,11 +14,110 @@ export interface ThreeDSCres
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [acsTransID](./redsys-easy.threedscres.acstransid.md) |  | string |  |
-|  [messageType](./redsys-easy.threedscres.messagetype.md) |  | 'CRes' |  |
-|  [messageVersion](./redsys-easy.threedscres.messageversion.md) |  | '2.1.0' \| '2.2.0' |  |
-|  [threeDSServerTransID](./redsys-easy.threedscres.threedsservertransid.md) |  | string |  |
-|  [transStatus](./redsys-easy.threedscres.transstatus.md) |  | 'Y' \| 'N' |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[acsTransID](./redsys-easy.threedscres.acstransid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[messageType](./redsys-easy.threedscres.messagetype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'CRes'
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[messageVersion](./redsys-easy.threedscres.messageversion.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'2.1.0' \| '2.2.0'
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[threeDSServerTransID](./redsys-easy.threedscres.threedsservertransid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[transStatus](./redsys-easy.threedscres.transstatus.md)
+
+
+</td><td>
+
+
+</td><td>
+
+'Y' \| 'N'
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

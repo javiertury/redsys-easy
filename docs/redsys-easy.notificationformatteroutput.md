@@ -15,10 +15,97 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [date](./redsys-easy.notificationformatteroutput.date.md) |  | string |  |
-|  [lang?](./redsys-easy.notificationformatteroutput.lang.md) |  | [Language](./redsys-easy.language.md) | _(Optional)_ |
-|  [time](./redsys-easy.notificationformatteroutput.time.md) |  | string |  |
-|  [timestamp](./redsys-easy.notificationformatteroutput.timestamp.md) |  | Date | Timestamp of transaction |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[date](./redsys-easy.notificationformatteroutput.date.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[lang?](./redsys-easy.notificationformatteroutput.lang.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[Language](./redsys-easy.language.md)
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[time](./redsys-easy.notificationformatteroutput.time.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[timestamp](./redsys-easy.notificationformatteroutput.timestamp.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Date
+
+
+</td><td>
+
+Timestamp of transaction
+
+
+</td></tr>
+</tbody></table>

@@ -14,8 +14,59 @@ export interface ThreeDSv1ChallengeForm
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [body](./redsys-easy.threedsv1challengeform.body.md) |  | { PaReq: string; MD: string; TermUrl: string; } |  |
-|  [url](./redsys-easy.threedsv1challengeform.url.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[body](./redsys-easy.threedsv1challengeform.body.md)
+
+
+</td><td>
+
+
+</td><td>
+
+{ PaReq: string; MD: string; TermUrl: string; }
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[url](./redsys-easy.threedsv1challengeform.url.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

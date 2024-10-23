@@ -14,7 +14,34 @@ constructor({ message, code, response }: HTTPErrorOptions);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { message, code, response } | HTTPErrorOptions |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ message, code, response }
+
+
+</td><td>
+
+HTTPErrorOptions
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

@@ -14,8 +14,59 @@ export interface RedirectForm
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [body](./redsys-easy.redirectform.body.md) |  | SHA256SignedJSONParameters |  |
-|  [url](./redsys-easy.redirectform.url.md) |  | string |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[body](./redsys-easy.redirectform.body.md)
+
+
+</td><td>
+
+
+</td><td>
+
+SHA256SignedJSONParameters
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[url](./redsys-easy.redirectform.url.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>

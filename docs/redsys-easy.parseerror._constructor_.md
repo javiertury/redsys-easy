@@ -14,9 +14,66 @@ constructor(message: string, value?: unknown | undefined, location?: unknown | u
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  message | string |  |
-|  value | unknown \| undefined | _(Optional)_ |
-|  location | unknown \| undefined | _(Optional)_ |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+message
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+value
+
+
+</td><td>
+
+unknown \| undefined
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+location
+
+
+</td><td>
+
+unknown \| undefined
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

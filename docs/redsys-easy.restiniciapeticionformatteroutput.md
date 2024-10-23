@@ -15,7 +15,44 @@ export interface RestIniciaPeticionFormatterOutput<RawOutputParams extends RestI
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [emv3ds?](./redsys-easy.restiniciapeticionformatteroutput.emv3ds.md) |  | [RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\] | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[emv3ds?](./redsys-easy.restiniciapeticionformatteroutput.emv3ds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[RestIniciaPeticionOutputParams](./redsys-easy.restiniciapeticionoutputparams.md)<!-- -->\['Ds\_EMV3DS'\]
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

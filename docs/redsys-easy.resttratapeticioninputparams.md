@@ -15,8 +15,63 @@ export interface RestTrataPeticionInputParams extends CommonRestInputParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [DS\_MERCHANT\_DCC?](./redsys-easy.resttratapeticioninputparams.ds_merchant_dcc.md) |  | { monedaDCC: string; importeDCC: string; } \| undefined | _(Optional)_ Dynamic Currency Conversion data, json |
-|  [DS\_MERCHANT\_EMV3DS?](./redsys-easy.resttratapeticioninputparams.ds_merchant_emv3ds.md) |  | ThreeDSv1AuthDataInputParams \| ThreeDSv2AuthDataInputParams \| ThreeDSv1ChallengeResponseInputParams \| ThreeDSv2ChallengeResponseInputParams \| undefined | _(Optional)_ EMV3DS data in json format |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[DS\_MERCHANT\_DCC?](./redsys-easy.resttratapeticioninputparams.ds_merchant_dcc.md)
+
+
+</td><td>
+
+
+</td><td>
+
+{ monedaDCC: string; importeDCC: string; } \| undefined
+
+
+</td><td>
+
+_(Optional)_ Dynamic Currency Conversion data, json
+
+
+</td></tr>
+<tr><td>
+
+[DS\_MERCHANT\_EMV3DS?](./redsys-easy.resttratapeticioninputparams.ds_merchant_emv3ds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ThreeDSv1AuthDataInputParams \| ThreeDSv2AuthDataInputParams \| ThreeDSv1ChallengeResponseInputParams \| ThreeDSv2ChallengeResponseInputParams \| undefined
+
+
+</td><td>
+
+_(Optional)_ EMV3DS data in json format
+
+
+</td></tr>
+</tbody></table>

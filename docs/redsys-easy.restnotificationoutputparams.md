@@ -15,8 +15,63 @@ export interface RestNotificationOutputParams extends NotificationOutputParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [Ds\_Date](./redsys-easy.restnotificationoutputparams.ds_date.md) |  | string | Transaction date, DD/MM/YYYY |
-|  [Ds\_Hour](./redsys-easy.restnotificationoutputparams.ds_hour.md) |  | string | Transaction time, hh:mm |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[Ds\_Date](./redsys-easy.restnotificationoutputparams.ds_date.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Transaction date, DD/MM/YYYY
+
+
+</td></tr>
+<tr><td>
+
+[Ds\_Hour](./redsys-easy.restnotificationoutputparams.ds_hour.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+Transaction time, hh:mm
+
+
+</td></tr>
+</tbody></table>

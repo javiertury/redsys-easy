@@ -14,9 +14,78 @@ export interface RedsysConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [fetch?](./redsys-easy.redsysconfig.fetch.md) |  | typeof Fetch \| undefined | _(Optional)_ |
-|  [secretKey](./redsys-easy.redsysconfig.secretkey.md) |  | string |  |
-|  [urls](./redsys-easy.redsysconfig.urls.md) |  | [UrlsConfig](./redsys-easy.urlsconfig.md) |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[fetch?](./redsys-easy.redsysconfig.fetch.md)
+
+
+</td><td>
+
+
+</td><td>
+
+typeof Fetch \| undefined
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[secretKey](./redsys-easy.redsysconfig.secretkey.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[urls](./redsys-easy.redsysconfig.urls.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[UrlsConfig](./redsys-easy.urlsconfig.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
