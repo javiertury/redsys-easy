@@ -57,6 +57,11 @@ export type {
   ThreeDSv2ChallengeNotificationBody
 } from './types/api';
 
+export {
+  serializeAndSignJSONRequest,
+  deserializeAndVerifyJSONResponse,
+} from './rest/json';
+
 // 3DS
 
 export {
