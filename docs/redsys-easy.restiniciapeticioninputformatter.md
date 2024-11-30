@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [restIniciaPeticionInputFormatter](./redsys-easy.restiniciapeticioninputformatter.md)
 
-## restIniciaPeticionInputFormatter variable
+## restIniciaPeticionInputFormatter() function
 
 REST iniciaPeticion input formatter
 
@@ -11,3 +11,41 @@ REST iniciaPeticion input formatter
 ```typescript
 restIniciaPeticionInputFormatter: <RawInputParams extends Partial<RestIniciaPeticionInputParams> = Partial<RestIniciaPeticionInputParams>>(raw: RestIniciaPeticionFormatterInput<RawInputParams>) => RestIniciaPeticionInputParams
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+raw
+
+
+</td><td>
+
+[RestIniciaPeticionFormatterInput](./redsys-easy.restiniciapeticionformatterinput.md)<!-- -->&lt;RawInputParams&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[RestIniciaPeticionInputParams](./redsys-easy.restiniciapeticioninputparams.md)
+

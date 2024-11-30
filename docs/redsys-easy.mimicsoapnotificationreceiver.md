@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [mimicSoapNotificationReceiver](./redsys-easy.mimicsoapnotificationreceiver.md)
 
-## mimicSoapNotificationReceiver variable
+## mimicSoapNotificationReceiver() function
 
 Extracts the body of a SOAP notification from the body of the HTTP request
 
@@ -11,6 +11,43 @@ Extracts the body of a SOAP notification from the body of the HTTP request
 ```typescript
 mimicSoapNotificationReceiver: (xml: string) => string
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+xml
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+string
 
 ## Remarks
 

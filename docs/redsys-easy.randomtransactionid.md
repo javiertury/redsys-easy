@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [randomTransactionId](./redsys-easy.randomtransactionid.md)
 
-## randomTransactionId variable
+## randomTransactionId() function
 
 Generates a random order ID following redsys requirements
 
@@ -11,3 +11,7 @@ Generates a random order ID following redsys requirements
 ```typescript
 randomTransactionId: () => string
 ```
+**Returns:**
+
+string
+

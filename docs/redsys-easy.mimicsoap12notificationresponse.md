@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [mimicSoap12NotificationResponse](./redsys-easy.mimicsoap12notificationresponse.md)
 
-## mimicSoap12NotificationResponse variable
+## mimicSoap12NotificationResponse() function
 
 Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
 
@@ -11,6 +11,43 @@ Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notifica
 ```typescript
 mimicSoap12NotificationResponse: (answer: string) => string
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+answer
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+string
 
 ## Remarks
 

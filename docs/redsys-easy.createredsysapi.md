@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [createRedsysAPI](./redsys-easy.createredsysapi.md)
 
-## createRedsysAPI variable
+## createRedsysAPI() function
 
 Creates Redsys API functions
 
@@ -11,6 +11,43 @@ Creates Redsys API functions
 ```typescript
 createRedsysAPI: (config: RedsysConfig) => RedsysAPI
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+config
+
+
+</td><td>
+
+[RedsysConfig](./redsys-easy.redsysconfig.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[RedsysAPI](./redsys-easy.redsysapi.md)
 
 ## Remarks
 

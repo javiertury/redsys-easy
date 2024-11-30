@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [create3DSv2ChallengeForm](./redsys-easy.create3dsv2challengeform.md)
 
-## create3DSv2ChallengeForm variable
+## create3DSv2ChallengeForm() function
 
 Creates parameters for a 3DS v2 challenge form
 
@@ -11,3 +11,41 @@ Creates parameters for a 3DS v2 challenge form
 ```typescript
 create3DSv2ChallengeForm: (emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams) => ThreeDSv2ChallengeForm
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+emv3dsV2Challenge
+
+
+</td><td>
+
+ThreeDSv2ChallengeOutputParams
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[ThreeDSv2ChallengeForm](./redsys-easy.threedsv2challengeform.md)
+

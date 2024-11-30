@@ -2,12 +2,64 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [create3DSMethodForm](./redsys-easy.create3dsmethodform.md)
 
-## create3DSMethodForm variable
+## create3DSMethodForm() function
 
 Creates parameters for a 3DS method form
 
 **Signature:**
 
 ```typescript
-create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm
+create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, "threeDSServerTransID" | "threeDSMethodURL">, notificationURL: string) => ThreeDSMethodForm
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+emv3dsParams
+
+
+</td><td>
+
+Pick&lt;ThreeDSv2PreAuthWithMethodOutputParams, "threeDSServerTransID" \| "threeDSMethodURL"&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+notificationURL
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[ThreeDSMethodForm](./redsys-easy.threedsmethodform.md)
+

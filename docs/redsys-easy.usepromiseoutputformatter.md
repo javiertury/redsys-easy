@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [usePromiseOutputFormatter](./redsys-easy.usepromiseoutputformatter.md)
 
-## usePromiseOutputFormatter variable
+## usePromiseOutputFormatter() function
 
 Applies an output formatter to the resolved ouput promise of a function
 
@@ -11,3 +11,55 @@ Applies an output formatter to the resolved ouput promise of a function
 ```typescript
 usePromiseOutputFormatter: <A, B, C>(fn: (a: A) => Promise<B>, outputFormatter: (b: B) => C) => (a: A) => Promise<C>
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+fn
+
+
+</td><td>
+
+(a: A) =&gt; Promise&lt;B&gt;
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+outputFormatter
+
+
+</td><td>
+
+(b: B) =&gt; C
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+(a: A) =&gt; Promise&lt;C&gt;
+

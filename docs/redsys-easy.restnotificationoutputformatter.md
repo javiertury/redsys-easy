@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [restNotificationOutputFormatter](./redsys-easy.restnotificationoutputformatter.md)
 
-## restNotificationOutputFormatter variable
+## restNotificationOutputFormatter() function
 
 REST notification formatter
 
@@ -11,3 +11,41 @@ REST notification formatter
 ```typescript
 restNotificationOutputFormatter: <RawOutputParams extends RestNotificationOutputParams = RestNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+raw
+
+
+</td><td>
+
+RawOutputParams
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[NotificationFormatterOutput](./redsys-easy.notificationformatteroutput.md)<!-- -->&lt;RawOutputParams&gt;
+

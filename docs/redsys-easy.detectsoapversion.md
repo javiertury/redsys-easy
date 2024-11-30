@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [detectSoapVersion](./redsys-easy.detectsoapversion.md)
 
-## detectSoapVersion variable
+## detectSoapVersion() function
 
 Detects the soap version of a HTTP request
 
@@ -11,3 +11,41 @@ Detects the soap version of a HTTP request
 ```typescript
 detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1"
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+req
+
+
+</td><td>
+
+SoapRequest
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+"1.2" \| "1.1"
+

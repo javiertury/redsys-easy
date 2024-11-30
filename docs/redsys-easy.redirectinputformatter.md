@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [redirectInputFormatter](./redsys-easy.redirectinputformatter.md)
 
-## redirectInputFormatter variable
+## redirectInputFormatter() function
 
 Redirection input formatter
 
@@ -11,3 +11,41 @@ Redirection input formatter
 ```typescript
 redirectInputFormatter: <RawInputParams extends Partial<RedirectInputParams> = Partial<RedirectInputParams>>(input: RedirectFormatterInput<RawInputParams>) => RedirectInputParams
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+input
+
+
+</td><td>
+
+[RedirectFormatterInput](./redsys-easy.redirectformatterinput.md)<!-- -->&lt;RawInputParams&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[RedirectInputParams](./redsys-easy.redirectinputparams.md)
+

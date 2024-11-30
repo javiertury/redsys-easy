@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [assertSuccessfulResponse](./redsys-easy.assertsuccessfulresponse.md)
 
-## assertSuccessfulResponse variable
+## assertSuccessfulResponse() function
 
 Asserts that response has a code indicating success
 
@@ -13,3 +13,41 @@ assertSuccessfulResponse: (responseParams: {
     Ds_Response?: string | undefined;
 }) => void
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+responseParams
+
+
+</td><td>
+
+{ Ds\_Response?: string \| undefined; }
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+void
+

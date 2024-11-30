@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [deserializeThreeDSMethodData](./redsys-easy.deserializethreedsmethoddata.md)
 
-## deserializeThreeDSMethodData variable
+## deserializeThreeDSMethodData() function
 
 Deserialize threeDSMethodData
 
@@ -11,3 +11,41 @@ Deserialize threeDSMethodData
 ```typescript
 deserializeThreeDSMethodData: (threeDSMethodData: string) => ThreeDSMethodData
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+threeDSMethodData
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[ThreeDSMethodData](./redsys-easy.threedsmethoddata.md)
+

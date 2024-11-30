@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [isResponseCodeOk](./redsys-easy.isresponsecodeok.md)
 
-## isResponseCodeOk variable
+## isResponseCodeOk() function
 
 Indicates if a response code signals success
 
@@ -11,3 +11,41 @@ Indicates if a response code signals success
 ```typescript
 isResponseCodeOk: (responseCode: string | number) => boolean
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+responseCode
+
+
+</td><td>
+
+string \| number
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+boolean
+

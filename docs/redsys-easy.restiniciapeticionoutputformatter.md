@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [restIniciaPeticionOutputFormatter](./redsys-easy.restiniciapeticionoutputformatter.md)
 
-## restIniciaPeticionOutputFormatter variable
+## restIniciaPeticionOutputFormatter() function
 
 REST iniciaPeticion output formatter
 
@@ -11,3 +11,41 @@ REST iniciaPeticion output formatter
 ```typescript
 restIniciaPeticionOutputFormatter: <RawOutputParams extends RestIniciaPeticionOutputParams = RestIniciaPeticionOutputParams>(raw: RawOutputParams) => RestIniciaPeticionFormatterOutput<RawOutputParams>
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+raw
+
+
+</td><td>
+
+RawOutputParams
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+[RestIniciaPeticionFormatterOutput](./redsys-easy.restiniciapeticionformatteroutput.md)<!-- -->&lt;RawOutputParams&gt;
+

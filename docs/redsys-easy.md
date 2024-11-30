@@ -87,6 +87,325 @@ Invalid input provided
 </td></tr>
 </tbody></table>
 
+## Functions
+
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[assertSuccessfulResponse(responseParams)](./redsys-easy.assertsuccessfulresponse.md)
+
+
+</td><td>
+
+Asserts that response has a code indicating success
+
+
+</td></tr>
+<tr><td>
+
+[assertSuccessfulResponseCode(responseCode)](./redsys-easy.assertsuccessfulresponsecode.md)
+
+
+</td><td>
+
+Asserts that a response code indicates success
+
+
+</td></tr>
+<tr><td>
+
+[create3DSMethodForm(emv3dsParams, notificationURL)](./redsys-easy.create3dsmethodform.md)
+
+
+</td><td>
+
+Creates parameters for a 3DS method form
+
+
+</td></tr>
+<tr><td>
+
+[create3DSv1ChallengeForm(emv3dsV1Challenge, challengeNotificationUrl)](./redsys-easy.create3dsv1challengeform.md)
+
+
+</td><td>
+
+Creates parameters for a 3DS v1 challenge form
+
+
+</td></tr>
+<tr><td>
+
+[create3DSv2ChallengeForm(emv3dsV2Challenge)](./redsys-easy.create3dsv2challengeform.md)
+
+
+</td><td>
+
+Creates parameters for a 3DS v2 challenge form
+
+
+</td></tr>
+<tr><td>
+
+[createRedsysAPI(config)](./redsys-easy.createredsysapi.md)
+
+
+</td><td>
+
+Creates Redsys API functions
+
+
+</td></tr>
+<tr><td>
+
+[deserializeAndVerifyJSONResponse(merchantKey, response)](./redsys-easy.deserializeandverifyjsonresponse.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[deserializeCres(cres)](./redsys-easy.deserializecres.md)
+
+
+</td><td>
+
+Deserialize `cres` field of a 3DS v2 challenge
+
+
+</td></tr>
+<tr><td>
+
+[deserializeThreeDSMethodData(threeDSMethodData)](./redsys-easy.deserializethreedsmethoddata.md)
+
+
+</td><td>
+
+Deserialize threeDSMethodData
+
+
+</td></tr>
+<tr><td>
+
+[detectSoapVersion(req)](./redsys-easy.detectsoapversion.md)
+
+
+</td><td>
+
+Detects the soap version of a HTTP request
+
+
+</td></tr>
+<tr><td>
+
+[getResponseCodeMessage(code)](./redsys-easy.getresponsecodemessage.md)
+
+
+</td><td>
+
+Returns the message corresponding to a response code, in spanish
+
+
+</td></tr>
+<tr><td>
+
+[getSISErrorCodeMessage(code)](./redsys-easy.getsiserrorcodemessage.md)
+
+
+</td><td>
+
+Returns the message corresponding to a gateway error code
+
+
+</td></tr>
+<tr><td>
+
+[isResponseCodeOk(responseCode)](./redsys-easy.isresponsecodeok.md)
+
+
+</td><td>
+
+Indicates if a response code signals success
+
+
+</td></tr>
+<tr><td>
+
+[mimicSoap11NotificationResponse(answer)](./redsys-easy.mimicsoap11notificationresponse.md)
+
+
+</td><td>
+
+Creates the body of a HTTP response as SOAP 1.1 from the body of a SOAP notification response
+
+
+</td></tr>
+<tr><td>
+
+[mimicSoap12NotificationResponse(answer)](./redsys-easy.mimicsoap12notificationresponse.md)
+
+
+</td><td>
+
+Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
+
+
+</td></tr>
+<tr><td>
+
+[mimicSoapNotificationReceiver(xml)](./redsys-easy.mimicsoapnotificationreceiver.md)
+
+
+</td><td>
+
+Extracts the body of a SOAP notification from the body of the HTTP request
+
+
+</td></tr>
+<tr><td>
+
+[randomTransactionId()](./redsys-easy.randomtransactionid.md)
+
+
+</td><td>
+
+Generates a random order ID following redsys requirements
+
+
+</td></tr>
+<tr><td>
+
+[redirectInputFormatter(input)](./redsys-easy.redirectinputformatter.md)
+
+
+</td><td>
+
+Redirection input formatter
+
+
+</td></tr>
+<tr><td>
+
+[restIniciaPeticionInputFormatter(raw)](./redsys-easy.restiniciapeticioninputformatter.md)
+
+
+</td><td>
+
+REST iniciaPeticion input formatter
+
+
+</td></tr>
+<tr><td>
+
+[restIniciaPeticionOutputFormatter(raw)](./redsys-easy.restiniciapeticionoutputformatter.md)
+
+
+</td><td>
+
+REST iniciaPeticion output formatter
+
+
+</td></tr>
+<tr><td>
+
+[restNotificationOutputFormatter(raw)](./redsys-easy.restnotificationoutputformatter.md)
+
+
+</td><td>
+
+REST notification formatter
+
+
+</td></tr>
+<tr><td>
+
+[restTrataPeticionInputFormatter(raw)](./redsys-easy.resttratapeticioninputformatter.md)
+
+
+</td><td>
+
+REST trataPeticion input formatter
+
+
+</td></tr>
+<tr><td>
+
+[restTrataPeticionOutputFormatter(raw)](./redsys-easy.resttratapeticionoutputformatter.md)
+
+
+</td><td>
+
+REST trataPeticion output formatter
+
+
+</td></tr>
+<tr><td>
+
+[serializeAndSignJSONRequest(merchantKey, requestParams)](./redsys-easy.serializeandsignjsonrequest.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[soapNotificationOutputFormatter(raw)](./redsys-easy.soapnotificationoutputformatter.md)
+
+
+</td><td>
+
+SOAP notification formatter
+
+
+</td></tr>
+<tr><td>
+
+[useOutputFormatter(fn, outputFormatter)](./redsys-easy.useoutputformatter.md)
+
+
+</td><td>
+
+Applies an output formatter to a function
+
+
+</td></tr>
+<tr><td>
+
+[usePromiseOutputFormatter(fn, outputFormatter)](./redsys-easy.usepromiseoutputformatter.md)
+
+
+</td><td>
+
+Applies an output formatter to the resolved ouput promise of a function
+
+
+</td></tr>
+<tr><td>
+
+[useSingleInputFormatter(fn, inputFormatter)](./redsys-easy.usesingleinputformatter.md)
+
+
+</td><td>
+
+Applies an input formatter to the first argument of a function
+
+
+</td></tr>
+</tbody></table>
+
 ## Interfaces
 
 <table><thead><tr><th>
@@ -403,28 +722,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[assertSuccessfulResponse](./redsys-easy.assertsuccessfulresponse.md)
-
-
-</td><td>
-
-Asserts that response has a code indicating success
-
-
-</td></tr>
-<tr><td>
-
-[assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md)
-
-
-</td><td>
-
-Asserts that a response code indicates success
-
-
-</td></tr>
-<tr><td>
-
 [CARDBRANDS](./redsys-easy.cardbrands.md)
 
 
@@ -447,122 +744,12 @@ Maps ISO 3166 Alpha 2 codes to UN M49 numbers
 </td></tr>
 <tr><td>
 
-[create3DSMethodForm](./redsys-easy.create3dsmethodform.md)
-
-
-</td><td>
-
-Creates parameters for a 3DS method form
-
-
-</td></tr>
-<tr><td>
-
-[create3DSv1ChallengeForm](./redsys-easy.create3dsv1challengeform.md)
-
-
-</td><td>
-
-Creates parameters for a 3DS v1 challenge form
-
-
-</td></tr>
-<tr><td>
-
-[create3DSv2ChallengeForm](./redsys-easy.create3dsv2challengeform.md)
-
-
-</td><td>
-
-Creates parameters for a 3DS v2 challenge form
-
-
-</td></tr>
-<tr><td>
-
-[createRedsysAPI](./redsys-easy.createredsysapi.md)
-
-
-</td><td>
-
-Creates Redsys API functions
-
-
-</td></tr>
-<tr><td>
-
 [CURRENCIES](./redsys-easy.currencies.md)
 
 
 </td><td>
 
 Maps a ISO 4217 code to a ISO 4217 currency number and decimal positions
-
-
-</td></tr>
-<tr><td>
-
-[deserializeCres](./redsys-easy.deserializecres.md)
-
-
-</td><td>
-
-Deserialize `cres` field of a 3DS v2 challenge
-
-
-</td></tr>
-<tr><td>
-
-[deserializeThreeDSMethodData](./redsys-easy.deserializethreedsmethoddata.md)
-
-
-</td><td>
-
-Deserialize threeDSMethodData
-
-
-</td></tr>
-<tr><td>
-
-[detectSoapVersion](./redsys-easy.detectsoapversion.md)
-
-
-</td><td>
-
-Detects the soap version of a HTTP request
-
-
-</td></tr>
-<tr><td>
-
-[getResponseCodeMessage](./redsys-easy.getresponsecodemessage.md)
-
-
-</td><td>
-
-Returns the message corresponding to a response code, in spanish
-
-
-</td></tr>
-<tr><td>
-
-[getSISErrorCodeMessage](./redsys-easy.getsiserrorcodemessage.md)
-
-
-</td><td>
-
-Returns the message corresponding to a gateway error code
-
-
-</td></tr>
-<tr><td>
-
-[isResponseCodeOk](./redsys-easy.isresponsecodeok.md)
-
-
-</td><td>
-
-Indicates if a response code signals success
 
 
 </td></tr>
@@ -579,122 +766,12 @@ Maps an ISO 639-1 language code to redsys language number
 </td></tr>
 <tr><td>
 
-[mimicSoap11NotificationResponse](./redsys-easy.mimicsoap11notificationresponse.md)
-
-
-</td><td>
-
-Creates the body of a HTTP response as SOAP 1.1 from the body of a SOAP notification response
-
-
-</td></tr>
-<tr><td>
-
-[mimicSoap12NotificationResponse](./redsys-easy.mimicsoap12notificationresponse.md)
-
-
-</td><td>
-
-Creates the body of a HTTP response as SOAP 1.2 from the body of a SOAP notification response
-
-
-</td></tr>
-<tr><td>
-
-[mimicSoapNotificationReceiver](./redsys-easy.mimicsoapnotificationreceiver.md)
-
-
-</td><td>
-
-Extracts the body of a SOAP notification from the body of the HTTP request
-
-
-</td></tr>
-<tr><td>
-
 [PRODUCTION\_URLS](./redsys-easy.production_urls.md)
 
 
 </td><td>
 
 Redsys production urls
-
-
-</td></tr>
-<tr><td>
-
-[randomTransactionId](./redsys-easy.randomtransactionid.md)
-
-
-</td><td>
-
-Generates a random order ID following redsys requirements
-
-
-</td></tr>
-<tr><td>
-
-[redirectInputFormatter](./redsys-easy.redirectinputformatter.md)
-
-
-</td><td>
-
-Redirection input formatter
-
-
-</td></tr>
-<tr><td>
-
-[restIniciaPeticionInputFormatter](./redsys-easy.restiniciapeticioninputformatter.md)
-
-
-</td><td>
-
-REST iniciaPeticion input formatter
-
-
-</td></tr>
-<tr><td>
-
-[restIniciaPeticionOutputFormatter](./redsys-easy.restiniciapeticionoutputformatter.md)
-
-
-</td><td>
-
-REST iniciaPeticion output formatter
-
-
-</td></tr>
-<tr><td>
-
-[restNotificationOutputFormatter](./redsys-easy.restnotificationoutputformatter.md)
-
-
-</td><td>
-
-REST notification formatter
-
-
-</td></tr>
-<tr><td>
-
-[restTrataPeticionInputFormatter](./redsys-easy.resttratapeticioninputformatter.md)
-
-
-</td><td>
-
-REST trataPeticion input formatter
-
-
-</td></tr>
-<tr><td>
-
-[restTrataPeticionOutputFormatter](./redsys-easy.resttratapeticionoutputformatter.md)
-
-
-</td><td>
-
-REST trataPeticion output formatter
 
 
 </td></tr>
@@ -755,56 +832,12 @@ Redsys sandbox urls
 </td></tr>
 <tr><td>
 
-[soapNotificationOutputFormatter](./redsys-easy.soapnotificationoutputformatter.md)
-
-
-</td><td>
-
-SOAP notification formatter
-
-
-</td></tr>
-<tr><td>
-
 [TRANSACTION\_TYPES](./redsys-easy.transaction_types.md)
 
 
 </td><td>
 
 Transaction type enum
-
-
-</td></tr>
-<tr><td>
-
-[useOutputFormatter](./redsys-easy.useoutputformatter.md)
-
-
-</td><td>
-
-Applies an output formatter to a function
-
-
-</td></tr>
-<tr><td>
-
-[usePromiseOutputFormatter](./redsys-easy.usepromiseoutputformatter.md)
-
-
-</td><td>
-
-Applies an output formatter to the resolved ouput promise of a function
-
-
-</td></tr>
-<tr><td>
-
-[useSingleInputFormatter](./redsys-easy.usesingleinputformatter.md)
-
-
-</td><td>
-
-Applies an input formatter to the first argument of a function
 
 
 </td></tr>

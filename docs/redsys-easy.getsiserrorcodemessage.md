@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [getSISErrorCodeMessage](./redsys-easy.getsiserrorcodemessage.md)
 
-## getSISErrorCodeMessage variable
+## getSISErrorCodeMessage() function
 
 Returns the message corresponding to a gateway error code
 
@@ -11,3 +11,41 @@ Returns the message corresponding to a gateway error code
 ```typescript
 getSISErrorCodeMessage: (code: string) => string | undefined
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+code
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+string \| undefined
+

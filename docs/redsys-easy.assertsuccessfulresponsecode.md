@@ -2,7 +2,7 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [assertSuccessfulResponseCode](./redsys-easy.assertsuccessfulresponsecode.md)
 
-## assertSuccessfulResponseCode variable
+## assertSuccessfulResponseCode() function
 
 Asserts that a response code indicates success
 
@@ -11,3 +11,41 @@ Asserts that a response code indicates success
 ```typescript
 assertSuccessfulResponseCode: (responseCode: string | number | undefined) => void
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+responseCode
+
+
+</td><td>
+
+string \| number \| undefined
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+void
+

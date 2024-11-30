@@ -2,15 +2,66 @@
 
 [Home](./index.md) &gt; [redsys-easy](./redsys-easy.md) &gt; [useSingleInputFormatter](./redsys-easy.usesingleinputformatter.md)
 
-## useSingleInputFormatter variable
+## useSingleInputFormatter() function
 
 Applies an input formatter to the first argument of a function
 
 **Signature:**
 
 ```typescript
-useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (args_0: B, ...args_1: C) => D, inputFormatter: AF) => (input: Parameters<AF>[0], ...otherArgs_0: C) => D
+useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (...args: [B, ...C]) => D, inputFormatter: AF) => ((input: Parameters<AF>[0], ...otherArgs: [...C]) => D)
 ```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+fn
+
+
+</td><td>
+
+(...args: \[B, ...C\]) =&gt; D
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+inputFormatter
+
+
+</td><td>
+
+AF
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
+**Returns:**
+
+((input: Parameters&lt;AF&gt;\[0\], ...otherArgs: \[...C\]) =&gt; D)
 
 ## Remarks
 
