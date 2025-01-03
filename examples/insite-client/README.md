@@ -1,6 +1,8 @@
+This frontend exposes a web interface to make purchases and checkout against a [examples/rest-3ds-server](../rest-3ds-server) backend, which should be running on port 8081.
+
 ## Usage
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.js.org/) via `pnpm up -Lri`.
+Dependencies are maintained via [pnpm](https://pnpm.js.org/) via `pnpm up -Lri`.
 
 This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
 
@@ -16,7 +18,7 @@ In the project directory, you can run:
 ### `npm dev` or `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 The page will reload if you make edits.<br>
 
