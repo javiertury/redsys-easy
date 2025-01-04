@@ -125,6 +125,26 @@ const baseSpec = (
       });
     });
 
+    it('should be able to format currencies with zero decimals', () => {
+      const params = inputFormatter({
+        amount: '4999',
+        currency: 'JPY',
+        order: '0000Abc',
+        merchantCode: '999008881',
+        terminal: '1',
+        transactionType: TRANSACTION_TYPES.AUTHORIZATION, // '0'
+      });
+
+      expect(params).toEqual({
+        DS_MERCHANT_AMOUNT: '4999',
+        DS_MERCHANT_MERCHANTCODE: '999008881',
+        DS_MERCHANT_ORDER: '0000Abc',
+        DS_MERCHANT_TERMINAL: '1',
+        DS_MERCHANT_TRANSACTIONTYPE: '0',
+        DS_MERCHANT_CURRENCY: '392'
+      });
+    });
+
     it('should format expiry dates', () => {
       const params = inputFormatter({
         amount: '49.99',

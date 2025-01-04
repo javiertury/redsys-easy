@@ -62,8 +62,7 @@ const formatAmount = (
   }
 
   const currencyData = CURRENCIES[currency];
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  if (!currencyData?.decimals) {
+  if (!Number.isFinite(currencyData?.decimals)) {
     throw new ValidationError('Unsupported currency', { currency });
   }
 
