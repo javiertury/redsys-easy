@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.2.8](https://github.com/javiertury/redsys-easy/compare/v5.2.7...v5.2.8) (2025-01-04)
+
+
+### Bug Fixes
+
+* input formatter on currencies with zero decimals ([1b2f510](https://github.com/javiertury/redsys-easy/commit/1b2f510f50266f1166e3f80186a12fe69b3289cd))
+
 ## [5.2.7](https://github.com/javiertury/redsys-easy/compare/v5.2.6...v5.2.7) (2024-11-30)
 
 ## [5.2.6](https://github.com/javiertury/redsys-easy/compare/v5.2.5...v5.2.6) (2024-10-23)

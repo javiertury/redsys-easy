@@ -9,7 +9,7 @@ Constructs a new instance of the `ParseError` class
 **Signature:**
 
 ```typescript
-constructor(message: string, value?: unknown | undefined, location?: unknown | undefined);
+constructor(message: string, value?: unknown, location?: unknown);
 ```
 
 ## Parameters
@@ -51,7 +51,7 @@ value
 
 </td><td>
 
-unknown \| undefined
+unknown
 
 
 </td><td>
@@ -67,7 +67,7 @@ location
 
 </td><td>
 
-unknown \| undefined
+unknown
 
 
 </td><td>

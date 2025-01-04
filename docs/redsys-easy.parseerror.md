@@ -97,7 +97,7 @@ string \| undefined
 
 </td><td>
 
-unknown \| undefined
+unknown
 
 
 </td><td>
