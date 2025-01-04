@@ -124,9 +124,10 @@ export const LANGUAGES: Record<Language, LanguageNum> = {
  *
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 const REV_LANGUAGES = {} as Record<LanguageNum, Language>;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 for (const [key, value] of Object.entries(LANGUAGES) as ReadonlyArray<
   [Language, LanguageNum]
 >) {

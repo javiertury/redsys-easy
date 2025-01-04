@@ -39,7 +39,7 @@ export const encrypt3DES = (key: string, message: string): Buffer => {
 
   // Make sure that encrypted buffer is not longer than the padded message
   const maxLength = Math.ceil(messageBuf.length / 8) * 8;
-  return encryptedBuf.slice(0, maxLength);
+  return encryptedBuf.subarray(0, maxLength);
 };
 
 /**

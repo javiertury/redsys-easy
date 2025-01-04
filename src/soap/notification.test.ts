@@ -54,7 +54,7 @@ describe('SOAP Notification', () => {
         soapNotificationMerchantKey,
         serializedAndSignedSoapNotificationParams
       );
-    expect(verify).not.toThrowError();
+    expect(verify).not.toThrow();
 
     const deserializedRequest = deserializeAndVerifySoapNotification(
       soapNotificationMerchantKey,
@@ -69,7 +69,7 @@ describe('SOAP Notification', () => {
         incorrectMerchantKey,
         serializedAndSignedSoapNotificationParams
       );
-    expect(verify).toThrowError(new ParseError('Invalid signature'));
+    expect(verify).toThrow(new ParseError('Invalid signature'));
   });
 
   it('should fail to verify notification if signature is forged', () => {
@@ -81,6 +81,6 @@ describe('SOAP Notification', () => {
           '<Signature>SSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>'
         )
       );
-    expect(verify).toThrowError(new ParseError('Invalid signature'));
+    expect(verify).toThrow(new ParseError('Invalid signature'));
   });
 });

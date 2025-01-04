@@ -8,9 +8,7 @@ import type {
 /**
  * Discrete uniform distribution with domain (0 to *max*)
  */
-const drawPositiveDiscreteUniform = (max: number): number => {
-  return randomInt(max + 1);
-};
+const drawPositiveDiscreteUniform = (max: number): number => randomInt(max + 1);
 
 const alphanumeric =
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -39,7 +37,6 @@ export const randomTransactionId = () => {
 export const extractAndAssertOrderFromRequestParams = (
   requestParams: CommonRawRequestParams
 ): string => {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
   const order =
     requestParams['DS_MERCHANT_ORDER'] ||
     (requestParams as Record<string, string>)['Ds_Merchant_Order'];
@@ -54,7 +51,6 @@ export const extractAndAssertOrderFromRequestParams = (
 export const extractAndAssertOrderFromResponseParams = (
   responseParams: CommonRawResponseParams
 ): string => {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
   const order =
     responseParams['Ds_Order'] ||
     (responseParams as Record<string, string>)['DS_ORDER'];
@@ -140,8 +136,4 @@ export const isStringNotEmpty = <T extends string>(
 export const mapMaybeMonad = <V, Out>(
   value: V | undefined,
   fn: (value: V) => Out
-): Out | undefined => {
-  return value !== undefined
-    ? fn(value)
-    : undefined;
-};
+): Out | undefined => (value !== undefined ? fn(value) : undefined);

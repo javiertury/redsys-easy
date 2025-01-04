@@ -48,16 +48,14 @@ export const create3DSMethodForm = (
 export const create3DSv1ChallengeForm = (
   emv3dsV1Challenge: ThreeDSv1ChallengeOutputParams,
   challengeNotificationUrl: string
-): ThreeDSv1ChallengeForm => {
-  return {
-    url: emv3dsV1Challenge.acsURL,
-    body: {
-      PaReq: emv3dsV1Challenge.PAReq,
-      MD: emv3dsV1Challenge.MD,
-      TermUrl: challengeNotificationUrl
-    }
-  };
-};
+): ThreeDSv1ChallengeForm => ({
+  url: emv3dsV1Challenge.acsURL,
+  body: {
+    PaReq: emv3dsV1Challenge.PAReq,
+    MD: emv3dsV1Challenge.MD,
+    TermUrl: challengeNotificationUrl
+  }
+});
 
 /**
  * Creates parameters for a 3DS v2 challenge form
@@ -66,14 +64,12 @@ export const create3DSv1ChallengeForm = (
  */
 export const create3DSv2ChallengeForm = (
   emv3dsV2Challenge: ThreeDSv2ChallengeOutputParams
-): ThreeDSv2ChallengeForm => {
-  return {
-    url: emv3dsV2Challenge.acsURL,
-    body: {
-      creq: emv3dsV2Challenge.creq
-    }
-  };
-};
+): ThreeDSv2ChallengeForm => ({
+  url: emv3dsV2Challenge.acsURL,
+  body: {
+    creq: emv3dsV2Challenge.creq
+  }
+});
 
 /**
  * Deserialize threeDSMethodData
@@ -82,17 +78,17 @@ export const create3DSv2ChallengeForm = (
  */
 export const deserializeThreeDSMethodData = (
   threeDSMethodData: string
-): ThreeDSMethodData => {
-  return JSON.parse(base64url.decode(threeDSMethodData)) as ThreeDSMethodData;
-};
+): ThreeDSMethodData =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- assume it satisfies format
+  JSON.parse(base64url.decode(threeDSMethodData)) as ThreeDSMethodData;
 
 /**
  * Deserialize `cres` field of a 3DS v2 challenge
  *
  * @public
  */
-export const deserializeCres = (cres: string): ThreeDSCres => {
-  return JSON.parse(
+export const deserializeCres = (cres: string): ThreeDSCres =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- assume it satisfies format
+  JSON.parse(
     Buffer.from(cres, 'base64').toString('utf8')
   ) as ThreeDSCres;
-};

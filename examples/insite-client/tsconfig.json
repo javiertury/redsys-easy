@@ -5,7 +5,7 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "stric": true,
+    "strict": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,

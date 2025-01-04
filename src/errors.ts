@@ -39,10 +39,10 @@ export class ValidationError extends RedsysError {
  */
 export class ParseError extends RedsysError {
   value: unknown;
-  location: unknown | undefined;
+  location: unknown;
   description: string | undefined;
 
-  constructor(message: string, value?: unknown | undefined, location?: unknown | undefined) {
+  constructor(message: string, value?: unknown, location?: unknown) {
     super(message);
     this.name = 'RedsysParseError';
     this.value = value;
@@ -53,7 +53,7 @@ export class ParseError extends RedsysError {
 interface HTTPErrorOptions {
   message?: string | undefined;
   code: number;
-  response?: unknown | undefined;
+  response?: unknown;
 }
 
 /**
@@ -63,11 +63,12 @@ interface HTTPErrorOptions {
  */
 export class HTTPError extends RedsysError {
   code: number | undefined;
-  response: unknown | undefined;
+  response: unknown;
 
   constructor({ message, code, response }: HTTPErrorOptions) {
     const codeDescription = getHTTPErrorCodeMessage(code);
     const codeInfo =
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- robustness
       code !== undefined
         ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
         : '';
@@ -85,7 +86,7 @@ export class HTTPError extends RedsysError {
 interface GatewayErrorOptions {
   message?: string | undefined;
   code: string;
-  response?: unknown | undefined;
+  response?: unknown;
 }
 
 /**
@@ -95,11 +96,12 @@ interface GatewayErrorOptions {
  */
 export class GatewayError extends RedsysError {
   code: string | undefined;
-  response: unknown | undefined;
+  response: unknown;
 
   constructor({ message, code, response }: GatewayErrorOptions) {
     const codeDescription = getSISErrorCodeMessage(code);
     const codeInfo =
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- robustness
       code !== undefined
         ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
         : '';
@@ -117,7 +119,7 @@ export class GatewayError extends RedsysError {
 interface ResponseErrorOptions {
   message?: string | undefined;
   code: number;
-  response?: unknown | undefined;
+  response?: unknown;
 }
 
 /**
@@ -127,11 +129,12 @@ interface ResponseErrorOptions {
  */
 export class ResponseError extends RedsysError {
   code: number | undefined;
-  response: unknown | undefined;
+  response: unknown;
 
   constructor({ message, code, response }: ResponseErrorOptions) {
     const codeDescription = getResponseCodeMessage(code);
     const codeInfo =
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- robustness
       code !== undefined
         ? ` ${code}${codeDescription != null ? `: ${codeDescription}` : ''}`
         : '';

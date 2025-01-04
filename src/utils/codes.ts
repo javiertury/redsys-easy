@@ -43,6 +43,5 @@ export const getSISErrorCodeMessage = (code: string): string | undefined => {
   return SIS_ERROR_CODES[code.trim()];
 };
 
-export const getHTTPErrorCodeMessage = (code: number): string | undefined => {
-  return STATUS_CODES[code];
-};
+export const getHTTPErrorCodeMessage = (code: number): string | undefined =>
+  STATUS_CODES[code];

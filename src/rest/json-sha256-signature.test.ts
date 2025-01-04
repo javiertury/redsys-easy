@@ -66,7 +66,7 @@ describe('REST JSON SHA256 signature', () => {
         serializedRedirectRestNotification,
         deserializedRedirectRestNotification
       )
-    ).not.toThrowError();
+    ).not.toThrow();
 
     expect(() =>
       sha256VerifyJSONResponse(
@@ -74,7 +74,7 @@ describe('REST JSON SHA256 signature', () => {
         serializedRestJsonResponse,
         deserializedRestJsonResponse
       )
-    ).not.toThrowError();
+    ).not.toThrow();
   });
 
   it('should fail to verify response if merchant key is incorrect', () => {
@@ -84,7 +84,7 @@ describe('REST JSON SHA256 signature', () => {
         serializedRedirectRestNotification,
         deserializedRedirectRestNotification
       )
-    ).toThrowError(new ParseError('Invalid signature'));
+    ).toThrow(new ParseError('Invalid signature'));
 
     expect(() =>
       sha256VerifyJSONResponse(
@@ -92,7 +92,7 @@ describe('REST JSON SHA256 signature', () => {
         serializedRestJsonResponse,
         deserializedRestJsonResponse
       )
-    ).toThrowError(new ParseError('Invalid signature'));
+    ).toThrow(new ParseError('Invalid signature'));
   });
 
   it('should fail to verify response if signature is forged', () => {
@@ -105,7 +105,7 @@ describe('REST JSON SHA256 signature', () => {
         },
         deserializedRedirectRestNotification
       )
-    ).toThrowError(new ParseError('Invalid signature'));
+    ).toThrow(new ParseError('Invalid signature'));
 
     expect(() =>
       sha256VerifyJSONResponse(
@@ -116,7 +116,7 @@ describe('REST JSON SHA256 signature', () => {
         },
         deserializedRestJsonResponse
       )
-    ).toThrowError(new ParseError('Invalid signature'));
+    ).toThrow(new ParseError('Invalid signature'));
   });
 
   it('should fail to verify response if signature version is unknown', () => {
@@ -129,7 +129,7 @@ describe('REST JSON SHA256 signature', () => {
         },
         deserializedRedirectRestNotification
       )
-    ).toThrowError(new RedsysError('Unknown signature version: None'));
+    ).toThrow(new RedsysError('Unknown signature version: None'));
 
     expect(() =>
       sha256VerifyJSONResponse(
@@ -140,6 +140,6 @@ describe('REST JSON SHA256 signature', () => {
         },
         deserializedRestJsonResponse
       )
-    ).toThrowError(new RedsysError('Unknown signature version: None'));
+    ).toThrow(new RedsysError('Unknown signature version: None'));
   });
 });

@@ -11,12 +11,14 @@ export const waitForIframeToPostMessage = async ({
   timeout?: number | undefined
 }): Promise<{ loaded: boolean }> => {
   const maybeTimeoutPromise = timeout != null
+    // eslint-disable-next-line promise/avoid-new -- unavoidable
     ? new Promise(resolve => setTimeout(resolve, timeout))
     : undefined;
 
   let timedout = true;
 
   // Promise resolves after the iframe redirects, if it ever does
+  // eslint-disable-next-line promise/avoid-new -- unavoidable
   const iframeMessagePromise = new Promise<void>((resolve) => {
     const onIframeMessage = (event: MessageEvent) => {
       // If condition matches or there is no condition, resolve
@@ -30,7 +32,7 @@ export const waitForIframeToPostMessage = async ({
     iframe.addEventListener('message', onIframeMessage);
 
     // Clean everything afer timeout
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises -- harmless
     maybeTimeoutPromise?.then(() => {
       iframe.removeEventListener('message', onIframeMessage);
     });

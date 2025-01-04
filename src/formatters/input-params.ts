@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition -- robustness handling inputs */
 import Decimal from 'decimal.js';
 import { ValidationError } from '../errors';
 import { LANGUAGES } from '../assets/lang-codes';
@@ -23,7 +24,6 @@ import { isStringNotEmpty } from '../utils/misc';
 
 const formatInputCurrency = (input: Currency): CurrencyNum => {
   const currencyData = CURRENCIES[input];
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!currencyData?.num) {
     throw new ValidationError('Unsupported currency', { currency: input });
   }

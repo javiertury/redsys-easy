@@ -37,11 +37,13 @@ dayjs.extend(timezone);
 dayjs.extend(utc);
 
 const formatCountry = (rawCountry: CountryNum): Country | undefined => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- dealth within scope
   const countryInt = Number.parseInt(rawCountry).toString() as CountryNum;
   return REV_COUNTRIES[countryInt];
 };
 
 const formatCardBrand = (rawCardBrand: CardBrandNum): CardBrand | undefined => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- dealth within scope
   const cardBrandInt = Number.parseInt(rawCardBrand).toString() as CardBrandNum;
   return REV_CARDBRANDS[cardBrandInt];
 };
@@ -96,10 +98,11 @@ export const formatPrice = (
 ): Omit<ResolvedTransactionTraitFormatterOutput, 'response'> => {
   const { Ds_Amount: rawAmount, Ds_Currency: rawCurrency } = params;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- dealth within scope
   const currencyInt = Number.parseInt(rawCurrency).toString() as CurrencyNum;
   const currencyInfo = REV_CURRENCIES[currencyInt];
 
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-condition -- proper object
   if (!currencyInfo) {
     throw new ParseError('Unknown currency', rawCurrency);
   }
@@ -116,6 +119,7 @@ export const formatPrice = (
 };
 
 const formatLang = (rawLang: LanguageNum): Language | undefined => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- dealth within scope
   const langInt = Number.parseInt(rawLang).toString() as LanguageNum;
   return REV_LANGUAGES[langInt];
 };
@@ -197,6 +201,7 @@ export const requestOutputFormatter = <
   raw: RawOutputParams
 ): RequestFormatterOutput<RawOutputParams> => {
   const {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- robust to old format
     Ds_CardNumber: deprecatedCardNumber,
     Ds_Card_Number: newCardNumber,
     Ds_Merchant_Identifier: identifier,

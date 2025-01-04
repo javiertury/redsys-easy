@@ -50,7 +50,7 @@ const settings: SettingsIntegration = {
 };
 
 try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- must be dynamic and synchronous
   const overrideSettings = require('../../integration-settings') as Partial<typeof settings>;
 
   // Override settings
@@ -72,8 +72,6 @@ try {
       }
     );
   });
-
-  // eslint-disable-next-line no-empty
 } catch (err) {
   console.error(err);
 }

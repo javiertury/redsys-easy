@@ -169,6 +169,7 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
 
   if (
     typeof config.urls !== 'object' ||
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain, @typescript-eslint/no-unnecessary-condition -- robustness
     config.urls == null ||
     !config.urls.restIniciaPeticion ||
     !config.urls.restTrataPeticion ||
@@ -182,8 +183,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
    */
   const restIniciaPeticion = async (
     paramsInput: RestIniciaPeticionInputParams
-  ): Promise<RestIniciaPeticionOutputParams> => {
-    return await jsonRequest<
+  ): Promise<RestIniciaPeticionOutputParams> =>
+    await jsonRequest<
       RestIniciaPeticionInputParams,
       RestIniciaPeticionOutputParams
     >({
@@ -192,7 +193,6 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       merchantKey: config.secretKey,
       rawRequestParams: paramsInput
     });
-  };
 
   /**
    * Sends a trataPeticion request using REST interface
@@ -250,13 +250,12 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   const processDirectRestNotification = (
     /** Body of JSON notification, as a POJO (Plain Old Javascript Object) */
     body: ResponseJSONSuccess
-  ): RestNotificationOutputParams => {
+  ): RestNotificationOutputParams =>
     // A notification can't contain a gateway error, it didn't initiate the request
-    return deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
+    deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
       config.secretKey,
       body
     );
-  };
 
   /**
    * Processes either a URLOK/URLKO query or a JSON REST notification
@@ -291,9 +290,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   const processSoapNotification = (
     /** SOAP notification as a XML string */
     xml: string
-  ): SoapNotificationOutputParams => {
-    return deserializeAndVerifySoapNotification(config.secretKey, xml);
-  };
+  ): SoapNotificationOutputParams =>
+    deserializeAndVerifySoapNotification(config.secretKey, xml);
 
   /**
    * Creates an answer for a SOAP notification, serializes and signs it
@@ -303,12 +301,11 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     order: string,
     /** Indicates if the payment is allowed to proceed */
     allow: boolean
-  ): string => {
-    return serializeAndSignSoapNotificationResponse(config.secretKey, {
+  ): string =>
+    serializeAndSignSoapNotificationResponse(config.secretKey, {
       order,
       allow
     });
-  };
 
   return {
     restIniciaPeticion,

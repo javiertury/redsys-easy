@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
@@ -53,7 +54,6 @@ const {
   urls: SANDBOX_URLS
 });
 
-/* eslint-disable @typescript-eslint/indent */
 describe('Formatter utils interfaces', () => {
   it('should work with redirect formatter', () => {
     const wrappedFormatter = useSingleInputFormatter(
@@ -163,4 +163,3 @@ describe('Formatter utils interfaces', () => {
     >(true);
   });
 });
-/* eslint-enable @typescript-eslint/indent */

@@ -16,6 +16,7 @@ import {
 } from './json-sha256-signature';
 
 export const deserializeAndVerifyJSONResponse = <
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- allows restricting the type
   ResponseParams extends CommonRawResponseParams
 >(
   merchantKey: string,
@@ -29,6 +30,7 @@ export const deserializeAndVerifyJSONResponse = <
 };
 
 export const serializeAndSignJSONRequest = <
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- allows restricting the type
   RequestParams extends CommonRawRequestParams
 >(
   merchantKey: string,

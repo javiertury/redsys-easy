@@ -15,6 +15,7 @@ import {
 } from './json';
 
 export const jsonRequest = async <
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- allow restricting input type
   RequestParams extends CommonRawRequestParams,
   ResponseParams extends CommonRawResponseParams
 >({
@@ -38,6 +39,7 @@ export const jsonRequest = async <
     body: JSON.stringify(payload)
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- assume correct format
   const responseData = await (response.json() as Promise<
     ResponseJSONSuccess | ResponseJSONError
   >);

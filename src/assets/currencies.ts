@@ -548,11 +548,12 @@ interface RevCurrencyData {
  *
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 const REV_CURRENCIES = {} as Record<CurrencyNum, RevCurrencyData>;
 
 for (const [key, value] of Object.entries(CURRENCIES)) {
   REV_CURRENCIES[value.num] = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- known deterministically
     code: key as Currency,
     decimals: value.decimals
   };

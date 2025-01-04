@@ -8,6 +8,7 @@ declare global {
     inputValidatorFuncName: string
   ) => void;
 
+  // eslint-disable-next-line @typescript-eslint/max-params -- API designed by redsys
   const getInSiteForm: (
     formElementId: string,
     buttonStyle: string,

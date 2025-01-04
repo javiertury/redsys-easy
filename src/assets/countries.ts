@@ -779,9 +779,10 @@ export const COUNTRIES: Record<Country, CountryNum> = {
  *
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 const REV_COUNTRIES = {} as Record<CountryNum, Country>;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 for (const [key, value] of Object.entries(COUNTRIES) as ReadonlyArray<
   [Country, CountryNum]
 >) {

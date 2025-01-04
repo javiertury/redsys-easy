@@ -1,4 +1,4 @@
-/* eslint-disable strict */
+/* eslint-disable @typescript-eslint/no-require-imports -- configuration file */
 'use strict';
 
 /*
@@ -37,7 +37,7 @@ const { URL } = require('url');
 const port = 3344;
 const endpoint = `http://external-ip-address-or-domain:${port}`;
 
-/** @type {import('test/integration/settings').SettingsIntegration} */
+/** @type {import('./test/integration/settings').SettingsIntegration} */
 const settings = {
   notificationServer: {
     port

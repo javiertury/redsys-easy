@@ -43,9 +43,10 @@ export const CARDBRANDS: Record<CardBrand, CardBrandNum> = {
  *
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 const REV_CARDBRANDS = {} as Record<CardBrandNum, CardBrand>;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- known deterministically
 for (const [key, value] of Object.entries(CARDBRANDS) as ReadonlyArray<
   [CardBrand, CardBrandNum]
 >) {

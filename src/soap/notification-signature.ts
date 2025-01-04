@@ -29,6 +29,7 @@ export const verifySoapNotification = (
   const signature = msg.Signature;
   const order = msg.Request.Ds_Order;
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- robustness check
   if (order == null || !order) {
     throw new ParseError('Invalid notification response');
   }

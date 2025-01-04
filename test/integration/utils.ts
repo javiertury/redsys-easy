@@ -1,18 +1,21 @@
-const fixedEncodeURIComponent = (str: string): string => {
-  return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, '%2A');
-};
+const fixedEncodeURIComponent = (str: string): string =>
+  encodeURIComponent(str)
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- necessary
+    .replace(/[!'()]/g, escape)
+    .replace(/\*/g, '%2A');
 
 export const encodePostParams = (params: object): string =>
   Object.entries(params)
-    .filter((entry): entry is [string, string] => {
-      return entry[1] != null;
-    })
-    .map(([key, value]) => {
-      return `${fixedEncodeURIComponent(key)}=${fixedEncodeURIComponent(value)}`;
-    }).join('&');
+    .filter((entry): entry is [string, string] => entry[1] != null)
+    .map(
+      ([key, value]) =>
+        `${fixedEncodeURIComponent(key)}=${fixedEncodeURIComponent(value)}`
+    )
+    .join('&');
 
 export const wait = async (time = 1000): Promise<void> => {
-  await new Promise(resolve => {
+  // eslint-disable-next-line promise/avoid-new -- unavoidable
+  await new Promise((resolve) => {
     setTimeout(resolve, time);
   });
 };

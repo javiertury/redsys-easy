@@ -83,14 +83,14 @@ describe('REST JSON', () => {
           incorrectMerchantKey,
           serializedRedirectRestNotification
         )
-      ).toThrowError(new ParseError('Invalid signature'));
+      ).toThrow(new ParseError('Invalid signature'));
 
       expect(() =>
         deserializeAndVerifyJSONResponse(
           incorrectMerchantKey,
           serializedRestJsonResponse
         )
-      ).toThrowError(new ParseError('Invalid signature'));
+      ).toThrow(new ParseError('Invalid signature'));
     });
 
     it('should fail to verify response if signature is forged', () => {
@@ -99,14 +99,14 @@ describe('REST JSON', () => {
           ...serializedRedirectRestNotification,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         })
-      ).toThrowError(new ParseError('Invalid signature'));
+      ).toThrow(new ParseError('Invalid signature'));
 
       expect(() =>
         deserializeAndVerifyJSONResponse(restJsonMerchantKey, {
           ...serializedRestJsonResponse,
           Ds_Signature: '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
         })
-      ).toThrowError(new ParseError('Invalid signature'));
+      ).toThrow(new ParseError('Invalid signature'));
     });
 
     it('should fail to verify response if signature version is unknown', () => {
@@ -115,14 +115,14 @@ describe('REST JSON', () => {
           ...serializedRedirectRestNotification,
           Ds_SignatureVersion: 'None'
         })
-      ).toThrowError(new RedsysError('Unknown signature version: None'));
+      ).toThrow(new RedsysError('Unknown signature version: None'));
 
       expect(() =>
         deserializeAndVerifyJSONResponse(restJsonMerchantKey, {
           ...serializedRestJsonResponse,
           Ds_SignatureVersion: 'None'
         })
-      ).toThrowError(new RedsysError('Unknown signature version: None'));
+      ).toThrow(new RedsysError('Unknown signature version: None'));
     });
   });
 });

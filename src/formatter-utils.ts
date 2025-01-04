@@ -10,7 +10,7 @@
  * @public
  */
 export const useSingleInputFormatter = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- used to build a generic type
   AF extends (input: any) => B,
   B,
   C extends readonly unknown[],
@@ -18,10 +18,9 @@ export const useSingleInputFormatter = <
 >(
   fn: (...args: [B, ...C]) => D,
   inputFormatter: AF
-): ((input: Parameters<AF>[0], ...otherArgs: [...C]) => D) => {
-  return (input: Parameters<AF>[0], ...otherArgs): D =>
+): ((input: Parameters<AF>[0], ...otherArgs: [...C]) => D) =>
+  (input: Parameters<AF>[0], ...otherArgs): D =>
     fn(inputFormatter(input), ...otherArgs);
-};
 
 /**
  * Applies an output formatter to a function
@@ -31,9 +30,7 @@ export const useSingleInputFormatter = <
 export const useOutputFormatter = <A, B, C>(
   fn: (a: A) => B,
   outputFormatter: (b: B) => C
-) => {
-  return (a: A): C => outputFormatter(fn(a));
-};
+) => (a: A): C => outputFormatter(fn(a));
 
 /**
  * Applies an output formatter to the resolved ouput promise of a function
@@ -43,6 +40,4 @@ export const useOutputFormatter = <A, B, C>(
 export const usePromiseOutputFormatter = <A, B, C>(
   fn: (a: A) => Promise<B>,
   outputFormatter: (b: B) => C
-) => {
-  return async (a: A): Promise<C> => outputFormatter(await fn(a));
-};
+) => async (a: A): Promise<C> => outputFormatter(await fn(a));

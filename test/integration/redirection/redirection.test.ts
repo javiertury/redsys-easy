@@ -70,12 +70,13 @@ describe('Redirect Integration', () => {
   const getNotification = async (timeout: number) => {
     if (notificationContext) return notificationContext;
 
+    // eslint-disable-next-line promise/avoid-new -- necessary
     return await new Promise<KoaContext>((resolve, reject) => {
       const unsubscribe = onRequest(ctx => {
         resolve(ctx);
         unsubscribe();
       });
-      setTimeout(() => reject(new Error('Missing transaction notification')), timeout);
+      setTimeout(() => { reject(new Error('Missing transaction notification')) }, timeout);
     });
   };
 
@@ -84,7 +85,7 @@ describe('Redirect Integration', () => {
     app.use(bodyParser());
     app.use(async (serverCtx, next) => {
       notificationContext = serverCtx;
-      requestListeners.forEach(fn => fn(serverCtx));
+      requestListeners.forEach(fn => { fn(serverCtx) });
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return await next();
