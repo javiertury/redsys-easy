@@ -20,7 +20,7 @@ describe('GatewayError', () => {
       code: 'SIS0001',
       response: { errorCode: 'SIS0001' }
     });
-    expect(error.message).toEqual('Gateway error SIS0001: Error Interno\nFoo');
+    expect(error.message).toEqual('Gateway error SIS0001: Error genérico. Consulte con Soporte\nFoo');
     expect(error.code).toEqual('SIS0001');
     expect(error.response).toEqual({ errorCode: 'SIS0001' });
   });
@@ -34,7 +34,7 @@ describe('ResponseError', () => {
       response: { Ds_Response: 9051 }
     });
     expect(error.message).toEqual(
-      'Response error 9051: Error número de pedido repetido\nFoo'
+      'Response error 9051: Número de pedido repetido\nFoo'
     );
     expect(error.code).toEqual(9051);
     expect(error.response).toEqual({ Ds_Response: 9051 });
