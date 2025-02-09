@@ -35,7 +35,7 @@ export type CountryNum = '4' | '8' | '10' | '12' | '16' | '20' | '24' | '28' | '
 // Warning: (ae-forgotten-export) The symbol "ThreeDSv2PreAuthWithMethodOutputParams" needs to be exported by the entry point index.d.ts
 //
 // @public
-export const create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, 'threeDSServerTransID' | 'threeDSMethodURL'>, notificationURL: string) => ThreeDSMethodForm;
+export const create3DSMethodForm: (emv3dsParams: Pick<ThreeDSv2PreAuthWithMethodOutputParams, "threeDSServerTransID" | "threeDSMethodURL">, notificationURL: string) => ThreeDSMethodForm;
 
 // Warning: (ae-forgotten-export) The symbol "ThreeDSv1ChallengeOutputParams" needs to be exported by the entry point index.d.ts
 //
@@ -69,6 +69,11 @@ export type Currency = 'ALL' | 'DZD' | 'ARS' | 'AUD' | 'BSD' | 'BHD' | 'BDT' | '
 // @public
 export type CurrencyNum = '8' | '12' | '32' | '36' | '44' | '48' | '50' | '51' | '52' | '60' | '64' | '68' | '72' | '84' | '90' | '96' | '104' | '108' | '116' | '124' | '132' | '136' | '144' | '152' | '156' | '170' | '174' | '188' | '191' | '192' | '203' | '208' | '214' | '222' | '230' | '232' | '238' | '242' | '262' | '270' | '292' | '320' | '324' | '328' | '332' | '340' | '344' | '348' | '352' | '356' | '360' | '364' | '368' | '376' | '388' | '392' | '398' | '400' | '404' | '408' | '410' | '414' | '417' | '418' | '422' | '426' | '430' | '434' | '446' | '454' | '458' | '462' | '480' | '484' | '496' | '498' | '504' | '512' | '516' | '524' | '532' | '533' | '548' | '554' | '558' | '566' | '578' | '586' | '590' | '598' | '600' | '604' | '608' | '634' | '643' | '646' | '654' | '682' | '690' | '694' | '702' | '704' | '706' | '710' | '728' | '748' | '752' | '756' | '760' | '764' | '776' | '780' | '784' | '788' | '800' | '807' | '818' | '826' | '834' | '840' | '858' | '860' | '882' | '886' | '901' | '934' | '936' | '941' | '943' | '944' | '946' | '949' | '950' | '951' | '952' | '953' | '967' | '968' | '971' | '972' | '973' | '975' | '976' | '977' | '978' | '980' | '981' | '985' | '986';
 
+// Warning: (ae-forgotten-export) The symbol "CommonRawResponseParams" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export const deserializeAndVerifyJSONResponse: <ResponseParams extends CommonRawResponseParams>(merchantKey: string, response: ResponseJSONSuccess) => ResponseParams;
+
 // @public
 export const deserializeCres: (cres: string) => ThreeDSCres;
 
@@ -87,7 +92,7 @@ export class GatewayError extends RedsysError {
     // (undocumented)
     code: string | undefined;
     // (undocumented)
-    response: unknown | undefined;
+    response: unknown;
 }
 
 // @public
@@ -103,7 +108,7 @@ export class HTTPError extends RedsysError {
     // (undocumented)
     code: number | undefined;
     // (undocumented)
-    response: unknown | undefined;
+    response: unknown;
 }
 
 // @public
@@ -144,11 +149,11 @@ export interface NotificationFormatterOutput<RawOutputParams extends Notificatio
 
 // @public
 export class ParseError extends RedsysError {
-    constructor(message: string, value?: unknown | undefined, location?: unknown | undefined);
+    constructor(message: string, value?: unknown, location?: unknown);
     // (undocumented)
     description: string | undefined;
     // (undocumented)
-    location: unknown | undefined;
+    location: unknown;
     // (undocumented)
     value: unknown;
 }
@@ -243,7 +248,7 @@ export class ResponseError extends RedsysError {
     // (undocumented)
     code: number | undefined;
     // (undocumented)
-    response: unknown | undefined;
+    response: unknown;
 }
 
 // @public
@@ -385,6 +390,11 @@ export const REV_LANGUAGES: Record<LanguageNum, Language>;
 // @public
 export const SANDBOX_URLS: UrlsConfig;
 
+// Warning: (ae-forgotten-export) The symbol "CommonRawRequestParams" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export const serializeAndSignJSONRequest: <RequestParams extends CommonRawRequestParams>(merchantKey: string, requestParams: RequestParams) => SHA256SignedJSONParameters;
+
 // @public
 export const soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams = SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>;
 
@@ -517,7 +527,7 @@ export const useOutputFormatter: <A, B, C>(fn: (a: A) => B, outputFormatter: (b:
 export const usePromiseOutputFormatter: <A, B, C>(fn: (a: A) => Promise<B>, outputFormatter: (b: B) => C) => (a: A) => Promise<C>;
 
 // @public
-export const useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (args_0: B, ...args_1: C) => D, inputFormatter: AF) => (input: Parameters<AF>[0], ...otherArgs_0: C) => D;
+export const useSingleInputFormatter: <AF extends (input: any) => B, B, C extends readonly unknown[], D>(fn: (...args: [B, ...C]) => D, inputFormatter: AF) => ((input: Parameters<AF>[0], ...otherArgs: [...C]) => D);
 
 // @public
 export class ValidationError extends RedsysError {
