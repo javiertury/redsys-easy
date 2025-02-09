@@ -42,6 +42,8 @@ node_modules/
 # Build output
 lib
 
+.pnpm-store/
+
 integration-settings.js
 integration-settings.json
 
