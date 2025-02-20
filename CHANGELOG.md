@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.2.11](https://github.com/javiertury/redsys-easy/compare/v5.2.10...v5.2.11) (2025-02-20)
+
+
+### Bug Fixes
+
+* fast-xml-parser constructor error [#74](https://github.com/javiertury/redsys-easy/issues/74) ([dfed12f](https://github.com/javiertury/redsys-easy/commit/dfed12f4848d1c310d0dc50aefd7e8fadc217a58))
+
 ## [5.2.10](https://github.com/javiertury/redsys-easy/compare/v5.2.9...v5.2.10) (2025-02-19)
 
 ## [5.2.9](https://github.com/javiertury/redsys-easy/compare/v5.2.8...v5.2.9) (2025-02-09)
