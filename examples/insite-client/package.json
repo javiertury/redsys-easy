@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "redsys-easy": "../../",
-    "solid-js": "^1.7.9",
+    "solid-js": "^1.9.4",
     "solid-styled-components": "^0.28.5"
   }
 }
