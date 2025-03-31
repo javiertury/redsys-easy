@@ -13,7 +13,7 @@
     "eslint": "^9.17.0",
     "eslint-config-love": "^114.0.0",
     "eslint-plugin-html": "^8.1.2",
-    "vite": "^6.0.12",
+    "vite": "^6.0.13",
     "vite-plugin-solid": "^2.11.0"
   },
   "dependencies": {
