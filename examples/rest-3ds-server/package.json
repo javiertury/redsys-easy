@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@koa/cors": "^5.0.0",
-    "koa": "^2.14.2",
+    "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "redsys-easy": "../../",
     "typescript": "^5.1.6"
