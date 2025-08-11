@@ -17,8 +17,7 @@ Checkout the [api documentation](./docs/redsys-easy.md) to explore the utilities
 
 These are the most important utilities that redsys-easy provides.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./examples/__readme__/usage.ts) -->
-<!-- The below code snippet is automatically added from ./examples/__readme__/usage.ts -->
+<!-- doc-gen CODE src="./examples/__readme__/usage.ts" -->
 ```ts
 import {
   createRedsysAPI,
@@ -48,7 +47,7 @@ const {
   urls: SANDBOX_URLS
 });
 ```
-<!-- AUTO-GENERATED-CONTENT:END -->
+<!-- end-doc-gen -->
 
 ## Examples
 
@@ -67,8 +66,7 @@ As an example, redsys-easy provides some basic typescript-ready formatters.
 
 > :warning: **Format has changed**: Previous versions of redsys-easy used a different format, particularly the `amount` field.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./examples/__readme__/formatters.ts) -->
-<!-- The below code snippet is automatically added from ./examples/__readme__/formatters.ts -->
+<!-- doc-gen CODE src="./examples/__readme__/formatters.ts" -->
 ```ts
 import {
   createRedsysAPI,
@@ -124,7 +122,7 @@ export const restTrataPeticion = useSingleInputFormatter(
 export const processRestNotification = useOutputFormatter(baseProcessRestNotification, restNotificationOutputFormatter);
 export const processSoapNotification = useOutputFormatter(baseProcessSoapNotification, soapNotificationOutputFormatter);
 ```
-<!-- AUTO-GENERATED-CONTENT:END -->
+<!-- end-doc-gen -->
 
 ## FAQ
 

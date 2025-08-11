@@ -38,7 +38,7 @@
     "test:readme": "tsc -p ./tsconfig.readme.json",
     "test": "pnpm run test:code && pnpm run test:readme",
     "docs:api": "api-documenter markdown --input-folder ./api/temp --output-folder ./docs",
-    "docs:readme": "md-magic --path ./README.md",
+    "docs:readme": "md-magic --files ./README.md",
     "docs": "pnpm run docs:api && pnpm run docs:readme",
     "release": "pnpm run test && commit-and-tag-version --dry-run && pnpm run docs && git add docs CHANGELOG.md && commit-and-tag-version --commit-all"
   },
@@ -86,7 +86,7 @@
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "lint-staged": "^15.3.0",
-    "markdown-magic": "^2.6.1",
+    "markdown-magic": "^3.7.0",
     "rimraf": "^5.0.1",
     "rollup": "^3.29.5",
     "rollup-plugin-typescript2": "^0.35.0",
