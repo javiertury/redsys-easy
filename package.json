@@ -87,7 +87,7 @@
     "koa-bodyparser": "^4.4.1",
     "lint-staged": "^15.3.0",
     "markdown-magic": "^3.7.0",
-    "rimraf": "^5.0.1",
+    "rimraf": "^6.1.0",
     "rollup": "^3.29.5",
     "rollup-plugin-typescript2": "^0.35.0",
     "simple-git-hooks": "^2.9.0",

@@ -23,7 +23,7 @@
     "@types/koa-bodyparser": "^4.3.10",
     "@types/koa__cors": "^4.0.0",
     "@types/koa__router": "^12.0.0",
-    "rimraf": "^5.0.1",
+    "rimraf": "^6.1.0",
     "tsc-watch": "^6.0.4"
   }
 }
