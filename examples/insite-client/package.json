@@ -10,7 +10,7 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "eslint": "^9.31.0",
+    "eslint": "^9.39.1",
     "eslint-config-love": "^114.0.0",
     "eslint-plugin-html": "^8.1.3",
     "vite": "^6.4.1",
