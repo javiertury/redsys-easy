@@ -59,6 +59,7 @@ outputFormatter
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 (a: A) =&gt; Promise&lt;C&gt;

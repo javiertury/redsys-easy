@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.3.0](https://github.com/javiertury/redsys-easy/compare/v5.2.11...v5.3.0) (2025-11-19)
+
+
+### Features
+
+* add support for Ds_Card_Last4 ([2a018df](https://github.com/javiertury/redsys-easy/commit/2a018dfda66358aa60bb1992b03d9cccba071cd4)), closes [#92](https://github.com/javiertury/redsys-easy/issues/92)
+
 ## [5.2.11](https://github.com/javiertury/redsys-easy/compare/v5.2.10...v5.2.11) (2025-02-20)
 
 

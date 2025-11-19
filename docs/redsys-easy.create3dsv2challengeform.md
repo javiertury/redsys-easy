@@ -45,6 +45,7 @@ ThreeDSv2ChallengeOutputParams
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [ThreeDSv2ChallengeForm](./redsys-easy.threedsv2challengeform.md)

@@ -59,6 +59,7 @@ string
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [ThreeDSv1ChallengeForm](./redsys-easy.threedsv1challengeform.md)

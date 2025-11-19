@@ -45,6 +45,7 @@ RawOutputParams
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [RestIniciaPeticionFormatterOutput](./redsys-easy.restiniciapeticionformatteroutput.md)<!-- -->&lt;RawOutputParams&gt;

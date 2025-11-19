@@ -74,3 +74,4 @@ Payment authentication Request, XML that is gzip compressed and base64 encoded
 
 </td></tr>
 </tbody></table>
+

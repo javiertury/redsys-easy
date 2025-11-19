@@ -45,6 +45,7 @@ string
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [ThreeDSCres](./redsys-easy.threedscres.md)

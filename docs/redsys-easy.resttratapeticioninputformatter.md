@@ -45,6 +45,7 @@ raw
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [RestTrataPeticionInputParams](./redsys-easy.resttratapeticioninputparams.md)

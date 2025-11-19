@@ -45,6 +45,7 @@ string \| number \| undefined
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 void

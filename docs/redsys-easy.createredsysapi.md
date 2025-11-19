@@ -45,6 +45,7 @@ config
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [RedsysAPI](./redsys-easy.redsysapi.md)

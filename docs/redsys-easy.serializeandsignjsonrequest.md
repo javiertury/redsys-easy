@@ -57,6 +57,7 @@ RequestParams
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 SHA256SignedJSONParameters

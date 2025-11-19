@@ -46,3 +46,4 @@ Constructs a new instance of the `RedsysError` class
 
 </td></tr>
 </tbody></table>
+

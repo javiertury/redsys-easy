@@ -59,6 +59,7 @@ AF
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 ((input: Parameters&lt;AF&gt;\[0\], ...otherArgs: \[...C\]) =&gt; D)

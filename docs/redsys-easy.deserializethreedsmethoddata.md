@@ -45,6 +45,7 @@ string
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [ThreeDSMethodData](./redsys-easy.threedsmethoddata.md)

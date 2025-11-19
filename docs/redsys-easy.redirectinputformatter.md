@@ -45,6 +45,7 @@ input
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [RedirectInputParams](./redsys-easy.redirectinputparams.md)

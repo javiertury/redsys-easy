@@ -45,6 +45,7 @@ RawOutputParams
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 [NotificationFormatterOutput](./redsys-easy.notificationformatteroutput.md)<!-- -->&lt;RawOutputParams&gt;
