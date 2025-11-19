@@ -204,6 +204,7 @@ export const requestOutputFormatter = <
     // eslint-disable-next-line @typescript-eslint/no-deprecated -- robust to old format
     Ds_CardNumber: deprecatedCardNumber,
     Ds_Card_Number: newCardNumber,
+    Ds_Card_Last4: cardNumberLast4,
     Ds_Merchant_Identifier: identifier,
     Ds_ExpiryDate: rawExpiryDate,
     Ds_UrlPago2Fases: payURL,
@@ -214,6 +215,7 @@ export const requestOutputFormatter = <
   return {
     ...baseOutputFormatter(raw),
     ...(isStringNotEmpty(cardNumber) ? { cardNumber } : undefined),
+    ...(isStringNotEmpty(cardNumberLast4) ? { cardNumberLast4 } : undefined),
     ...(isStringNotEmpty(identifier) ? { identifier } : undefined),
     ...(isStringNotEmpty(payURL) ? { payURL } : undefined),
     ...(isStringNotEmpty(rawExpiryDate)

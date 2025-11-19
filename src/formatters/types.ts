@@ -318,6 +318,10 @@ export interface RequestFormatterOutput<
    */
   cardNumber?: string;
   /**
+   * @see {@link RestTrataPeticionOutputParams.Ds_Card_Last4}
+   */
+  cardNumberLast4?: string;
+  /**
    * @see {@link RestTrataPeticionOutputParams.Ds_UrlPago2Fases}
    */
   payURL?: string;

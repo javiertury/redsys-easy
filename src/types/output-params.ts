@@ -71,6 +71,9 @@ export interface BaseOutputParams {
   /** Card number with some digits replaced with asterisks */
   Ds_Card_Number?: string;
 
+  /** Last 4 digits of card number */
+  Ds_Card_Last4?: string;
+
   /** Card expiry date, YYmm */
   Ds_ExpiryDate?: string;
 
