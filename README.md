@@ -17,7 +17,7 @@ Checkout the [api documentation](./docs/redsys-easy.md) to explore the utilities
 
 These are the most important utilities that redsys-easy provides.
 
-<!-- doc-gen CODE src="./examples/__readme__/usage.ts" -->
+<!-- docs CODE src="./examples/__readme__/usage.ts" -->
 ```ts
 import {
   createRedsysAPI,
@@ -47,7 +47,7 @@ const {
   urls: SANDBOX_URLS
 });
 ```
-<!-- end-doc-gen -->
+<!-- /docs -->
 
 ## Examples
 
@@ -66,7 +66,7 @@ As an example, redsys-easy provides some basic typescript-ready formatters.
 
 > :warning: **Format has changed**: Previous versions of redsys-easy used a different format, particularly the `amount` field.
 
-<!-- doc-gen CODE src="./examples/__readme__/formatters.ts" -->
+<!-- docs CODE src="./examples/__readme__/formatters.ts" -->
 ```ts
 import {
   createRedsysAPI,
@@ -122,7 +122,7 @@ export const restTrataPeticion = useSingleInputFormatter(
 export const processRestNotification = useOutputFormatter(baseProcessRestNotification, restNotificationOutputFormatter);
 export const processSoapNotification = useOutputFormatter(baseProcessSoapNotification, soapNotificationOutputFormatter);
 ```
-<!-- end-doc-gen -->
+<!-- /docs -->
 
 ## FAQ
 

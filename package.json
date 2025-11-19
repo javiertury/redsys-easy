@@ -86,7 +86,7 @@
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "lint-staged": "^15.3.0",
-    "markdown-magic": "^3.7.0",
+    "markdown-magic": "^4.0.4",
     "rimraf": "^6.1.0",
     "rollup": "^3.29.5",
     "rollup-plugin-typescript2": "^0.35.0",
@@ -108,10 +108,10 @@
     ],
     "transform": {
       "^.+\\.tsx?$": [
-          "ts-jest",
-          {
-            "tsconfig": "tsconfig.test.json"
-          }
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.test.json"
+        }
       ]
     },
     "moduleNameMapper": {
