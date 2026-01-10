@@ -14,7 +14,7 @@
     "@koa/cors": "^5.0.0",
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
-    "redsys-easy": "../../",
+    "redsys-easy": "link:../..",
     "typescript": "^5.1.6"
   },
   "devDependencies": {
