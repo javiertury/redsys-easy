@@ -17,7 +17,7 @@
     "vite-plugin-solid": "^2.11.7"
   },
   "dependencies": {
-    "redsys-easy": "../../",
+    "redsys-easy": "link:../..",
     "solid-js": "^1.7.9",
     "solid-styled-components": "^0.28.5"
   }
