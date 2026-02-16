@@ -103,6 +103,18 @@ export interface BaseInputParams {
     | 'N'
     | 'C'
     | undefined;
+
+  /** xPay data in base64 format, mutually exclusive with DS_XPAYDECODEDDATA */
+  DS_XPAYDATA?: string | undefined;
+
+  /** xPay data in json format, mutually exclusive with DS_XPAYDATA */
+  DS_XPAYDECODEDDATA?: Record<string, unknown> | undefined;
+
+  /** xPay origin */
+  DS_XPAYORIGEN?: 'WEB' | 'InApp' | undefined;
+
+  /** xPay type */
+  DS_XPAYTYPE?: 'Google' | 'Apple' | undefined;
 }
 
 /**
@@ -155,18 +167,6 @@ export interface RequestInputParams
       | 'DS_MERCHANT_PERSOCODE'
       | 'DS_MERCHANT_SHIPPINGADDRESSPYP'
     > {
-  /** xPay data in base64 format, mutually exclusive with DS_XPAYDECODEDDATA */
-  DS_XPAYDATA?: string | undefined;
-
-  /** xPay data in json format, mutually exclusive with DS_XPAYDATA */
-  DS_XPAYDECODEDDATA?: Record<string, unknown> | undefined;
-
-  /** xPay origin */
-  DS_XPAYORIGEN?: 'WEB' | 'InApp' | undefined;
-
-  /** xPay type */
-  DS_XPAYTYPE?: 'Google' | 'Apple' | undefined;
-
   /** PUC identifier, number */
   DS_ACQUIRER_IDENTIFIER?: string | undefined;
 
