@@ -158,11 +158,14 @@ export interface RequestInputParams
   /** xPay data, hex */
   DS_XPAYDATA?: string | undefined;
 
+  /** xPay data, hex */
+  DS_XPAYDECODEDDATA?: Record<string, unknown> | undefined;
+
   /** xPay origin */
-  DS_XPAYORIGEN?: 'Google' | 'Apple' | undefined;
+  DS_XPAYORIGEN?: 'WEB' | 'InApp' | undefined;
 
   /** xPay type */
-  DS_XPAYTYPE?: 'WEB' | 'InApp' | undefined;
+  DS_XPAYTYPE?: 'Google' | 'Apple' | undefined;
 
   /** PUC identifier, number */
   DS_ACQUIRER_IDENTIFIER?: string | undefined;
