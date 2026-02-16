@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [5.3.1](https://github.com/javiertury/redsys-easy/compare/v5.3.0...v5.3.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* xPay typings [#98](https://github.com/javiertury/redsys-easy/issues/98) ([c25ec7b](https://github.com/javiertury/redsys-easy/commit/c25ec7be6f74cbb339c5b3341efeb2996cf857ef))
+
 ## [5.3.0](https://github.com/javiertury/redsys-easy/compare/v5.2.11...v5.3.0) (2025-11-19)
 
 
