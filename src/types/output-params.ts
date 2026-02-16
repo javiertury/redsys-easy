@@ -45,6 +45,9 @@ export interface BaseOutputParams {
   /** Card brand */
   Ds_Card_Brand?: CardBrandNum;
 
+  /** Card typology */
+  Ds_Card_Typology?: string | undefined;
+
   /** Card is under PSD2 */
   Ds_Card_PSD2?: 'Y' | 'N';
 
@@ -79,6 +82,9 @@ export interface BaseOutputParams {
 
   /** Stored payment method reference number */
   Ds_Merchant_Identifier?: string;
+
+  /** Electronic Commerce Indicator */
+  Ds_ECI?: string | undefined;
 }
 
 /**
@@ -98,6 +104,12 @@ export interface ResolvedTransactionTrait {
 
   /** Response code */
   Ds_Response: string;
+
+  /** Response description */
+  Ds_Response_Description?: string | undefined;
+
+  /** Response subcode indicating motive, it appears in denials with code 190 */
+  Ds_ResponseInt?: string | undefined;
 }
 
 /**
