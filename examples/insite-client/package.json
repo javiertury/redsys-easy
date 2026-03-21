@@ -13,8 +13,8 @@
     "eslint": "^10.1.0",
     "eslint-config-love": "^151.0.0",
     "eslint-plugin-html": "^8.1.4",
-    "vite": "^6.4.1",
-    "vite-plugin-solid": "^2.11.7"
+    "vite": "^8.0.1",
+    "vite-plugin-solid": "^2.11.11"
   },
   "dependencies": {
     "redsys-easy": "link:../..",
