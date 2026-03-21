@@ -42,6 +42,7 @@ export const serializedSoapNotificationParams =
   '</Request>';
 
 export const serializedAndSignedSoapNotificationParams =
+  // eslint-disable-next-line prefer-template
   '<Message>' +
   serializedSoapNotificationParams +
   '<Signature>RSOw0q6VSNrs4IOS2sS261JDAOMGeSPR9rGdPaxw+ok=</Signature>' +

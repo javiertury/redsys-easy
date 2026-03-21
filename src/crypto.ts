@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 /**
  * Adds padding to a buffer.
@@ -26,6 +26,7 @@ export const encrypt3DES = (key: string, message: string): Buffer => {
   const keyBuf = Buffer.from(key, 'base64');
   const iv = Buffer.alloc(8, 0);
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
   const messageBuf = Buffer.from(message.toString(), 'utf8');
   // Align to blocksize by padding the message buffer
   const paddedMessageBuf = zeroPad(messageBuf, 8);

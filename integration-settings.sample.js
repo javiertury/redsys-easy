@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports -- configuration file */
+/* eslint-disable @typescript-eslint/no-require-imports, strict -- configuration file */
 'use strict';
 
 /*
@@ -32,7 +32,7 @@
  *
  */
 
-const { URL } = require('url');
+const { URL } = require('node:url');
 
 const port = 3344;
 const endpoint = `http://external-ip-address-or-domain:${port}`;

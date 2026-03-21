@@ -2,6 +2,7 @@ import { ParseError } from '../errors';
 
 export const unescapeXML = (str: string) => {
   const xml = str.replace(
+    // eslint-disable-next-line prefer-named-capture-group
     /&(lt|#60|gt|#62|quot|#34|amp|#38|apos|#39);/g,
     (_match, p1) => {
       switch (p1) {
@@ -93,6 +94,7 @@ export const detectSoapVersion = (req: SoapRequest) => {
  * @public
  */
 export const mimicSoapNotificationReceiver = (xml: string): string => {
+  // eslint-disable-next-line prefer-named-capture-group
   const regex = /<(?:\w+:)?XML(?: [^<>]+)?>([^<>]+)<\/(?:\w+:)?XML>/;
 
   const matchArray = regex.exec(xml);

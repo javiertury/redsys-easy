@@ -23,6 +23,13 @@ export default [
       "prefer-destructuring": "off",
       "no-magic-numbers": "off",
       "complexity": "off",
+      "radix": "off",
+      "eqeqeq": ["error", "always", {"null": "ignore"}],
+      "prefer-exponentiation-operator": "off",
+      "no-negated-condition": "off",
+      "@eslint-community/eslint-comments/require-description": "off",
+      "require-unicode-regexp": "off", // Good rule but better keep backwards compatibility
+      "no-multi-assign": "off",
       "@typescript-eslint/strict-boolean-expressions": [
         "error",
         {

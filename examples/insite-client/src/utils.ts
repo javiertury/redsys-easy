@@ -12,7 +12,7 @@ export const waitForIframeToPostMessage = async ({
 }): Promise<{ loaded: boolean }> => {
   const maybeTimeoutPromise = timeout != null
     // eslint-disable-next-line promise/avoid-new -- unavoidable
-    ? new Promise(resolve => setTimeout(resolve, timeout))
+    ? new Promise(resolve => { setTimeout(resolve, timeout) })
     : undefined;
 
   let timedout = true;

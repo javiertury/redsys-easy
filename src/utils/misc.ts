@@ -25,6 +25,7 @@ export const randomTransactionId = () => {
   // Random 8 letter alphanumeric sequence
   const alphanum = new Array(8);
 
+  // eslint-disable-next-line no-plusplus
   for (let idx = 0; idx < 8; idx++) {
     alphanum[idx] =
       alphanumeric[drawPositiveDiscreteUniform(alphanumeric.length - 1)];

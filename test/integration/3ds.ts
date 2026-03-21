@@ -61,16 +61,19 @@ export const createChallengeFinalForm = ({
 };
 
 export const extractChallengeVariables = (responseText: string) => {
+  // eslint-disable-next-line prefer-named-capture-group
   const threeDSServerTransID = /CResSend\.threeDSServerTransID="([0-9a-f-]+)";/.exec(responseText)?.[1];
   if (threeDSServerTransID === undefined || !threeDSServerTransID) {
     throw new Error('threeDSServerTransID not found');
   }
 
+  // eslint-disable-next-line prefer-named-capture-group
   const acsTransID = /CResSend\.acsTransID="([0-9a-f-]+)";/.exec(responseText)?.[1];
   if (acsTransID === undefined || !acsTransID) {
     throw new Error('acsTransID not found');
   }
 
+  // eslint-disable-next-line prefer-named-capture-group
   const notificationURL = /document\.clasico\.action ?= ?"(.+)";/.exec(responseText)?.[1];
   if (notificationURL === undefined || !notificationURL) {
     throw new Error('notificationURL not found');
@@ -103,6 +106,7 @@ export const assert3DSv2CardConfig: <
   Ds_EMV3DS: ThreeDSv2PreAuthOutputParams
 }) = infoResult => {
   if (
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
     infoResult?.Ds_EMV3DS === undefined ||
     infoResult.Ds_EMV3DS.threeDSInfo !== 'CardConfiguration' ||
     (
@@ -138,6 +142,7 @@ const assert3DSChallengeRequest: <
   Ds_EMV3DS: ThreeDSv1ChallengeOutputParams | ThreeDSv2ChallengeOutputParams
 }) = infoResult => {
   if (
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
     infoResult?.Ds_EMV3DS === undefined ||
     infoResult.Ds_EMV3DS.threeDSInfo !== 'ChallengeRequest'
   ) {
@@ -168,6 +173,7 @@ export const assert3DSv2ChallengeRequest: <
   Ds_EMV3DS: ThreeDSv2ChallengeOutputParams
 }) = infoResult => {
   if (
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
     infoResult?.Ds_EMV3DS === undefined ||
     infoResult.Ds_EMV3DS.threeDSInfo !== 'ChallengeRequest'
   ) {

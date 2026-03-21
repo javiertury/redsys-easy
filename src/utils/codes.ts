@@ -1,4 +1,4 @@
-import { STATUS_CODES } from 'http';
+import { STATUS_CODES } from 'node:http';
 import { SIS_ERROR_CODES } from '../assets/error-codes';
 import RESPONSE_CODES from '../assets/response-codes';
 

@@ -5,8 +5,8 @@
  *
  * Use <project_root>/integration-settings.sample.js as a template and follow the instructions.
  */
-import { URL } from 'url';
-import { networkInterfaces } from 'os';
+import { URL } from 'node:url';
+import { networkInterfaces } from 'node:os';
 
 const externalIPv4Networks = Object.values(networkInterfaces()).flat()
   .filter(net => net?.family === 'IPv4' && !net.internal);

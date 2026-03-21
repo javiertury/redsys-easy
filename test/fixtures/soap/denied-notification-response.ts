@@ -16,6 +16,7 @@ export const serializedDeniedNotificationResponseParams =
 
 export const deniedNotificationResponseParamsSignature = 'YETezPYMCPkVxtU2QXw8lPB30IpDMi3lyZ2V22OCmk0=';
 
+// eslint-disable-next-line prefer-template
 export const serializedAndSignedDeniedNotificationResponseParams = '<Message>' +
   serializedDeniedNotificationResponseParams +
   `<Signature>${deniedNotificationResponseParamsSignature}</Signature>` +

@@ -1,10 +1,11 @@
+/* eslint-disable require-atomic-updates */
 import Koa from 'koa';
 import type { Context as KoaContext } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import { fetch } from 'undici';
 import cheerio from 'cheerio';
-import url from 'url';
-import type { Server } from 'http';
+import url from 'node:url';
+import type { Server } from 'node:http';
 
 import {
   createRedsysAPI,
@@ -154,6 +155,7 @@ describe('Redirect Integration', () => {
       headers: {
         ...clientPostHeaders,
         Cookie: ctx.cookie as string,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
         Origin: (new URL(ctx.referer as string).origin).toString(),
         Referer: ctx.referer as string
       }
@@ -189,6 +191,7 @@ describe('Redirect Integration', () => {
       headers: {
         ...clientPostHeaders,
         Cookie: ctx.cookie as string,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
         Origin: (new URL(ctx.referer).origin).toString(),
         Referer: ctx.referer
       }
@@ -232,6 +235,7 @@ describe('Redirect Integration', () => {
       headers: {
         ...clientPostHeaders,
         Cookie: ctx.cookie as string,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
         Origin: (new URL(ctx.referer as string).origin).toString(),
         Referer: ctx.referer as string
       }
@@ -264,6 +268,7 @@ describe('Redirect Integration', () => {
       headers: {
         ...clientPostHeaders,
         Cookie: ctx.cookie as string,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-conversion
         Origin: (new URL(ctx.referer).origin).toString(),
         Referer: ctx.referer
       }
