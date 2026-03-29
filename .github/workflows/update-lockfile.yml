@@ -24,6 +24,7 @@ jobs:
       uses: pnpm/action-setup@6b87c4621a21f802115d27ffcbfb44e28abd1387
       with:
         standalone: true
+        version: 10.x.x
 
     - name: Setup Node
       run: pnpm runtime -g set node 24.6.0
