@@ -51,6 +51,8 @@ jobs:
 
     - name: Create or update PR
       if: steps.changes.outputs.changed == 'true'
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
