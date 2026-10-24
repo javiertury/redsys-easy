@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import base64url from 'base64url';
 
 /**
  * Adds padding to a buffer.
@@ -60,4 +61,23 @@ export const sha256Sign = (
     .createHmac('sha256', orderKeyBuf)
     .update(params)
     .digest('base64');
+};
+
+/**
+ * Compare two signatures in constant time
+ *
+ * @params expected - Signature computed locally, base64 encoded
+ * @params received - Signature received from redsys, base64 or base64url encoded
+ */
+export const isSignatureEqual = (
+  expected: string,
+  received: string
+): boolean => {
+  // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
+  const expectedBuf = Buffer.from(expected, 'base64');
+  const receivedBuf = base64url.toBuffer(received);
+  return (
+    expectedBuf.length === receivedBuf.length &&
+    crypto.timingSafeEqual(expectedBuf, receivedBuf)
+  );
 };

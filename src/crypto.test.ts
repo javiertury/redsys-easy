@@ -1,6 +1,6 @@
 import base64url from 'base64url';
 
-import { zeroPad, encrypt3DES, sha256Sign } from './crypto';
+import { zeroPad, encrypt3DES, sha256Sign, isSignatureEqual } from './crypto';
 
 import {
   redirectMerchantKey,
@@ -227,6 +227,42 @@ describe('Crypto', () => {
           serializedSoapNotificationParams
         )
       ).toEqual(deserializedSoapNotification.Signature);
+    });
+  });
+
+  describe('isSignatureEqual', () => {
+    const expected = sha256Sign(
+      redirectMerchantKey,
+      deserializedRedirectRestNotification.Ds_Order,
+      serializedRedirectRestNotification.Ds_MerchantParameters
+    );
+
+    it('should accept the same signature in base64 or base64url', () => {
+      expect(isSignatureEqual(expected, expected)).toBe(true);
+
+      expect(
+        isSignatureEqual(
+          expected,
+          serializedRedirectRestNotification.Ds_Signature
+        )
+      ).toBe(true);
+
+      expect(isSignatureEqual(expected, expected.replace(/=+$/, ''))).toBe(
+        true
+      );
+    });
+
+    it('should reject a different signature', () => {
+      expect(
+        isSignatureEqual(
+          expected,
+          '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
+        )
+      ).toBe(false);
+
+      expect(isSignatureEqual(expected, expected.slice(0, -4))).toBe(false);
+
+      expect(isSignatureEqual(expected, '')).toBe(false);
     });
   });
 });
