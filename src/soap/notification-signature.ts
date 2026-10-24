@@ -1,4 +1,4 @@
-import { sha256Sign } from '../crypto';
+import { sha256Sign, isSignatureEqual } from '../crypto';
 
 import type {
   ParsedSoapNotifiation,
@@ -36,7 +36,7 @@ export const verifySoapNotification = (
 
   const expSignature = sha256Sign(merchantKey, order, signedStr);
 
-  if (!signature || signature !== expSignature) {
+  if (!signature || !isSignatureEqual(expSignature, signature)) {
     throw new ParseError('Invalid signature', signature, xml);
   }
 };

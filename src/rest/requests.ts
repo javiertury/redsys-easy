@@ -6,7 +6,8 @@ import type {
   CommonRawRequestParams,
   CommonRawResponseParams,
   ResponseJSONSuccess,
-  ResponseJSONError
+  ResponseJSONError,
+  SignatureVersion
 } from '../types/api';
 
 import {
@@ -22,14 +23,20 @@ export const jsonRequest = async <
   fetch,
   url,
   merchantKey,
-  rawRequestParams
+  rawRequestParams,
+  signatureVersion
 }: {
   fetch: typeof Fetch;
   url: string;
   merchantKey: string;
   rawRequestParams: RequestParams;
+  signatureVersion?: SignatureVersion | undefined;
 }): Promise<ResponseParams> => {
-  const payload = serializeAndSignJSONRequest(merchantKey, rawRequestParams);
+  const payload = serializeAndSignJSONRequest(
+    merchantKey,
+    rawRequestParams,
+    signatureVersion
+  );
 
   const response = await fetch(url, {
     method: 'POST',

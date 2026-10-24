@@ -1,5 +1,4 @@
-import base64url from 'base64url';
-import { sha256Sign } from '../crypto';
+import { sha256Sign, isSignatureEqual } from '../crypto';
 
 import {
   extractAndAssertOrderFromRequestParams,
@@ -36,11 +35,7 @@ export const sha256VerifyJSONResponse = (
     response.Ds_MerchantParameters
   );
 
-  // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
-  if (
-    !signature ||
-    !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))
-  ) {
+  if (!signature || !isSignatureEqual(expSignature, signature)) {
     throw new ParseError('Invalid signature');
   }
 };

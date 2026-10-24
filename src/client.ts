@@ -17,7 +17,11 @@ import {
 
 import { jsonRequest } from './rest/requests';
 
-import type { ResponseJSONSuccess, RedirectForm } from './types/api';
+import type {
+  ResponseJSONSuccess,
+  RedirectForm,
+  SignatureVersion
+} from './types/api';
 
 import type {
   RestIniciaPeticionInputParams,
@@ -75,6 +79,8 @@ export interface RedsysConfig {
   fetch?: typeof Fetch | undefined;
   secretKey: string;
   urls: UrlsConfig;
+  /** Signature of requests and redirect forms, HMAC_SHA256_V1 by default */
+  signatureVersion?: SignatureVersion | undefined;
 }
 
 /**
@@ -178,6 +184,16 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     throw new RedsysError('URLs must be provided');
   }
 
+  const signatureVersions: readonly string[] = ['HMAC_SHA256_V1', 'HMAC_SHA512_V2'];
+  if (
+    config.signatureVersion != null &&
+    !signatureVersions.includes(config.signatureVersion)
+  ) {
+    throw new RedsysError(
+      `Unknown signature version: ${config.signatureVersion}`
+    );
+  }
+
   /**
    * Sends a iniciaPeticion request using REST interface
    */
@@ -191,7 +207,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       fetch,
       url: config.urls.restIniciaPeticion,
       merchantKey: config.secretKey,
-      rawRequestParams: paramsInput
+      rawRequestParams: paramsInput,
+      signatureVersion: config.signatureVersion
     });
 
   /**
@@ -207,7 +224,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       fetch,
       url: config.urls.restTrataPeticion,
       merchantKey: config.secretKey,
-      rawRequestParams: paramsInput
+      rawRequestParams: paramsInput,
+      signatureVersion: config.signatureVersion
     });
 
     return result;
@@ -219,7 +237,11 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   const createRedirectForm = (
     paramsInput: RedirectInputParams
   ): RedirectForm => {
-    const body = serializeAndSignJSONRequest(config.secretKey, paramsInput);
+    const body = serializeAndSignJSONRequest(
+      config.secretKey,
+      paramsInput,
+      config.signatureVersion
+    );
 
     return {
       url: config.urls.redirect,

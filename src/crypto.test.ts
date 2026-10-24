@@ -1,6 +1,13 @@
 import base64url from 'base64url';
 
-import { zeroPad, encrypt3DES, sha256Sign } from './crypto';
+import {
+  zeroPad,
+  encrypt3DES,
+  sha256Sign,
+  encryptAES,
+  sha512Sign,
+  isSignatureEqual
+} from './crypto';
 
 import {
   redirectMerchantKey,
@@ -42,6 +49,24 @@ import {
   deniedNotificationResponseParamsSignature,
   deniedNotificationResponse3DESOrder
 } from '../test/fixtures/soap/denied-notification-response';
+
+import {
+  redirectSha512MerchantKey,
+  docsSha512Order,
+  docsSha512AESOrder,
+  docsSha512MerchantParameters,
+  docsSha512Signature,
+  redirectSha512Request,
+  serializedAndSignedRedirectSha512Request
+} from '../test/fixtures/rest/redirect-sha512';
+
+import {
+  restJsonSha512MerchantKey,
+  restJsonSha512Request,
+  serializedAndSignedRestJsonSha512Request,
+  serializedRestJsonSha512Response,
+  deserializedRestJsonSha512Response
+} from '../test/fixtures/rest/rest-json-sha512';
 
 import {
   soapNotificationMerchantKey,
@@ -227,6 +252,108 @@ describe('Crypto', () => {
           serializedSoapNotificationParams
         )
       ).toEqual(deserializedSoapNotification.Signature);
+    });
+  });
+
+  describe('encryptAES', () => {
+    it('should encrypt message', () => {
+      expect(encryptAES(redirectSha512MerchantKey, docsSha512Order)).toEqual(
+        Buffer.from(docsSha512AESOrder, 'base64')
+      );
+    });
+
+    it('should use the first 16 characters of the key', () => {
+      expect(
+        encryptAES(redirectSha512MerchantKey.slice(0, 16), docsSha512Order)
+      ).toEqual(Buffer.from(docsSha512AESOrder, 'base64'));
+    });
+
+    it('should right pad short keys with zeros', () => {
+      expect(encryptAES('sq7HjrUOBfKm', docsSha512Order)).toEqual(
+        encryptAES('sq7HjrUOBfKm0000', docsSha512Order)
+      );
+    });
+
+    it('should use PKCS#7 padding', () => {
+      // 12 digit order, one block
+      expect(
+        encryptAES(redirectSha512MerchantKey, redirectSha512Request.DS_MERCHANT_ORDER)
+      ).toHaveLength(16);
+
+      // 16 characters, a whole block of padding
+      expect(encryptAES(redirectSha512MerchantKey, '1234567890123456')).toHaveLength(32);
+    });
+  });
+
+  describe('sha512Sign', () => {
+    it('should sign message', () => {
+      expect(
+        sha512Sign(
+          redirectSha512MerchantKey,
+          docsSha512Order,
+          docsSha512MerchantParameters
+        )
+      ).toEqual(docsSha512Signature);
+
+      expect(
+        sha512Sign(
+          redirectSha512MerchantKey,
+          redirectSha512Request.DS_MERCHANT_ORDER,
+          serializedAndSignedRedirectSha512Request.Ds_MerchantParameters
+        )
+      ).toEqual(serializedAndSignedRedirectSha512Request.Ds_Signature);
+
+      expect(
+        sha512Sign(
+          restJsonSha512MerchantKey,
+          restJsonSha512Request.DS_MERCHANT_ORDER,
+          serializedAndSignedRestJsonSha512Request.Ds_MerchantParameters
+        )
+      ).toEqual(serializedAndSignedRestJsonSha512Request.Ds_Signature);
+
+      expect(
+        sha512Sign(
+          restJsonSha512MerchantKey,
+          deserializedRestJsonSha512Response.Ds_Order,
+          serializedRestJsonSha512Response.Ds_MerchantParameters
+        )
+      ).toEqual(serializedRestJsonSha512Response.Ds_Signature);
+    });
+  });
+
+  describe('isSignatureEqual', () => {
+    const expected = sha256Sign(
+      redirectMerchantKey,
+      deserializedRedirectRestNotification.Ds_Order,
+      serializedRedirectRestNotification.Ds_MerchantParameters
+    );
+
+    it('should accept the same signature in base64 or base64url', () => {
+      expect(isSignatureEqual(expected, expected)).toBe(true);
+
+      expect(
+        isSignatureEqual(
+          expected,
+          serializedRedirectRestNotification.Ds_Signature
+        )
+      ).toBe(true);
+
+      expect(isSignatureEqual(expected, expected.replace(/=+$/, ''))).toBe(
+        true
+      );
+    });
+
+    it('should reject a different signature', () => {
+      expect(
+        isSignatureEqual(
+          expected,
+          '7DVpRPAPoChZh2cgaWnLqlfFsKeXdRfAO_tz-UrxJcU='
+        )
+      ).toBe(false);
+
+      expect(isSignatureEqual(expected, expected.slice(0, -4))).toBe(false);
+
+      expect(isSignatureEqual(expected, '')).toBe(false);
     });
   });
 });

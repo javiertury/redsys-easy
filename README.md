@@ -132,6 +132,20 @@ Redsys API uses expects amounts denominated in the smallest unit of a currency. 
 
 However you are free to wrap these core functions with a custom formatter. Particularly, redsys-easy optional formatters expect the amount to be formatted as a decimal string currency unit. For euros, it would be '1.99'.
 
+### Which signature version is used?
+
+Requests and redirect forms are signed with `HMAC_SHA256_V1` by default. To use [`HMAC_SHA512_V2`](https://pagosonline.redsys.es/desarrolladores-inicio/documentacion-operativa/firmar-una-operacion/), pass `signatureVersion` to `createRedsysAPI`. The same merchant key works for both.
+
+```ts
+createRedsysAPI({
+  secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
+  urls: SANDBOX_URLS,
+  signatureVersion: 'HMAC_SHA512_V2'
+});
+```
+
+REST responses and JSON notifications are verified with the version they declare in `Ds_SignatureVersion`, whatever this option says. SOAP notifications are still verified with `HMAC_SHA256_V1` only.
+
 ## Acknowledgments
 
 Based on previous work
