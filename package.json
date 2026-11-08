@@ -32,9 +32,9 @@
     "build:api": "api-extractor run --local",
     "build": "pnpm run build:clean && pnpm run lint && pnpm run build:code && pnpm run build:api",
     "prepublishOnly": "pnpm run build",
-    "test:unit": "jest ./src/*.test.ts ./src/**/*.test.ts",
-    "test:integration": "jest ./test/integration/**/*.test.ts",
-    "test:code": "jest",
+    "test:unit": "vitest run ./src/*.test.ts ./src/**/*.test.ts",
+    "test:integration": "vitest run ./test/integration/**/*.test.ts",
+    "test:code": "vitest run",
     "test:readme": "tsc -p ./tsconfig.readme.json",
     "test": "pnpm run test:code && pnpm run test:readme",
     "docs:api": "api-documenter markdown --input-folder ./api/temp --output-folder ./docs",
@@ -62,7 +62,8 @@
     "decimal.js": "^10.4.3",
     "fast-xml-parser": "^5.0.6",
     "tslib": "^2.6.1",
-    "undici": "^8.0.1"
+    "undici": "^8.0.1",
+    "vitest": "^5.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -72,7 +73,6 @@
     "@microsoft/api-extractor": "^7.57.7",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@types/cheerio": "^0.22.31",
-    "@types/jest": "^30.0.0",
     "@types/koa": "^3.0.0",
     "@types/koa-bodyparser": "^4.3.10",
     "@types/koa__router": "^12.0.0",
@@ -80,8 +80,6 @@
     "commit-and-tag-version": "^12.7.1",
     "eslint": "^10.1.0",
     "eslint-config-love": "^151.0.0",
-    "eslint-plugin-jest": "^29.15.0",
-    "jest": "^30.3.0",
     "koa": "^3.0.0",
     "koa-bodyparser": "^4.4.1",
     "lint-staged": "^15.3.0",
@@ -91,30 +89,6 @@
     "rollup-plugin-typescript2": "^0.37.0",
     "simple-git-hooks": "^2.9.0",
     "ts-expect": "^1.3.0",
-    "ts-jest": "^29.4.6",
     "typescript": "^5.1.6"
-  },
-  "jest": {
-    "preset": "ts-jest/presets/js-with-ts",
-    "testEnvironment": "node",
-    "testMatch": [
-      "<rootDir>/test/unit/**/*.test.ts",
-      "<rootDir>/test/integration/**/*.test.ts",
-      "<rootDir>/src/**/*.test.ts"
-    ],
-    "setupFilesAfterEnv": [
-      "./test/jest.setup.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "tsconfig": "tsconfig.test.json"
-        }
-      ]
-    },
-    "moduleNameMapper": {
-      "redsys-easy": "<rootDir>/src"
-    }
   }
 }

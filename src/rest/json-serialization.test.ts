@@ -1,3 +1,4 @@
+import { describe, test as it, expect } from 'vitest';
 import {
   serializeJSONMerchantParams,
   deserializeJSONMerchantParams

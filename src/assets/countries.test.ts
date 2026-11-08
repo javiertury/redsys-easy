@@ -1,3 +1,4 @@
+import { describe, test as it, expect } from 'vitest';
 import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 

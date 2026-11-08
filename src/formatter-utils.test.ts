@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { describe, test as it } from 'vitest';
 import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 

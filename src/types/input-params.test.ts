@@ -1,3 +1,4 @@
+import { describe, test as it } from 'vitest';
 import { expectType } from 'ts-expect';
 import type { TypeOf } from 'ts-expect';
 

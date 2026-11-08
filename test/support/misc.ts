@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 export const createDsControlExpectation = (result: object) => {
   const dsControlKey = Object.keys(result).find(key => key.startsWith('Ds_Control'));
   if (dsControlKey === undefined) {

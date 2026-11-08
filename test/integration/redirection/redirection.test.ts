@@ -1,4 +1,5 @@
 /* eslint-disable require-atomic-updates */
+import { describe, test as it, expect, beforeAll, afterAll } from 'vitest';
 import Koa from 'koa';
 import type { Context as KoaContext } from 'koa';
 import bodyParser from 'koa-bodyparser';

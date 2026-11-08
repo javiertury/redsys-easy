@@ -1,3 +1,4 @@
+import { describe, test as it, expect } from 'vitest';
 import {
   sha512VerifyJSONResponse,
   sha512V2SignJSONRequest,

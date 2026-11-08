@@ -1,3 +1,4 @@
+import { describe, test as it, expect, vi } from 'vitest';
 import { expectType } from 'ts-expect';
 import type { TypeEqual } from 'ts-expect';
 
@@ -125,7 +126,7 @@ describe('signatureVersion', () => {
   });
 
   it('should sign REST requests with HMAC_SHA512_V2 and verify the response', async () => {
-    const fetch = jest.fn().mockResolvedValue(
+    const fetch = vi.fn().mockResolvedValue(
       new Response(JSON.stringify(serializedRestJsonSha512Response))
     );
 
