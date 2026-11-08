@@ -134,17 +134,17 @@ However you are free to wrap these core functions with a custom formatter. Parti
 
 ### Which signature version is used?
 
-Requests and redirect forms are signed with `HMAC_SHA256_V1` by default. To use [`HMAC_SHA512_V2`](https://pagosonline.redsys.es/desarrolladores-inicio/documentacion-operativa/firmar-una-operacion/), pass `signatureVersion` to `createRedsysAPI`. The same merchant key works for both.
+REST requests and redirect forms are signed with [`HMAC_SHA512_V2`](https://pagosonline.redsys.es/desarrolladores-inicio/documentacion-operativa/firmar-una-operacion/) by default. REST responses and JSON notifications allow also `HMAC_SHA512_V1` and `HMAC_SHA256_V1` signatures. To change this behavior, pass a list of allowed versions to `signatureVersions` in `createRedsysAPI` with the version to sign requests and forms as the first item. The same merchant key works for all signature versions.
 
 ```ts
 createRedsysAPI({
   secretKey: 'sq7HjrUOBfKmC576ILgskD5srU870gJ7',
   urls: SANDBOX_URLS,
-  signatureVersion: 'HMAC_SHA512_V2'
+  signatureVersions: ['HMAC_SHA512_V2', 'HMAC_SHA512_V1', 'HMAC_SHA256_V1']
 });
 ```
 
-REST responses and JSON notifications are verified with the version they declare in `Ds_SignatureVersion`, whatever this option says. SOAP notifications are still verified with `HMAC_SHA256_V1` only.
+SOAP notifications and their responses still use `HMAC_SHA256_V1` only, and they are unaffected by the configuration above.
 
 ## Acknowledgments
 

@@ -24,18 +24,18 @@ export const jsonRequest = async <
   url,
   merchantKey,
   rawRequestParams,
-  signatureVersion
+  signatureVersions
 }: {
   fetch: typeof Fetch;
   url: string;
   merchantKey: string;
   rawRequestParams: RequestParams;
-  signatureVersion?: SignatureVersion | undefined;
+  signatureVersions: readonly [SignatureVersion, ...SignatureVersion[]];
 }): Promise<ResponseParams> => {
   const payload = serializeAndSignJSONRequest(
     merchantKey,
     rawRequestParams,
-    signatureVersion
+    signatureVersions[0]
   );
 
   const response = await fetch(url, {
@@ -67,6 +67,7 @@ export const jsonRequest = async <
 
   return deserializeAndVerifyJSONResponse<ResponseParams>(
     merchantKey,
-    responseData
+    responseData,
+    signatureVersions
   );
 };

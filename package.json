@@ -58,7 +58,6 @@
     "commit-msg": "pnpm exec commitlint -e"
   },
   "dependencies": {
-    "base64url": "^3.0.1",
     "dayjs": "^1.11.9",
     "decimal.js": "^10.4.3",
     "fast-xml-parser": "^5.0.6",

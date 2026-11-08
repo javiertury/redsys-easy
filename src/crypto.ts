@@ -1,5 +1,4 @@
 import crypto from 'node:crypto';
-import base64url from 'base64url';
 
 /**
  * Adds padding to a buffer.
@@ -110,8 +109,9 @@ export const isSignatureEqual = (
   received: string
 ): boolean => {
   // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
+  // In node, the input encoding 'base64' accepts also base64url, with and without padding.
   const expectedBuf = Buffer.from(expected, 'base64');
-  const receivedBuf = base64url.toBuffer(received);
+  const receivedBuf = Buffer.from(received, 'base64');
   return (
     expectedBuf.length === receivedBuf.length &&
     crypto.timingSafeEqual(expectedBuf, receivedBuf)

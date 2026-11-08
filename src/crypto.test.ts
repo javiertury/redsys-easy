@@ -1,5 +1,3 @@
-import base64url from 'base64url';
-
 import {
   zeroPad,
   encrypt3DES,
@@ -203,9 +201,7 @@ describe('Crypto', () => {
         )
         // Redsys returns base64url encoded instead of regular base64
       ).toEqual(
-        base64url
-          .toBuffer(serializedRedirectRestNotification.Ds_Signature)
-          .toString('base64')
+        Buffer.from(serializedRedirectRestNotification.Ds_Signature, 'base64url').toString('base64')
       );
 
       expect(
@@ -224,8 +220,7 @@ describe('Crypto', () => {
         )
         // Redsys returns base64url encoded instead of regular base64
       ).toEqual(
-        base64url
-          .toBuffer(serializedRestJsonResponse.Ds_Signature)
+        Buffer.from(serializedRestJsonResponse.Ds_Signature, 'base64url')
           .toString('base64')
       );
 

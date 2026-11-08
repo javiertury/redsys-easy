@@ -30,6 +30,7 @@ export default [
       "@eslint-community/eslint-comments/require-description": "off",
       "require-unicode-regexp": "off", // Good rule but better keep backwards compatibility
       "no-multi-assign": "off",
+      "@eslint-community/eslint-comments/no-unlimited-disable": "off",
       "@typescript-eslint/strict-boolean-expressions": [
         "error",
         {

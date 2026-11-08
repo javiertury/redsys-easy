@@ -11,15 +11,19 @@ import type {
   ResponseJSONSuccess,
   CommonRawRequestParams,
   CommonRawResponseParams,
-  SHA512SignedJSONParameters
+  SHA512V1SignedJSONParameters,
+  SHA512V2SignedJSONParameters,
+  SignatureVersion
 } from '../types/api';
+
+const sha512SignatureVersions: readonly SignatureVersion[] = ['HMAC_SHA512_V2', 'HMAC_SHA512_V1'];
 
 export const sha512VerifyJSONResponse = (
   merchantKey: string,
   response: ResponseJSONSuccess,
   responseParams: CommonRawResponseParams
 ): void => {
-  if (response.Ds_SignatureVersion !== 'HMAC_SHA512_V2') {
+  if (!(sha512SignatureVersions as readonly unknown[]).includes(response.Ds_SignatureVersion)) {
     throw new RedsysError(
       `Unknown signature version: ${response.Ds_SignatureVersion}`
     );
@@ -40,11 +44,11 @@ export const sha512VerifyJSONResponse = (
   }
 };
 
-export const sha512SignJSONRequest = (
+export const sha512V2SignJSONRequest = (
   merchantKey: string,
   serializedParams: string,
   requestParams: CommonRawRequestParams
-): SHA512SignedJSONParameters => {
+): SHA512V2SignedJSONParameters => {
   const order: string = extractAndAssertOrderFromRequestParams(requestParams);
 
   const signature: string = sha512Sign(merchantKey, order, serializedParams);
@@ -52,5 +56,20 @@ export const sha512SignJSONRequest = (
     Ds_SignatureVersion: 'HMAC_SHA512_V2',
     Ds_MerchantParameters: serializedParams,
     Ds_Signature: signature
+  };
+};
+
+export const sha512V1SignJSONRequest = (
+  merchantKey: string,
+  serializedParams: string,
+  requestParams: CommonRawRequestParams
+): SHA512V1SignedJSONParameters => {
+  const order: string = extractAndAssertOrderFromRequestParams(requestParams);
+
+  const signature: string = sha512Sign(merchantKey, order, serializedParams);
+  return {
+    Ds_SignatureVersion: 'HMAC_SHA512_V1',
+    Ds_MerchantParameters: serializedParams,
+    Ds_Signature: Buffer.from(signature, 'base64url').toString('base64').replace(/\+/g, '-').replace(/\//g, '_')
   };
 };

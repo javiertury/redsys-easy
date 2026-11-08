@@ -28,7 +28,7 @@ export const deserializeJSONMerchantParams = <
 export const serializeJSONMerchantParams = (
   requestParams: unknown,
   // HMAC_SHA512_V2 requires base64url without padding, redsys answers SIS0430 otherwise
-  encoding: 'base64' | 'base64url' = 'base64'
+  encoding: 'base64' | 'base64url'
 ): string =>
   // Official redsys docs escape "/" because they use php json_encode. I think
   // this is wrong and it also works without escaping.

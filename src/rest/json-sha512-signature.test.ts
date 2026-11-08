@@ -1,6 +1,7 @@
 import {
   sha512VerifyJSONResponse,
-  sha512SignJSONRequest
+  sha512V2SignJSONRequest,
+  sha512V1SignJSONRequest
 } from './json-sha512-signature';
 
 import { ParseError, RedsysError } from '../errors';
@@ -22,10 +23,18 @@ import {
   deserializedRestJsonSha512Response
 } from '../../test/fixtures/rest/rest-json-sha512';
 
+import {
+  restJsonSha512V1MerchantKey,
+  restJsonSha512V1Request,
+  serializedAndSignedRestJsonSha512V1Request,
+  serializedRestJsonSha512V1Response,
+  deserializedRestJsonSha512V1Response
+} from '../../test/fixtures/rest/rest-json-sha512v1';
+
 describe('REST JSON SHA512 signature', () => {
   it('should sign request', () => {
     expect(
-      sha512SignJSONRequest(
+      sha512V2SignJSONRequest(
         redirectSha512MerchantKey,
         serializedRedirectSha512Request,
         redirectSha512Request
@@ -33,7 +42,7 @@ describe('REST JSON SHA512 signature', () => {
     ).toEqual(serializedAndSignedRedirectSha512Request);
 
     expect(
-      sha512SignJSONRequest(
+      sha512V2SignJSONRequest(
         restJsonSha512MerchantKey,
         serializedAndSignedRestJsonSha512Request.Ds_MerchantParameters,
         restJsonSha512Request
@@ -100,5 +109,25 @@ describe('REST JSON SHA512 signature', () => {
         deserializedRestJsonSha512Response
       )
     ).toThrow(new RedsysError('Unknown signature version: HMAC_SHA256_V1'));
+  });
+
+  it('should sign HMAC_SHA512_V1 request', () => {
+    expect(
+      sha512V1SignJSONRequest(
+        restJsonSha512V1MerchantKey,
+        serializedAndSignedRestJsonSha512V1Request.Ds_MerchantParameters,
+        restJsonSha512V1Request
+      )
+    ).toEqual(serializedAndSignedRestJsonSha512V1Request);
+  });
+
+  it('should verify HMAC_SHA512_V1 response with legit signature', () => {
+    expect(() =>
+      sha512VerifyJSONResponse(
+        restJsonSha512V1MerchantKey,
+        serializedRestJsonSha512V1Response,
+        deserializedRestJsonSha512V1Response
+      )
+    ).not.toThrow();
   });
 });

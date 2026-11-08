@@ -41,19 +41,19 @@ import {
 
 describe('REST JSON serialization', () => {
   it('should serialize merchant parameters', () => {
-    expect(serializeJSONMerchantParams(redirectRequest)).toEqual(
+    expect(serializeJSONMerchantParams(redirectRequest, 'base64')).toEqual(
       serializedRedirectRequest
     );
 
-    expect(serializeJSONMerchantParams(redirectWithIdentifierRequest)).toEqual(
+    expect(serializeJSONMerchantParams(redirectWithIdentifierRequest, 'base64')).toEqual(
       serializedRedirectWithIdentifierRequest
     );
 
-    expect(serializeJSONMerchantParams(restJsonRequest)).toEqual(
+    expect(serializeJSONMerchantParams(restJsonRequest, 'base64')).toEqual(
       serializedRestJsonRequest
     );
 
-    expect(serializeJSONMerchantParams(iniciaPeticionV1Request)).toEqual(
+    expect(serializeJSONMerchantParams(iniciaPeticionV1Request, 'base64')).toEqual(
       serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters
     );
   });

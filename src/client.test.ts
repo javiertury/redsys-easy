@@ -99,28 +99,28 @@ describe('processRestNotification', () => {
 });
 
 describe('signatureVersion', () => {
-  it('should sign redirect forms with HMAC_SHA256_V1 by default', () => {
-    const { createRedirectForm } = createRedsysAPI({
-      secretKey: redirectMerchantKey,
-      urls: SANDBOX_URLS
-    });
-
-    expect(createRedirectForm(redirectRequest)).toEqual({
-      url: SANDBOX_URLS.redirect,
-      body: serializedAndSignedRedirectRequest
-    });
-  });
-
-  it('should sign redirect forms with HMAC_SHA512_V2', () => {
+  it('should sign redirect forms with HMAC_SHA512_V2 by default', () => {
     const { createRedirectForm } = createRedsysAPI({
       secretKey: redirectSha512MerchantKey,
-      urls: SANDBOX_URLS,
-      signatureVersion: 'HMAC_SHA512_V2'
+      urls: SANDBOX_URLS
     });
 
     expect(createRedirectForm(redirectSha512Request)).toEqual({
       url: SANDBOX_URLS.redirect,
       body: serializedAndSignedRedirectSha512Request
+    });
+  });
+
+  it('should sign redirect forms with HMAC_SHA256_V1', () => {
+    const { createRedirectForm } = createRedsysAPI({
+      secretKey: redirectMerchantKey,
+      urls: SANDBOX_URLS,
+      signatureVersions: ['HMAC_SHA256_V1', 'HMAC_SHA512_V2']
+    });
+
+    expect(createRedirectForm(redirectRequest)).toEqual({
+      url: SANDBOX_URLS.redirect,
+      body: serializedAndSignedRedirectRequest
     });
   });
 
@@ -132,7 +132,7 @@ describe('signatureVersion', () => {
     const { restIniciaPeticion } = createRedsysAPI({
       secretKey: restJsonSha512MerchantKey,
       urls: SANDBOX_URLS,
-      signatureVersion: 'HMAC_SHA512_V2',
+      signatureVersions: ['HMAC_SHA512_V2'],
       fetch
     });
 
@@ -182,8 +182,8 @@ describe('signatureVersion', () => {
       createRedsysAPI({
         secretKey: redirectMerchantKey,
         urls: SANDBOX_URLS,
-        signatureVersion: 'HMAC_SHA512_V1' as 'HMAC_SHA512_V2'
+        signatureVersions: ['HMAC_SHA512_V0' as 'HMAC_SHA512_V2']
       })
-    ).toThrow(new RedsysError('Unknown signature version: HMAC_SHA512_V1'));
+    ).toThrow(new RedsysError('Unknown signature versions in: HMAC_SHA512_V0'));
   });
 });

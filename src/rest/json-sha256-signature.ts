@@ -11,7 +11,8 @@ import type {
   ResponseJSONSuccess,
   CommonRawRequestParams,
   CommonRawResponseParams,
-  SHA256SignedJSONParameters
+  SHA256SignedJSONParameters,
+  SignatureVersion
 } from '../types/api';
 
 export const sha256VerifyJSONResponse = (
@@ -19,7 +20,7 @@ export const sha256VerifyJSONResponse = (
   response: ResponseJSONSuccess,
   responseParams: CommonRawResponseParams
 ): void => {
-  if (response.Ds_SignatureVersion !== 'HMAC_SHA256_V1') {
+  if (response.Ds_SignatureVersion !== ('HMAC_SHA256_V1' as SignatureVersion)) {
     throw new RedsysError(
       `Unknown signature version: ${response.Ds_SignatureVersion}`
     );

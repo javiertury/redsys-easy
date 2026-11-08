@@ -74,7 +74,7 @@ export type ResponseJSON = ResponseJSONSuccess | ResponseJSONError;
  *
  * @public
  */
-export type SignatureVersion = 'HMAC_SHA256_V1' | 'HMAC_SHA512_V2';
+export type SignatureVersion = 'HMAC_SHA256_V1' | 'HMAC_SHA512_V1' | 'HMAC_SHA512_V2';
 
 /**
  * SHA256 signed JSON request parameters
@@ -86,9 +86,18 @@ export interface SHA256SignedJSONParameters {
 }
 
 /**
- * SHA512 signed JSON request parameters
+ * HMAC_SHA512_V1 signed JSON request parameters
  */
-export interface SHA512SignedJSONParameters {
+export interface SHA512V1SignedJSONParameters {
+  Ds_SignatureVersion: 'HMAC_SHA512_V1';
+  Ds_MerchantParameters: string;
+  Ds_Signature: string;
+}
+
+/**
+ * HMAC_SHA512_V2 signed JSON request parameters
+ */
+export interface SHA512V2SignedJSONParameters {
   Ds_SignatureVersion: 'HMAC_SHA512_V2';
   Ds_MerchantParameters: string;
   Ds_Signature: string;
@@ -99,7 +108,8 @@ export interface SHA512SignedJSONParameters {
  */
 export type SignedJSONParameters =
   | SHA256SignedJSONParameters
-  | SHA512SignedJSONParameters;
+  | SHA512V1SignedJSONParameters
+  | SHA512V2SignedJSONParameters;
 
 export interface SoapNotificationResponse {
   order: string;
