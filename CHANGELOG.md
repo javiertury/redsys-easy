@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [6.0.0](https://github.com/javiertury/redsys-easy/compare/v5.3.2...v6.0.0) (2026-11-08)
+
+
+### Features
+
+* allow config for signatureVersions and add HMAC_SHA512_V1 ([cfa8a2c](https://github.com/javiertury/redsys-easy/commit/cfa8a2ccd238e16a1de8188d1c4776cee7c7b822))
+* support HMAC_SHA512_V2 signatures ([b998607](https://github.com/javiertury/redsys-easy/commit/b99860725afc7dae5a2834a70e1d6176fec43358))
+
+
+### Bug Fixes
+
+* compare signatures in constant time ([80be139](https://github.com/javiertury/redsys-easy/commit/80be139e016b46416bed3a630f4969da266439f5))
+
 ## [5.3.2](https://github.com/javiertury/redsys-easy/compare/v5.3.1...v5.3.2) (2026-02-16)
 
 
