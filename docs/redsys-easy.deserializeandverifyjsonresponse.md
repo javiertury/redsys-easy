@@ -7,7 +7,7 @@
 **Signature:**
 
 ```typescript
-deserializeAndVerifyJSONResponse: <ResponseParams extends CommonRawResponseParams>(merchantKey: string, response: ResponseJSONSuccess) => ResponseParams
+deserializeAndVerifyJSONResponse: <ResponseParams extends CommonRawResponseParams>(merchantKey: string, response: ResponseJSONSuccess, signatureVersions: readonly SignatureVersion[]) => ResponseParams
 ```
 
 ## Parameters
@@ -50,6 +50,20 @@ response
 </td><td>
 
 [ResponseJSONSuccess](./redsys-easy.responsejsonsuccess.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+signatureVersions
+
+
+</td><td>
+
+readonly [SignatureVersion](./redsys-easy.signatureversion.md)<!-- -->\[\]
 
 
 </td><td>

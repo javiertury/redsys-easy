@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-body: SHA256SignedJSONParameters;
+body: SignedJSONParameters;
 ```

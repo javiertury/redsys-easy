@@ -73,6 +73,25 @@ string
 </td></tr>
 <tr><td>
 
+[signatureVersions?](./redsys-easy.redsysconfig.signatureversions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+readonly [SignatureVersion](./redsys-easy.signatureversion.md)<!-- -->\[\] \| undefined
+
+
+</td><td>
+
+_(Optional)_ Allowed signature versions. The first item is used to sign requests and redirect forms.
+
+
+</td></tr>
+<tr><td>
+
 [urls](./redsys-easy.redsysconfig.urls.md)
 
 

@@ -33,7 +33,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[(constructor)({ message, code, response })](./redsys-easy.gatewayerror._constructor_.md)
+[(constructor)({ message, code, response }, input)](./redsys-easy.gatewayerror._constructor_.md)
 
 
 </td><td>

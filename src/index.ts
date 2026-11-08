@@ -52,6 +52,7 @@ export type {
 export type {
   ResponseJSONSuccess,
   RedirectForm,
+  SignatureVersion,
   ThreeDSv2MethodNotificationBody,
   ThreeDSv1ChallengeNotificationBody,
   ThreeDSv2ChallengeNotificationBody

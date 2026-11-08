@@ -34,23 +34,34 @@ import {
   deserializedRestJsonResponse
 } from '../../test/fixtures/rest/rest-json';
 
+import {
+  redirectSha512Request,
+  serializedRedirectSha512Request
+} from '../../test/fixtures/rest/redirect-sha512';
+
 describe('REST JSON serialization', () => {
   it('should serialize merchant parameters', () => {
-    expect(serializeJSONMerchantParams(redirectRequest)).toEqual(
+    expect(serializeJSONMerchantParams(redirectRequest, 'base64')).toEqual(
       serializedRedirectRequest
     );
 
-    expect(serializeJSONMerchantParams(redirectWithIdentifierRequest)).toEqual(
+    expect(serializeJSONMerchantParams(redirectWithIdentifierRequest, 'base64')).toEqual(
       serializedRedirectWithIdentifierRequest
     );
 
-    expect(serializeJSONMerchantParams(restJsonRequest)).toEqual(
+    expect(serializeJSONMerchantParams(restJsonRequest, 'base64')).toEqual(
       serializedRestJsonRequest
     );
 
-    expect(serializeJSONMerchantParams(iniciaPeticionV1Request)).toEqual(
+    expect(serializeJSONMerchantParams(iniciaPeticionV1Request, 'base64')).toEqual(
       serializedAndSignedIniciaPeticionV1Request.Ds_MerchantParameters
     );
+  });
+
+  it('should serialize merchant parameters as base64url', () => {
+    expect(
+      serializeJSONMerchantParams(redirectSha512Request, 'base64url')
+    ).toEqual(serializedRedirectSha512Request);
   });
 
   it('should deserialize merchant parameters', () => {

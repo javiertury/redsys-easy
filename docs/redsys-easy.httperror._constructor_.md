@@ -9,7 +9,7 @@ Constructs a new instance of the `HTTPError` class
 **Signature:**
 
 ```typescript
-constructor({ message, code, response }: HTTPErrorOptions);
+constructor(input: HTTPErrorOptions);
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { message, code, response }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

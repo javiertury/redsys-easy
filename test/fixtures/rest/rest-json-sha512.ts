@@ -1,0 +1,41 @@
+export const restJsonSha512MerchantKey = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+
+// iniciaPeticion sent to the sandbox, sis-t.redsys.es, on 2026-10-24
+export const restJsonSha512Request = {
+  DS_MERCHANT_ORDER: '344175059656',
+  DS_MERCHANT_MERCHANTCODE: '999008881',
+  DS_MERCHANT_TERMINAL: '1',
+  DS_MERCHANT_CURRENCY: '978',
+  DS_MERCHANT_TRANSACTIONTYPE: '0',
+  DS_MERCHANT_AMOUNT: '4999',
+  DS_MERCHANT_PAN: '4548810000000003',
+  DS_MERCHANT_EXPIRYDATE: '4912',
+  DS_MERCHANT_CVV2: '123',
+  DS_MERCHANT_EMV3DS: { threeDSInfo: 'CardData' }
+} as const;
+
+export const serializedAndSignedRestJsonSha512Request = {
+  Ds_SignatureVersion: 'HMAC_SHA512_V2',
+  Ds_MerchantParameters: 'eyJEU19NRVJDSEFOVF9PUkRFUiI6IjM0NDE3NTA1OTY1NiIsIkRTX01FUkNIQU5UX01FUkNIQU5UQ09ERSI6Ijk5OTAwODg4MSIsIkRTX01FUkNIQU5UX1RFUk1JTkFMIjoiMSIsIkRTX01FUkNIQU5UX0NVUlJFTkNZIjoiOTc4IiwiRFNfTUVSQ0hBTlRfVFJBTlNBQ1RJT05UWVBFIjoiMCIsIkRTX01FUkNIQU5UX0FNT1VOVCI6IjQ5OTkiLCJEU19NRVJDSEFOVF9QQU4iOiI0NTQ4ODEwMDAwMDAwMDAzIiwiRFNfTUVSQ0hBTlRfRVhQSVJZREFURSI6IjQ5MTIiLCJEU19NRVJDSEFOVF9DVlYyIjoiMTIzIiwiRFNfTUVSQ0hBTlRfRU1WM0RTIjp7InRocmVlRFNJbmZvIjoiQ2FyZERhdGEifX0',
+  Ds_Signature: 'Y-bAUQ-8hSAStJw29AlZJm2hBGh_1aY3XNqT3XGYZiksc3PMCz45S-ePTznGF-N7eUv2ZHJscPUfGKVRhfyVxQ'
+};
+
+// Response, signed by redsys with HMAC_SHA512_V2
+export const serializedRestJsonSha512Response = {
+  Ds_SignatureVersion: 'HMAC_SHA512_V2',
+  Ds_MerchantParameters: 'eyJEc19PcmRlciI6IjM0NDE3NTA1OTY1NiIsIkRzX01lcmNoYW50Q29kZSI6Ijk5OTAwODg4MSIsIkRzX1Rlcm1pbmFsIjoiMSIsIkRzX1RyYW5zYWN0aW9uVHlwZSI6IjAiLCJEc19FTVYzRFMiOnsicHJvdG9jb2xWZXJzaW9uIjoiMi4yLjAiLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6IjlhM2U3MDgxLWRlZGEtNGZlOS1hODg4LWJkZmFkZGZmNWZiMCIsInRocmVlRFNJbmZvIjoiQ2FyZENvbmZpZ3VyYXRpb24ifSwiRHNfQ2FyZF9QU0QyIjoiWSJ9',
+  Ds_Signature: 'TRFVE6aXTFYZEdi1zFnmCLe0mIoEH-scxbKkPSRmkWLsehI4ZZQRvi6F0AmWPwW4Lq41STSCfLUdpQyCz43CQg'
+};
+
+export const deserializedRestJsonSha512Response = {
+  Ds_Order: '344175059656',
+  Ds_MerchantCode: '999008881',
+  Ds_Terminal: '1',
+  Ds_TransactionType: '0',
+  Ds_EMV3DS: {
+    protocolVersion: '2.2.0',
+    threeDSServerTransID: '9a3e7081-deda-4fe9-a888-bdfaddff5fb0',
+    threeDSInfo: 'CardConfiguration'
+  },
+  Ds_Card_PSD2: 'Y'
+} as const;

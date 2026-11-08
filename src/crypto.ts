@@ -61,3 +61,59 @@ export const sha256Sign = (
     .update(params)
     .digest('base64');
 };
+
+/**
+ * Encrypt a message using AES-128-CBC
+ *
+ * @params key - Key to encrypt message, used as text
+ * @params message - Message to be encrypted
+ */
+export const encryptAES = (key: string, message: string): Buffer => {
+  // Redsys takes the first 16 characters of the key, right padded with zeros
+  const keyBuf = Buffer.from(key.slice(0, 16).padEnd(16, '0'), 'utf8');
+  const iv = Buffer.alloc(16, 0);
+
+  // PKCS#7 padding, the default
+  const cipher = crypto.createCipheriv('aes-128-cbc', keyBuf, iv);
+  return Buffer.concat([cipher.update(message, 'utf8'), cipher.final()]);
+};
+
+/**
+ * Compute HMAC_SHA512_V2 signature
+ *
+ * @params merchantKey - Key to encrypt message
+ * @params order - Order number
+ * @params params - Payload to sign
+ */
+export const sha512Sign = (
+  merchantKey: string,
+  order: string,
+  params: string
+) => {
+  // The HMAC key is the encrypted order as a base64 string, not its bytes
+  const orderKey = encryptAES(merchantKey, order).toString('base64');
+  return crypto
+    .createHmac('sha512', orderKey)
+    .update(params)
+    .digest('base64url');
+};
+
+/**
+ * Compare two signatures in constant time
+ *
+ * @params expected - Signature computed locally, base64 or base64url encoded
+ * @params received - Signature received from redsys, base64 or base64url encoded
+ */
+export const isSignatureEqual = (
+  expected: string,
+  received: string
+): boolean => {
+  // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
+  // In node, the input encoding 'base64' accepts also base64url, with and without padding.
+  const expectedBuf = Buffer.from(expected, 'base64');
+  const receivedBuf = Buffer.from(received, 'base64');
+  return (
+    expectedBuf.length === receivedBuf.length &&
+    crypto.timingSafeEqual(expectedBuf, receivedBuf)
+  );
+};

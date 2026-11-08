@@ -70,6 +70,13 @@ export interface ResponseJSONError {
 export type ResponseJSON = ResponseJSONSuccess | ResponseJSONError;
 
 /**
+ * Signature versions supported by redsys-easy
+ *
+ * @public
+ */
+export type SignatureVersion = 'HMAC_SHA256_V1' | 'HMAC_SHA512_V1' | 'HMAC_SHA512_V2';
+
+/**
  * SHA256 signed JSON request parameters
  */
 export interface SHA256SignedJSONParameters {
@@ -77,6 +84,32 @@ export interface SHA256SignedJSONParameters {
   Ds_MerchantParameters: string;
   Ds_Signature: string;
 }
+
+/**
+ * HMAC_SHA512_V1 signed JSON request parameters
+ */
+export interface SHA512V1SignedJSONParameters {
+  Ds_SignatureVersion: 'HMAC_SHA512_V1';
+  Ds_MerchantParameters: string;
+  Ds_Signature: string;
+}
+
+/**
+ * HMAC_SHA512_V2 signed JSON request parameters
+ */
+export interface SHA512V2SignedJSONParameters {
+  Ds_SignatureVersion: 'HMAC_SHA512_V2';
+  Ds_MerchantParameters: string;
+  Ds_Signature: string;
+}
+
+/**
+ * Signed JSON request parameters
+ */
+export type SignedJSONParameters =
+  | SHA256SignedJSONParameters
+  | SHA512V1SignedJSONParameters
+  | SHA512V2SignedJSONParameters;
 
 export interface SoapNotificationResponse {
   order: string;
@@ -90,5 +123,5 @@ export interface SoapNotificationResponse {
  */
 export interface RedirectForm {
   url: string;
-  body: SHA256SignedJSONParameters;
+  body: SignedJSONParameters;
 }

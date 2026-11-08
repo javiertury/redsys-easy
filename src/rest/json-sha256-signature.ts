@@ -1,5 +1,4 @@
-import base64url from 'base64url';
-import { sha256Sign } from '../crypto';
+import { sha256Sign, isSignatureEqual } from '../crypto';
 
 import {
   extractAndAssertOrderFromRequestParams,
@@ -12,7 +11,8 @@ import type {
   ResponseJSONSuccess,
   CommonRawRequestParams,
   CommonRawResponseParams,
-  SHA256SignedJSONParameters
+  SHA256SignedJSONParameters,
+  SignatureVersion
 } from '../types/api';
 
 export const sha256VerifyJSONResponse = (
@@ -20,7 +20,7 @@ export const sha256VerifyJSONResponse = (
   response: ResponseJSONSuccess,
   responseParams: CommonRawResponseParams
 ): void => {
-  if (response.Ds_SignatureVersion !== 'HMAC_SHA256_V1') {
+  if (response.Ds_SignatureVersion !== ('HMAC_SHA256_V1' as SignatureVersion)) {
     throw new RedsysError(
       `Unknown signature version: ${response.Ds_SignatureVersion}`
     );
@@ -36,11 +36,7 @@ export const sha256VerifyJSONResponse = (
     response.Ds_MerchantParameters
   );
 
-  // Comparing different base64 encodings is messy. Make it foolproof by comparing buffers.
-  if (
-    !signature ||
-    !Buffer.from(expSignature, 'base64').equals(base64url.toBuffer(signature))
-  ) {
+  if (!signature || !isSignatureEqual(expSignature, signature)) {
     throw new ParseError('Invalid signature');
   }
 };

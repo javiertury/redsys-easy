@@ -17,7 +17,11 @@ import {
 
 import { jsonRequest } from './rest/requests';
 
-import type { ResponseJSONSuccess, RedirectForm } from './types/api';
+import type {
+  ResponseJSONSuccess,
+  RedirectForm,
+  SignatureVersion
+} from './types/api';
 
 import type {
   RestIniciaPeticionInputParams,
@@ -31,6 +35,8 @@ import type {
   RestNotificationOutputParams,
   SoapNotificationOutputParams
 } from './types/output-params';
+
+import { assetIsNonEmptyListOfSignatureVersions } from './utils/signatures';
 
 /**
  * URLs to configure the API
@@ -75,6 +81,8 @@ export interface RedsysConfig {
   fetch?: typeof Fetch | undefined;
   secretKey: string;
   urls: UrlsConfig;
+  /** Allowed signature versions. The first item is used to sign requests and redirect forms. */
+  signatureVersions?: readonly SignatureVersion[] | undefined;
 }
 
 /**
@@ -178,6 +186,10 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     throw new RedsysError('URLs must be provided');
   }
 
+  const signatureVersions = config.signatureVersions ?? ['HMAC_SHA512_V2', 'HMAC_SHA512_V1', 'HMAC_SHA256_V1'];
+
+  assetIsNonEmptyListOfSignatureVersions(signatureVersions)
+
   /**
    * Sends a iniciaPeticion request using REST interface
    */
@@ -191,7 +203,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       fetch,
       url: config.urls.restIniciaPeticion,
       merchantKey: config.secretKey,
-      rawRequestParams: paramsInput
+      rawRequestParams: paramsInput,
+      signatureVersions
     });
 
   /**
@@ -207,7 +220,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
       fetch,
       url: config.urls.restTrataPeticion,
       merchantKey: config.secretKey,
-      rawRequestParams: paramsInput
+      rawRequestParams: paramsInput,
+      signatureVersions
     });
 
     return result;
@@ -219,7 +233,11 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
   const createRedirectForm = (
     paramsInput: RedirectInputParams
   ): RedirectForm => {
-    const body = serializeAndSignJSONRequest(config.secretKey, paramsInput);
+    const body = serializeAndSignJSONRequest(
+      config.secretKey,
+      paramsInput,
+      signatureVersions[0]
+    );
 
     return {
       url: config.urls.redirect,
@@ -238,7 +256,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     const params =
       deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
         config.secretKey,
-        body
+        body,
+        signatureVersions
       );
 
     return decodeUrlEntries(params);
@@ -254,7 +273,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     // A notification can't contain a gateway error, it didn't initiate the request
     deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
       config.secretKey,
-      body
+      body,
+      signatureVersions
     );
 
   /**
@@ -276,7 +296,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
     const params =
       deserializeAndVerifyJSONResponse<RestNotificationOutputParams>(
         config.secretKey,
-        body
+        body,
+        signatureVersions
       );
 
     return typeof params.Ds_Date === 'string' && params.Ds_Date.includes('%2F')
@@ -286,6 +307,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
 
   /**
    * Parses and verifies the body of a SOAP notification
+   *
+   * @deprecated
    */
   const processSoapNotification = (
     /** SOAP notification as a XML string */
@@ -295,6 +318,8 @@ export const createRedsysAPI = (config: RedsysConfig): RedsysAPI => {
 
   /**
    * Creates an answer for a SOAP notification, serializes and signs it
+   *
+   * @deprecated
    */
   const createSoapNotificationAnswer = (
     /** Order identifier */

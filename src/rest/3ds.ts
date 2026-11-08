@@ -1,5 +1,3 @@
-import base64url from 'base64url';
-
 import type {
   ThreeDSv1ChallengeOutputParams,
   ThreeDSv2ChallengeOutputParams,
@@ -35,7 +33,7 @@ export const create3DSMethodForm = (
   return {
     url: emv3dsParams.threeDSMethodURL,
     body: {
-      threeDSMethodData: base64url.encode(JSON.stringify(methodData))
+      threeDSMethodData: Buffer.from(JSON.stringify(methodData), 'utf8').toString('base64url')
     }
   };
 };
@@ -80,7 +78,7 @@ export const deserializeThreeDSMethodData = (
   threeDSMethodData: string
 ): ThreeDSMethodData =>
   // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- assume it satisfies format
-  JSON.parse(base64url.decode(threeDSMethodData)) as ThreeDSMethodData;
+  JSON.parse(Buffer.from(threeDSMethodData, 'base64url').toString('utf8')) as ThreeDSMethodData;
 
 /**
  * Deserialize `cres` field of a 3DS v2 challenge
