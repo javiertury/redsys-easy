@@ -72,7 +72,7 @@ export type CurrencyNum = '8' | '12' | '32' | '36' | '44' | '48' | '50' | '51' |
 // Warning: (ae-forgotten-export) The symbol "CommonRawResponseParams" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export const deserializeAndVerifyJSONResponse: <ResponseParams extends CommonRawResponseParams>(merchantKey: string, response: ResponseJSONSuccess) => ResponseParams;
+export const deserializeAndVerifyJSONResponse: <ResponseParams extends CommonRawResponseParams>(merchantKey: string, response: ResponseJSONSuccess, signatureVersions: readonly SignatureVersion[]) => ResponseParams;
 
 // @public
 export const deserializeCres: (cres: string) => ThreeDSCres;
@@ -88,7 +88,7 @@ export const detectSoapVersion: (req: SoapRequest) => "1.2" | "1.1";
 // @public
 export class GatewayError extends RedsysError {
     // Warning: (ae-forgotten-export) The symbol "GatewayErrorOptions" needs to be exported by the entry point index.d.ts
-    constructor({ message, code, response }: GatewayErrorOptions);
+    constructor(input: GatewayErrorOptions);
     // (undocumented)
     code: string | undefined;
     // (undocumented)
@@ -104,7 +104,7 @@ export const getSISErrorCodeMessage: (code: string) => string | undefined;
 // @public
 export class HTTPError extends RedsysError {
     // Warning: (ae-forgotten-export) The symbol "HTTPErrorOptions" needs to be exported by the entry point index.d.ts
-    constructor({ message, code, response }: HTTPErrorOptions);
+    constructor(input: HTTPErrorOptions);
     // (undocumented)
     code: number | undefined;
     // (undocumented)
@@ -174,10 +174,10 @@ export const randomTransactionId: () => string;
 
 // @public
 export interface RedirectForm {
-    // Warning: (ae-forgotten-export) The symbol "SHA256SignedJSONParameters" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "SignedJSONParameters" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
-    body: SHA256SignedJSONParameters;
+    body: SignedJSONParameters;
     // (undocumented)
     url: string;
 }
@@ -232,6 +232,7 @@ export interface RedsysConfig {
     fetch?: typeof fetch_2 | undefined;
     // (undocumented)
     secretKey: string;
+    signatureVersions?: readonly SignatureVersion[] | undefined;
     // (undocumented)
     urls: UrlsConfig;
 }
@@ -244,7 +245,7 @@ export class RedsysError extends Error {
 // @public
 export class ResponseError extends RedsysError {
     // Warning: (ae-forgotten-export) The symbol "ResponseErrorOptions" needs to be exported by the entry point index.d.ts
-    constructor({ message, code, response }: ResponseErrorOptions);
+    constructor(input: ResponseErrorOptions);
     // (undocumented)
     code: number | undefined;
     // (undocumented)
@@ -393,7 +394,10 @@ export const SANDBOX_URLS: UrlsConfig;
 // Warning: (ae-forgotten-export) The symbol "CommonRawRequestParams" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export const serializeAndSignJSONRequest: <RequestParams extends CommonRawRequestParams>(merchantKey: string, requestParams: RequestParams) => SHA256SignedJSONParameters;
+export const serializeAndSignJSONRequest: <RequestParams extends CommonRawRequestParams>(merchantKey: string, requestParams: RequestParams, signatureVersion: SignatureVersion) => SignedJSONParameters;
+
+// @public
+export type SignatureVersion = 'HMAC_SHA256_V1' | 'HMAC_SHA512_V1' | 'HMAC_SHA512_V2';
 
 // @public
 export const soapNotificationOutputFormatter: <RawOutputParams extends SoapNotificationOutputParams = SoapNotificationOutputParams>(raw: RawOutputParams) => NotificationFormatterOutput<RawOutputParams>;

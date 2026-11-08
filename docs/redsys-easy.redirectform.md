@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-SHA256SignedJSONParameters
+SignedJSONParameters
 
 
 </td><td>

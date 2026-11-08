@@ -9,7 +9,7 @@ Constructs a new instance of the `ResponseError` class
 **Signature:**
 
 ```typescript
-constructor({ message, code, response }: ResponseErrorOptions);
+constructor(input: ResponseErrorOptions);
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { message, code, response }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

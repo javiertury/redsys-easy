@@ -168,7 +168,7 @@ Creates Redsys API functions
 </td></tr>
 <tr><td>
 
-[deserializeAndVerifyJSONResponse(merchantKey, response)](./redsys-easy.deserializeandverifyjsonresponse.md)
+[deserializeAndVerifyJSONResponse(merchantKey, response, signatureVersions)](./redsys-easy.deserializeandverifyjsonresponse.md)
 
 
 </td><td>
@@ -353,7 +353,7 @@ REST trataPeticion output formatter
 </td></tr>
 <tr><td>
 
-[serializeAndSignJSONRequest(merchantKey, requestParams)](./redsys-easy.serializeandsignjsonrequest.md)
+[serializeAndSignJSONRequest(merchantKey, requestParams, signatureVersion)](./redsys-easy.serializeandsignjsonrequest.md)
 
 
 </td><td>
@@ -1007,6 +1007,17 @@ Sends a iniciaPeticion request using REST interface
 </td><td>
 
 Sends a trataPeticion request using REST interface
+
+
+</td></tr>
+<tr><td>
+
+[SignatureVersion](./redsys-easy.signatureversion.md)
+
+
+</td><td>
+
+Signature versions supported by redsys-easy
 
 
 </td></tr>

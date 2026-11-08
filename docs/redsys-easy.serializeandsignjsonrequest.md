@@ -7,7 +7,7 @@
 **Signature:**
 
 ```typescript
-serializeAndSignJSONRequest: <RequestParams extends CommonRawRequestParams>(merchantKey: string, requestParams: RequestParams) => SHA256SignedJSONParameters
+serializeAndSignJSONRequest: <RequestParams extends CommonRawRequestParams>(merchantKey: string, requestParams: RequestParams, signatureVersion: SignatureVersion) => SignedJSONParameters
 ```
 
 ## Parameters
@@ -56,9 +56,23 @@ RequestParams
 
 
 </td></tr>
+<tr><td>
+
+signatureVersion
+
+
+</td><td>
+
+[SignatureVersion](./redsys-easy.signatureversion.md)
+
+
+</td><td>
+
+
+</td></tr>
 </tbody></table>
 
 **Returns:**
 
-SHA256SignedJSONParameters
+SignedJSONParameters
 
