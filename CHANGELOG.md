@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [6.0.1](https://github.com/javiertury/redsys-easy/compare/v6.0.0...v6.0.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* make vitest a dev dependency ([4a33875](https://github.com/javiertury/redsys-easy/commit/4a33875c027494cd9e472e2d9a2babf26ec7a3d9))
+
 ## [6.0.0](https://github.com/javiertury/redsys-easy/compare/v5.3.2...v6.0.0) (2026-11-08)
 
 
